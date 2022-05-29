@@ -1,0 +1,20 @@
+.side-bar{
+    -fx-background-color: #D5D6F2
+}
+
+.pane.pane1{
+    -fx-background-color: linear-gradient(to right, #8A8AF9, #8080F6);
+}
+
+.pane.pane2{
+    -fx-background-color: linear-gradient(to right, #B878FE, #AC65EF);
+}
+
+.pane.pane3{
+    -fx-background-color: linear-gradient(to right, #E3C43E, #DABD3D);
+}
+
+.border {
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius: 5 5 5 5;
+}
