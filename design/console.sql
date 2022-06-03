@@ -1,9 +1,9 @@
 /*
 drop database if exists hustmilktea;
 create database hustmilktea;
- */
+*/
 
-drop table if exists ToppingTrongHoaDon
+drop table if exists ToppingTrongHoaDon;
 drop table if exists ThanhPhanHoaDon;
 drop table if exists HoaDon;
 drop table if exists ThanhPhanTopping;
@@ -114,17 +114,16 @@ create table ThanhPhanHoaDon (
     soLuong         int         not null,
     constraint pk_thanhphanhoadon primary key (maHoaDon, buyID),
     constraint fk_thanhphanhoadon_hoadon foreign key (maHoaDon) references HoaDon(maHoaDon),
-    constraint fk_thanhphanhoadon_giadouong foreign key (tenDoUong, size) references GiaDoUong(tenDoUong, size),
-    constraint fk_thanhphanhoadon_topping foreign key (tenTopping) references Topping(tenTopping)
+    constraint fk_thanhphanhoadon_giadouong foreign key (tenDoUong, size) references GiaDoUong(tenDoUong, size)
 );
 
 create table ToppingTrongHoaDon (
     maHoaDon        varchar(20) not null,
     buyID           int not null,
     tenTopping      varchar(20),
-    constraint pk_thanhphanhoadon primary key (maHoaDon, buyID, tenTopping),
+    constraint pk_toppingtronghoadon primary key (maHoaDon, buyID, tenTopping),
     constraint fk_toppingtronghoadon_thanhphanhoadon foreign key (maHoaDon, buyID) references ThanhPhanHoaDon(maHoaDon, buyID),
-    constraint fk_toppingtronghoadon_topping foreign key (tenTopping) references Topping(tenTopping),
+    constraint fk_toppingtronghoadon_topping foreign key (tenTopping) references Topping(tenTopping)
 );
 
 
