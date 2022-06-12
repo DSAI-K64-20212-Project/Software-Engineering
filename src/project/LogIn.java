@@ -24,10 +24,16 @@ public class LogIn extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/LogIn.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/project/LogIn.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
