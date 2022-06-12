@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.DatDoUongController">
+   <children>
+      <HBox layoutX="-7.0" prefHeight="540.0" prefWidth="967.0">
+         <children>
+            <VBox fx:id="vboxLeft" prefHeight="540.0" prefWidth="173.0" style="-fx-background-color: linear-gradient(to bottom, #1BB1DD, #020D51);" styleClass="side-bar">
+               <children>
+                  <ImageView fitHeight="155.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Software-Engineering/Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="164.0" style="-fx-background-radius: 25;" text="Đặt Đồ uống">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nguyên Liệu">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nhân sự">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Menu">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="btnDoanhThu" mnemonicParsing="false" onAction="#handleBtnDoanhThu" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Doanh Thu">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></VBox>
+            <VBox layoutX="202.0" layoutY="10.0" prefHeight="540.0" prefWidth="835.0">
+               <children>
+                  <ToolBar prefHeight="56.0" prefWidth="815.0" style="-fx-background-color: linear-gradient(to right, #8B8BF9, #8B8BF9);">
+                     <items>
+                        <TextField opacity="0.46" prefHeight="25.0" prefWidth="353.0" text="Search" />
+                     </items>
+                  </ToolBar>
+                  <AnchorPane prefHeight="488.0" prefWidth="815.0" style="-fx-background-color: #E2DFDF;">
+                     <children>
+                        <HBox layoutY="1.0" prefHeight="15.0" prefWidth="52.0" style="-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <Label alignment="CENTER" prefHeight="17.0" prefWidth="52.0" text="Loại">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="14.0" layoutY="171.0" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="17.0" prefWidth="52.0" text="Size">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <RadioButton layoutX="146.0" layoutY="173.0" mnemonicParsing="false" text="Size M">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton layoutX="368.0" layoutY="173.0" mnemonicParsing="false" text="Size L">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </RadioButton>
+                        <HBox layoutX="14.0" layoutY="203.0" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="92.0" text="Đường">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <HBox layoutX="14.0" layoutY="258.0" prefHeight="40.0" prefWidth="95.0" style="-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="38.0" prefWidth="103.0" text="Topping">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <ScrollBar layoutX="14.0" layoutY="235.0" prefHeight="17.0" prefWidth="215.0" />
+                        <ScrollBar layoutX="279.0" layoutY="235.0" prefHeight="17.0" prefWidth="215.0" />
+                        <HBox layoutX="491.0" layoutY="441.0" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F); -fx-background-radius: 25;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="73.0" text="Add">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <AnchorPane layoutX="589.0" prefHeight="486.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
+                           <children>
+                              <TextField layoutX="16.0" layoutY="381.0" prefHeight="25.0" prefWidth="197.0" />
+                              <Label alignment="CENTER" layoutX="3.0" prefHeight="54.0" prefWidth="223.0" text="Hóa Đơn">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                              <HBox layoutX="1.0" layoutY="444.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" AnchorPane.topAnchor="444.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Xác Nhận" textAlignment="CENTER" wrappingWidth="219.7294921875">
+                                       <font>
+                                          <Font size="37.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                              <ScrollPane layoutY="40.0" prefHeight="337.0" prefWidth="227.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="647.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" />
+                                </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                        <HBox layoutX="279.0" layoutY="203.0" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="92.0" text="Đá">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <ScrollPane layoutY="27.0" prefHeight="138.0" prefWidth="588.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="133.0" prefWidth="900.0">
+                                 <children>
+                                    <HBox layoutX="-1.0" prefHeight="133.0" prefWidth="899.0">
+                                       <children>
+                                          <Pane prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="67.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="38.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/anh-tra-sua-tran-chau-den-dep_062227590.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                                <Label layoutX="75.0" layoutY="93.0" text="trà sữa" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="67.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="38.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/anh-tra-sua-matcha-cuc-dep_062227575.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                                <Label layoutX="75.0" layoutY="93.0" text="trà sữa" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="215.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="37.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/download%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane layoutX="219.0" layoutY="10.0" prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="67.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="38.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/anh-tra-sua-matcha-cuc-dep_062227575.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                                <Label layoutX="75.0" layoutY="93.0" text="trà sữa" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="215.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="37.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/download%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="215.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="37.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/download%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="215.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="37.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/download%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                        <ScrollPane layoutY="301.0" prefHeight="138.0" prefWidth="588.0">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="133.0" prefWidth="900.0">
+                                 <children>
+                                    <HBox layoutX="-1.0" prefHeight="133.0" prefWidth="899.0">
+                                       <children>
+                                          <Pane prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="67.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="38.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Topping/images.jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                                <Label layoutX="75.0" layoutY="93.0" text="trà sữa" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="67.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="38.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Topping/images%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                                <Label layoutX="75.0" layoutY="93.0" text="trà sữa" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="244.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="1.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Topping/images%20(2).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane layoutX="219.0" layoutY="10.0" prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="67.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="38.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/anh-tra-sua-matcha-cuc-dep_062227575.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                                <Label layoutX="75.0" layoutY="93.0" text="trà sữa" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="215.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="37.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/download%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="215.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="37.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/download%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="133.0" prefWidth="215.0" style="-fx-background-radius: 25;" styleClass="border">
+                                             <children>
+                                                <Label layoutX="76.0" layoutY="93.0" text="trà sữa" />
+                                                <Label layoutX="66.0" layoutY="106.0" text="\$1870.25" />
+                                                <CheckBox layoutX="37.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="84.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../image/Trà%20Sữa/download%20(1).jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </CheckBox>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children></AnchorPane>
+               </children></VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
