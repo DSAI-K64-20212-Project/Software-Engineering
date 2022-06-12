@@ -126,10 +126,22 @@ create table ToppingTrongHoaDon (
     constraint fk_toppingtronghoadon_topping foreign key (tenTopping) references Topping(tenTopping)
 );
 
+TRUNCATE Table lichsulamviec, nhanvien, tienluong, hoadon, thanhphanhoadon, toppingtronghoadon;
+
+INSERT INTO tienluong(chucvu, calam, tiencalam)
+VALUES ('Quan Ly', 'Sang', 80),
+       ('Quan Ly', 'Chieu', 100),
+       ('Thu Ngan', 'Sang', 20),
+       ('Thu Ngan', 'Chieu', 40),
+       ('Pha Che', 'Sang', 30),
+       ('Pha Che', 'Chieu', 50)
+       ;
+
+INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam)
+VALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Quan Ly', 'Sang');
 
 
-
-
+SELECT * FROM nhanvien WHERE tendangnhap = 'hung' AND matkhau = 'u2ouofs';
 
 
 
