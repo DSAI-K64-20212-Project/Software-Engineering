@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
@@ -23,8 +15,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.DatDoUongController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.DatDoUongController">
    <children>
       <HBox layoutX="-7.0" prefHeight="540.0" prefWidth="967.0">
          <children>
@@ -124,7 +117,7 @@
                            <children>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="92.0" text="Đường">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -144,8 +137,6 @@
                               <Insets />
                            </opaqueInsets>
                         </HBox>
-                        <ScrollBar layoutX="14.0" layoutY="235.0" prefHeight="17.0" prefWidth="215.0" />
-                        <ScrollBar layoutX="279.0" layoutY="235.0" prefHeight="17.0" prefWidth="215.0" />
                         <HBox layoutX="491.0" layoutY="441.0" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F); -fx-background-radius: 25;">
                            <children>
                               <Label alignment="CENTER" prefHeight="40.0" prefWidth="73.0" text="Add">
@@ -186,7 +177,7 @@
                            <children>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="92.0" text="Đá">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -252,7 +243,7 @@
                                                    <graphic>
                                                       <ImageView fitHeight="84.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@../../image/Trà%20Sữa/anh-tra-sua-matcha-cuc-dep_062227575.jpg" />
+                                                            <Image url="@../../image/Trà%20Sữa/anh-tra-sua-tran-chau-den-dep_062227590.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
