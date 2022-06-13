@@ -30,6 +30,7 @@ public class Admin extends User{
     }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Admin s = new Admin("hungpham");
-        s.create_new_user("doubleK24", "Hoàng Văn Khánh", "123456", "019238", "khanh.png", "Pha Che","Chieu");
+        //s.create_new_user("doubleK24", "Hoàng Văn Khánh", "123456", "019238", "khanh.png", "Pha Che","Chieu");
+        s.create_new_user("hthientam2402", "Hoàng Thiện Tâm", "123456", "0913887814", "khanh.png", "Pha Che","Chieu");
     }
 }
