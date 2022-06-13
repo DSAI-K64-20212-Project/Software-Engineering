@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -7,12 +8,12 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.LogInController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.LogInController">
    <children>
       <Circle fill="#19a2d0" layoutX="480.0" layoutY="102.0" radius="66.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fitHeight="205.0" fitWidth="205.0" layoutX="378.0">
          <image>
-            <Image url="@../../../Software-Engineering/Logo/Round/HUST Milk Tea-logos_black.png" />
+            <Image url="@../../Logo/Round/HUST%20Milk%20Tea-logos_white.png" />
          </image>
       </ImageView>
       <VBox layoutX="380.0" layoutY="239.0" prefHeight="261.0" prefWidth="201.0" style="-fx-background-color: #FAFAFA; -fx-fill-width: true; -fx-border-style: solid;" styleClass="border" stylesheets="@Stylesheet.css">

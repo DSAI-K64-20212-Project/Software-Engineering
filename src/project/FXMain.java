@@ -15,7 +15,7 @@ public class FXMain extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/FXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

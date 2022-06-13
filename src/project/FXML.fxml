@@ -36,35 +36,35 @@
                         <Image url="@../../../Software-Engineering/Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="164.0" style="-fx-background-radius: 25;" text="Đặt Đồ uống">
+                  <Button mnemonicParsing="false" onAction="#datDoUongPressedBtn" prefHeight="40.0" prefWidth="164.0" style="-fx-background-radius: 25;" text="Đặt Đồ uống">
                      <VBox.margin>
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nguyên Liệu">
+                  <Button mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nguyên Liệu">
                      <VBox.margin>
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nhân sự">
+                  <Button mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nhân sự">
                      <VBox.margin>
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Menu">
+                  <Button mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Menu">
                      <VBox.margin>
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <Button fx:id="btnDoanhThu" mnemonicParsing="false" onAction="#handleBtnDoanhThu" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Doanh Thu">
+                  <Button fx:id="btnDoanhThu" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Doanh Thu">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
