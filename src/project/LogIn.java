@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import project.base.Monitor;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -38,7 +39,7 @@ public class LogIn extends Application {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         monitor = new Monitor();
         launch(args);
     }

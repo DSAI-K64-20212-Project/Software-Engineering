@@ -21,6 +21,9 @@ public class DBUtil {
 
     //Connect to DB
     public static void dbConnect() throws SQLException, ClassNotFoundException {
+        if (conn != null){
+            return;
+        }
         //Setting Postgres JDBC Driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -61,7 +64,9 @@ public class DBUtil {
         CachedRowSetImpl crs = null;
         try {
             //Connect to DB (Establish Postgres Connection)
-            dbConnect();
+            if (conn == null) {
+                dbConnect();
+            }
             System.out.println("Select statement: " + queryStmt + "\n");
 
             //Create statement
@@ -88,7 +93,7 @@ public class DBUtil {
                 stmt.close();
             }
             //Close connection
-            dbDisconnect();
+//            dbDisconnect();
         }
         //Return CachedRowSet
         return crs;
@@ -100,7 +105,9 @@ public class DBUtil {
         Statement stmt = null;
         try {
             //Connect to DB (Establish Postgres Connection)
-            dbConnect();
+            if (conn == null) {
+                dbConnect();
+            }
             //Create Statement
             stmt = conn.createStatement();
             //Run executeUpdate operation with given sql statement
@@ -114,7 +121,7 @@ public class DBUtil {
                 stmt.close();
             }
             //Close connection
-            dbDisconnect();
+//            dbDisconnect();
         }
     }
 }
