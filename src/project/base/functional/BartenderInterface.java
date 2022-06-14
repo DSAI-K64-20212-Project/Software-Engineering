@@ -5,6 +5,7 @@ import project.base.DBUtil;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public interface BartenderInterface {
     default void add_ingredient(String tennguyenlieu,
@@ -18,7 +19,7 @@ public interface BartenderInterface {
 
     default void add_drink(String tendouong,
                            String anh,
-                           HashMap<Character, Double> size_giatien,
+                           HashMap<Character, Integer> size_giatien,
                            String[] nhungnguyenlieu
                            ) throws SQLException, ClassNotFoundException {
 
@@ -27,20 +28,31 @@ public interface BartenderInterface {
         DBUtil.dbExecuteUpdate(command);
 
 
-        StringBuilder command2 = new StringBuilder("INSERT INTO giadouong(tendouong, anh) VALUES ");
-        for (Map.Entry<Character, Double> entry : size_giatien.entrySet()) {
-            command2.append(String.format("('%s', '%s')", entry.getKey(), entry.getValue()));
+        StringJoiner command2 = new StringJoiner(",", "INSERT INTO giadouong(tendouong, size, giadouong) VALUES ",";");
+        for (Map.Entry<Character, Integer> entry : size_giatien.entrySet()) {
+            System.out.println(entry.getValue());
+            command2.add(String.format("('%s','%s', %d)", tendouong, entry.getKey(), entry.getValue()));
         }
-        command2.append(";");
         DBUtil.dbExecuteUpdate(command2.toString());
 
 
-        StringBuilder command3 = new StringBuilder("INSERT INTO thanphandouong(tendouong, tennguyenlieu) VALUES ");
+        StringJoiner command3 = new StringJoiner(",", "INSERT INTO thanhphandouong(tendouong, tennguyenlieu) VALUES ",
+                ";");
         for (String nguyenlieu: nhungnguyenlieu) {
-            command3.append(String.format("('%s', '%s')", tendouong, nguyenlieu));
+            command3.add(String.format("('%s', '%s')", tendouong, nguyenlieu));
         }
-        command3.append(";");
         DBUtil.dbExecuteUpdate(command3.toString());
     }
+    default void add_topping(String tentopping, String anh, int giatien, String[] nhungnguyenlieu) throws SQLException, ClassNotFoundException {
+        String command = String.format("INSERT INTO topping(tentopping, anh, giatopping) " +
+                "VALUES ('%s', '%s', %d);", tentopping, anh, giatien);
+        DBUtil.dbExecuteUpdate(command);
 
+        StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphantopping(tentopping, tennguyenlieu) VALUES ",
+                ";");
+        for (String nguyenlieu: nhungnguyenlieu) {
+            command2.add(String.format("('%s', '%s')", tentopping, nguyenlieu));
+        }
+        DBUtil.dbExecuteUpdate(command2.toString());
+    }
 }

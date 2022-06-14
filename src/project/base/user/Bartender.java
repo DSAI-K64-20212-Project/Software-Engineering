@@ -20,16 +20,26 @@ public class Bartender extends User implements BartenderInterface {
     @Override
     public void add_drink(String tendouong,
                            String anh,
-                           HashMap<Character, Double> size_giatien,
+                           HashMap<Character, Integer> size_giatien,
                            String[] nhungnguyenlieu
     ) throws SQLException, ClassNotFoundException {
         BartenderInterface.super.add_drink(tendouong, anh, size_giatien, nhungnguyenlieu);
         System.out.printf("NV pha chế %s đã thêm đồ uống %s, giá size M: %s, giá size L: %s, nguyên liệu: %s",
                 this.getUsername(), tendouong, size_giatien.get('M'), size_giatien.get('L'), Arrays.toString(nhungnguyenlieu));
     }
+    @Override
+    public void add_topping(String tentopping, String anh, int giatien, String[] nhungnguyenlieu) throws SQLException,
+            ClassNotFoundException {
+        BartenderInterface.super.add_topping(tentopping, anh, giatien, nhungnguyenlieu);
+        System.out.printf("NV pha chế %s đã thêm topping %s, giá %d, nguyên liệu: %s", this.getUsername(), tentopping
+                , giatien, Arrays.toString(nhungnguyenlieu));
+    }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Bartender s = new Bartender("hungpham");
-        s.add_ingredient("Khúc Bạch", "Cty Nước Nôi VN", "Con hang");
+//        s.add_ingredient("Pudding", "Cty Nước Nôi VN", "Con hang");
+//        s.add_drink("Trà sữa Hai Nắng","hainang.png",new HashMap<>() {{put('M',30);put('L',33);}}, new String[]{
+//                "Trân Châu", "Khúc Bạch", "Pudding"});
+        s.add_topping("Hạt ngọc trai", "ngoctrai.png", 5, new String[] {"Trân Châu", "Khúc Bạch"});
     }
 }
