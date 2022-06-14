@@ -140,6 +140,8 @@ VALUES ('Quan Ly', 'Sang', 80),
 INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam)
 VALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Quan Ly', 'Sang');
 
+INSERT INTO nguyenlieu(tenNguyenLieu, nhaCungCap, trangThai)
+VALUES ('Trân Châu', 'CTy Trân Châu Hà Nội', 'Con hang');
 
 SELECT * FROM nhanvien WHERE tendangnhap = 'hung' AND matkhau = 'u2ouofs';
 

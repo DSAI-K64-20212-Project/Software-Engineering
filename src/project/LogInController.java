@@ -21,6 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import project.base.DBUtil;
+import project.base.user.Admin;
+import project.base.user.Bartender;
+import project.base.user.Cashier;
 import project.base.user.User;
 
 import javax.swing.*;
@@ -46,15 +49,27 @@ public class LogInController implements Initializable {
         // TODO
     }
     @FXML
-    public void loginPressedBtn(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
-        String command = String.format("SELECT tendangnhap FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
+    public void loginPressedBtn(ActionEvent e) throws Exception {
+        String command = String.format("SELECT * FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
                 username.getText(), password.getText());
         ResultSet result = DBUtil.dbExecuteQuery(command);
         if (!result.next()) {
             JOptionPane.showMessageDialog(null, "Wrong username or password", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            System.out.println(result.getString(1));
-            monitor.newSession(new User(result.getString(1)));
+            String accName = result.getString(1);
+            String role = result.getString(6);
+            System.out.printf("Đăng nhập thành công, %s với vai trò %s", accName, role);
+            User user = null;
+            if (Objects.equals(role, "Quan Ly")) {
+                user = new Admin(accName);
+            } else if (Objects.equals(role, "Thu Ngan")) {
+                user = new Cashier(accName);
+            } else if (Objects.equals(role, "Pha Che")) {
+                user = new Bartender(accName);
+            } else {
+                throw new Exception("Invalid user role");
+            }
+            monitor.newSession(user);
 
             //move to dashboard
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/FXML.fxml")));
