@@ -2,19 +2,18 @@ package project.base.user;
 
 import project.base.DBUtil;
 import project.base.functional.AdminInterface;
+import project.base.functional.BartenderInterface;
+import project.base.functional.CashierInterface;
 
 import java.sql.SQLException;
 
-public class Admin extends User implements AdminInterface {
+public class Admin extends User implements AdminInterface, BartenderInterface, CashierInterface {
     public Admin(String username){
         super(username);
     }
 
-    @Override
     public void create_new_user(String username, String fullname, String password, String phone, String avatar, String position, String shift) throws SQLException, ClassNotFoundException {
-        AdminInterface.super.create_new_user(username, fullname, password, phone, avatar, position, shift);
-        System.out.printf("Admin %s đã tạo user mới:\nusername\t%s\nfull name\t%s\nposition\t%s", this.getUsername(),
-                username, fullname, position);
+        AdminInterface.super.create_new_user(this.getUsername(),username, fullname, password, phone, avatar, position, shift);
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
