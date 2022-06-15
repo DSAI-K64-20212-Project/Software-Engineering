@@ -3,21 +3,26 @@ package project.base.functional;
 import project.base.DBUtil;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 
 public interface BartenderInterface {
-    default void add_ingredient(String tennguyenlieu,
+    default void add_ingredient(String username,
+                                String tennguyenlieu,
                                 String nhacungcap,
                                 String trangthai
     ) throws SQLException, ClassNotFoundException {
         String command = String.format("INSERT INTO nguyenlieu(tenNguyenLieu, nhaCungCap, trangThai) " +
                         "VALUES ('%s', '%s', '%s');", tennguyenlieu, nhacungcap, trangthai);
         DBUtil.dbExecuteUpdate(command);
+        System.out.printf("User %s đã thêm nguyên liệu %s, nhà cung cấp %s, trạng thái %s", username,
+                tennguyenlieu, nhacungcap, trangthai);
     }
 
-    default void add_drink(String tendouong,
+    default void add_drink(String username,
+                           String tendouong,
                            String anh,
                            HashMap<Character, Integer> size_giatien,
                            String[] nhungnguyenlieu
@@ -42,8 +47,10 @@ public interface BartenderInterface {
             command3.add(String.format("('%s', '%s')", tendouong, nguyenlieu));
         }
         DBUtil.dbExecuteUpdate(command3.toString());
+        System.out.printf("User %s đã thêm đồ uống %s, giá size M: %s, giá size L: %s, nguyên liệu: %s",
+                username, tendouong, size_giatien.get('M'), size_giatien.get('L'), Arrays.toString(nhungnguyenlieu));
     }
-    default void add_topping(String tentopping, String anh, int giatien, String[] nhungnguyenlieu) throws SQLException, ClassNotFoundException {
+    default void add_topping(String username, String tentopping, String anh, int giatien, String[] nhungnguyenlieu) throws SQLException, ClassNotFoundException {
         String command = String.format("INSERT INTO topping(tentopping, anh, giatopping) " +
                 "VALUES ('%s', '%s', %d);", tentopping, anh, giatien);
         DBUtil.dbExecuteUpdate(command);
@@ -54,5 +61,7 @@ public interface BartenderInterface {
             command2.add(String.format("('%s', '%s')", tentopping, nguyenlieu));
         }
         DBUtil.dbExecuteUpdate(command2.toString());
+        System.out.printf("User %s đã thêm topping %s, giá %d, nguyên liệu: %s", username, tentopping
+                , giatien, Arrays.toString(nhungnguyenlieu));
     }
 }

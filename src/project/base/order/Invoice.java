@@ -7,6 +7,9 @@ import java.util.Map;
 
 public class Invoice {
     private ObservableList<OneCall> inFo = FXCollections.observableArrayList();
+    private String tenkhachhang;
+    private int soorder;
+
     private Invoice(){};
     public void addCall(OneCall oneCall){
         //ToDO

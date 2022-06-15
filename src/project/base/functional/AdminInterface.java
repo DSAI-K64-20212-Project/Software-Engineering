@@ -5,13 +5,14 @@ import project.base.DBUtil;
 import java.sql.SQLException;
 
 public interface AdminInterface {
-    default void create_new_user(String username,
-                                        String fullname,
-                                        String password,
-                                        String phone,
-                                        String avatar,
-                                        String position,
-                                        String shift
+    default void create_new_user(String parent_username,
+                                 String username,
+                                 String fullname,
+                                 String password,
+                                 String phone,
+                                 String avatar,
+                                 String position,
+                                 String shift
     ) throws SQLException, ClassNotFoundException {
         String command = String.format("INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam) " +
                         "VALUES ('%s', '%s', '%s','%s','%s', '%s', '%s');",
@@ -22,6 +23,8 @@ public interface AdminInterface {
             System.out.println("Error occurred while INSERT operation: " + e);
             throw e;
         }
+        System.out.printf("Admin %s đã tạo user mới:\nusername\t%s\nfull name\t%s\nposition\t%s", parent_username,
+                username, fullname, position);
     }
 
 }
