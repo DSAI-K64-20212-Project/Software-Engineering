@@ -17,15 +17,16 @@ public class OneCall {
 
     public OneCall(int id, String drink_name, char size, double sugar, double ice, String[] toppings) throws Exception {
         if (0<=sugar && sugar<=1 && 0<=ice && ice<=1){
+            this.id = id;
+            this.drink_name = drink_name;
+            this.size = size;
+            this.sugar = sugar;
+            this.ice = ice;
+            this.toppings = toppings;
+            this.amount = 1;
+        } else {
             throw new Exception("Invalid sugar or ice rate");
         }
-        this.id = id;
-        this.drink_name = drink_name;
-        this.size = size;
-        this.sugar = sugar;
-        this.ice = ice;
-        this.toppings = toppings;
-        this.amount = 1;
     }
 
     public void increase_amount(){
@@ -67,7 +68,6 @@ public class OneCall {
         union
         select n2.tennguyenlieu, tenDoUong from thanhphandouong inner join nguyenlieu n2 on ThanhPhanDoUong.tenNguyenLieu = n2.tennguyenlieu
         where tendouong = '%s' and n2.trangThai = 'Het hang';
-        return true;
         """, this.drink_name));
 
         for (String topping: this.toppings) {

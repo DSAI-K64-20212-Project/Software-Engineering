@@ -30,6 +30,7 @@ public class Cashier extends User implements CashierInterface {
         System.out.printf("Call %d, total: %d, %s, size %s, topping: %s\n", call1.id, call1.get_money(),
                 call1.drink_name, call1.size, Arrays.toString(call1.toppings));
         System.out.println("Total: "+ invoice.getBill());
+        invoice.pay(300, "Nga Phương");
         cashier.confirm_new_invoice(cashier.getUsername(), invoice);
     }
 }
