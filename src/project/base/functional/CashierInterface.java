@@ -14,7 +14,7 @@ public interface CashierInterface {
             DBUtil.dbExecuteUpdate(command);
             return "Success!";
         } else {
-            System.out.printf("User %s add new invoice unsuccessfully, out of ingredients",username);
+            System.out.printf("User %s add new invoice unsuccessfully, out of ingredients\n",username);
             return "Out of ingredients!";
         }
     }

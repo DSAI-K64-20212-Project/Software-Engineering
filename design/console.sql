@@ -142,6 +142,22 @@ ALTER TABLE nguyenlieu ADD COLUMN anh varchar(20);
 
 ALTER TABLE hoadon ALTER Column thoigian SET DEFAULT CURRENT_DATE;
 ALTER TABLE thanhphanhoadon ALTER COLUMN mahoadon TYPE varchar(36);
+
+select n.tennguyenlieu as t, tenTopping as name
+from thanhphantopping inner join nguyenlieu n on ThanhPhanTopping.tenNguyenLieu = n.tennguyenlieu
+where tenTopping in ('Hạt ngọc trai', 'Hạt châu xanh') and n.trangThai = 'Het hang'
+union
+select n2.tennguyenlieu as t, tenDoUong as name
+from thanhphandouong inner join nguyenlieu n2 on ThanhPhanDoUong.tenNguyenLieu = n2.tennguyenlieu
+where tendouong = 'Trà sữa Hai Nắng' and n2.trangThai = 'Het hang';
+
+
+select n.tennguyenlieu, tenTopping from thanhphantopping inner join nguyenlieu n on ThanhPhanTopping.tenNguyenLieu = n.tennguyenlieu
+where tenTopping in ('Hạt ngọc trai', 'Hạt châu xanh') and n.trangThai = 'Het hang'
+union
+select n2.tennguyenlieu, tenDoUong from thanhphandouong inner join nguyenlieu n2 on ThanhPhanDoUong.tenNguyenLieu = n2.tennguyenlieu
+where tendouong = 'Trà sữa Hai Nắng' and n2.trangThai = 'Het hang';
+;
 -- INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam)
 -- VALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Quan Ly', 'Sang');
 --

@@ -2,47 +2,52 @@ package project.base.order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Invoice {
-    private ObservableList<OneCall> inFo = FXCollections.observableArrayList();
+    private final ObservableList<OneCall> inFo = FXCollections.observableArrayList();
     public int soorder;
     public int khachdua;
+    private int buy_id = 0;
     public String id;
 
     public Invoice(){
+        //tam thoi random so order
+        soorder = ThreadLocalRandom.current().nextInt(0, 50 + 1);
         id = UUID.randomUUID().toString(); //Generates random UUID.
     };
-    public void addCall(OneCall oneCall){
-        //ToDO
+    public void addCall(String drink_name, char size, double sugar, double ice, String[] toppings) throws Exception {
+        this.buy_id += 1;
+        this.inFo.add(new OneCall(buy_id, drink_name, size, sugar, ice, toppings));
+    }
+    public OneCall getCall(int index){
+        return this.inFo.get(index);
     }
 
-    public float getBill(){
-        //ToDO
-        return 0;
+    public int getBill() throws SQLException, ClassNotFoundException {
+        int total = 0;
+        for (OneCall call : inFo){
+            total += call.get_money();
+        }
+        return total;
     }
 
-    public void pay(float amount){
-        //todo
-
+    public void pay(int amount) throws SQLException, ClassNotFoundException {
+        int total = this.getBill();
+        if (amount < total){
+            System.out.println("Chưa đủ số tiền cần trả");
+        } else {
+            this.khachdua = amount;
+            System.out.printf("Thanh toán thành công. Tổng: %d, đã trả: %d, còn dư: %d", total, amount, amount-total);
+        }
     }
-
-    public void confirm(){
-        //todo
-
-    }
-    public boolean check_availability(){
+    public boolean check_availability() throws SQLException, ClassNotFoundException {
         boolean avail = true;
         for (OneCall call: inFo){
             avail = avail && call.check_availability();
         }
         return avail;
     }
-    public static void main(String[] args) {
-        Invoice s = new Invoice();
-    }
 }
-
