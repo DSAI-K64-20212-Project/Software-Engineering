@@ -23,8 +23,7 @@ public interface AdminInterface {
             System.out.println("Error occurred while INSERT operation: " + e);
             throw e;
         }
-        System.out.printf("Admin %s đã tạo user mới:\nusername\t%s\nfull name\t%s\nposition\t%s", parent_username,
+        System.out.printf("Admin %s đã tạo user mới:\nusername\t%s\nfull name\t%s\nposition\t%s\n", parent_username,
                 username, fullname, position);
     }
-
 }
