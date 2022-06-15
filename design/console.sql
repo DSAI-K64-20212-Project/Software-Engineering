@@ -143,13 +143,7 @@ VALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Qu
 
 SELECT * FROM nhanvien WHERE tendangnhap = 'hung' AND matkhau = 'u2ouofs';
 
-INSERT INTO topping(tenTopping, giaTopping)
-VALUES ('Trân Châu Bede', 500.000);
 
-INSERT INTO douong(tenDoUong, anh)
-VALUES ('Trà Thái Bede', 'TraThaiDebe.jpg');
-INSERT INTO giadouong(tenDoUong, size, giaDoUong)
-VALUES ('Trà Thái Bede', 'M', 500.000);
 
 
 
