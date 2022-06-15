@@ -69,9 +69,10 @@ public class OneCall {
         //todo
         return true;
     }
-}
+
     public static void main(String[] args){
-        OneCall newcall('Trà Thái Bede', 'M', 0.5, 0.5, ['Trân Châu Bede'], 2);
-        System.out.println(newcall.get_money());
+//        OneCall newcall('Trà Thái Bede', 'M', 0.5, 0.5, ['Trân Châu Bede'], 2);
+//        System.out.println(newcall.get_money());
     }
+}
 
