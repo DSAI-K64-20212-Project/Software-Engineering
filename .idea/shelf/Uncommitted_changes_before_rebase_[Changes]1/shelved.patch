@@ -1,0 +1,32 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>*.iml
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	
++++ b/.gitignore	
+@@ -1,1 +1,2 @@
+-*.iml
+\ No newline at end of file
++*.iml
++*.xml
+Index: .idea/sqldialects.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/sqldialects.xml b/.idea/sqldialects.xml
+new file mode 100755
+--- /dev/null	
++++ b/.idea/sqldialects.xml	
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="SqlDialectMappings">
++    <file url="file://$PROJECT_DIR$/design/console.sql" dialect="PostgreSQL" />
++  </component>
++</project>
+\ No newline at end of file

@@ -1,0 +1,915 @@
+Index: src/project/base/order/Invoice.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package project.base.order;\nimport javafx.collections.FXCollections;\nimport javafx.collections.ObservableList;\n\nimport java.util.HashMap;\nimport java.util.Map;\n\npublic class Invoice {\n    private ObservableList<OneCall> inFo = FXCollections.observableArrayList();\n    private Invoice(){};\n    public void addCall(OneCall oneCall){\n        //ToDO\n    }\n\n    public float getBill(){\n        //ToDO\n        return 0;\n    }\n\n    public void pay(float amount){\n        //todo\n\n    }\n\n    public void confirm(){\n        //todo\n\n    }\n    public static void main(String[] args) {\n        Invoice s = new Invoice();\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/order/Invoice.java b/src/project/base/order/Invoice.java
+--- a/src/project/base/order/Invoice.java	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/base/order/Invoice.java	(date 1655257364524)
+@@ -7,6 +7,9 @@
+ 
+ public class Invoice {
+     private ObservableList<OneCall> inFo = FXCollections.observableArrayList();
++    private String tenkhachhang;
++    private int soorder;
++
+     private Invoice(){};
+     public void addCall(OneCall oneCall){
+         //ToDO
+Index: src/project/base/DBUtil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package project.base;\n\nimport com.sun.rowset.CachedRowSetImpl;\n\nimport java.sql.*;\n\npublic class DBUtil {\n    //Declare JDBC Driver\n    private static final String JDBC_DRIVER = \"org.postgresql.Driver\";\n\n    //Connection\n    private static Connection conn = null;\n\n    //Connection String\n    //String connStr = \"jdbc:postgresql://host/database\n    //Username=HR, Password=HR, IP=localhost, IP=1521, SID=xe\n    private static final String user = \"ycftweud\";\n    private static final String pass = \"hvdEIVLY901iezCnu-FIulM9cdroaOAE\";\n    private static final String connStr = \"jdbc:postgresql://tiny.db.elephantsql.com/ycftweud\";\n\n\n    //Connect to DB\n    public static void dbConnect() throws SQLException, ClassNotFoundException {\n        if (conn != null){\n            return;\n        }\n        //Setting Postgres JDBC Driver\n        try {\n            Class.forName(JDBC_DRIVER);\n        } catch (ClassNotFoundException e) {\n            System.out.println(\"Where is your Postgres JDBC Driver?\");\n            e.printStackTrace();\n            throw e;\n        }\n\n        System.out.println(\"Postgres JDBC Driver Registered!\");\n\n        //Establish the Postgres Connection using Connection String\n        try {\n            conn = DriverManager.getConnection(connStr, user, pass);\n        } catch (SQLException e) {\n            System.out.println(\"Connection Failed! Check output console\" + e);\n            e.printStackTrace();\n            throw e;\n        }\n    }\n\n    //Close Connection\n    public static void dbDisconnect() throws SQLException {\n        try {\n            if (conn != null && !conn.isClosed()) {\n                conn.close();\n            }\n        } catch (Exception e){\n            throw e;\n        }\n    }\n\n    //DB Execute Query Operation\n    public static ResultSet dbExecuteQuery(String queryStmt) throws SQLException, ClassNotFoundException {\n        //Declare statement, resultSet and CachedResultSet as null\n        Statement stmt = null;\n        ResultSet resultSet = null;\n        CachedRowSetImpl crs = null;\n        try {\n            //Connect to DB (Establish Postgres Connection)\n            if (conn == null) {\n                dbConnect();\n            }\n            System.out.println(\"Select statement: \" + queryStmt + \"\\n\");\n\n            //Create statement\n            stmt = conn.createStatement();\n\n            //Execute select (query) operation\n            resultSet = stmt.executeQuery(queryStmt);\n\n            //CachedRowSet Implementation\n            //In order to prevent \"java.sql.SQLRecoverableException: Closed Connection: next\" error\n            //We are using CachedRowSet\n            crs = new CachedRowSetImpl();\n            crs.populate(resultSet);\n        } catch (SQLException e) {\n            System.out.println(\"Problem occurred at executeQuery operation : \" + e);\n            throw e;\n        } finally {\n            if (resultSet != null) {\n                //Close resultSet\n                resultSet.close();\n            }\n            if (stmt != null) {\n                //Close Statement\n                stmt.close();\n            }\n            //Close connection\n//            dbDisconnect();\n        }\n        //Return CachedRowSet\n        return crs;\n    }\n\n    //DB Execute Update (For Update/Insert/Delete) Operation\n    public static void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {\n        //Declare statement as null\n        Statement stmt = null;\n        try {\n            //Connect to DB (Establish Postgres Connection)\n            if (conn == null) {\n                dbConnect();\n            }\n            //Create Statement\n            stmt = conn.createStatement();\n            //Run executeUpdate operation with given sql statement\n            stmt.executeUpdate(sqlStmt);\n        } catch (SQLException e) {\n            System.out.println(\"Problem occurred at executeUpdate operation : \" + e);\n            throw e;\n        } finally {\n            if (stmt != null) {\n                //Close statement\n                stmt.close();\n            }\n            //Close connection\n//            dbDisconnect();\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/DBUtil.java b/src/project/base/DBUtil.java
+--- a/src/project/base/DBUtil.java	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/base/DBUtil.java	(date 1655257364523)
+@@ -108,6 +108,7 @@
+             if (conn == null) {
+                 dbConnect();
+             }
++            System.out.println("Update statement: " + sqlStmt + "\n");
+             //Create Statement
+             stmt = conn.createStatement();
+             //Run executeUpdate operation with given sql statement
+Index: src/project/base/user/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package project.base.user;\n\npublic class User {\n\n    private String username;\n//    private String fullname;\n//    private String password;\n//    private String phone_num;\n//    private String shift;\n    public User(String username){\n        this.username = username;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/user/User.java b/src/project/base/user/User.java
+--- a/src/project/base/user/User.java	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/base/user/User.java	(date 1655257364525)
+@@ -1,8 +1,8 @@
+ package project.base.user;
+ 
+-public class User {
++public abstract class User {
+ 
+-    private String username;
++    private final String username;
+ //    private String fullname;
+ //    private String password;
+ //    private String phone_num;
+@@ -10,4 +10,8 @@
+     public User(String username){
+         this.username = username;
+     }
++
++    public String getUsername() {
++        return username;
++    }
+ }
+Index: src/project/base/functional/BartenderInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/functional/BartenderInterface.java b/src/project/base/functional/BartenderInterface.java
+new file mode 100755
+--- /dev/null	(date 1655257364523)
++++ b/src/project/base/functional/BartenderInterface.java	(date 1655257364523)
+@@ -0,0 +1,67 @@
++package project.base.functional;
++
++import project.base.DBUtil;
++
++import java.sql.SQLException;
++import java.util.Arrays;
++import java.util.HashMap;
++import java.util.Map;
++import java.util.StringJoiner;
++
++public interface BartenderInterface {
++    default void add_ingredient(String username,
++                                String tennguyenlieu,
++                                String nhacungcap,
++                                String trangthai
++    ) throws SQLException, ClassNotFoundException {
++        String command = String.format("INSERT INTO nguyenlieu(tenNguyenLieu, nhaCungCap, trangThai) " +
++                        "VALUES ('%s', '%s', '%s');", tennguyenlieu, nhacungcap, trangthai);
++        DBUtil.dbExecuteUpdate(command);
++        System.out.printf("User %s đã thêm nguyên liệu %s, nhà cung cấp %s, trạng thái %s", username,
++                tennguyenlieu, nhacungcap, trangthai);
++    }
++
++    default void add_drink(String username,
++                           String tendouong,
++                           String anh,
++                           HashMap<Character, Integer> size_giatien,
++                           String[] nhungnguyenlieu
++                           ) throws SQLException, ClassNotFoundException {
++
++        String command = String.format("INSERT INTO douong(tendouong, anh) " +
++                "VALUES ('%s', '%s');", tendouong, anh);
++        DBUtil.dbExecuteUpdate(command);
++
++
++        StringJoiner command2 = new StringJoiner(",", "INSERT INTO giadouong(tendouong, size, giadouong) VALUES ",";");
++        for (Map.Entry<Character, Integer> entry : size_giatien.entrySet()) {
++            System.out.println(entry.getValue());
++            command2.add(String.format("('%s','%s', %d)", tendouong, entry.getKey(), entry.getValue()));
++        }
++        DBUtil.dbExecuteUpdate(command2.toString());
++
++
++        StringJoiner command3 = new StringJoiner(",", "INSERT INTO thanhphandouong(tendouong, tennguyenlieu) VALUES ",
++                ";");
++        for (String nguyenlieu: nhungnguyenlieu) {
++            command3.add(String.format("('%s', '%s')", tendouong, nguyenlieu));
++        }
++        DBUtil.dbExecuteUpdate(command3.toString());
++        System.out.printf("User %s đã thêm đồ uống %s, giá size M: %s, giá size L: %s, nguyên liệu: %s",
++                username, tendouong, size_giatien.get('M'), size_giatien.get('L'), Arrays.toString(nhungnguyenlieu));
++    }
++    default void add_topping(String username, String tentopping, String anh, int giatien, String[] nhungnguyenlieu) throws SQLException, ClassNotFoundException {
++        String command = String.format("INSERT INTO topping(tentopping, anh, giatopping) " +
++                "VALUES ('%s', '%s', %d);", tentopping, anh, giatien);
++        DBUtil.dbExecuteUpdate(command);
++
++        StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphantopping(tentopping, tennguyenlieu) VALUES ",
++                ";");
++        for (String nguyenlieu: nhungnguyenlieu) {
++            command2.add(String.format("('%s', '%s')", tentopping, nguyenlieu));
++        }
++        DBUtil.dbExecuteUpdate(command2.toString());
++        System.out.printf("User %s đã thêm topping %s, giá %d, nguyên liệu: %s", username, tentopping
++                , giatien, Arrays.toString(nhungnguyenlieu));
++    }
++}
+\ No newline at end of file
+Index: src/project/base/user/Admin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package project.base.user;\n\nimport project.base.DBUtil;\n\nimport java.sql.SQLException;\n\npublic class Admin extends User{\n    public Admin(String username){\n        super(username);\n    }\n\n    public void create_new_user(String username,\n                                String fullname,\n                                String password,\n                                String phone,\n                                String avatar,\n                                String position,\n                                String shift\n                                ) throws SQLException, ClassNotFoundException {\n        String command = String.format(\"INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam) \" +\n                \"VALUES ('%s', '%s', '%s','%s','%s', '%s', '%s');\",\n                username, fullname, password, phone, avatar, position, shift);\n        try {\n            DBUtil.dbExecuteUpdate(command);\n        } catch (SQLException e) {\n            System.out.println(\"Error occurred while INSERT operation: \"+ e);\n            throw e;\n        }\n\n    }\n    public static void main(String[] args) throws SQLException, ClassNotFoundException {\n        Admin s = new Admin(\"hungpham\");\n        //s.create_new_user(\"doubleK24\", \"Hoàng Văn Khánh\", \"123456\", \"019238\", \"khanh.png\", \"Pha Che\",\"Chieu\");\n        s.create_new_user(\"hthientam2402\", \"Hoàng Thiện Tâm\", \"123456\", \"0913887814\", \"khanh.png\", \"Pha Che\",\"Chieu\");\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/user/Admin.java b/src/project/base/user/Admin.java
+--- a/src/project/base/user/Admin.java	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/base/user/Admin.java	(date 1655257364524)
+@@ -1,36 +1,27 @@
+ package project.base.user;
+ 
+ import project.base.DBUtil;
++import project.base.functional.AdminInterface;
++import project.base.functional.BartenderInterface;
++import project.base.functional.CashierInterface;
+ 
+ import java.sql.SQLException;
+ 
+-public class Admin extends User{
++public class Admin extends User implements AdminInterface, BartenderInterface, CashierInterface {
+     public Admin(String username){
+         super(username);
+     }
+ 
+-    public void create_new_user(String username,
+-                                String fullname,
+-                                String password,
+-                                String phone,
+-                                String avatar,
+-                                String position,
+-                                String shift
+-                                ) throws SQLException, ClassNotFoundException {
+-        String command = String.format("INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam) " +
+-                "VALUES ('%s', '%s', '%s','%s','%s', '%s', '%s');",
+-                username, fullname, password, phone, avatar, position, shift);
+-        try {
+-            DBUtil.dbExecuteUpdate(command);
+-        } catch (SQLException e) {
+-            System.out.println("Error occurred while INSERT operation: "+ e);
+-            throw e;
+-        }
++    public void create_new_user(String username, String fullname, String password, String phone, String avatar, String position, String shift) throws SQLException, ClassNotFoundException {
++        AdminInterface.super.create_new_user(this.getUsername(),username, fullname, password, phone, avatar, position, shift);
++    }
+ 
+-    }
+     public static void main(String[] args) throws SQLException, ClassNotFoundException {
+         Admin s = new Admin("hungpham");
+         //s.create_new_user("doubleK24", "Hoàng Văn Khánh", "123456", "019238", "khanh.png", "Pha Che","Chieu");
+-        s.create_new_user("hthientam2402", "Hoàng Thiện Tâm", "123456", "0913887814", "khanh.png", "Pha Che","Chieu");
++//        s.create_new_user("hthientam2402", "Hoàng Thiện Tâm", "123456", "0913887814", "khanh.png", "Pha Che","Chieu");
++        s.create_new_user("nhatdeptrai", "Minh Nhat", "123456", "0913887814", "nhat.png", "Quan Ly",
++                "Sang");
+     }
++
+ }
+Index: src/project/base/user/Cashier.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package project.base.user;\n\npublic class Cashier extends User {\n    public Cashier(String username) {\n        super(username);\n    }\n    //\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/user/Cashier.java b/src/project/base/user/Cashier.java
+--- a/src/project/base/user/Cashier.java	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/base/user/Cashier.java	(date 1655257364525)
+@@ -1,8 +1,14 @@
+ package project.base.user;
+ 
+-public class Cashier extends User {
++import project.base.functional.CashierInterface;
++import project.base.order.Invoice;
++
++public class Cashier extends User implements CashierInterface {
+     public Cashier(String username) {
+         super(username);
+     }
+-    //
++    @Override
++    public void confirm_new_invoice(Invoice invoice){
++        //todo
++    }
+ }
+Index: src/project/base/functional/AdminInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/functional/AdminInterface.java b/src/project/base/functional/AdminInterface.java
+new file mode 100755
+--- /dev/null	(date 1655257364523)
++++ b/src/project/base/functional/AdminInterface.java	(date 1655257364523)
+@@ -0,0 +1,30 @@
++package project.base.functional;
++
++import project.base.DBUtil;
++
++import java.sql.SQLException;
++
++public interface AdminInterface {
++    default void create_new_user(String parent_username,
++                                 String username,
++                                 String fullname,
++                                 String password,
++                                 String phone,
++                                 String avatar,
++                                 String position,
++                                 String shift
++    ) throws SQLException, ClassNotFoundException {
++        String command = String.format("INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam) " +
++                        "VALUES ('%s', '%s', '%s','%s','%s', '%s', '%s');",
++                username, fullname, password, phone, avatar, position, shift);
++        try {
++            DBUtil.dbExecuteUpdate(command);
++        } catch (SQLException e) {
++            System.out.println("Error occurred while INSERT operation: " + e);
++            throw e;
++        }
++        System.out.printf("Admin %s đã tạo user mới:\nusername\t%s\nfull name\t%s\nposition\t%s", parent_username,
++                username, fullname, position);
++    }
++
++}
+\ No newline at end of file
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>*.iml
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/.gitignore	(date 1655181798000)
+@@ -1,1 +1,2 @@
+-*.iml
+\ No newline at end of file
++*.iml
++*.xml
+Index: src/project/Base.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/Base.fxml b/src/project/Base.fxml
+new file mode 100755
+--- /dev/null	(date 1655257364521)
++++ b/src/project/Base.fxml	(date 1655257364521)
+@@ -0,0 +1,153 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.geometry.*?>
++<?import javafx.scene.image.*?>
++<?import javafx.scene.text.*?>
++<?import java.lang.*?>
++<?import java.util.*?>
++<?import javafx.scene.*?>
++<?import javafx.scene.control.*?>
++<?import javafx.scene.layout.*?>
++
++
++<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Base">
++   <children>
++      <VBox fx:id="vboxLeft" prefHeight="713.0" prefWidth="167.0" style="-fx-background-color: linear-gradient(to bottom, #1BB1DD, #020D51);" styleClass="side-bar">
++         <children>
++            <Pane prefHeight="170.0" prefWidth="237.0">
++               <children>
++                  <ImageView fitHeight="237.0" fitWidth="243.0" layoutY="-46.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
++                     </image>
++                  </ImageView>
++               </children>
++            </Pane>
++            <AnchorPane prefHeight="62.0" prefWidth="240.0">
++               <children>
++                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../image/icons/milkTea.png" />
++                     </image>
++                  </ImageView>
++                  <Text fill="WHITE" layoutX="66.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đặt đồ uống">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Text>
++                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#datDoUongPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       " textFill="#546cc2">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Button>
++               </children>
++               <opaqueInsets>
++                  <Insets />
++               </opaqueInsets>
++            </AnchorPane>
++            <AnchorPane prefHeight="62.0" prefWidth="240.0">
++               <children>
++                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../image/icons/material.png" />
++                     </image>
++                  </ImageView>
++                  <Text fill="WHITE" layoutX="68.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên liệu">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Text>
++                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Button>
++               </children>
++               <opaqueInsets>
++                  <Insets />
++               </opaqueInsets>
++            </AnchorPane>
++            <AnchorPane prefHeight="62.0" prefWidth="162.0">
++               <children>
++                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../image/icons/human.png" />
++                     </image>
++                  </ImageView>
++                  <Text fill="WHITE" layoutX="69.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân sự">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Text>
++                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Button>
++               </children>
++               <opaqueInsets>
++                  <Insets />
++               </opaqueInsets>
++            </AnchorPane>
++            <AnchorPane prefHeight="62.0" prefWidth="240.0">
++               <children>
++                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../image/icons/doanhThu2.png" />
++                     </image>
++                  </ImageView>
++                  <Text fill="WHITE" layoutX="73.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doanh Thu">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Text>
++                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Button>
++               </children>
++               <opaqueInsets>
++                  <Insets />
++               </opaqueInsets>
++            </AnchorPane>
++            <AnchorPane prefHeight="62.0" prefWidth="240.0">
++               <children>
++                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../image/icons/menu.png" />
++                     </image>
++                  </ImageView>
++                  <Text fill="WHITE" layoutX="73.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Text>
++                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                     <font>
++                        <Font name="System Bold" size="18.0" />
++                     </font>
++                  </Button>
++               </children>
++               <opaqueInsets>
++                  <Insets />
++               </opaqueInsets>
++            </AnchorPane>
++         </children>
++      </VBox>
++      <ToolBar layoutX="237.0" prefHeight="56.0" prefWidth="815.0" style="-fx-background-color: linear-gradient(to right, #8B8BF9, #8B8BF9);">
++         <items>
++            <HBox alignment="CENTER" prefHeight="24.0" prefWidth="30.0" style="-fx-border-radius: ;">
++               <children>
++                  <ImageView blendMode="DARKEN" fitHeight="23.0" fitWidth="22.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
++                     <image>
++                        <Image url="@../../image/icons/s.png" />
++                     </image>
++                  </ImageView>
++               </children>
++            </HBox>
++            <TextField opacity="0.46" prefHeight="25.0" prefWidth="353.0" text="Search" />
++         </items>
++      </ToolBar>
++   </children>
++</AnchorPane>
+Index: design/console.sql
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\ndrop database if exists hustmilktea;\ncreate database hustmilktea;\n*/\n\ndrop table if exists ToppingTrongHoaDon;\ndrop table if exists ThanhPhanHoaDon;\ndrop table if exists HoaDon;\ndrop table if exists ThanhPhanTopping;\ndrop table if exists Topping;\ndrop table if exists ThanhPhanDoUong;\ndrop table if exists GiaDoUong;\ndrop table if exists DoUong;\ndrop table if exists NguyenLieu;\ndrop table if exists LichSuLamViec;\ndrop table if exists NhanVien;\ndrop table if exists TienLuong;\n\ncreate table TienLuong (\n    chucVu      varchar(20) not null,\n    caLam       varchar(20) not null,\n    tienCaLam   int         not null,\n    constraint pk_tienluong primary key (chucVu, caLam),\n    constraint check_chucvu check ( chucVu = 'Quan Ly' or chucVu = 'Thu Ngan' or chucVu = 'Pha Che' ),\n    constraint check_calam check ( caLam = 'Sang' or caLam = 'Chieu' )\n);\n\ncreate table NhanVien (\n    tenDangNhap     varchar(20) not null,\n    tenNhanVien     varchar(20) not null,\n    sdt             varchar(10) not null,\n    matKhau         varchar(20) not null,\n    anhDaiDien      varchar(20) not null,\n    chucVu          varchar(20) not null,\n    caLam           varchar(20) not null,\n    constraint pk_nhanvien primary key (tenDangNhap),\n    constraint fk_nhanvien_tienluong foreign key (chucVu, caLam) references TienLuong(chucVu, caLam)\n);\n\ncreate table LichSuLamViec (\n    tenDangNhap     varchar(20) not null,\n    ngayLam         date        not null,\n    daTraLuong      bool        not null,\n    constraint pk_lichsulamviec primary key (tenDangNhap, ngayLam),\n    constraint fk_lichsulamviec_nhanvien foreign key (tenDangNhap) references NhanVien(tenDangNhap)\n);\n\ncreate table NguyenLieu (\n    tenNguyenLieu   varchar(20) not null,\n    nhaCungCap      varchar(20) not null,\n    trangThai       varchar(20) not null,\n    constraint pk_nguyenlieu primary key (tenNguyenLieu),\n    constraint check_trangthai check ( trangThai = 'Con hang' or trangThai = 'Sap het' or trangThai = 'Het hang' )\n);\n\ncreate table DoUong (\n    tenDoUong   varchar(20) not null,\n    anh         varchar(20) not null,\n    constraint pk_douong primary key (tenDoUong)\n);\n\ncreate table GiaDoUong (\n    tenDoUong   varchar(20) not null,\n    size        varchar(1)  not null,\n    giaDoUong   int,\n    constraint pk_giadouong primary key (tenDoUong, size),\n    constraint fk_giadouong_douong foreign key (tenDoUong) references DoUong(tenDoUong),\n    constraint check_size check ( size = 'M' or size = 'L' )\n);\n\ncreate table ThanhPhanDoUong (\n    tenDoUong       varchar(20) not null,\n    tenNguyenLieu   varchar(20) not null,\n    constraint pk_thanhphandouong primary key (tenDoUong, tenNguyenLieu),\n    constraint fk_thanhphandouong_douong foreign key (tenDoUong) references DoUong(tenDoUong),\n    constraint fk_thanhphandouong_nguyenlieu foreign key (tenNguyenLieu) references NguyenLieu(tenNguyenLieu)\n);\n\ncreate table Topping (\n    tenTopping  varchar(20) not null,\n    giaTopping  int,\n    anh         varchar(20) not null,\n    constraint pk_topping primary key (tenTopping)\n);\n\ncreate table ThanhPhanTopping (\n    tenTopping      varchar(20) not null,\n    tenNguyenLieu   varchar(20) not null,\n    constraint pk_thanhphantopping primary key (tenTopping, tenNguyenLieu),\n    constraint fk_thanhphantopping_topping foreign key (tenTopping) references Topping(tenTopping),\n    constraint fk_thanhphantopping_nguyenlieu foreign key (tenNguyenLieu) references NguyenLieu(tenNguyenLieu)\n);\n\ncreate table HoaDon (\n    maHoaDon        varchar(20) not null,\n    tenKhachHang    varchar(20) not null,\n    tenDangNhap     varchar(20) not null,\n    soOrder         int         not null,\n    khachDua        int         not null,\n    trangThai       varchar(20) not null,\n    thoigian        date        not null,\n    constraint pk_hoadon primary key (maHoaDon),\n    constraint fk_hoadon_nhanvien foreign key (tenDangNhap) references NhanVien(tenDangNhap),\n    constraint check_trangthai check ( trangThai = 'Dang chuan bi' or trangThai = 'Da giao' )\n);\n\ncreate table ThanhPhanHoaDon (\n    maHoaDon        varchar(20) not null,\n    buyID           SERIAL not null,\n    tenDoUong       varchar(20) not null,\n    size            varchar(1)  not null,\n    da              int,\n    duong           int,\n    soLuong         int         not null,\n    constraint pk_thanhphanhoadon primary key (maHoaDon, buyID),\n    constraint fk_thanhphanhoadon_hoadon foreign key (maHoaDon) references HoaDon(maHoaDon),\n    constraint fk_thanhphanhoadon_giadouong foreign key (tenDoUong, size) references GiaDoUong(tenDoUong, size)\n);\n\ncreate table ToppingTrongHoaDon (\n    maHoaDon        varchar(20) not null,\n    buyID           int not null,\n    tenTopping      varchar(20),\n    constraint pk_toppingtronghoadon primary key (maHoaDon, buyID, tenTopping),\n    constraint fk_toppingtronghoadon_thanhphanhoadon foreign key (maHoaDon, buyID) references ThanhPhanHoaDon(maHoaDon, buyID),\n    constraint fk_toppingtronghoadon_topping foreign key (tenTopping) references Topping(tenTopping)\n);\n\nTRUNCATE Table lichsulamviec, nhanvien, tienluong, hoadon, thanhphanhoadon, toppingtronghoadon;\n\nINSERT INTO tienluong(chucvu, calam, tiencalam)\nVALUES ('Quan Ly', 'Sang', 80),\n       ('Quan Ly', 'Chieu', 100),\n       ('Thu Ngan', 'Sang', 20),\n       ('Thu Ngan', 'Chieu', 40),\n       ('Pha Che', 'Sang', 30),\n       ('Pha Che', 'Chieu', 50)\n       ;\n\nINSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam)\nVALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Quan Ly', 'Sang');\n\n\nSELECT * FROM nhanvien WHERE tendangnhap = 'hung' AND matkhau = 'u2ouofs';\n\nINSERT INTO topping(tenTopping, giaTopping)\nVALUES ('Trân Châu Bede', 500.000);\n\nINSERT INTO douong(tenDoUong, anh)\nVALUES ('Trà Thái Bede', 'TraThaiDebe.jpg');\nINSERT INTO giadouong(tenDoUong, size, giaDoUong)\nVALUES ('Trà Thái Bede', 'M', 500.000);\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/design/console.sql b/design/console.sql
+--- a/design/console.sql	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/design/console.sql	(date 1655257364541)
+@@ -137,11 +137,13 @@
+        ('Pha Che', 'Chieu', 50)
+        ;
+ 
+-INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam)
+-VALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Quan Ly', 'Sang');
++-- INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam)
++-- VALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Quan Ly', 'Sang');
++--
++-- INSERT INTO nguyenlieu(tenNguyenLieu, nhaCungCap, trangThai)
++-- VALUES ('Trân Châu', 'CTy Trân Châu Hà Nội', 'Con hang');
+ 
+-
+-SELECT * FROM nhanvien WHERE tendangnhap = 'hung' AND matkhau = 'u2ouofs';
++-- SELECT * FROM nhanvien WHERE tendangnhap = 'hung' AND matkhau = 'u2ouofs';
+ 
+ INSERT INTO topping(tenTopping, giaTopping)
+ VALUES ('Trân Châu Bede', 500.000);
+Index: src/project/DatDoUong.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<?import javafx.scene.paint.*?>\n<?import javafx.scene.shape.*?>\n<?import java.lang.*?>\n<?import javafx.geometry.*?>\n<?import javafx.scene.chart.*?>\n<?import javafx.scene.control.*?>\n<?import javafx.scene.image.*?>\n<?import javafx.scene.layout.*?>\n<?import javafx.scene.text.*?>\n<?import javafx.geometry.Insets?>\n<?import javafx.scene.chart.CategoryAxis?>\n<?import javafx.scene.chart.LineChart?>\n<?import javafx.scene.chart.NumberAxis?>\n<?import javafx.scene.control.Button?>\n<?import javafx.scene.control.Label?>\n<?import javafx.scene.control.TextField?>\n<?import javafx.scene.control.ToolBar?>\n<?import javafx.scene.image.Image?>\n<?import javafx.scene.image.ImageView?>\n<?import javafx.scene.layout.AnchorPane?>\n<?import javafx.scene.layout.HBox?>\n<?import javafx.scene.layout.Pane?>\n<?import javafx.scene.layout.VBox?>\n<?import javafx.scene.text.Font?>\n\n<AnchorPane id=\"AnchorPane\" prefHeight=\"712.0\" prefWidth=\"1054.0\" stylesheets=\"@Stylesheet.css\" xmlns=\"http://javafx.com/javafx/8\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"project.DatDoUongController\">\n   <children>\n      <HBox prefHeight=\"713.0\" prefWidth=\"1054.0\">\n         <children>\n            <VBox fx:id=\"vboxLeft\" prefHeight=\"713.0\" prefWidth=\"257.0\" style=\"-fx-background-color: linear-gradient(to bottom, #1BB1DD, #020D51);\" styleClass=\"side-bar\">\n               <children>\n                  <ImageView fitHeight=\"240.0\" fitWidth=\"307.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                     <image>\n                        <Image url=\"@../../../Software-Engineering/Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png\" />\n                     </image>\n                  </ImageView>\n                  <Button alignment=\"BASELINE_LEFT\" blendMode=\"DARKEN\" mnemonicParsing=\"false\" onAction=\"#datDoUongPressedBtn\" prefHeight=\"38.0\" prefWidth=\"283.0\" text=\"Đặt Đồ uống\">\n                     <VBox.margin>\n                        <Insets bottom=\"7.0\" left=\"7.0\" right=\"7.0\" top=\"7.0\" />\n                     </VBox.margin>\n                     <font>\n                        <Font name=\"System Bold\" size=\"18.0\" />\n                     </font>\n                     <graphic>\n                        <ImageView blendMode=\"DARKEN\" fitHeight=\"48.0\" fitWidth=\"74.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                           <image>\n                              <Image url=\"@../../image/icons/milkTea.png\" />\n                           </image>\n                        </ImageView>\n                     </graphic></Button>\n                  <Button alignment=\"BASELINE_LEFT\" blendMode=\"DARKEN\" mnemonicParsing=\"false\" onAction=\"#nguyenLieuPressedBtn\" prefHeight=\"60.0\" prefWidth=\"258.0\" text=\"Nguyên Liệu\">\n                     <VBox.margin>\n                        <Insets bottom=\"7.0\" left=\"7.0\" right=\"7.0\" top=\"7.0\" />\n                     </VBox.margin>\n                     <font>\n                        <Font name=\"System Bold\" size=\"18.0\" />\n                     </font>\n                     <graphic>\n                        <ImageView fitHeight=\"64.0\" fitWidth=\"42.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                           <image>\n                              <Image url=\"@../../image/icons/material.png\" />\n                           </image>\n                        </ImageView>\n                     </graphic></Button>\n                  <Button alignment=\"BASELINE_LEFT\" blendMode=\"DARKEN\" mnemonicParsing=\"false\" onAction=\"#nhanSuPressedBtn\" prefHeight=\"56.0\" prefWidth=\"256.0\" text=\"Nhân sự\">\n                     <VBox.margin>\n                        <Insets bottom=\"7.0\" left=\"7.0\" right=\"7.0\" top=\"7.0\" />\n                     </VBox.margin>\n                     <font>\n                        <Font name=\"System Bold\" size=\"18.0\" />\n                     </font>\n                     <graphic>\n                        <ImageView blendMode=\"DARKEN\" fitHeight=\"34.0\" fitWidth=\"41.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                           <image>\n                              <Image url=\"@../../image/icons/human.png\" />\n                           </image>\n                        </ImageView>\n                     </graphic></Button>\n                  <Button alignment=\"BASELINE_LEFT\" blendMode=\"DARKEN\" mnemonicParsing=\"false\" onAction=\"#menuPressedBtn\" prefHeight=\"55.0\" prefWidth=\"253.0\" text=\"Menu\">\n                     <VBox.margin>\n                        <Insets bottom=\"7.0\" left=\"7.0\" right=\"7.0\" top=\"7.0\" />\n                     </VBox.margin>\n                     <font>\n                        <Font name=\"System Bold\" size=\"18.0\" />\n                     </font>\n                     <graphic>\n                        <ImageView blendMode=\"DARKEN\" fitHeight=\"36.0\" fitWidth=\"36.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                           <image>\n                              <Image url=\"@../../image/icons/menu.png\" />\n                           </image>\n                        </ImageView>\n                     </graphic></Button>\n                  <Button fx:id=\"btnDoanhThu\" alignment=\"BASELINE_LEFT\" blendMode=\"DARKEN\" mnemonicParsing=\"false\" onAction=\"#doanhThuPressedBtn\" prefHeight=\"52.0\" prefWidth=\"264.0\" text=\"Doanh Thu\">\n                     <opaqueInsets>\n                        <Insets />\n                     </opaqueInsets>\n                     <VBox.margin>\n                        <Insets bottom=\"7.0\" left=\"7.0\" right=\"7.0\" top=\"7.0\" />\n                     </VBox.margin>\n                     <font>\n                        <Font name=\"System Bold\" size=\"18.0\" />\n                     </font>\n                     <graphic>\n                        <ImageView fitHeight=\"43.0\" fitWidth=\"38.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                           <image>\n                              <Image url=\"@../../image/icons/doanhThu.png\" />\n                           </image>\n                        </ImageView>\n                     </graphic></Button>\n               </children>\n               <HBox.margin>\n                  <Insets />\n               </HBox.margin></VBox>\n            <VBox layoutX=\"202.0\" layoutY=\"10.0\" prefHeight=\"540.0\" prefWidth=\"835.0\">\n               <children>\n                  <ToolBar prefHeight=\"56.0\" prefWidth=\"815.0\" style=\"-fx-background-color: linear-gradient(to right, #8B8BF9, #8B8BF9);\">\n                     <items>\n                        <HBox alignment=\"CENTER\" prefHeight=\"24.0\" prefWidth=\"30.0\" style=\"-fx-border-radius: ;\">\n                           <children>\n                              <ImageView blendMode=\"DARKEN\" fitHeight=\"23.0\" fitWidth=\"22.0\" opacity=\"0.51\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                 <image>\n                                    <Image url=\"@../../image/icons/s.png\" />\n                                 </image>\n                              </ImageView>\n                           </children>\n                        </HBox>\n                        <TextField opacity=\"0.46\" prefHeight=\"25.0\" prefWidth=\"353.0\" text=\"Search\" />\n                     </items>\n                  </ToolBar>\n                  <AnchorPane prefHeight=\"658.0\" prefWidth=\"816.0\" style=\"-fx-background-color: #E2DFDF;\">\n                     <children>\n                        <HBox layoutX=\"6.0\" layoutY=\"4.0\" prefHeight=\"15.0\" prefWidth=\"52.0\" style=\"-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;\">\n                           <opaqueInsets>\n                              <Insets />\n                           </opaqueInsets>\n                           <children>\n                              <Label alignment=\"CENTER\" prefHeight=\"17.0\" prefWidth=\"52.0\" text=\"Loại\">\n                                 <font>\n                                    <Font name=\"System Bold\" size=\"16.0\" />\n                                 </font>\n                              </Label>\n                           </children>\n                        </HBox>\n                        <HBox layoutX=\"6.0\" layoutY=\"184.0\" prefHeight=\"11.0\" prefWidth=\"52.0\" style=\"-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;\">\n                           <children>\n                              <Label alignment=\"CENTER\" prefHeight=\"17.0\" prefWidth=\"52.0\" text=\"Size\">\n                                 <font>\n                                    <Font name=\"System Bold\" size=\"16.0\" />\n                                 </font>\n                              </Label>\n                           </children>\n                           <opaqueInsets>\n                              <Insets />\n                           </opaqueInsets>\n                        </HBox>\n                        <RadioButton layoutX=\"141.0\" layoutY=\"183.0\" mnemonicParsing=\"false\" text=\"Size M\">\n                           <font>\n                              <Font name=\"System Bold\" size=\"16.0\" />\n                           </font>\n                        </RadioButton>\n                        <RadioButton layoutX=\"360.0\" layoutY=\"183.0\" mnemonicParsing=\"false\" text=\"Size L\">\n                           <font>\n                              <Font name=\"System Bold\" size=\"16.0\" />\n                           </font>\n                        </RadioButton>\n                        <HBox layoutX=\"6.0\" layoutY=\"214.0\" prefHeight=\"17.0\" prefWidth=\"74.0\" style=\"-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;\">\n                           <children>\n                              <Label alignment=\"CENTER\" prefHeight=\"35.0\" prefWidth=\"92.0\" text=\"Đường\">\n                                 <font>\n                                    <Font name=\"System Bold\" size=\"16.0\" />\n                                 </font>\n                              </Label>\n                           </children>\n                           <opaqueInsets>\n                              <Insets />\n                           </opaqueInsets>\n                        </HBox>\n                        <HBox layoutX=\"6.0\" layoutY=\"264.0\" prefHeight=\"23.0\" prefWidth=\"74.0\" style=\"-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;\">\n                           <children>\n                              <Label alignment=\"CENTER\" prefHeight=\"38.0\" prefWidth=\"103.0\" text=\"Topping\">\n                                 <font>\n                                    <Font name=\"System Bold\" size=\"16.0\" />\n                                 </font>\n                              </Label>\n                           </children>\n                           <opaqueInsets>\n                              <Insets />\n                           </opaqueInsets>\n                        </HBox>\n                        <ScrollBar layoutX=\"6.0\" layoutY=\"237.0\" prefHeight=\"17.0\" prefWidth=\"244.0\" />\n                        <ScrollBar layoutX=\"294.0\" layoutY=\"237.0\" prefHeight=\"17.0\" prefWidth=\"262.0\" />\n                        <HBox layoutX=\"496.0\" layoutY=\"440.0\" prefHeight=\"38.0\" prefWidth=\"81.0\" style=\"-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F); -fx-background-radius: 25;\">\n                           <children>\n                              <Label alignment=\"CENTER\" prefHeight=\"40.0\" prefWidth=\"73.0\" text=\"Add\">\n                                 <font>\n                                    <Font size=\"22.0\" />\n                                 </font>\n                              </Label>\n                           </children>\n                           <opaqueInsets>\n                              <Insets />\n                           </opaqueInsets>\n                        </HBox>\n                        <AnchorPane layoutX=\"589.0\" prefHeight=\"658.0\" prefWidth=\"227.0\" style=\"-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);\">\n                           <children>\n                              <TextField layoutX=\"16.0\" layoutY=\"381.0\" prefHeight=\"25.0\" prefWidth=\"197.0\" />\n                              <Label alignment=\"CENTER\" layoutX=\"3.0\" prefHeight=\"54.0\" prefWidth=\"223.0\" text=\"Hóa Đơn\">\n                                 <font>\n                                    <Font size=\"27.0\" />\n                                 </font>\n                              </Label>\n                              <HBox layoutX=\"1.0\" layoutY=\"444.0\" prefHeight=\"38.0\" prefWidth=\"225.0\" style=\"-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);\" AnchorPane.topAnchor=\"444.0\">\n                                 <children>\n                                    <Text strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Xác Nhận\" textAlignment=\"CENTER\" wrappingWidth=\"219.7294921875\">\n                                       <font>\n                                          <Font size=\"37.0\" />\n                                       </font>\n                                    </Text>\n                                 </children>\n                              </HBox>\n                              <ScrollPane layoutY=\"40.0\" prefHeight=\"337.0\" prefWidth=\"227.0\">\n                                <content>\n                                  <AnchorPane minHeight=\"0.0\" minWidth=\"0.0\" prefHeight=\"647.0\" prefWidth=\"225.0\" style=\"-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);\" />\n                                </content>\n                              </ScrollPane>\n                           </children>\n                        </AnchorPane>\n                        <HBox layoutX=\"294.0\" layoutY=\"213.0\" prefHeight=\"23.0\" prefWidth=\"40.0\" style=\"-fx-background-color: linear-gradient(to right, #58C063, #58C063); -fx-background-radius: 15;\">\n                           <children>\n                              <Label alignment=\"CENTER\" prefHeight=\"35.0\" prefWidth=\"92.0\" text=\"Đá\">\n                                 <font>\n                                    <Font name=\"System Bold\" size=\"16.0\" />\n                                 </font>\n                              </Label>\n                           </children>\n                           <opaqueInsets>\n                              <Insets />\n                           </opaqueInsets>\n                        </HBox>\n                        <ScrollPane layoutY=\"27.0\" prefHeight=\"153.0\" prefWidth=\"588.0\">\n                          <content>\n                            <AnchorPane minHeight=\"0.0\" minWidth=\"0.0\" prefHeight=\"133.0\" prefWidth=\"900.0\">\n                                 <children>\n                                    <HBox layoutX=\"-1.0\" prefHeight=\"133.0\" prefWidth=\"899.0\">\n                                       <children>\n                                          <Pane prefHeight=\"127.0\" prefWidth=\"248.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"67.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"38.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"73.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/anh-tra-sua-tran-chau-den-dep_062227590.jpg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                                <Label layoutX=\"75.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"127.0\" prefWidth=\"248.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"67.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"38.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"71.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/anh-tra-sua-matcha-cuc-dep_062227575.jpg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                                <Label layoutX=\"75.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"215.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"37.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/download%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                          <Pane layoutX=\"219.0\" layoutY=\"10.0\" prefHeight=\"127.0\" prefWidth=\"248.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"67.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"38.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"71.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/anh-tra-sua-matcha-cuc-dep_062227575.jpg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                                <Label layoutX=\"75.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"215.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"37.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/download%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"215.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"37.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/download%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"215.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"37.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/download%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                       </children>\n                                    </HBox>\n                                 </children>\n                              </AnchorPane>\n                          </content>\n                        </ScrollPane>\n                        <ScrollPane layoutY=\"287.0\" prefHeight=\"153.0\" prefWidth=\"588.0\">\n                           <content>\n                              <AnchorPane minHeight=\"0.0\" minWidth=\"0.0\" prefHeight=\"133.0\" prefWidth=\"900.0\">\n                                 <children>\n                                    <HBox layoutX=\"-1.0\" prefHeight=\"133.0\" prefWidth=\"899.0\">\n                                       <children>\n                                          <Pane prefHeight=\"127.0\" prefWidth=\"248.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"67.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"38.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"73.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/Topping/images.jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                                <Label layoutX=\"75.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"127.0\" prefWidth=\"248.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"67.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"38.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"71.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/Topping/images%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                                <Label layoutX=\"75.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"244.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"1.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/Topping/images%20(2).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                          <Pane layoutX=\"219.0\" layoutY=\"10.0\" prefHeight=\"127.0\" prefWidth=\"248.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"67.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"38.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"71.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/anh-tra-sua-matcha-cuc-dep_062227575.jpg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                                <Label layoutX=\"75.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"215.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"37.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/download%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"215.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"37.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/download%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                          <Pane prefHeight=\"133.0\" prefWidth=\"215.0\" style=\"-fx-background-radius: 25;\" styleClass=\"border\">\n                                             <children>\n                                                <Label layoutX=\"76.0\" layoutY=\"93.0\" text=\"trà sữa\" />\n                                                <Label layoutX=\"66.0\" layoutY=\"106.0\" text=\"\\$1870.25\" />\n                                                <CheckBox layoutX=\"37.0\" mnemonicParsing=\"false\" prefHeight=\"84.0\" prefWidth=\"121.0\">\n                                                   <graphic>\n                                                      <ImageView fitHeight=\"84.0\" fitWidth=\"195.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\n                                                         <image>\n                                                            <Image url=\"@../../image/TraSua/download%20(1).jpeg\" />\n                                                         </image>\n                                                      </ImageView>\n                                                   </graphic>\n                                                </CheckBox>\n                                             </children>\n                                          </Pane>\n                                       </children>\n                                    </HBox>\n                                 </children>\n                              </AnchorPane>\n                           </content>\n                        </ScrollPane>\n                     </children></AnchorPane>\n               </children></VBox>\n         </children>\n      </HBox>\n   </children>\n</AnchorPane>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/DatDoUong.fxml b/src/project/DatDoUong.fxml
+--- a/src/project/DatDoUong.fxml	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/DatDoUong.fxml	(date 1655257364522)
+@@ -31,88 +31,130 @@
+          <children>
+             <VBox fx:id="vboxLeft" prefHeight="713.0" prefWidth="257.0" style="-fx-background-color: linear-gradient(to bottom, #1BB1DD, #020D51);" styleClass="side-bar">
+                <children>
+-                  <ImageView fitHeight="240.0" fitWidth="307.0" pickOnBounds="true" preserveRatio="true">
+-                     <image>
+-                        <Image url="@../../../Software-Engineering/Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
+-                     </image>
+-                  </ImageView>
+-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" mnemonicParsing="false" onAction="#datDoUongPressedBtn" prefHeight="38.0" prefWidth="283.0" text="Đặt Đồ uống">
+-                     <VBox.margin>
+-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+-                     </VBox.margin>
+-                     <font>
+-                        <Font name="System Bold" size="18.0" />
+-                     </font>
+-                     <graphic>
+-                        <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
++                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
++                     <children>
++                        <ImageView fitHeight="237.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
++                           <image>
++                              <Image url="@../../../Software-Engineering/Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
++                           </image>
++                        </ImageView>
++                     </children>
++                  </HBox>
++                  <AnchorPane prefHeight="62.0" prefWidth="240.0">
++                     <children>
++                        <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                               <Image url="@../../image/icons/milkTea.png" />
+                            </image>
+                         </ImageView>
+-                     </graphic></Button>
+-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="60.0" prefWidth="258.0" text="Nguyên Liệu">
+-                     <VBox.margin>
+-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+-                     </VBox.margin>
+-                     <font>
+-                        <Font name="System Bold" size="18.0" />
+-                     </font>
+-                     <graphic>
+-                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
++                        <Text fill="WHITE" layoutX="66.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đặt đồ uống">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Text>
++                        <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#datDoUongPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Button>
++                     </children>
++                     <opaqueInsets>
++                        <Insets />
++                     </opaqueInsets>
++                  </AnchorPane>
++                  <AnchorPane prefHeight="62.0" prefWidth="240.0">
++                     <children>
++                        <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                               <Image url="@../../image/icons/material.png" />
+                            </image>
+                         </ImageView>
+-                     </graphic></Button>
+-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="56.0" prefWidth="256.0" text="Nhân sự">
+-                     <VBox.margin>
+-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+-                     </VBox.margin>
+-                     <font>
+-                        <Font name="System Bold" size="18.0" />
+-                     </font>
+-                     <graphic>
+-                        <ImageView blendMode="DARKEN" fitHeight="34.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
++                        <Text fill="WHITE" layoutX="68.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên liệu">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Text>
++                        <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Button>
++                     </children>
++                     <opaqueInsets>
++                        <Insets />
++                     </opaqueInsets>
++                  </AnchorPane>
++                  <AnchorPane prefHeight="62.0" prefWidth="162.0">
++                     <children>
++                        <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                               <Image url="@../../image/icons/human.png" />
+                            </image>
+                         </ImageView>
+-                     </graphic></Button>
+-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="55.0" prefWidth="253.0" text="Menu">
+-                     <VBox.margin>
+-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+-                     </VBox.margin>
+-                     <font>
+-                        <Font name="System Bold" size="18.0" />
+-                     </font>
+-                     <graphic>
+-                        <ImageView blendMode="DARKEN" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
++                        <Text fill="WHITE" layoutX="69.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân sự">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Text>
++                        <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Button>
++                     </children>
++                     <opaqueInsets>
++                        <Insets />
++                     </opaqueInsets>
++                  </AnchorPane>
++                  <AnchorPane prefHeight="62.0" prefWidth="240.0">
++                     <children>
++                        <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                               <Image url="@../../image/icons/menu.png" />
+                            </image>
+                         </ImageView>
+-                     </graphic></Button>
+-                  <Button fx:id="btnDoanhThu" alignment="BASELINE_LEFT" blendMode="DARKEN" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="52.0" prefWidth="264.0" text="Doanh Thu">
+-                     <opaqueInsets>
+-                        <Insets />
+-                     </opaqueInsets>
+-                     <VBox.margin>
+-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+-                     </VBox.margin>
+-                     <font>
+-                        <Font name="System Bold" size="18.0" />
+-                     </font>
+-                     <graphic>
+-                        <ImageView fitHeight="43.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
++                        <Text fill="WHITE" layoutX="73.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Text>
++                        <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Button>
++                     </children>
++                     <opaqueInsets>
++                        <Insets />
++                     </opaqueInsets>
++                  </AnchorPane>
++                  <AnchorPane prefHeight="62.0" prefWidth="240.0">
++                     <children>
++                        <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                               <Image url="@../../image/icons/doanhThu.png" />
+                            </image>
+                         </ImageView>
+-                     </graphic></Button>
++                        <Text fill="WHITE" layoutX="73.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doanh Thu">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Text>
++                        <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
++                           <font>
++                              <Font name="System Bold" size="18.0" />
++                           </font>
++                        </Button>
++                     </children>
++                     <opaqueInsets>
++                        <Insets />
++                     </opaqueInsets>
++                  </AnchorPane>
+                </children>
+                <HBox.margin>
+                   <Insets />
+-               </HBox.margin></VBox>
++               </HBox.margin>
++            </VBox>
+             <VBox layoutX="202.0" layoutY="10.0" prefHeight="540.0" prefWidth="835.0">
+                <children>
+                   <ToolBar prefHeight="56.0" prefWidth="815.0" style="-fx-background-color: linear-gradient(to right, #8B8BF9, #8B8BF9);">
+@@ -191,7 +233,7 @@
+                         </HBox>
+                         <ScrollBar layoutX="6.0" layoutY="237.0" prefHeight="17.0" prefWidth="244.0" />
+                         <ScrollBar layoutX="294.0" layoutY="237.0" prefHeight="17.0" prefWidth="262.0" />
+-                        <HBox layoutX="496.0" layoutY="440.0" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F); -fx-background-radius: 25;">
++                        <HBox layoutX="487.0" layoutY="606.0" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F); -fx-background-radius: 25;">
+                            <children>
+                               <Label alignment="CENTER" prefHeight="40.0" prefWidth="73.0" text="Add">
+                                  <font>
+@@ -356,25 +398,25 @@
+                               </AnchorPane>
+                           </content>
+                         </ScrollPane>
+-                        <ScrollPane layoutY="287.0" prefHeight="153.0" prefWidth="588.0">
++                        <ScrollPane layoutY="382.0" prefHeight="216.0" prefWidth="588.0">
+                            <content>
+                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="133.0" prefWidth="900.0">
+                                  <children>
+-                                    <HBox layoutX="-1.0" prefHeight="133.0" prefWidth="899.0">
++                                    <HBox layoutX="-1.0" prefHeight="206.0" prefWidth="899.0">
+                                        <children>
+-                                          <Pane prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
++                                          <Pane prefHeight="206.0" prefWidth="293.0" style="-fx-background-radius: 25;" styleClass="border">
+                                              <children>
+-                                                <Label layoutX="67.0" layoutY="106.0" text="\$1870.25" />
+-                                                <CheckBox layoutX="38.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="121.0">
++                                                <Label layoutX="45.0" layoutY="159.0" text="\$1870.25" />
++                                                <CheckBox mnemonicParsing="false" prefHeight="113.0" prefWidth="140.0">
+                                                    <graphic>
+-                                                      <ImageView fitHeight="84.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
++                                                      <ImageView fitHeight="136.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                                                          <image>
+                                                             <Image url="@../../image/Topping/images.jpeg" />
+                                                          </image>
+                                                       </ImageView>
+                                                    </graphic>
+                                                 </CheckBox>
+-                                                <Label layoutX="75.0" layoutY="93.0" text="trà sữa" />
++                                                <Label layoutX="53.0" layoutY="144.0" text="trà sữa" />
+                                              </children>
+                                           </Pane>
+                                           <Pane prefHeight="127.0" prefWidth="248.0" style="-fx-background-radius: 25;" styleClass="border">
+Index: src/project/LogInController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\n * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license\n * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template\n */\npackage project;\n\nimport java.awt.*;\nimport java.io.IOException;\nimport java.net.URL;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.util.Objects;\nimport java.util.ResourceBundle;\n\nimport javafx.event.ActionEvent;\nimport javafx.fxml.FXML;\nimport javafx.fxml.FXMLLoader;\nimport javafx.fxml.Initializable;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.scene.control.TextField;\nimport javafx.stage.Stage;\nimport project.base.DBUtil;\nimport project.base.user.User;\n\nimport javax.swing.*;\nimport static project.LogIn.monitor;\n\n\n/**\n * FXML Controller class\n *\n * @author Mr Pham Truong\n */\npublic class LogInController implements Initializable {\n    @FXML\n    private TextField username;\n    @FXML\n    private TextField password;\n\n    /**\n     * Initializes the controller class.\n     */\n    @Override\n    public void initialize(URL url, ResourceBundle rb) {\n        // TODO\n    }\n    @FXML\n    public void loginPressedBtn(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {\n        String command = String.format(\"SELECT tendangnhap FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';\",\n                username.getText(), password.getText());\n        ResultSet result = DBUtil.dbExecuteQuery(command);\n        if (!result.next()) {\n            JOptionPane.showMessageDialog(null, \"Wrong username or password\", \"ERROR\", JOptionPane.ERROR_MESSAGE);\n        } else {\n            System.out.println(result.getString(1));\n            monitor.newSession(new User(result.getString(1)));\n\n            //move to dashboard\n            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(\"/project/FXML.fxml\")));\n            Stage window = (Stage) username.getScene().getWindow();\n            window.setScene(new Scene(root));\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/LogInController.java b/src/project/LogInController.java
+--- a/src/project/LogInController.java	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/LogInController.java	(date 1655257364522)
+@@ -21,6 +21,9 @@
+ import javafx.scene.control.TextField;
+ import javafx.stage.Stage;
+ import project.base.DBUtil;
++import project.base.user.Admin;
++import project.base.user.Bartender;
++import project.base.user.Cashier;
+ import project.base.user.User;
+ 
+ import javax.swing.*;
+@@ -46,15 +49,27 @@
+         // TODO
+     }
+     @FXML
+-    public void loginPressedBtn(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
+-        String command = String.format("SELECT tendangnhap FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
++    public void loginPressedBtn(ActionEvent e) throws Exception {
++        String command = String.format("SELECT * FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
+                 username.getText(), password.getText());
+         ResultSet result = DBUtil.dbExecuteQuery(command);
+         if (!result.next()) {
+             JOptionPane.showMessageDialog(null, "Wrong username or password", "ERROR", JOptionPane.ERROR_MESSAGE);
+         } else {
+-            System.out.println(result.getString(1));
+-            monitor.newSession(new User(result.getString(1)));
++            String accName = result.getString(1);
++            String role = result.getString(6);
++            System.out.printf("Đăng nhập thành công, %s với vai trò %s", accName, role);
++            User user = null;
++            if (Objects.equals(role, "Quan Ly")) {
++                user = new Admin(accName);
++            } else if (Objects.equals(role, "Thu Ngan")) {
++                user = new Cashier(accName);
++            } else if (Objects.equals(role, "Pha Che")) {
++                user = new Bartender(accName);
++            } else {
++                throw new Exception("Invalid user role");
++            }
++            monitor.newSession(user);
+ 
+             //move to dashboard
+             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/FXML.fxml")));
+Index: src/project/Stylesheet.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.side-bar{\n    -fx-background-color: #D5D6F2\n}\n\n.pane.pane1{\n    -fx-background-color: linear-gradient(to right, #8A8AF9, #8080F6);\n}\n\n.pane.pane2{\n    -fx-background-color: linear-gradient(to right, #B878FE, #AC65EF);\n}\n\n.pane.pane3{\n    -fx-background-color: linear-gradient(to right, #E3C43E, #DABD3D);\n}\n\n.border {\n    -fx-border-radius: 5 5 5 5;\n    -fx-background-radius: 5 5 5 5;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/Stylesheet.css b/src/project/Stylesheet.css
+--- a/src/project/Stylesheet.css	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/Stylesheet.css	(date 1655257364522)
+@@ -17,4 +17,11 @@
+ .border {
+     -fx-border-radius: 5 5 5 5;
+     -fx-background-radius: 5 5 5 5;
++}
++
++.button:pressed {
++    -fx-background-color: #546cc2
++}
++.button:hover {
++    -fx-background-color: #546cc2
+ }
+\ No newline at end of file
+Index: lib_window/javafx.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/lib_window/javafx.properties b/lib_window/javafx.properties
+new file mode 100755
+--- /dev/null	(date 1655257364511)
++++ b/lib_window/javafx.properties	(date 1655257364511)
+@@ -0,0 +1,3 @@
++javafx.version=18.0.1
++javafx.runtime.version=18.0.1+2
++javafx.runtime.build=2
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Software-Engineering\nIntroduction to Software Engineering\n\nDatabase operation with Javafx\nhttps://www.swtestacademy.com/database-operations-javafx/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/README.md	(date 1655257364403)
+@@ -2,4 +2,7 @@
+ Introduction to Software Engineering
+ 
+ Database operation with Javafx
+-https://www.swtestacademy.com/database-operations-javafx/
+\ No newline at end of file
++https://www.swtestacademy.com/database-operations-javafx/
++
++UI with JavaFX
++https://www.youtube.com/watch?v=cPF3qGTjYgk
+\ No newline at end of file
+Index: src/project/FXMain.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package project;\n\nimport java.io.IOException;\nimport javafx.application.Application;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.stage.Stage;\n\n/**\n *\n * @author Mr Pham Truong\n */\npublic class FXMain extends Application {\n\n    @Override\n    public void start(Stage stage) throws IOException {\n        Parent root = FXMLLoader.load(getClass().getResource(\"/project/FXML.fxml\"));\n        Scene scene = new Scene(root);\n        stage.setScene(scene);\n        stage.show();\n    }\n\n    public static void main(String[] args) {\n        launch(args);\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/FXMain.java b/src/project/FXMain.java
+--- a/src/project/FXMain.java	(revision a965e396eb7fd1da74f219ef876f46c90d07daea)
++++ b/src/project/FXMain.java	(date 1655257364522)
+@@ -15,7 +15,7 @@
+ 
+     @Override
+     public void start(Stage stage) throws IOException {
+-        Parent root = FXMLLoader.load(getClass().getResource("/project/FXML.fxml"));
++        Parent root = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));
+         Scene scene = new Scene(root);
+         stage.setScene(scene);
+         stage.show();
+Index: src/project/base/functional/CashierInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/functional/CashierInterface.java b/src/project/base/functional/CashierInterface.java
+new file mode 100755
+--- /dev/null	(date 1655257364524)
++++ b/src/project/base/functional/CashierInterface.java	(date 1655257364524)
+@@ -0,0 +1,9 @@
++package project.base.functional;
++
++import project.base.order.Invoice;
++
++public interface CashierInterface {
++    default void confirm_new_invoice(Invoice invoice){
++        //todo
++    }
++}
+Index: src/project/base/user/Bartender.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/project/base/user/Bartender.java b/src/project/base/user/Bartender.java
+new file mode 100755
+--- /dev/null	(date 1655257364524)
++++ b/src/project/base/user/Bartender.java	(date 1655257364524)
+@@ -0,0 +1,36 @@
++package project.base.user;
++
++import project.base.functional.BartenderInterface;
++
++import java.sql.SQLException;
++import java.util.Arrays;
++import java.util.HashMap;
++
++public class Bartender extends User implements BartenderInterface {
++    public Bartender(String username) {
++        super(username);
++    }
++    public void add_ingredient(String tennguyenlieu, String nhacungcap, String trangthai) throws SQLException,
++            ClassNotFoundException {
++        BartenderInterface.super.add_ingredient(this.getUsername(), tennguyenlieu, nhacungcap, trangthai);
++    }
++    public void add_drink(String tendouong,
++                           String anh,
++                           HashMap<Character, Integer> size_giatien,
++                           String[] nhungnguyenlieu
++    ) throws SQLException, ClassNotFoundException {
++        BartenderInterface.super.add_drink(this.getUsername(), tendouong, anh, size_giatien, nhungnguyenlieu);
++    }
++    public void add_topping(String tentopping, String anh, int giatien, String[] nhungnguyenlieu) throws SQLException,
++            ClassNotFoundException {
++        BartenderInterface.super.add_topping(this.getUsername(), tentopping, anh, giatien, nhungnguyenlieu);
++    }
++
++    public static void main(String[] args) throws SQLException, ClassNotFoundException {
++        Bartender s = new Bartender("hungpham");
++        s.add_ingredient("Pudding", "Cty Nước Nôi VN", "Con hang");
++        s.add_drink("Trà sữa Hai Nắng","hainang.png",new HashMap<>() {{put('M',30);put('L',33);}}, new String[]{
++                "Trân Châu", "Khúc Bạch", "Pudding"});
++        s.add_topping("Hạt ngọc trai", "ngoctrai.png", 5, new String[] {"Trân Châu", "Khúc Bạch"});
++    }
++}
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100755
