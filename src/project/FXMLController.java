@@ -76,4 +76,11 @@ public class FXMLController implements Initializable {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
+    @FXML
+    void TaiKhoanCuaBanPressedBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/project/TaiKhoanCuaBan.fxml"));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
+    }
 }

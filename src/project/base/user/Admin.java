@@ -1,27 +1,36 @@
 package project.base.user;
 
 import project.base.DBUtil;
-import project.base.functional.AdminInterface;
-import project.base.functional.BartenderInterface;
-import project.base.functional.CashierInterface;
 
 import java.sql.SQLException;
 
-public class Admin extends User implements AdminInterface, BartenderInterface, CashierInterface {
+public class Admin extends User{
     public Admin(String username){
         super(username);
     }
 
-    public void create_new_user(String username, String fullname, String password, String phone, String avatar, String position, String shift) throws SQLException, ClassNotFoundException {
-        AdminInterface.super.create_new_user(this.getUsername(),username, fullname, password, phone, avatar, position, shift);
-    }
+    public void create_new_user(String username,
+                                String fullname,
+                                String password,
+                                String phone,
+                                String avatar,
+                                String position,
+                                String shift
+                                ) throws SQLException, ClassNotFoundException {
+        String command = String.format("INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam) " +
+                "VALUES ('%s', '%s', '%s','%s','%s', '%s', '%s');",
+                username, fullname, password, phone, avatar, position, shift);
+        try {
+            DBUtil.dbExecuteUpdate(command);
+        } catch (SQLException e) {
+            System.out.println("Error occurred while INSERT operation: "+ e);
+            throw e;
+        }
 
+    }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Admin s = new Admin("hungpham");
         //s.create_new_user("doubleK24", "Hoàng Văn Khánh", "123456", "019238", "khanh.png", "Pha Che","Chieu");
-//        s.create_new_user("hthientam2402", "Hoàng Thiện Tâm", "123456", "0913887814", "khanh.png", "Pha Che","Chieu");
-        s.create_new_user("nhatdeptrai", "Minh Nhat", "123456", "0913887814", "nhat.png", "Quan Ly",
-                "Sang");
+        s.create_new_user("hthientam2402", "Hoàng Thiện Tâm", "123456", "0913887814", "khanh.png", "Pha Che","Chieu");
     }
-
 }

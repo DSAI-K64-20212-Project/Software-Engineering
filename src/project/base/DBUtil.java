@@ -108,7 +108,6 @@ public class DBUtil {
             if (conn == null) {
                 dbConnect();
             }
-            System.out.println("Update statement: " + sqlStmt + "\n");
             //Create Statement
             stmt = conn.createStatement();
             //Run executeUpdate operation with given sql statement
