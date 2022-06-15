@@ -11,117 +11,199 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.TaiKhoanCuaBan">
+<AnchorPane prefHeight="734.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.TaiKhoanCuaBanController">
    <children>
-      <HBox prefHeight="707.0" prefWidth="967.0">
+      <VBox layoutX="256.0" layoutY="52.0" prefHeight="685.0" prefWidth="794.0">
          <children>
-            <VBox fx:id="vboxLeft" prefHeight="540.0" prefWidth="173.0" style="-fx-background-color: linear-gradient(to bottom, #1BB1DD, #020D51);" styleClass="side-bar">
+            <HBox prefHeight="63.0" prefWidth="805.0">
                <children>
-                  <ImageView fitHeight="155.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                  <HBox prefHeight="63.0" prefWidth="165.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="174.0" style="-fx-background-color: FFFFFF;" text="&lt;  Back">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="63.0" prefWidth="426.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tài khoản của bạn">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="423.0" prefWidth="805.0">
+               <children>
+                  <HBox prefHeight="423.0" prefWidth="410.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã nhân viên:  LadyKiller&#10;Mật khẩu: *********&#10;Chức vụ: Thu ngân&#10;Ca làm: Sáng&#10;Số giờ đã làm việc trong tháng: 12h&#10;" wrappingWidth="378.70166015625">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <AnchorPane prefHeight="423.0" prefWidth="395.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="108.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
+                        <Circle fill="DODGERBLUE" layoutX="208.0" layoutY="169.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vboxLeft" prefHeight="737.0" prefWidth="256.0" style="-fx-background-color: #0A4480;" styleClass="side-bar">
+         <children>
+            <Pane prefHeight="186.0" prefWidth="238.0">
+               <children>
+                  <ImageView blendMode="DARKEN" fitHeight="238.0" fitWidth="297.0" layoutX="9.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="164.0" style="-fx-background-radius: 25;" text="Đặt Đồ uống">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nguyên Liệu">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Nhân sự">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Menu">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="btnDoanhThu" mnemonicParsing="false" onAction="#handleBtnDoanhThu" prefHeight="40.0" prefWidth="163.0" style="-fx-background-radius: 25;" text="Doanh Thu">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin>
-                  </Button>
                </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
-            <VBox layoutX="202.0" layoutY="10.0" prefHeight="666.0" prefWidth="815.0">
+            </Pane>
+            <AnchorPane prefHeight="62.0" prefWidth="240.0">
                <children>
-                  <ToolBar prefHeight="56.0" prefWidth="815.0" style="-fx-background-color: linear-gradient(to right, #8B8BF9, #8B8BF9);">
-                     <items>
-                        <TextField opacity="0.46" prefHeight="25.0" prefWidth="353.0" text="Search" />
-                     </items>
-                  </ToolBar>
-                  <HBox prefHeight="63.0" prefWidth="805.0">
-                     <children>
-                        <HBox prefHeight="63.0" prefWidth="165.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="174.0" style="-fx-background-color: FFFFFF;" text="&lt;  Back">
-                                 <font>
-                                    <Font size="31.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="426.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tài khoản của bạn">
-                                 <font>
-                                    <Font name="System Bold" size="30.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="423.0" prefWidth="805.0">
-                     <children>
-                        <HBox prefHeight="423.0" prefWidth="410.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã nhân viên:  LadyKiller&#10;Mật khẩu: *********&#10;Chức vụ: Thu ngân&#10;Ca làm: Sáng&#10;Số giờ đã làm việc trong tháng: 12h&#10;" wrappingWidth="378.70166015625">
-                                 <font>
-                                    <Font size="23.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <AnchorPane prefHeight="423.0" prefWidth="395.0">
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="108.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
-                              <Circle fill="DODGERBLUE" layoutX="208.0" layoutY="169.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
+                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/icons/milkTea.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="66.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đặt đồ uống">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#datDoUongPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
                </children>
-            </VBox>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+            <AnchorPane prefHeight="62.0" prefWidth="240.0">
+               <children>
+                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/icons/material.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="68.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên liệu">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+            <AnchorPane prefHeight="62.0" prefWidth="162.0">
+               <children>
+                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/icons/human.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="69.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân sự">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+            <AnchorPane prefHeight="62.0" prefWidth="240.0">
+               <children>
+                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/icons/menu.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="73.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+            <AnchorPane prefHeight="62.0" prefWidth="240.0">
+               <children>
+                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/icons/doanhThu.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="73.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doanh Thu">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btnDoanhThu" alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
          </children>
-      </HBox>
+      </VBox>
+      <ToolBar layoutX="256.0" prefHeight="52.0" prefWidth="794.0" style="-fx-background-color: #0D9ED4;">
+         <items>
+            <HBox alignment="CENTER" prefHeight="24.0" prefWidth="30.0">
+               <children>
+                  <ImageView blendMode="DARKEN" fitHeight="23.0" fitWidth="22.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/icons/s.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <TextField opacity="0.46" prefHeight="25.0" prefWidth="353.0" text="Search" />
+            <AnchorPane prefHeight="34.0" prefWidth="41.0">
+               <children>
+                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="56.0" layoutX="1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/icons/human.png" />
+                     </image>
+                  </ImageView>
+                  <Button blendMode="DARKEN" layoutX="10.0" layoutY="8.0" mnemonicParsing="false" onAction="#TaiKhoanCuaBanPressedBtn" prefHeight="27.0" prefWidth="32.0" text="       " />
+               </children>
+            </AnchorPane>
+         </items>
+      </ToolBar>
    </children>
 </AnchorPane>
