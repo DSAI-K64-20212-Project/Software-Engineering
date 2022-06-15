@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a5764dd-8aee-4b9d-9ee4-cd17b2d017b4" name="Changes" comment="Nhat update">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="8a5764dd-8aee-4b9d-9ee4-cd17b2d017b4" name="Changes" comment="Nhat update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,6 +86,7 @@
       <workItem from="1655110872272" duration="1512000" />
       <workItem from="1655112435505" duration="3175000" />
       <workItem from="1655174691179" duration="6987000" />
+      <workItem from="1655257683574" duration="242000" />
     </task>
     <task id="LOCAL-00001" summary="Nhat update">
       <created>1655181242093</created>
