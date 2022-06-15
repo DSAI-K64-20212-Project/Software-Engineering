@@ -19,9 +19,6 @@ public class DatDoUongController {
     private VBox vboxLeft;
 
     @FXML
-    private Button btnDoanhThu;
-
-    @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/project/FXML.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -29,8 +26,10 @@ public class DatDoUongController {
     }
 
     @FXML
-    void nguyenLieuPressedBtn(ActionEvent event) {
-
+    void nguyenLieuPressedBtn(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
+        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window1.setScene(new Scene(root1));
     }
 
     @FXML
@@ -46,5 +45,12 @@ public class DatDoUongController {
     @FXML
     void datDoUongPressedBtn(ActionEvent event) {
 
+    }
+
+    @FXML
+    void TaiKhoanCuaBanPressedBtn(ActionEvent event) throws IOException {
+        Parent root2 = FXMLLoader.load(getClass().getResource("/project/TaiKhoanCuaBan.fxml"));
+        Stage window2 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window2.setScene(new Scene(root2));
     }
 }

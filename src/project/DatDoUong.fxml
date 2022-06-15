@@ -117,7 +117,7 @@
                <children>
                   <ToolBar prefHeight="56.0" prefWidth="815.0" style="-fx-background-color: linear-gradient(to right, #8B8BF9, #8B8BF9);">
                      <items>
-                        <HBox alignment="CENTER" prefHeight="24.0" prefWidth="30.0" style="-fx-border-radius: ;">
+                        <HBox alignment="CENTER" prefHeight="24.0" prefWidth="30.0">
                            <children>
                               <ImageView blendMode="DARKEN" fitHeight="23.0" fitWidth="22.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -127,6 +127,16 @@
                            </children>
                         </HBox>
                         <TextField opacity="0.46" prefHeight="25.0" prefWidth="353.0" text="Search" />
+                        <AnchorPane prefHeight="34.0" prefWidth="41.0">
+                           <children>
+                              <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="56.0" layoutX="1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../image/icons/human.png" />
+                                 </image>
+                              </ImageView>
+                              <Button blendMode="DARKEN" layoutX="10.0" layoutY="8.0" mnemonicParsing="false" onAction="#TaiKhoanCuaBanPressedBtn" prefHeight="27.0" prefWidth="32.0" text="       " />
+                           </children>
+                        </AnchorPane>
                      </items>
                   </ToolBar>
                   <AnchorPane prefHeight="658.0" prefWidth="816.0" style="-fx-background-color: #E2DFDF;">
@@ -213,7 +223,7 @@
                               </Label>
                               <HBox layoutX="1.0" layoutY="444.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" AnchorPane.topAnchor="444.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Xác Nhận" textAlignment="CENTER" wrappingWidth="219.7294921875">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="border" text="Xác Nhận" textAlignment="CENTER" wrappingWidth="219.7294921875">
                                        <font>
                                           <Font size="37.0" />
                                        </font>
