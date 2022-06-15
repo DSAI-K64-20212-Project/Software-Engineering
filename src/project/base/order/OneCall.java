@@ -36,4 +36,8 @@ public class OneCall {
 
         return total*this.amount;
     }
+    public boolean check_availability(){
+        //todo
+        return true;
+    }
 }

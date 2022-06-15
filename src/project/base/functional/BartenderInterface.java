@@ -12,10 +12,11 @@ public interface BartenderInterface {
     default void add_ingredient(String username,
                                 String tennguyenlieu,
                                 String nhacungcap,
+                                String anh,
                                 String trangthai
     ) throws SQLException, ClassNotFoundException {
-        String command = String.format("INSERT INTO nguyenlieu(tenNguyenLieu, nhaCungCap, trangThai) " +
-                        "VALUES ('%s', '%s', '%s');", tennguyenlieu, nhacungcap, trangthai);
+        String command = String.format("INSERT INTO nguyenlieu(tenNguyenLieu, nhaCungCap, trangThai, anh) " +
+                        "VALUES ('%s', '%s', '%s', '%s');", tennguyenlieu, nhacungcap, trangthai, anh);
         DBUtil.dbExecuteUpdate(command);
         System.out.printf("User %s đã thêm nguyên liệu %s, nhà cung cấp %s, trạng thái %s", username,
                 tennguyenlieu, nhacungcap, trangthai);

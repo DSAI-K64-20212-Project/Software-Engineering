@@ -137,6 +137,11 @@ VALUES ('Quan Ly', 'Sang', 80),
        ('Pha Che', 'Chieu', 50)
        ;
 
+ALTER TABLE hoadon ALTER COLUMN mahoadon TYPE varchar(36);
+ALTER TABLE nguyenlieu ADD COLUMN anh varchar(20);
+
+ALTER TABLE hoadon ALTER Column thoigian SET DEFAULT CURRENT_DATE;
+ALTER TABLE thanhphanhoadon ALTER COLUMN mahoadon TYPE varchar(36);
 -- INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam)
 -- VALUES ('hungpham', 'Phạm Thành Hưng', '123456','0971169255','hung.png', 'Quan Ly', 'Sang');
 --
