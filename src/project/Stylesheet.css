@@ -25,8 +25,13 @@
 /*}*/
 
 .label {
-    -fx-font-family: 'Inconsolata', monospace;
+    -fx-font-family: 'Inter', monospace;
     -fx-background-color: Transparent;
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
+    /*-fx-text-alignment: 50px;*/
+}
+
+.center {
+    
 }
