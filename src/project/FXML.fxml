@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
@@ -17,21 +24,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.FXMLController">
    <children>
       <HBox layoutX="-7.0" prefHeight="691.0" prefWidth="1052.0">
          <children>
-            <VBox fx:id="vboxLeft" prefHeight="713.0" prefWidth="257.0" style="-fx-background-color: linear-gradient(to bottom, #1BB1DD, #020D51);" styleClass="side-bar">
+            <VBox fx:id="vboxLeft1" prefHeight="737.0" prefWidth="256.0" style="-fx-background-color: #0A4480;" styleClass="side-bar">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <Pane prefHeight="186.0" prefWidth="238.0">
                      <children>
-                        <ImageView fitHeight="237.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView blendMode="DARKEN" fitHeight="238.0" fitWidth="297.0" layoutX="9.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </HBox>
+                  </Pane>
                   <AnchorPane prefHeight="62.0" prefWidth="240.0">
                      <children>
                         <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
@@ -146,7 +153,7 @@
             </VBox>
             <VBox layoutX="202.0" layoutY="10.0" prefHeight="540.0" prefWidth="835.0">
                <children>
-                  <ToolBar prefHeight="56.0" prefWidth="815.0" style="-fx-background-color: linear-gradient(to right, #8B8BF9, #8B8BF9);">
+                  <ToolBar prefHeight="52.0" prefWidth="794.0" style="-fx-background-color: #0D9ED4;">
                      <items>
                         <HBox alignment="CENTER" prefHeight="24.0" prefWidth="30.0">
                            <children>
@@ -213,7 +220,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </HBox>
-                  <AnchorPane prefHeight="353.0" prefWidth="815.0" style="-fx-background-color: #E2DFDF;">
+                  <AnchorPane prefHeight="429.0" prefWidth="811.0" style="-fx-background-color: #E2DFDF;">
                      <children>
                         <HBox layoutY="9.0" prefHeight="324.0" prefWidth="815.0">
                            <children>

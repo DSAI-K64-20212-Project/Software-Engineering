@@ -36,6 +36,12 @@ public class FXMLController implements Initializable {
     @FXML
     private Button btnDoanhThu;
 
+    @FXML
+    private VBox vboxLeft1;
+
+    @FXML
+    private Button btnDoanhThu1;
+
     /**
      * Initializes the controller class.
      */
@@ -56,8 +62,10 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void nguyenLieuPressedBtn(ActionEvent event) {
-
+    void nguyenLieuPressedBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
     @FXML
