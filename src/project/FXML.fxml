@@ -139,7 +139,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btnDoanhThu1" alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
+                        <Button fx:id="btnDoanhThu" alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
