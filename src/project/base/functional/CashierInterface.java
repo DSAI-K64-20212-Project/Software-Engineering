@@ -20,8 +20,8 @@ public interface CashierInterface {
                 StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphanhoadon(tendouong, size, " +
                         "da, duong, soluong, mahoadon, buyid) VALUES ",";");
                 for (OneCall call : invoice.getInFo()) {
-                    command2.add(String.format("('%s','%s', %f, %f, %d, '%s', %d)", call.drink_name, call.size,
-                            call.ice, call.sugar, call.amount, invoice.id, call.id));
+                    command2.add(String.format("('%s','%s', %.2f, %.2f, %d, '%s', %d)", call.drink_name,
+                            call.size, call.ice, call.sugar, call.amount, invoice.id, call.id));
                 }
                 DBUtil.dbExecuteUpdate(command2.toString());
 
