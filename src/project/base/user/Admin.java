@@ -1,13 +1,14 @@
 package project.base.user;
 
-import project.base.DBUtil;
 import project.base.functional.AdminInterface;
 import project.base.functional.BartenderInterface;
 import project.base.functional.CashierInterface;
 
 import java.sql.SQLException;
 
-public class Admin extends User implements AdminInterface, BartenderInterface, CashierInterface {
+public class Admin extends User implements AdminInterface,
+        BartenderInterface,
+        CashierInterface {
     public Admin(String username){
         super(username);
     }

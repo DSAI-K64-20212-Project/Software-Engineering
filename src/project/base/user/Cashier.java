@@ -4,7 +4,6 @@ import project.base.functional.CashierInterface;
 import project.base.order.Invoice;
 import project.base.order.OneCall;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 
 public class Cashier extends User implements CashierInterface {
