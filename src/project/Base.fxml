@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Base">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Base">
    <children>
       <VBox fx:id="vboxLeft" prefHeight="737.0" prefWidth="256.0" style="-fx-background-color: #0A4480;" styleClass="side-bar">
          <children>
@@ -22,116 +22,11 @@
                   </ImageView>
                </children>
             </Pane>
-            <AnchorPane prefHeight="62.0" prefWidth="240.0">
-               <children>
-                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../image/icons/milkTea.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="66.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đặt đồ uống">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#datDoUongPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </AnchorPane>
-            <AnchorPane prefHeight="62.0" prefWidth="240.0">
-               <children>
-                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../image/icons/material.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="68.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên liệu">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </AnchorPane>
-            <AnchorPane prefHeight="62.0" prefWidth="162.0">
-               <children>
-                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../image/icons/human.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="69.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân sự">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </AnchorPane>
-            <AnchorPane prefHeight="62.0" prefWidth="240.0">
-               <children>
-                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../image/icons/menu.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="73.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </AnchorPane>
-            <AnchorPane prefHeight="62.0" prefWidth="240.0">
-               <children>
-                  <ImageView blendMode="DARKEN" fitHeight="48.0" fitWidth="74.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../image/icons/doanhThu.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="73.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doanh Thu">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="btnDoanhThu" alignment="BASELINE_LEFT" blendMode="DARKEN" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="52.0" prefWidth="234.0" text="       ">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </AnchorPane>
+            <Button mnemonicParsing="false" prefHeight="111.0" prefWidth="256.0" styleClass="label" text="Nguyên liệu" />
+            <Button mnemonicParsing="false" prefHeight="109.0" prefWidth="256.0" styleClass="label" text="Nhân sự" />
+            <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="256.0" styleClass="label" text="Menu" />
+            <Button mnemonicParsing="false" prefHeight="108.0" prefWidth="256.0" styleClass="label" text="Doanh thu" />
+            <Button mnemonicParsing="false" prefHeight="111.0" prefWidth="256.0" styleClass="label" text="Đặt đồ uống" />
          </children>
       </VBox>
       <ToolBar layoutX="256.0" prefHeight="52.0" prefWidth="794.0" style="-fx-background-color: #0D9ED4;">
