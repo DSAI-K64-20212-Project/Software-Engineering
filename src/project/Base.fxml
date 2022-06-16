@@ -22,7 +22,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Đặt đồ uống" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" text=" Đặt đồ uống" textFill="WHITE">
                <padding>
                   <Insets left="40.0" />
                </padding>
@@ -36,6 +36,10 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="label" />
+                  <String fx:value="invert" />
+               </styleClass>
             </Button>
             <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Nguyên liệu" textFill="WHITE">
                <opaqueInsets>
@@ -98,32 +102,32 @@
                </graphic></Button>
          </children>
       </VBox>
-      <ToolBar layoutX="262.0" layoutY="424.0" prefHeight="61.0" prefWidth="794.0" style="-fx-background-color: #1259A3;">
+      <ToolBar layoutX="256.0" prefHeight="61.0" prefWidth="794.0" style="-fx-background-color: #1259A3;">
          <items>
-            <HBox alignment="CENTER" prefHeight="24.0" prefWidth="30.0" />
-         </items>
-      </ToolBar>
-      <HBox layoutX="256.0" prefHeight="61.0" prefWidth="801.0" style="-fx-background-color: #1259A3;">
-         <children>
-            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
+            <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
                <image>
                   <Image url="@../../image/icons/search.png" />
                </image>
             </ImageView>
-            <TextField opacity="0.46" prefHeight="25.0" prefWidth="268.0" styleClass="center" text="Search">
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets></TextField>
+            <Pane prefHeight="51.0" prefWidth="708.0">
+               <children>
+                  <TextField layoutX="10.0" layoutY="13.0" opacity="0.46" prefHeight="25.0" prefWidth="177.0" styleClass="center" text="Search">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+            </Pane>
             <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/icons/following.png" />
                </image>
             </ImageView>
-         </children>
-      </HBox>
+         </items>
+      </ToolBar>
       <Pane layoutX="197.0" layoutY="307.0" prefHeight="51.0" prefWidth="435.0" />
    </children>
 </AnchorPane>
