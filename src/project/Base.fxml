@@ -29,7 +29,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" text=" Đặt đồ uống" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Đặt đồ uống" textFill="WHITE">
                <padding>
                   <Insets left="40.0" />
                </padding>
@@ -43,12 +43,8 @@
                      </image>
                   </ImageView>
                </graphic>
-               <styleClass>
-                  <String fx:value="label" />
-                  <String fx:value="invert" />
-               </styleClass>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Nguyên liệu" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -56,7 +52,7 @@
                   <Insets left="40.0" />
                </padding>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -65,9 +61,9 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Nhân sự" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
                <padding>
                   <Insets left="40.0" />
@@ -79,9 +75,9 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Menu" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
                <padding>
                   <Insets left="40.0" />
@@ -93,9 +89,9 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Doanh thu" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Doanh thu" textFill="WHITE">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
                <padding>
                   <Insets left="40.0" />
@@ -109,16 +105,16 @@
                </graphic></Button>
          </children>
       </VBox>
-      <ToolBar layoutX="256.0" prefHeight="61.0" prefWidth="794.0" styleClass="wrapper" AnchorPane.leftAnchor="256.0">
+      <ToolBar layoutX="256.0" prefHeight="61.0" prefWidth="794.0" AnchorPane.leftAnchor="256.0">
          <items>
-            <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
+            <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
                <image>
                   <Image url="@resources/image/icons/search.png" />
                </image>
             </ImageView>
-            <Pane prefHeight="51.0" prefWidth="708.0">
+            <Pane prefHeight="61.0" prefWidth="713.0">
                <children>
-                  <TextField layoutX="14.0" layoutY="18.0" opacity="0.46" prefHeight="25.0" prefWidth="177.0" promptText="Search" styleClass="border">
+                  <TextField layoutX="8.0" layoutY="18.0" opacity="0.46" prefHeight="25.0" prefWidth="177.0" promptText="Search" styleClass="border">
                      <padding>
                         <Insets left="15.0" />
                      </padding>
