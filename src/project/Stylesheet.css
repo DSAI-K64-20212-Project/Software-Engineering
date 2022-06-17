@@ -5,8 +5,8 @@
 
 /* Make round conner components */
 .border {
-    -fx-border-radius: 5 5 5 5;
-    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
 }
 
 /* buttons on left side-bar */

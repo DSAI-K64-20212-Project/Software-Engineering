@@ -18,7 +18,7 @@
                <children>
                   <ImageView fitHeight="155.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
+                        <Image url="@Logo/Horizon/softedge/HUST%20Milk%20Tea-logos_black.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="164.0" style="-fx-background-radius: 25;" text="Đặt Đồ uống">
