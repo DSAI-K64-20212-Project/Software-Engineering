@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Base">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.BaseController">
     <children>
         <VBox fx:id="vboxLeft" prefHeight="737.0" prefWidth="256.0" styleClass="side-bar">
             <children>
@@ -29,7 +29,7 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Hóa đơn" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#billBtn" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Hóa đơn" textFill="WHITE">
                     <padding>
                         <Insets left="40.0" />
                     </padding>
@@ -44,7 +44,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ingredientBtn" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -61,7 +61,7 @@
                             </image>
                         </ImageView>
                     </graphic></Button>
-                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuBtn" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -96,7 +96,7 @@
                         </TextField>
                     </children>
                 </Pane>
-                <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@resources/image/icons/following.png" />
                     </image>
