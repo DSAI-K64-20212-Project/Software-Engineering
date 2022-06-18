@@ -124,7 +124,7 @@
                   </TextField>
                </children>
             </Pane>
-            <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onDragDetected="#infBtn" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
                <image>
                   <Image url="@resources/image/icons/following.png" />
                </image>

@@ -1,11 +1,16 @@
 package project;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,6 +23,18 @@ public class BaseController {
     private Parent root;
     @FXML
     private VBox vboxLeft;
+    @FXML
+    private ImageView avaImg;
+
+    @FXML
+    void infBtn(MouseEvent event) throws IOException {
+//        avaImg.setPickOnBounds(true);
+        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     void billBtn(ActionEvent event) throws IOException {
@@ -64,14 +81,14 @@ public class BaseController {
         stage.show();
     }
 
-    @FXML
-    void infBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    @FXML
+//    void infBtn(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     @FXML
     void ordBtn(ActionEvent event) throws IOException {

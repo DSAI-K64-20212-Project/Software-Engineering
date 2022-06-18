@@ -22,6 +22,14 @@
     -fx-background-color: #0457AE;
 }
 
+.imageView {
+    -fx-background-color: #FFFFFF;
+}
+
+.imageView:hover {
+    -fx-background-color: #0457AE;
+}
+
 /* tool bar */
 .tool-bar {
     -fx-background-color: #1259A3;
