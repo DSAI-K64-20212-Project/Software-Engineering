@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import project.base.Monitor;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -35,10 +36,29 @@ public class LogIn extends Application {
             stage.setTitle("Hust Milk Tea ♥");
             stage.getIcons().add(new Image("/project/resources/Logo/programIcon.png"));
             stage.show();
+
         }
         catch (IOException e){
             e.printStackTrace();
         }
+
+        // Set X close confirmation
+        stage.setOnCloseRequest(event -> {
+            JFrame frame = new JFrame();
+            int n = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Do you want to exit the program ?",
+                    "Exit application",
+                    JOptionPane.YES_NO_OPTION);
+            if (n == 0) {
+                // close application when user confirm "Yes"
+                System.out.println(n);
+                System.exit(0);
+            } else {
+                // cancel the application exit when user click "No"
+                event.consume();
+            }
+        });
 
     }
 
