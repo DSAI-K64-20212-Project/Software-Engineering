@@ -10,16 +10,15 @@
 }
 
 /* buttons on left side-bar */
-.label {
+.button-sidebar {
     -fx-font-family: 'Inter', monospace;
     -fx-background-color: Transparent;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    /*-fx-text-alignment: 50px;*/
 }
 
 /* buttons hover */
-.label:hover {
+.button-sidebar:hover {
     -fx-background-color: #0457AE;
 }
 
@@ -28,6 +27,3 @@
     -fx-background-color: #1259A3;
 }
 
-.center {
-
-}
