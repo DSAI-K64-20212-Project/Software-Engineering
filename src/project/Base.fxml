@@ -29,7 +29,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Đặt đồ uống" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="256.0" styleClass="button-sidebar" text=" Hóa đơn" textFill="WHITE">
                <padding>
                   <Insets left="40.0" />
                </padding>
