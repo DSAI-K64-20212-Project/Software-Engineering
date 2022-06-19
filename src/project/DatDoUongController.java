@@ -13,7 +13,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class DatDoUongController {
     @FXML
@@ -57,7 +56,7 @@ public class DatDoUongController {
 
     @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/FXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }

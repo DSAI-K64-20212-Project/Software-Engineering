@@ -18,7 +18,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import project.base.DBUtil;
 import project.base.user.User;
@@ -36,7 +38,7 @@ public class LogInController implements Initializable {
     @FXML
     private TextField username;
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     /**
      * Initializes the controller class.
@@ -45,21 +47,74 @@ public class LogInController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
+
     @FXML
-    public void loginPressedBtn(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
-        String command = String.format("SELECT tendangnhap FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
+    public void onEnter(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
+        String command = String.format("SELECT tendangnhap, chucvu FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
                 username.getText(), password.getText());
         ResultSet result = DBUtil.dbExecuteQuery(command);
         if (!result.next()) {
             JOptionPane.showMessageDialog(null, "Wrong username or password", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            System.out.println(result.getString(1));
+            String tendangnhap = result.getString(1);
+            String chucvu = result.getString(2);
+            System.out.println("Tên đăng nhập: " + tendangnhap);
+            System.out.println("Chức vụ: " + chucvu);
+
             monitor.newSession(new User(result.getString(1)));
 
-            //move to dashboard
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/FXML.fxml")));
-            Stage window = (Stage) username.getScene().getWindow();
-            window.setScene(new Scene(root));
+            // move to main screen
+            if (Objects.equals(chucvu, "Quan Ly")) {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/Base.fxml")));
+                Stage window = (Stage) username.getScene().getWindow();
+                window.setScene(new Scene(root));
+            } else if (Objects.equals(chucvu, "Thu Ngan")) {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseCashier.fxml")));
+                Stage window = (Stage) username.getScene().getWindow();
+                window.setScene(new Scene(root));
+            } else if (Objects.equals(chucvu, "Pha Che")) {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseBartender.fxml")));
+                Stage window = (Stage) username.getScene().getWindow();
+                window.setScene(new Scene(root));
+            }
         }
+    }
+
+    @FXML
+    public void loginPressedBtn(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
+        String command = String.format("SELECT tendangnhap, chucvu FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
+                username.getText(), password.getText());
+        ResultSet result = DBUtil.dbExecuteQuery(command);
+        if (!result.next()) {
+            JOptionPane.showMessageDialog(null, "Wrong username or password", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String tendangnhap = result.getString(1);
+            String chucvu = result.getString(2);
+            System.out.println("Tên đăng nhập: " + tendangnhap);
+            System.out.println("Chức vụ: " + chucvu);
+
+            monitor.newSession(new User(result.getString(1)));
+
+            // move to main screen
+            if (Objects.equals(chucvu, "Quan Ly")) {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/Base.fxml")));
+                Stage window = (Stage) username.getScene().getWindow();
+                window.setScene(new Scene(root));
+            } else if (Objects.equals(chucvu, "Thu Ngan")) {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseCashier.fxml")));
+                Stage window = (Stage) username.getScene().getWindow();
+                window.setScene(new Scene(root));
+            } else if (Objects.equals(chucvu, "Pha Che")) {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseBartender.fxml")));
+                Stage window = (Stage) username.getScene().getWindow();
+                window.setScene(new Scene(root));
+            }
+        }
+    }
+
+    @FXML
+    public void forgetPasswordButton(ActionEvent e) {
+        JOptionPane.showMessageDialog(null, "Hãy đến gặp quản lí để được cấp lại mật khẩu");
     }
 }

@@ -11,11 +11,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import project.base.Monitor;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 /**
@@ -26,22 +32,44 @@ public class LogIn extends Application {
     public static Monitor monitor;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, Exception {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/project/LogIn.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("Hust Milk Tea ♥");
+            stage.getIcons().add(new Image("/project/resources/Logo/programIcon.png"));
             stage.show();
+
         }
         catch (IOException e){
             e.printStackTrace();
         }
 
+        // Set X close confirmation
+        stage.setOnCloseRequest(event -> {
+            JFrame frame = new JFrame();
+            int n = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Do you want to exit the program ?",
+                    "Exit application",
+                    JOptionPane.YES_NO_OPTION);
+            if (n == 0) {
+                // close application when user confirm "Yes"
+                System.out.println(n);
+                System.exit(0);
+            } else {
+                // cancel the application exit when user click "No"
+                event.consume();
+            }
+        });
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         monitor = new Monitor();
         launch(args);
     }
-    
+
 }
+
+

@@ -66,7 +66,7 @@ public class TaiKhoanCuaBanController implements Initializable {
 
     @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/FXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }

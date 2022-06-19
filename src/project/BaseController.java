@@ -1,12 +1,117 @@
 package project;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 
 public class BaseController {
 
+    private Scene scene;
+    private Stage stage;
+    private Parent root;
+    @FXML
+    private Button pauseButton;
+
+    @FXML
+    private ImageView avaImg;
+
     @FXML
     private VBox vboxLeft;
+
+    @FXML
+    private Button playButton;
+
+    @FXML
+    void infBtn(MouseEvent event) throws IOException {
+//        avaImg.setPickOnBounds(true);
+        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void billBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("HoaDon.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void ingredientBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void hrBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void menuBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void revBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("DoanhThu.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void ordBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("DatDoUong.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void pauseMedia(ActionEvent event) {
+
+    }
+
+    // Music ON !!!
+    @FXML
+    void playMedia(ActionEvent event) {
+        String f = "Software-Engineering/src/project/resources/music/home.mp3";
+        Media media = new Media(Paths.get(f).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+    }
+
 
 }
 
