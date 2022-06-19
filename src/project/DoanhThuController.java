@@ -4,8 +4,6 @@
  */
 package project;
 
-import com.sun.prism.paint.Stop;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -28,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author Mr Pham Truong
  */
-public class FXMLController implements Initializable {
+public class DoanhThuController implements Initializable {
 
     private Label lbQuynhTrang;
     @FXML
