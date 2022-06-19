@@ -57,7 +57,7 @@ public class LogInController implements Initializable {
             monitor.newSession(new User(result.getString(1)));
 
             //move to dashboard
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/FXML.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/Base.fxml")));
             Stage window = (Stage) username.getScene().getWindow();
             window.setScene(new Scene(root));
         }
