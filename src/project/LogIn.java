@@ -13,11 +13,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import project.base.Monitor;
 
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 /**
@@ -28,7 +32,7 @@ public class LogIn extends Application {
     public static Monitor monitor;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, Exception {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/project/LogIn.fxml"));
             Scene scene = new Scene(root);
@@ -59,12 +63,13 @@ public class LogIn extends Application {
                 event.consume();
             }
         });
-
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         monitor = new Monitor();
         launch(args);
     }
-    
+
 }
+
+

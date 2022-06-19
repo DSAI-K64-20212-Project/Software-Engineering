@@ -19,8 +19,6 @@ public class Base extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/project/Base.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-//        stage.setTitle("Hust Milk Tea ♥");
-//        stage.getIcons().add(new Image("/project/resources/Logo/programIcon.png"));
         stage.show();
     }
 

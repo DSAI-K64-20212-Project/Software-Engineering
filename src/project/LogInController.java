@@ -50,7 +50,7 @@ public class LogInController implements Initializable {
 
 
     @FXML
-    void onEnter(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
+    public void onEnter(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
         String command = String.format("SELECT tendangnhap, chucvu FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
                 username.getText(), password.getText());
         ResultSet result = DBUtil.dbExecuteQuery(command);
@@ -82,7 +82,7 @@ public class LogInController implements Initializable {
     }
 
     @FXML
-    void loginPressedBtn(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
+    public void loginPressedBtn(ActionEvent e) throws SQLException, ClassNotFoundException, IOException {
         String command = String.format("SELECT tendangnhap, chucvu FROM nhanvien WHERE tendangnhap = '%s' AND matkhau = '%s';",
                 username.getText(), password.getText());
         ResultSet result = DBUtil.dbExecuteQuery(command);
@@ -114,7 +114,7 @@ public class LogInController implements Initializable {
     }
 
     @FXML
-    void forgetPasswordButton(ActionEvent e) {
+    public void forgetPasswordButton(ActionEvent e) {
         JOptionPane.showMessageDialog(null, "Hãy đến gặp quản lí để được cấp lại mật khẩu");
     }
 }

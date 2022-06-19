@@ -1,20 +1,21 @@
 package project;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class BaseController {
 
@@ -22,9 +23,16 @@ public class BaseController {
     private Stage stage;
     private Parent root;
     @FXML
-    private VBox vboxLeft;
+    private Button pauseButton;
+
     @FXML
     private ImageView avaImg;
+
+    @FXML
+    private VBox vboxLeft;
+
+    @FXML
+    private Button playButton;
 
     @FXML
     void infBtn(MouseEvent event) throws IOException {
@@ -81,15 +89,6 @@ public class BaseController {
         stage.show();
     }
 
-//    @FXML
-//    void infBtn(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
     @FXML
     void ordBtn(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("DatDoUong.fxml"));
@@ -98,6 +97,21 @@ public class BaseController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    void pauseMedia(ActionEvent event) {
+
+    }
+
+    // Music ON !!!
+    @FXML
+    void playMedia(ActionEvent event) {
+        String f = "Software-Engineering/src/project/resources/music/home.mp3";
+        Media media = new Media(Paths.get(f).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+    }
+
 
 }
 
