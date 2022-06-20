@@ -24,7 +24,7 @@ Cách cài đặt:
     --module-path
    /home/hung/IdeaProjects/Software-Engineering/lib
    --add-modules
-   javafx.controls,javafx.fxml
+   javafx.controls,javafx.fxml,javafx.media
    --add-exports
    javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED
     ```

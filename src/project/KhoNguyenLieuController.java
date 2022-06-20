@@ -49,8 +49,10 @@ public class KhoNguyenLieuController implements Initializable {
     }
 
     @FXML
-    void nhanSuPressedBtn(ActionEvent event) {
-
+    void nhanSuPressedBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/project/NhanSu.fxml"));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
     @FXML

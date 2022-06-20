@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,8 +43,16 @@ public class DatDoUongController {
 
     @FXML
     private TextField khachTra;
-
-
+    @FXML
+    private VBox hoaDon1;
+    @FXML
+    private Text tenDoUong1;
+    @FXML
+    private Text modDoUong1;
+    @FXML
+    private Text tongTien;
+    @FXML
+    private Text soDu;
 
     @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException {
@@ -60,13 +69,17 @@ public class DatDoUongController {
     }
 
     @FXML
-    void nhanSuPressedBtn(ActionEvent event) {
-
+    void nhanSuPressedBtn(ActionEvent event) throws IOException {
+        Parent root2 = FXMLLoader.load(getClass().getResource("/project/NhanSu.fxml"));
+        Stage window2 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window2.setScene(new Scene(root2));
     }
 
     @FXML
-    void menuPressedBtn(ActionEvent event) {
-
+    void menuPressedBtn(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
+        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window1.setScene(new Scene(root1));
     }
 
     @FXML
@@ -93,8 +106,12 @@ public class DatDoUongController {
 
     @FXML
     void MinusPressedBtn(ActionEvent event) {
-        Nr -= 1;
-        l1.setText("X" + String.valueOf(Nr));
+        if (Nr == 1){
+            hoaDon1.setVisible(false);
+        }else {
+            Nr -= 1;
+            l1.setText("X" + String.valueOf(Nr));
+        }
     }
 
     @FXML
@@ -105,19 +122,21 @@ public class DatDoUongController {
 
     @FXML
     void AddPressedBtn(ActionEvent event) {
-        String da = String.valueOf(daSlider.getValue());
-        String duong = String.valueOf(duongSlider.getValue());
-        String s = String.valueOf(size.getSelectedToggle());
-        System.out.print(da + '\n');
-        System.out.print(duong + '\n');
-        System.out.print(s + '\n');
+        int da = (int) daSlider.getValue();
+        int duong = (int) duongSlider.getValue();
+        RadioButton t = (RadioButton) size.getSelectedToggle();
+
+        modDoUong1.setText('-' + t.getText() + "\n"
+        + '-' + da + "% đá \n"
+        + '-' + duong + "% đường \n");
+        tenDoUong1.setText(doUong.getText());
     }
 
     @FXML
     void KhachTraPressedBtn(ActionEvent event) {
         int i = Integer.parseInt(khachTra.getText());
-        System.out.print(i + '\n');
-
+        System.out.print(i);
+        soDu.setText(String.valueOf(i-Integer.parseInt(tongTien.getText())));
     }
 
 
