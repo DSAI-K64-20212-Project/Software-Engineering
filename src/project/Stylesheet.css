@@ -35,3 +35,9 @@
     -fx-background-color: #1259A3;
 }
 
+buttonInvisible {
+    -fx-background-color: Transparent;
+    -fx-border-color: none !important;
+    -fx-font-size:0;
+}
+
