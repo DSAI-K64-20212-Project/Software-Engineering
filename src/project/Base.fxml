@@ -26,7 +26,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#billBtn" prefHeight="75.0" prefWidth="256.0" style="-fx-background-radius: 20;" styleClass="button-sidebar" text=" Hóa đơn" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#billBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text="Đặt đồ uống" textFill="WHITE">
                <padding>
                   <Insets left="40.0" />
                </padding>
@@ -44,7 +44,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ingredientBtn" prefHeight="75.0" prefWidth="256.0" style="-fx-background-radius: 20;" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ingredientBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -64,7 +64,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#hrBtn" prefHeight="75.0" prefWidth="256.0" style="-fx-background-radius: 20;" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#hrBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
@@ -81,7 +81,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuBtn" prefHeight="75.0" prefWidth="256.0" style="-fx-background-radius: 20;" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
@@ -98,7 +98,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#revBtn" prefHeight="75.0" prefWidth="256.0" style="-fx-background-radius: 20;" styleClass="button-sidebar" text=" Doanh thu" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#revBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Doanh thu" textFill="WHITE">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
@@ -180,7 +180,7 @@
                   </Button>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" styleClass="button-sidebar" stylesheets="@Stylesheet.css">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" styleClass="button-image" stylesheets="@Stylesheet.css">
                <graphic>
                   <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
                      <image>
