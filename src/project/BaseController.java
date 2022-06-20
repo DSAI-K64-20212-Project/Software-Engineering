@@ -25,6 +25,7 @@ public class BaseController {
     @FXML
     private Button pauseButton;
 
+
     @FXML
     private ImageView avaImg;
 
@@ -100,7 +101,13 @@ public class BaseController {
 
     @FXML
     void pauseMedia(ActionEvent event) {
-
+        String f = "Software-Engineering/src/project/resources/music/home.mp3";
+        Media media = new Media(Paths.get(f).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        if(mediaPlayer != null) {
+            System.out.println("Pause !");
+            mediaPlayer.setMute(true);
+        }
     }
 
     // Music ON !!!
@@ -109,6 +116,7 @@ public class BaseController {
         String f = "Software-Engineering/src/project/resources/music/home.mp3";
         Media media = new Media(Paths.get(f).toUri().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
+        System.out.println("Play Music !");
         mediaPlayer.setAutoPlay(true);
     }
 

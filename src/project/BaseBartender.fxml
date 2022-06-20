@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.BaseController">
     <children>
         <VBox fx:id="vboxLeft" prefHeight="737.0" prefWidth="256.0" styleClass="side-bar">
@@ -94,9 +95,32 @@
                                 <Insets />
                             </opaqueInsets>
                         </TextField>
+                        <Button fx:id="pauseButton" layoutX="595.0" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="61.0" prefWidth="33.0" styleClass="button-sidebar">
+                            <graphic>
+                                <ImageView fitHeight="25.0" fitWidth="25.0">
+                                    <image>
+                                        <Image url="@resources/image/icons/pause.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="playButton" layoutX="546.0" mnemonicParsing="false" onAction="#playMedia" prefHeight="61.0" prefWidth="49.0" styleClass="button-sidebar">
+                            <graphic>
+                                <ImageView fitHeight="25.0" fitWidth="25.0">
+                                    <image>
+                                        <Image url="@resources/image/icons/play.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Label layoutX="443.0" layoutY="18.0" text="Theme Song " textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
                     </children>
                 </Pane>
-                <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
                     <image>
                         <Image url="@resources/image/icons/following.png" />
                     </image>
