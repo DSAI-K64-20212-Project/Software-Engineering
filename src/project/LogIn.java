@@ -43,8 +43,8 @@ public class LogIn extends Application {
             JFrame frame = new JFrame();
             int n = JOptionPane.showConfirmDialog(
                     frame,
-                    "Do you want to exit the program ?",
-                    "Exit application",
+                    "Bạn có muốn thoát chương trình không?",
+                    "Thoát chương trình",
                     JOptionPane.YES_NO_OPTION);
             if (n == 0) {
                 // close application when user confirm "Yes"
