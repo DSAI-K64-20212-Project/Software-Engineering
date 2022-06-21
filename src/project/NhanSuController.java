@@ -36,8 +36,10 @@ public class NhanSuController {
     }
 
     @FXML
-    void menuPressedBtn(ActionEvent event) {
-
+    void menuPressedBtn(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
+        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window1.setScene(new Scene(root1));
     }
 
     @FXML

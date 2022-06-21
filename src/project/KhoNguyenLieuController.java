@@ -56,8 +56,10 @@ public class KhoNguyenLieuController implements Initializable {
     }
 
     @FXML
-    void menuPressedBtn(ActionEvent event) {
-
+    void menuPressedBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
     @FXML

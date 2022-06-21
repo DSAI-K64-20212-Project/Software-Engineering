@@ -25,7 +25,9 @@ public class MenuController {
 
     @FXML
     void nguyenLieuPressedBtn(ActionEvent event) throws IOException{
-
+        Parent root = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
     @FXML
@@ -37,14 +39,12 @@ public class MenuController {
 
     @FXML
     void menuPressedBtn(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
+
     }
 
     @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/FXML.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
         Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window1.setScene(new Scene(root1));
     }
