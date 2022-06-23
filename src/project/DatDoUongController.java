@@ -55,6 +55,35 @@ public class DatDoUongController {
     private Text soDu;
 
     @FXML
+    private Label l11;
+
+    @FXML
+    private VBox hoaDon11;
+
+    @FXML
+    private Text tenDoUong11;
+
+    @FXML
+    private Pane pane11;
+    @FXML
+    private Text modDoUong11;
+
+    @FXML
+    private Label l12;
+
+    @FXML
+    private VBox hoaDon12;
+
+    @FXML
+    private Text tenDoUong12;
+
+    @FXML
+    private Pane pane12;
+    @FXML
+    private Text modDoUong12;
+
+
+    @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -120,16 +149,32 @@ public class DatDoUongController {
         l1.setText("X" + String.valueOf(Nr));
     }
 
+    int cAdd = 0;
     @FXML
     void AddPressedBtn(ActionEvent event) {
         int da = (int) daSlider.getValue();
         int duong = (int) duongSlider.getValue();
         RadioButton t = (RadioButton) size.getSelectedToggle();
-
-        modDoUong1.setText('-' + t.getText() + "\n"
-        + '-' + da + "% đá \n"
-        + '-' + duong + "% đường \n");
-        tenDoUong1.setText(doUong.getText());
+        cAdd += 1;
+        if (cAdd == 1) {
+            hoaDon1.setVisible(true);
+            modDoUong1.setText('-' + t.getText() + "\n"
+                    + '-' + da + "% đá \n"
+                    + '-' + duong + "% đường \n");
+            tenDoUong1.setText(doUong.getText());
+        } else if  ( cAdd ==2){
+            hoaDon11.setVisible(true);
+            modDoUong11.setText('-' + t.getText() + "\n"
+                    + '-' + da + "% đá \n"
+                    + '-' + duong + "% đường \n");
+            tenDoUong11.setText(doUong.getText());
+        }else if  ( cAdd ==3){
+            hoaDon12.setVisible(true);
+            modDoUong12.setText('-' + t.getText() + "\n"
+                    + '-' + da + "% đá \n"
+                    + '-' + duong + "% đường \n");
+            tenDoUong12.setText(doUong.getText());
+        }
     }
 
     @FXML
