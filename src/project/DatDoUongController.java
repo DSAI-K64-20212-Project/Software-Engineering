@@ -22,9 +22,11 @@ public class DatDoUongController {
     @FXML
     private ToggleGroup size;
     @FXML
-    private Label doUong;
+    private Label doUong1;
     @FXML
-    private Label topping;
+    private Label tenTopping1;
+    @FXML
+    private Label giaTopping1;
     private int Nr = 1;
 
     @FXML
@@ -81,7 +83,53 @@ public class DatDoUongController {
     private Pane pane12;
     @FXML
     private Text modDoUong12;
+    @FXML
+    private Pane topping1;
+    @FXML
+    private Text giaHoaDon1;
 
+    @FXML
+    private Button buttonLoai1;
+
+    @FXML
+    private Button buttonLoai11;
+    @FXML
+    private Button buttonLoai12;
+    @FXML
+    private Label giaLoai1;
+
+    @FXML
+    private Label giaLoai11;
+    @FXML
+    private Text giaHoaDon11;
+    @FXML
+    private Label giaTopping11;
+    @FXML
+    private Label giaLoai12;
+    @FXML
+    private Text giaHoaDon12;
+    @FXML
+    private Label giaTopping12;
+
+    @FXML
+    private Button buttonTopping1;
+    @FXML
+    private Button buttonTopping11;
+    @FXML
+    private Pane topping11;
+    @FXML
+    private Label tenTopping11;
+    @FXML
+    private Button buttonTopping12;
+    @FXML
+    private Pane topping12;
+    @FXML
+    private Label tenTopping12;
+
+    @FXML
+    private Label doUong11;
+    @FXML
+    private Label doUong12;
 
     @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException {
@@ -123,14 +171,64 @@ public class DatDoUongController {
         window2.setScene(new Scene(root2));
     }
 
+    Label doUong;
     @FXML
     void DoUongPressedBtn(ActionEvent event) {
-        if (pane1.isVisible() == true) {
-            pane1.setVisible(false);
-        } else {
-            pane1.setVisible(true);
+        Button doUongButtonId = (Button) event.getTarget();
+        if (doUongButtonId == buttonLoai1) {
+            if (pane1.isVisible() == true) {
+                pane1.setVisible(false);
+            } else {
+                pane1.setVisible(true);
+                doUong = doUong1;
+            }
+        }  else if   (doUongButtonId == buttonLoai11) {
+            if (pane11.isVisible() == true) {
+                pane11.setVisible(false);
+            } else {
+                pane11.setVisible(true);
+                doUong = doUong11;
+            }
+        }  else if   (doUongButtonId == buttonLoai12) {
+            if (pane12.isVisible() == true) {
+                pane12.setVisible(false);
+            } else {
+                pane12.setVisible(true);
+                doUong = doUong12;
         }
+    }
+}
 
+    Label topping;
+    Label giaTopping;
+    @FXML
+    void ToppingPressedBtn(ActionEvent event) {
+        Button toppingButtonId = (Button) event.getTarget();
+        if (toppingButtonId == buttonTopping1) {
+            if (topping1.isVisible() == true) {
+                topping1.setVisible(false);
+            } else {
+                topping1.setVisible(true);
+                topping = tenTopping1;
+                giaTopping = giaTopping1;
+            }
+        }  else if   (toppingButtonId == buttonTopping11) {
+            if (topping11.isVisible() == true) {
+                topping11.setVisible(false);
+            } else {
+                topping11.setVisible(true);
+                topping = tenTopping11;
+                giaTopping = giaTopping11;
+            }
+        }  else if   (toppingButtonId == buttonTopping12) {
+            if (topping12.isVisible() == true) {
+                topping12.setVisible(false);
+            } else {
+                topping12.setVisible(true);
+                topping = tenTopping12;
+                giaTopping = giaTopping12;
+            }
+        }
     }
 
     @FXML
@@ -150,6 +248,7 @@ public class DatDoUongController {
     }
 
     int cAdd = 0;
+
     @FXML
     void AddPressedBtn(ActionEvent event) {
         int da = (int) daSlider.getValue();
@@ -159,21 +258,27 @@ public class DatDoUongController {
         if (cAdd == 1) {
             hoaDon1.setVisible(true);
             modDoUong1.setText('-' + t.getText() + "\n"
+                    + '-' + topping.getText() + "\n"
                     + '-' + da + "% đá \n"
                     + '-' + duong + "% đường \n");
             tenDoUong1.setText(doUong.getText());
+            giaHoaDon1.setText(String.valueOf(Integer.parseInt(giaLoai1.getText())+Integer.parseInt(giaTopping.getText())) + "đ");
         } else if  ( cAdd ==2){
             hoaDon11.setVisible(true);
             modDoUong11.setText('-' + t.getText() + "\n"
+                    + '-' + topping.getText() + "\n"
                     + '-' + da + "% đá \n"
                     + '-' + duong + "% đường \n");
             tenDoUong11.setText(doUong.getText());
+            giaHoaDon11.setText(String.valueOf(Integer.parseInt(giaLoai11.getText())+Integer.parseInt(giaTopping.getText())) + "đ");
         }else if  ( cAdd ==3){
             hoaDon12.setVisible(true);
             modDoUong12.setText('-' + t.getText() + "\n"
+                    + '-' + topping.getText() + "\n"
                     + '-' + da + "% đá \n"
                     + '-' + duong + "% đường \n");
             tenDoUong12.setText(doUong.getText());
+            giaHoaDon12.setText(String.valueOf(Integer.parseInt(giaLoai12.getText())+Integer.parseInt(giaTopping.getText())) + "đ");
         }
     }
 
