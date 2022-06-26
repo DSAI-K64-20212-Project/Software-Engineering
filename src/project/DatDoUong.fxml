@@ -194,8 +194,8 @@
                                        <children>
                                           <Pane layoutX="7.0" prefHeight="167.0" prefWidth="214.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
                                              <children>
-                                                <Pane fx:id="pane1" layoutX="-1.0" prefHeight="168.0" prefWidth="230.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
-                                                <VBox alignment="CENTER" layoutX="5.0" layoutY="-2.0" prefHeight="167.0" prefWidth="218.0">
+                                                <Pane fx:id="pane1" layoutX="-1.0" prefHeight="167.0" prefWidth="214.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
+                                                <VBox alignment="CENTER" layoutX="-3.0" layoutY="-1.0" prefHeight="167.0" prefWidth="218.0">
                                                    <children>
                                                       <Button fx:id="buttonLoai1" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#DoUongPressedBtn" prefHeight="115.0" prefWidth="99.0">
                                                          <graphic>
@@ -217,8 +217,8 @@
                                           </Pane>
                                           <Pane prefHeight="167.0" prefWidth="214.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
                                              <children>
-                                                <Pane fx:id="pane11" layoutX="-1.0" prefHeight="168.0" prefWidth="230.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
-                                                <VBox alignment="CENTER" layoutX="5.0" layoutY="-2.0" prefHeight="167.0" prefWidth="218.0">
+                                                <Pane fx:id="pane11" layoutX="-1.0" prefHeight="164.0" prefWidth="216.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
+                                                <VBox alignment="CENTER" layoutX="-2.0" layoutY="-1.0" prefHeight="167.0" prefWidth="218.0">
                                                    <children>
                                                       <Button fx:id="buttonLoai11" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#DoUongPressedBtn" prefHeight="115.0" prefWidth="99.0">
                                                          <graphic>
@@ -240,8 +240,8 @@
                                           </Pane>
                                           <Pane prefHeight="167.0" prefWidth="214.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
                                              <children>
-                                                <Pane fx:id="pane12" layoutX="-1.0" prefHeight="168.0" prefWidth="230.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
-                                                <VBox alignment="CENTER" layoutX="5.0" layoutY="-2.0" prefHeight="167.0" prefWidth="218.0">
+                                                <Pane fx:id="pane12" layoutX="-1.0" prefHeight="168.0" prefWidth="216.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
+                                                <VBox alignment="CENTER" layoutX="-2.0" layoutY="-1.0" prefHeight="167.0" prefWidth="218.0">
                                                    <children>
                                                       <Button fx:id="buttonLoai12" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#DoUongPressedBtn" prefHeight="115.0" prefWidth="99.0">
                                                          <graphic>
@@ -409,14 +409,14 @@
                                  <content>
                                     <HBox prefHeight="165.0" prefWidth="1123.0">
                                        <children>
-                                          <Pane layoutY="1.0" prefHeight="170.0" prefWidth="233.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
+                                          <Pane layoutY="1.0" prefHeight="161.0" prefWidth="218.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
                                              <children>
-                                                <Pane fx:id="topping1" layoutX="-1.0" prefHeight="164.0" prefWidth="230.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
+                                                <Pane fx:id="topping1" layoutX="-1.0" prefHeight="164.0" prefWidth="223.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
                                                 <VBox alignment="CENTER" prefHeight="160.0" prefWidth="227.0">
                                                    <children>
-                                                      <Button fx:id="buttonTopping1" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="72.0" prefWidth="92.0">
+                                                      <Button fx:id="buttonTopping1" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="116.0" prefWidth="178.0">
                                                          <graphic>
-                                                            <ImageView fitHeight="91.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                                                            <ImageView fitHeight="102.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
                                                                   <Image url="@resources/image/Topping/images.jpeg" />
                                                                </image>
@@ -432,14 +432,14 @@
                                                 </VBox>
                                              </children>
                                           </Pane>
-                                          <Pane prefHeight="170.0" prefWidth="233.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
+                                          <Pane prefHeight="160.0" prefWidth="220.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
                                              <children>
-                                                <Pane fx:id="topping11" layoutX="-1.0" prefHeight="164.0" prefWidth="230.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
-                                                <VBox alignment="CENTER" prefHeight="160.0" prefWidth="227.0">
+                                                <Pane fx:id="topping11" layoutX="-1.0" prefHeight="163.0" prefWidth="223.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
+                                                <VBox alignment="CENTER" prefHeight="160.0" prefWidth="223.0">
                                                    <children>
-                                                      <Button fx:id="buttonTopping11" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="72.0" prefWidth="92.0">
+                                                      <Button fx:id="buttonTopping11" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="110.0" prefWidth="171.0">
                                                          <graphic>
-                                                            <ImageView fitHeight="91.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                                                            <ImageView fitHeight="113.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
                                                                   <Image url="@resources/image/Topping/images.jpeg" />
                                                                </image>
@@ -455,14 +455,14 @@
                                                 </VBox>
                                              </children>
                                           </Pane>
-                                          <Pane prefHeight="170.0" prefWidth="233.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
+                                          <Pane prefHeight="165.0" prefWidth="223.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
                                              <children>
                                                 <Pane fx:id="topping12" layoutX="-1.0" prefHeight="164.0" prefWidth="230.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
                                                 <VBox alignment="CENTER" prefHeight="160.0" prefWidth="227.0">
                                                    <children>
-                                                      <Button fx:id="buttonTopping12" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="72.0" prefWidth="92.0">
+                                                      <Button fx:id="buttonTopping12" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="124.0" prefWidth="185.0">
                                                          <graphic>
-                                                            <ImageView fitHeight="91.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                                                            <ImageView fitHeight="101.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
                                                                   <Image url="@resources/image/Topping/images.jpeg" />
                                                                </image>
@@ -505,14 +505,17 @@
                                 <content>
                                     <VBox prefHeight="729.0" prefWidth="220.0" style="-fx-background-color: #8B8BF9;">
                                        <children>
-                                          <VBox fx:id="hoaDon1" layoutY="10.0" prefHeight="75.0" prefWidth="220.0">
+                                          <VBox fx:id="hoaDon1" layoutY="10.0" prefHeight="75.0" prefWidth="220.0" visible="false">
                                              <children>
                                                 <HBox prefHeight="60.0" prefWidth="220.0">
                                                    <children>
-                                                      <Label fx:id="l1" text="X1" textFill="WHITE">
+                                                      <Label fx:id="l1" text="1" textFill="WHITE">
                                                          <font>
                                                             <Font size="24.0" />
                                                          </font>
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
                                                       </Label>
                                                       <VBox prefHeight="58.0" prefWidth="117.0">
                                                          <children>
@@ -528,13 +531,13 @@
                                                             </Text>
                                                          </children>
                                                       </VBox>
-                                                      <Button mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
-                                                      <Button mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
+                                                      <Button fx:id="minus1" mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
+                                                      <Button fx:id="plus1" mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="TOP_RIGHT" prefHeight="36.0" prefWidth="220.0">
                                                    <children>
-                                                      <Text fx:id="giaHoaDon1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="30000đ" wrappingWidth="64.28125">
+                                                      <Text fx:id="giaHoaDon1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="64.28125">
                                                          <HBox.margin>
                                                             <Insets right="30.0" />
                                                          </HBox.margin>
@@ -546,14 +549,17 @@
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                          <VBox fx:id="hoaDon11" prefHeight="75.0" prefWidth="220.0">
+                                          <VBox fx:id="hoaDon11" prefHeight="75.0" prefWidth="220.0" visible="false">
                                              <children>
                                                 <HBox prefHeight="60.0" prefWidth="220.0">
                                                    <children>
-                                                      <Label fx:id="l11" text="X1" textFill="WHITE">
+                                                      <Label fx:id="l11" text="1" textFill="WHITE">
                                                          <font>
                                                             <Font size="24.0" />
                                                          </font>
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
                                                       </Label>
                                                       <VBox prefHeight="58.0" prefWidth="117.0">
                                                          <children>
@@ -569,13 +575,13 @@
                                                             </Text>
                                                          </children>
                                                       </VBox>
-                                                      <Button mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
-                                                      <Button mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
+                                                      <Button fx:id="minus11" mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
+                                                      <Button fx:id="plus11" mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="TOP_RIGHT" prefHeight="36.0" prefWidth="220.0">
                                                    <children>
-                                                      <Text fx:id="giaHoaDon11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="30000đ" wrappingWidth="64.28125">
+                                                      <Text fx:id="giaHoaDon11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="64.28125">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -587,14 +593,17 @@
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                          <VBox fx:id="hoaDon12" prefHeight="75.0" prefWidth="220.0">
+                                          <VBox fx:id="hoaDon12" prefHeight="75.0" prefWidth="220.0" visible="false">
                                              <children>
                                                 <HBox prefHeight="60.0" prefWidth="220.0">
                                                    <children>
-                                                      <Label fx:id="l12" text="X1" textFill="WHITE">
+                                                      <Label fx:id="l12" text="1" textFill="WHITE">
                                                          <font>
                                                             <Font size="24.0" />
                                                          </font>
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
                                                       </Label>
                                                       <VBox prefHeight="58.0" prefWidth="117.0">
                                                          <children>
@@ -610,13 +619,13 @@
                                                             </Text>
                                                          </children>
                                                       </VBox>
-                                                      <Button mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
-                                                      <Button mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
+                                                      <Button fx:id="minus12" mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
+                                                      <Button fx:id="plus12" mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="TOP_RIGHT" prefHeight="36.0" prefWidth="220.0">
                                                    <children>
-                                                      <Text fx:id="giaHoaDon12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="30000đ" wrappingWidth="64.28125">
+                                                      <Text fx:id="giaHoaDon12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="64.28125">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -637,15 +646,11 @@
                                     <Font size="27.0" />
                                  </font>
                               </Label>
-                              <HBox layoutX="2.0" layoutY="620.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" AnchorPane.topAnchor="620.0">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="border" text="Xác Nhận" textAlignment="CENTER" wrappingWidth="219.7294921875">
-                                       <font>
-                                          <Font size="37.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </HBox>
+                              <Button layoutX="2.0" layoutY="620.0" mnemonicParsing="false" onAction="#XacNhanPressedBtn" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" text="Xác Nhận" textFill="WHITE" fx:id="xacNhan">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
                               <Text fill="WHITE" layoutX="33.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số dư: " />
                               <Text fill="WHITE" layoutX="15.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khách trả" wrappingWidth="105.0">
                                  <font>
@@ -668,12 +673,12 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Text fx:id="tongTien" fill="WHITE" layoutX="121.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100000" wrappingWidth="95.0">
+                              <Text fx:id="tongTien" fill="WHITE" layoutX="121.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="95.0">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="soDu" fill="WHITE" layoutX="78.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="80000" />
+                              <Text fx:id="soDu" fill="WHITE" layoutX="78.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
                            </children>
                         </AnchorPane>
                      </children>

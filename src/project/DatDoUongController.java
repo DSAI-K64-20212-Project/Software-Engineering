@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
 public class DatDoUongController {
@@ -27,7 +28,6 @@ public class DatDoUongController {
     private Label tenTopping1;
     @FXML
     private Label giaTopping1;
-    private int Nr = 1;
 
     @FXML
     private Slider daSlider;
@@ -131,6 +131,7 @@ public class DatDoUongController {
     @FXML
     private Label doUong12;
 
+
     @FXML
     void doanhThuPressedBtn(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
@@ -172,6 +173,7 @@ public class DatDoUongController {
     }
 
     Label doUong;
+    Label giaDoUong;
     @FXML
     void DoUongPressedBtn(ActionEvent event) {
         Button doUongButtonId = (Button) event.getTarget();
@@ -181,6 +183,7 @@ public class DatDoUongController {
             } else {
                 pane1.setVisible(true);
                 doUong = doUong1;
+                giaDoUong = giaLoai1;
             }
         }  else if   (doUongButtonId == buttonLoai11) {
             if (pane11.isVisible() == true) {
@@ -188,6 +191,7 @@ public class DatDoUongController {
             } else {
                 pane11.setVisible(true);
                 doUong = doUong11;
+                giaDoUong = giaLoai11;
             }
         }  else if   (doUongButtonId == buttonLoai12) {
             if (pane12.isVisible() == true) {
@@ -195,12 +199,14 @@ public class DatDoUongController {
             } else {
                 pane12.setVisible(true);
                 doUong = doUong12;
+                giaDoUong = giaLoai12;
         }
     }
 }
 
-    Label topping;
+    Label tenTopping;
     Label giaTopping;
+
     @FXML
     void ToppingPressedBtn(ActionEvent event) {
         Button toppingButtonId = (Button) event.getTarget();
@@ -209,7 +215,7 @@ public class DatDoUongController {
                 topping1.setVisible(false);
             } else {
                 topping1.setVisible(true);
-                topping = tenTopping1;
+                tenTopping = tenTopping1;
                 giaTopping = giaTopping1;
             }
         }  else if   (toppingButtonId == buttonTopping11) {
@@ -217,7 +223,7 @@ public class DatDoUongController {
                 topping11.setVisible(false);
             } else {
                 topping11.setVisible(true);
-                topping = tenTopping11;
+                tenTopping = tenTopping11;
                 giaTopping = giaTopping11;
             }
         }  else if   (toppingButtonId == buttonTopping12) {
@@ -225,26 +231,75 @@ public class DatDoUongController {
                 topping12.setVisible(false);
             } else {
                 topping12.setVisible(true);
-                topping = tenTopping12;
+                tenTopping = tenTopping12;
                 giaTopping = giaTopping12;
             }
         }
     }
 
     @FXML
+    private Button minus1;
+    @FXML
+    private Button plus1;
+    @FXML
+    private Button minus11;
+    @FXML
+    private Button plus11;
+    @FXML
+    private Button minus12;
+    @FXML
+    private Button plus12;
+    private int Nr1 = 1;
+    private int Nr11 = 1;
+    private int Nr12 = 1;
+    @FXML
     void MinusPressedBtn(ActionEvent event) {
-        if (Nr == 1){
-            hoaDon1.setVisible(false);
-        }else {
-            Nr -= 1;
-            l1.setText("X" + String.valueOf(Nr));
+        Button minusButtonId = (Button) event.getTarget();
+        if (minusButtonId == minus1) {
+            if (Nr1 == 1) {
+                hoaDon1.setVisible(false);
+                giaHoaDon1.setText("0");
+            } else {
+                Nr1 -= 1;
+                l1.setText(String.valueOf(Nr1));
+            }
+        } else if (minusButtonId == minus11){
+            if (Nr11 == 1) {
+                hoaDon11.setVisible(false);
+                giaHoaDon11.setText("0");
+            } else {
+                Nr11 -= 1;
+                l11.setText(String.valueOf(Nr11));
+            }
+        }else if (minusButtonId == minus12){
+            if (Nr12 == 1) {
+                hoaDon12.setVisible(false);
+                giaHoaDon12.setText("0");
+
+            } else {
+                Nr12 -= 1;
+                l12.setText(String.valueOf(Nr12));
+            }
         }
+
+        tongTien.setText(String.valueOf(Integer.parseInt(giaHoaDon1.getText())*Integer.parseInt(l1.getText())+Integer.parseInt(giaHoaDon11.getText())*Integer.parseInt(l11.getText())+Integer.parseInt(giaHoaDon12.getText())*Integer.parseInt(l12.getText())));
     }
 
     @FXML
     void PlusPressedBtn(ActionEvent event) {
-        Nr += 1;
-        l1.setText("X" + String.valueOf(Nr));
+        Button plusButtonId = (Button) event.getTarget();
+        if (plusButtonId == plus1) {
+            Nr1 += 1;
+            l1.setText(String.valueOf(Nr1));
+        } else if (plusButtonId == plus11) {
+            Nr11 += 1;
+            l11.setText(String.valueOf(Nr11));
+        }else if (plusButtonId == plus12) {
+            Nr12 += 1;
+            l12.setText(String.valueOf(Nr12));
+        }
+        tongTien.setText(String.valueOf(Integer.parseInt(giaHoaDon1.getText())*Integer.parseInt(l1.getText())+Integer.parseInt(giaHoaDon11.getText())*Integer.parseInt(l11.getText())+Integer.parseInt(giaHoaDon12.getText())*Integer.parseInt(l12.getText())));
+
     }
 
     int cAdd = 0;
@@ -258,28 +313,30 @@ public class DatDoUongController {
         if (cAdd == 1) {
             hoaDon1.setVisible(true);
             modDoUong1.setText('-' + t.getText() + "\n"
-                    + '-' + topping.getText() + "\n"
+                    + '-' + tenTopping.getText() + "\n"
                     + '-' + da + "% đá \n"
                     + '-' + duong + "% đường \n");
             tenDoUong1.setText(doUong.getText());
-            giaHoaDon1.setText(String.valueOf(Integer.parseInt(giaLoai1.getText())+Integer.parseInt(giaTopping.getText())) + "đ");
+            giaHoaDon1.setText(String.valueOf(Integer.parseInt(giaDoUong.getText())+Integer.parseInt(giaTopping.getText())));
         } else if  ( cAdd ==2){
             hoaDon11.setVisible(true);
             modDoUong11.setText('-' + t.getText() + "\n"
-                    + '-' + topping.getText() + "\n"
+                    + '-' + tenTopping.getText() + "\n"
                     + '-' + da + "% đá \n"
                     + '-' + duong + "% đường \n");
             tenDoUong11.setText(doUong.getText());
-            giaHoaDon11.setText(String.valueOf(Integer.parseInt(giaLoai11.getText())+Integer.parseInt(giaTopping.getText())) + "đ");
+            giaHoaDon11.setText(String.valueOf(Integer.parseInt(giaDoUong.getText())+Integer.parseInt(giaTopping.getText())));
         }else if  ( cAdd ==3){
             hoaDon12.setVisible(true);
             modDoUong12.setText('-' + t.getText() + "\n"
-                    + '-' + topping.getText() + "\n"
+                    + '-' + tenTopping.getText() + "\n"
                     + '-' + da + "% đá \n"
                     + '-' + duong + "% đường \n");
             tenDoUong12.setText(doUong.getText());
-            giaHoaDon12.setText(String.valueOf(Integer.parseInt(giaLoai12.getText())+Integer.parseInt(giaTopping.getText())) + "đ");
+            giaHoaDon12.setText(String.valueOf(Integer.parseInt(giaDoUong.getText())+Integer.parseInt(giaTopping.getText())));
         }
+        tongTien.setText(String.valueOf(Integer.parseInt(giaHoaDon1.getText())*Integer.parseInt(l1.getText())+Integer.parseInt(giaHoaDon11.getText())*Integer.parseInt(l11.getText())+Integer.parseInt(giaHoaDon12.getText())*Integer.parseInt(l12.getText())));
+
     }
 
     @FXML
@@ -289,5 +346,13 @@ public class DatDoUongController {
         soDu.setText(String.valueOf(i-Integer.parseInt(tongTien.getText())));
     }
 
-
+    @FXML
+    void XacNhanPressedBtn(ActionEvent event) {
+        hoaDon1.setVisible(false);
+        hoaDon11.setVisible(false);
+        hoaDon12.setVisible(false);
+        cAdd = 0;
+        tongTien.setText("0");
+        soDu.setText("0");
+    }
 }
