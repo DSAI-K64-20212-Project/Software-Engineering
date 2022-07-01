@@ -101,7 +101,7 @@ public class BaseController {
 
     @FXML
     void pauseMedia(ActionEvent event) {
-        String f = "Software-Engineering/src/project/resources/music/home.mp3";
+        String f = "src/project/resources/music/home.mp3";
         Media media = new Media(Paths.get(f).toUri().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         if(mediaPlayer != null) {
@@ -113,7 +113,7 @@ public class BaseController {
     // Music ON !!!
     @FXML
     void playMedia(ActionEvent event) {
-        String f = "Software-Engineering/src/project/resources/music/home.mp3";
+        String f = "src/project/resources/music/home.mp3";
         Media media = new Media(Paths.get(f).toUri().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         System.out.println("Play Music !");
