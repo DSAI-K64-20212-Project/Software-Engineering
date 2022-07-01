@@ -1,21 +1,21 @@
 package project;
 
+import com.jfoenix.controls.JFXSlider;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import project.base.DBUtil;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DatDoUongController {
     @FXML
@@ -32,10 +32,10 @@ public class DatDoUongController {
     private Label giaTopping1;
 
     @FXML
-    private Slider daSlider;
+    private JFXSlider daSlider;
 
     @FXML
-    private Slider duongSlider;
+    private JFXSlider duongSlider;
 
     @FXML
     private Label l1;
@@ -127,76 +127,67 @@ public class DatDoUongController {
     private Pane topping12;
     @FXML
     private Label tenTopping12;
-
     @FXML
     private Label doUong11;
     @FXML
     private Label doUong12;
-
-
     @FXML
-    void doanhThuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
+    private HBox loaiDoPane;
     @FXML
-    void nguyenLieuPressedBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
+    private Pane pane;
 
-    @FXML
-    void nhanSuPressedBtn(ActionEvent event) throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("/project/NhanSu.fxml"));
-        Stage window2 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window2.setScene(new Scene(root2));
-    }
-
-    @FXML
-    void menuPressedBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void datDoUongPressedBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void TaiKhoanCuaBanPressedBtn(ActionEvent event) throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("/project/TaiKhoanCuaBan.fxml"));
-        Stage window2 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window2.setScene(new Scene(root2));
-    }
 
     Label doUong;
     Label giaDoUong;
+    private static String chosenDrink;
+
+    @FXML
+    private void initialize() throws SQLException, ClassNotFoundException {
+        String command = "SELECT * FROM douong WHERE onmenu = True;";
+        ResultSet result = DBUtil.dbExecuteQuery(command);
+        while (result.next()) {
+
+            Image background = new Image(getClass().getResourceAsStream("resources/image/TraSua/images.jpeg"));
+            Button button = new Button(result.getString("tendouong"), new ImageView(background));
+            button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            button.getStyleClass().add("button-image");
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    chosenDrink = button.getText();
+                }
+            });
+
+            Label label = new Label(result.getString("tendouong"));
+            label.setFont(Font.font("Arial",15));
+            VBox vBox = new VBox(button, label);
+            vBox.setSpacing(10);
+            vBox.setAlignment(Pos.CENTER);
+            loaiDoPane.getChildren().add(vBox);
+        }
+
+    }
     @FXML
     void DoUongPressedBtn(ActionEvent event) {
         Button doUongButtonId = (Button) event.getTarget();
         if (doUongButtonId == buttonLoai1) {
-            if (pane1.isVisible() == true) {
+            if (pane1.isVisible()) {
                 pane1.setVisible(false);
             } else {
                 pane1.setVisible(true);
                 doUong = doUong1;
                 giaDoUong = giaLoai1;
             }
-        }  else if   (doUongButtonId == buttonLoai11) {
-            if (pane11.isVisible() == true) {
+        } else if (doUongButtonId == buttonLoai11) {
+            if (pane11.isVisible()) {
                 pane11.setVisible(false);
             } else {
                 pane11.setVisible(true);
                 doUong = doUong11;
                 giaDoUong = giaLoai11;
             }
-        }  else if   (doUongButtonId == buttonLoai12) {
-            if (pane12.isVisible() == true) {
+        } else if (doUongButtonId == buttonLoai12) {
+            if (pane12.isVisible()) {
                 pane12.setVisible(false);
             } else {
                 pane12.setVisible(true);
@@ -213,7 +204,7 @@ public class DatDoUongController {
     void ToppingPressedBtn(ActionEvent event) {
         Button toppingButtonId = (Button) event.getTarget();
         if (toppingButtonId == buttonTopping1) {
-            if (topping1.isVisible() == true) {
+            if (topping1.isVisible()) {
                 topping1.setVisible(false);
             } else {
                 topping1.setVisible(true);
@@ -221,15 +212,15 @@ public class DatDoUongController {
                 giaTopping = giaTopping1;
             }
         }  else if   (toppingButtonId == buttonTopping11) {
-            if (topping11.isVisible() == true) {
+            if (topping11.isVisible()) {
                 topping11.setVisible(false);
             } else {
                 topping11.setVisible(true);
                 tenTopping = tenTopping11;
                 giaTopping = giaTopping11;
             }
-        }  else if   (toppingButtonId == buttonTopping12) {
-            if (topping12.isVisible() == true) {
+        }  else if (toppingButtonId == buttonTopping12) {
+            if (topping12.isVisible()) {
                 topping12.setVisible(false);
             } else {
                 topping12.setVisible(true);

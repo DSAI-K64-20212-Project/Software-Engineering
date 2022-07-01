@@ -9,11 +9,28 @@
     -fx-background-radius: 10 10 10 10;
 }
 .button-image {
+    -fx-max-height: 100;
+    -fx-max-width: 160;
+    -fx-border-width: 5px;
     -fx-font-family: 'Inter', monospace;
     -fx-background-color: Transparent;
+    -fx-border-color: Transparent;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+}
+.button-image:hover{
+    -fx-background-color: rgba(217, 217, 217, 0.22);
+}
+.button-image:focused{
+    -fx-border-color: #58C063;
+    -fx-border-width: 5px;
+    -fx-border-radius: 25;
+}
+.button-image:pressed{
+    -fx-border-color: #58C063;
+    -fx-border-width: 5px;
+    -fx-border-radius: 25;
 }
 
 /* buttons on left side-bar */
