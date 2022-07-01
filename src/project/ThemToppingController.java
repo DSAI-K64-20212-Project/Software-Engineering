@@ -17,13 +17,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class BaseController {
+public class ThemToppingController {
 
     private Scene scene;
     private Stage stage;
     private Parent root;
     @FXML
     private Button pauseButton;
+
 
     @FXML
     private ImageView avaImg;
@@ -33,7 +34,6 @@ public class BaseController {
 
     @FXML
     private Button playButton;
-
 
     @FXML
     void infBtn(MouseEvent event) throws IOException {

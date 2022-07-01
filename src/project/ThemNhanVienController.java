@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -17,7 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class BaseController {
+public class ThemNhanVienController {
 
     private Scene scene;
     private Stage stage;
@@ -33,6 +36,33 @@ public class BaseController {
 
     @FXML
     private Button playButton;
+
+    @FXML
+    private RadioButton thuNganBtn;
+    @FXML
+    private RadioButton phaCheBtn;
+    @FXML
+    private RadioButton quanLyBtn;
+    @FXML
+    private RadioButton sangBtn;
+    @FXML
+    private RadioButton chieuBtn;
+    @FXML
+    private Button apDungBtn;
+
+    @FXML
+    private TextField hoVaTen;
+    @FXML
+    private TextField soDienThoai;
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField matKhau;
+
+    @FXML
+    private ToggleGroup chucVu;
+    @FXML
+    private ToggleGroup caLam;
 
 
     @FXML
