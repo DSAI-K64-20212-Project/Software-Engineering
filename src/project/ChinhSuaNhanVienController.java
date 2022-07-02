@@ -7,24 +7,28 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import project.base.functional.AdminInterface;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 
-public class ThemToppingController {
+public class ChinhSuaNhanVienController implements AdminInterface {
 
     private Scene scene;
     private Stage stage;
     private Parent root;
     @FXML
     private Button pauseButton;
-
 
     @FXML
     private ImageView avaImg;
@@ -34,6 +38,32 @@ public class ThemToppingController {
 
     @FXML
     private Button playButton;
+
+    @FXML
+    private RadioButton thuNganBtn;
+    @FXML
+    private RadioButton phaCheBtn;
+    @FXML
+    private RadioButton quanLyBtn;
+    @FXML
+    private RadioButton sangBtn;
+    @FXML
+    private RadioButton chieuBtn;
+
+    @FXML
+    private TextField hoVaTen;
+    @FXML
+    private TextField soDienThoai;
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField matKhau;
+
+    @FXML
+    private ToggleGroup chucVu;
+    @FXML
+    private ToggleGroup caLam;
+
 
     @FXML
     void infBtn(MouseEvent event) throws IOException {
@@ -120,6 +150,18 @@ public class ThemToppingController {
         mediaPlayer.setAutoPlay(true);
     }
 
+    @FXML
+    void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
 
+    }
+
+    @FXML
+    void backBtn(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("NhanVien.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
 

@@ -90,6 +90,21 @@ public class NhanSuController {
     private Button[] traLuong0 = {null,null,null,null,null,null};
 
     @FXML
+    private Button chinhSuaNhanVien;
+    @FXML
+    private Button chinhSuaNhanVien1;
+    @FXML
+    private Button chinhSuaNhanVien2;
+    @FXML
+    private Button chinhSuaNhanVien3;
+    @FXML
+    private Button chinhSuaNhanVien4;
+    @FXML
+    private Button chinhSuaNhanVien5;
+
+
+
+    @FXML
     void reloadBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         thongTin0[0] = thongTin;
         thongTin0[1] = thongTin1;
@@ -97,6 +112,7 @@ public class NhanSuController {
         thongTin0[3] = thongTin3;
         thongTin0[4] = thongTin4;
         thongTin0[5] = thongTin5;
+
 
         caLam0[0] =  caLam;
         caLam0[1] =  caLam1;
@@ -136,6 +152,8 @@ public class NhanSuController {
 
             i1 += 1;
         }
+
+
     }
     @FXML
     void billBtn(ActionEvent event) throws IOException {
@@ -212,5 +230,31 @@ public class NhanSuController {
         Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window1.setScene(new Scene(root1));
     }
+
+    @FXML
+    void traLuongBtn(ActionEvent event) throws IOException {
+        luongChuaTra0[0] =  luongChuaTra;
+        luongChuaTra0[1] =  luongChuaTra1;
+        luongChuaTra0[2] =  luongChuaTra2;
+        luongChuaTra0[3] =  luongChuaTra3;
+        luongChuaTra0[4] =  luongChuaTra4;
+        luongChuaTra0[5] =  luongChuaTra5;
+
+        Button tl = (Button) event.getTarget();
+        if (tl.getId().equals("traLuong")){
+            luongChuaTra.setText("0");
+        } else {
+            Text lct = luongChuaTra0[Integer.parseInt(tl.getId().substring(8))];
+            lct.setText("0");
+        }
+    }
+
+    @FXML
+    void chinhSuaNhanVienBtn(ActionEvent event) throws IOException {
+        Parent root1 = FXMLLoader.load(getClass().getResource("/project/ChinhSuaNhanVien.fxml"));
+        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window1.setScene(new Scene(root1));
+    }
+
 }
 

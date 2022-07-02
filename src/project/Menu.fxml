@@ -401,5 +401,10 @@
          </children>
       </HBox>
       <Button layoutX="214.0" layoutY="74.0" mnemonicParsing="false" onAction="#reloadBtn" text="Reload" />
+      <Button layoutX="845.0" layoutY="74.0" mnemonicParsing="false" onAction="#xoaBtn" style="-fx-background-color: CD2217;" text="Xóa" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

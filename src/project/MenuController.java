@@ -83,7 +83,7 @@ public class MenuController  {
         thongTinDoUong0[1] =  thongTinDoUong1;
         thongTinDoUong0[2] =  thongTinDoUong2;
 
-        String command1 = String.format("SELECT * FROM douong");
+        String command1 = String.format("SELECT * FROM douong WHERE onmenu = True");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
         int i1 = 0;
 
@@ -110,7 +110,7 @@ public class MenuController  {
         thongTinTopping0[3] =  thongTinTopping3;
         thongTinTopping0[4] =  thongTinTopping4;
 
-        String command2 = String.format("SELECT * FROM topping");
+        String command2 = String.format("SELECT * FROM topping WHERE onmenu = True");
         ResultSet result2 = DBUtil.dbExecuteQuery(command2);
         int i2 = 0;
 
@@ -197,6 +197,10 @@ public class MenuController  {
         stage.show();
     }
 
+    @FXML
+    void xoaBtn(MouseEvent event) {
+
+    }
 
 }
 

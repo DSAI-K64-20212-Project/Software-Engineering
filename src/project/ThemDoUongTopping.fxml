@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.ThemDoUongController">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.ThemDoUongToppingController">
    <children>
       <VBox fx:id="vboxLeft" prefHeight="600.0" prefWidth="200.0" styleClass="side-bar">
          <children>
@@ -215,7 +215,7 @@
             <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="130.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="&lt; Back">
+            <Button mnemonicParsing="false" onAction="#backBtn" style="-fx-background-color: #FFFFFF;" text="&lt; Back">
                <font>
                   <Font size="26.0" />
                </font>
@@ -235,7 +235,7 @@
                         <Insets left="10.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField promptText="Input field" style="-fx-background-color: #C4C4C4;" GridPane.rowIndex="1">
+                  <TextField fx:id="ten" promptText="Input field" style="-fx-background-color: #C4C4C4;" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -252,7 +252,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <RadioButton layoutX="14.0" layoutY="29.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Đồ uống" GridPane.rowIndex="5">
+                  <RadioButton layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#doUongBtn" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Đồ uống" GridPane.rowIndex="5">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -262,10 +262,13 @@
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="loai" />
+                     </toggleGroup>
                   </RadioButton>
                </children>
             </Pane>
-            <RadioButton mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <RadioButton mnemonicParsing="false" onAction="#toppingBtn" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping" toggleGroup="$loai" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -275,34 +278,52 @@
             </RadioButton>
             <Pane GridPane.rowIndex="3">
                <children>
-                  <Text layoutX="14.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <RadioButton layoutX="14.0" layoutY="24.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <graphic>
-                        <VBox>
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="M&#10;Giá tiền">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <TextField promptText="Input field" style="-fx-background-color: #C4C4C4;" />
-                           </children>
-                        </VBox>
-                     </graphic>
-                  </RadioButton>
+                  <Pane fx:id="paneGiaTopping" layoutY="33.0" visible="false">
+                     <children>
+                        <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giá">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="giaTopping" layoutX="14.0" layoutY="33.0" promptText="Input field">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneSize1" prefHeight="132.0" prefWidth="334.0" GridPane.rowIndex="3">
+                     <children>
+                        <Text layoutX="14.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="14.0" layoutY="24.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <graphic>
+                              <VBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="M&#10;Giá tiền">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="giaSizeM" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
+                                 </children>
+                              </VBox>
+                           </graphic>
+                        </RadioButton>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
-            <RadioButton mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <RadioButton fx:id="radioButtonSize2" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -314,7 +335,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField promptText="Input field" style="-fx-background-color: #C4C4C4;" />
+                        <TextField fx:id="giaSizeL" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
                      </children>
                   </VBox>
                </graphic>
@@ -329,7 +350,7 @@
          <content>
             <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="1321.0">
                <children>
-                  <RadioButton fx:id="nguyenLieu" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
+                  <RadioButton fx:id="nguyenLieu" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -340,7 +361,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="nguyenLieu1" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
+                  <RadioButton fx:id="nguyenLieu1" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -351,7 +372,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="nguyenLieu2" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
+                  <RadioButton fx:id="nguyenLieu2" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -362,7 +383,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="nguyenLieu3" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
+                  <RadioButton fx:id="nguyenLieu3" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -373,7 +394,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="nguyenLieu4" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
+                  <RadioButton fx:id="nguyenLieu4" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -384,7 +405,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="nguyenLieu5" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
+                  <RadioButton fx:id="nguyenLieu5" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -395,7 +416,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="nguyenLieu6" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
+                  <RadioButton fx:id="nguyenLieu6" mnemonicParsing="false" prefHeight="42.0" prefWidth="195.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Nguyên liệu 1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -410,7 +431,7 @@
             </HBox>
          </content>
       </ScrollPane>
-      <Button layoutX="1041.0" layoutY="537.0" mnemonicParsing="false" style="-fx-background-color: #C4C4C4;" text="Áp dụng">
+      <Button layoutX="1041.0" layoutY="537.0" mnemonicParsing="false" onAction="#apDungBtn" style="-fx-background-color: #C4C4C4;" text="Áp dụng">
          <font>
             <Font size="26.0" />
          </font>
