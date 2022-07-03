@@ -18,6 +18,7 @@ public class Invoice {
     public String id;
     public SimpleIntegerProperty bill = new SimpleIntegerProperty(0);
 
+
     public Invoice(){
         //tam thoi random so order
         soorder = ThreadLocalRandom.current().nextInt(0, 50 + 1);
@@ -31,6 +32,7 @@ public class Invoice {
         OneCall oneCall = new OneCall(buy_id, drink_name, size, sugar, ice, toppings);
         oneCall.getAmountProperty().addListener((observableValue, number, t1) -> {
             try {
+                updateInvoice();
                 updateBill();
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
@@ -53,6 +55,9 @@ public class Invoice {
 
     public int getBill() {
         return bill.getValue();
+    }
+    public void updateInvoice(){
+        this.getInFo().removeIf(o -> o.get_ammount() == 0);
     }
     public SimpleIntegerProperty getBillProperty(){return bill;}
 

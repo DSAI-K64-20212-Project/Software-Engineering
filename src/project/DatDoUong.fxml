@@ -234,7 +234,7 @@
                         </VBox>
                         <AnchorPane layoutX="589.0" prefHeight="648.0" prefWidth="220.0" style="-fx-background-color: #8B8BF9;">
                            <children>
-                              <VBox prefHeight="659.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                              <VBox prefHeight="659.0" prefWidth="220.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="54.0" prefWidth="223.0" text="Hóa Đơn" textFill="WHITE">
                                        <font>
@@ -244,27 +244,39 @@
                                     <ScrollPane fx:id="hoadonList" prefHeight="394.0" prefWidth="227.0" />
                                     <Label fx:id="totalBillLabel" text="T" textFill="WHITE">
                                        <font>
-                                          <Font size="22.0" />
+                                          <Font size="16.0" />
                                        </font>
                                     </Label>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Khách trả" wrappingWidth="105.0">
                                        <font>
-                                          <Font size="17.0" />
+                                          <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Số dư: " />
-                                    <TextField fx:id="khachTra" prefHeight="25.0" prefWidth="153.0" promptText="Input here" style="fx-background-radius: 25;" />
-                                    <Button mnemonicParsing="false" onAction="#KhachTraPressedBtn" prefHeight="24.0" prefWidth="37.0" text="OK" />
-                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="62.0" style="-fx-background-color: #8B8BF9;">
-                                       <graphic>
-                                          <ImageView blendMode="DARKEN" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@resources/image/icons/printer.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button mnemonicParsing="false" onAction="#XacNhanPressedBtn" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" text="Xác Nhận" textFill="WHITE" fx:id="xacNhan">
+                                    <HBox prefHeight="28.0" prefWidth="220.0">
+                                       <children>
+                                          <TextField fx:id="khachTra" prefHeight="25.0" prefWidth="182.0" promptText="Nhập số (nghìn đồng)" style="fx-background-radius: 25;" />
+                                          <Button mnemonicParsing="false" onAction="#KhachTraPressedBtn" prefHeight="24.0" prefWidth="37.0" text="OK" />
+                                       </children>
+                                    </HBox>
+                                    <AnchorPane prefHeight="33.0" prefWidth="220.0">
+                                       <children>
+                                          <Label text="So du: " textFill="WHITE" AnchorPane.leftAnchor="0.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="158.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="62.0" style="-fx-background-color: #8B8BF9;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <graphic>
+                                                <ImageView blendMode="DARKEN" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@resources/image/icons/printer.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                    <Button mnemonicParsing="false" onAction="#XacNhanPressedBtn" prefHeight="53.0" prefWidth="220.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" text="Xác Nhận" textFill="WHITE" fx:id="xacNhan">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

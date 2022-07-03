@@ -5,11 +5,9 @@ import com.jfoenix.controls.JFXSlider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -22,13 +20,13 @@ import project.UI.InvoiceView;
 import project.base.DBUtil;
 import project.base.order.Invoice;
 
-import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import static project.LogIn.monitor;
 
 
 public class DatDoUongController {
@@ -214,72 +212,6 @@ public class DatDoUongController {
         });
     }
 
-
-    @FXML
-    private Button minus1;
-    @FXML
-    private Button plus1;
-    @FXML
-    private Button minus11;
-    @FXML
-    private Button plus11;
-    @FXML
-    private Button minus12;
-    @FXML
-    private Button plus12;
-    private int Nr1 = 1;
-    private int Nr11 = 1;
-    private int Nr12 = 1;
-    @FXML
-    void MinusPressedBtn(ActionEvent event) {
-        Button minusButtonId = (Button) event.getTarget();
-        if (minusButtonId == minus1) {
-            if (Nr1 == 1) {
-                hoaDon1.setVisible(false);
-                giaHoaDon1.setText("0");
-            } else {
-                Nr1 -= 1;
-                l1.setText(String.valueOf(Nr1));
-            }
-        } else if (minusButtonId == minus11){
-            if (Nr11 == 1) {
-                hoaDon11.setVisible(false);
-                giaHoaDon11.setText("0");
-            } else {
-                Nr11 -= 1;
-                l11.setText(String.valueOf(Nr11));
-            }
-        }else if (minusButtonId == minus12){
-            if (Nr12 == 1) {
-                hoaDon12.setVisible(false);
-                giaHoaDon12.setText("0");
-
-            } else {
-                Nr12 -= 1;
-                l12.setText(String.valueOf(Nr12));
-            }
-        }
-
-        tongTien.setText(String.valueOf(Integer.parseInt(giaHoaDon1.getText())*Integer.parseInt(l1.getText())+Integer.parseInt(giaHoaDon11.getText())*Integer.parseInt(l11.getText())+Integer.parseInt(giaHoaDon12.getText())*Integer.parseInt(l12.getText())));
-    }
-
-    @FXML
-    void PlusPressedBtn(ActionEvent event) {
-        Button plusButtonId = (Button) event.getTarget();
-        if (plusButtonId == plus1) {
-            Nr1 += 1;
-            l1.setText(String.valueOf(Nr1));
-        } else if (plusButtonId == plus11) {
-            Nr11 += 1;
-            l11.setText(String.valueOf(Nr11));
-        }else if (plusButtonId == plus12) {
-            Nr12 += 1;
-            l12.setText(String.valueOf(Nr12));
-        }
-        tongTien.setText(String.valueOf(Integer.parseInt(giaHoaDon1.getText())*Integer.parseInt(l1.getText())+Integer.parseInt(giaHoaDon11.getText())*Integer.parseInt(l11.getText())+Integer.parseInt(giaHoaDon12.getText())*Integer.parseInt(l12.getText())));
-
-    }
-
     int cAdd = 0;
 
     @FXML
@@ -299,11 +231,6 @@ public class DatDoUongController {
 
     @FXML
     void XacNhanPressedBtn(ActionEvent event) {
-        hoaDon1.setVisible(false);
-        hoaDon11.setVisible(false);
-        hoaDon12.setVisible(false);
-        cAdd = 0;
-        tongTien.setText("0");
-        soDu.setText("0");
+
     }
 }

@@ -1,9 +1,7 @@
 package project.UI;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,12 +15,19 @@ import java.util.Arrays;
 
 public class InvoiceView extends VBox {
     Invoice invoice;
+    boolean button = true;
+    boolean thanhtien = true;
     public InvoiceView(Invoice invoice){
         this.setSpacing(10);
         this.invoice = invoice;
         this.invoice.getInFo().addListener((ListChangeListener<? super OneCall>) change -> {
             update();
         });
+    }
+    public InvoiceView(Invoice invoice, boolean haveButton, boolean haveCash) {
+        this(invoice);
+        this.button = haveButton;
+        this.thanhtien = haveCash;
     }
     public void update(){
         this.getChildren().clear();
@@ -55,7 +60,12 @@ public class InvoiceView extends VBox {
             Button plus = new Button("+");
             plus.setOnAction(actionEvent -> oneCall.increase_amount());
 
-            HBox hBox = new HBox(numLabel, new VBox(title, middleText), new VBox(plus, minus));
+            HBox hBox;
+            if (this.button) {
+                hBox = new HBox(numLabel, new VBox(title, middleText), new VBox(plus, minus));
+            } else {
+                hBox = new HBox(numLabel, new VBox(title, middleText));
+            }
             hBox.setSpacing(5);
             //them thanh tien
             Label thanhtien = new Label();
@@ -63,7 +73,11 @@ public class InvoiceView extends VBox {
                     "Giá: " + String.format("%d.000đ",oneCall.get_money()), oneCall.getAmountProperty());
             thanhtien.textProperty().bind(formattedCash);
 
-            this.getChildren().addAll(hBox, thanhtien);
+            if (this.thanhtien){
+                this.getChildren().addAll(new VBox(hBox, thanhtien));
+            } else {
+                this.getChildren().add(hBox);
+            }
         }
     }
 
