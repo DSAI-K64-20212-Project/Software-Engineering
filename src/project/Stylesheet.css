@@ -64,9 +64,52 @@
     -fx-background-color: #1259A3;
 }
 
-buttonInvisible {
+.buttonInvisible {
     -fx-background-color: Transparent;
     -fx-border-color: none !important;
     -fx-font-size:0;
 }
 
+.scroll-pane {
+    -fx-background-color:  linear-gradient(to right, #CF6F6F, #CF6F6F);
+}
+
+/*.button-bill {*/
+/*    transform: scale(0.98);*/
+/*    !* Scaling button to 0.98 to its original size *!*/
+/*    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);*/
+/*    !* Lowering the shadow *!*/
+/*}*/
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+}
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+/*.button-bill:active {*/
+/*    transform: scale(0.98);*/
+/*    !* Scaling button to 0.98 to its original size *!*/
+/*    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);*/
+/*    !* Lowering the shadow *!*/
+/*}*/
