@@ -19,7 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Invoice {
     private final ObservableList<OneCall> inFo = FXCollections.observableArrayList();
     public int soorder;
-    public int khachdua = 0;
+    public SimpleIntegerProperty khachdua = new SimpleIntegerProperty(0);
     public String tenkhachhang;
     private int buy_id = 0;
     public String id;
@@ -27,6 +27,7 @@ public class Invoice {
 
 
     public Invoice(String mahoadon) throws Exception {
+        // load invoice từ database
         String query = String.format("select * from thanhphanhoadon where mahoadon='%s';", mahoadon);
         ResultSet resultSet = DBUtil.dbExecuteQuery(query);
         while (resultSet.next()) {
@@ -34,8 +35,8 @@ public class Invoice {
             String invoiceCode = resultSet.getString("mahoadon");
             String drinkName = resultSet.getString("tendouong");
             char size = resultSet.getString("size").charAt(0);
-            Double da = resultSet.getDouble("da");
-            Double duong = resultSet.getDouble("duong");
+            double da = resultSet.getDouble("da");
+            double duong = resultSet.getDouble("duong");
             int soLuong = resultSet.getInt("soluong");
 
             String queryTopping = String.format("select tentopping from toppingtronghoadon where mahoadon = '%s' and buyid = %d;", invoiceCode, buyId);
@@ -88,17 +89,21 @@ public class Invoice {
     public int getBill() {
         return bill.getValue();
     }
+    public int getPaid() {
+        return khachdua.getValue();
+    }
     public void updateInvoice(){
         this.getInFo().removeIf(o -> o.get_ammount() == 0);
     }
     public SimpleIntegerProperty getBillProperty(){return bill;}
+    public SimpleIntegerProperty getPaidProperty(){return khachdua;}
 
     public void pay(int amount, String tenkhachhang) throws SQLException, ClassNotFoundException {
         int total = this.getBill();
         if (amount < total) {
             System.out.println("Chưa đủ số tiền cần trả");
         } else {
-            this.khachdua = amount;
+            this.khachdua.setValue(amount);
             this.tenkhachhang = tenkhachhang;
             System.out.printf("Khách hàng %s thanh toán thành công. Tổng: %d, đã trả: %d, còn dư: %d\n", tenkhachhang
                     , total, amount, amount - total);
@@ -106,7 +111,7 @@ public class Invoice {
     }
 
     public boolean check_payment() throws SQLException, ClassNotFoundException {
-        return (khachdua >= this.getBill());
+        return (khachdua.getValue() >= this.getBill());
     }
 
     public boolean check_availability() throws SQLException, ClassNotFoundException {
