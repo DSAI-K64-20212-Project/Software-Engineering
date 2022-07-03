@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableStringValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -28,6 +29,7 @@ public class InvoiceView extends VBox {
         this(invoice);
         this.button = haveButton;
         this.thanhtien = haveCash;
+        update();
     }
     public void update(){
         this.getChildren().clear();
@@ -38,7 +40,7 @@ public class InvoiceView extends VBox {
             Label numLabel = new Label();
             numLabel.setFont(new Font("Arial", 30));
             ObservableStringValue formattedNum = Bindings.createStringBinding(() ->
-                            String.format("%d",oneCall.get_ammount()), oneCall.getAmountProperty());
+                            String.format("%d ",oneCall.get_ammount()), oneCall.getAmountProperty());
             numLabel.textProperty().bind(formattedNum);
 
             Label title = new Label(oneCall.drink_name);
