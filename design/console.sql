@@ -101,7 +101,7 @@ create table HoaDon (
     thoigian        date        not null,
     constraint pk_hoadon primary key (maHoaDon),
     constraint fk_hoadon_nhanvien foreign key (tenDangNhap) references NhanVien(tenDangNhap),
-    constraint check_trangthai check ( trangThai = 'Dang chuan bi' or trangThai = 'Da giao' )
+    constraint check_trangthai check ( trangThai = 'Dang chuan bi' or trangThai = 'Da giao' or trangThai= 'Huy')
 );
 
 create table ThanhPhanHoaDon (

@@ -70,7 +70,7 @@
     -fx-font-size:0;
 }
 
-.scroll-pane {
+.scroll-pane-hoadon {
     -fx-background-color:  linear-gradient(to right, #CF6F6F, #CF6F6F);
 }
 
@@ -81,29 +81,29 @@
 /*    !* Lowering the shadow *!*/
 /*}*/
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
+.scroll-bar-hoadon:horizontal, .scroll-bar:vertical{
     -fx-background-color:transparent;
 }
 
 
-.increment-button, .decrement-button {
+.increment-button-hoadon, .decrement-button-hoadon {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
+.scroll-bar-hoadon:horizontal .track,
+.scroll-bar-hoadon:vertical .track{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;
 }
 
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
+.scroll-bar-hoadon:horizontal .thumb,
+.scroll-bar-hoadon:vertical .thumb {
     -fx-background-color: white;
     -fx-background-radius: 5em;
 }
-.scroll-pane > .corner {
+.scroll-pane-hoadon > .corner {
     -fx-background-color: black;
 }
 
