@@ -113,8 +113,8 @@ public class HoaDonController implements Initializable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-//            billInfoLabel1.setText(null);
-//            billInfoLabel1.setText(tendouong);
+            billInfoLabel1.setText(null);
+            billInfoLabel1.setText(tendouong);
         }
     }
     }    //    private void showBillInfo1(ActionEvent event) throws SQLException, ClassNotFoundException {

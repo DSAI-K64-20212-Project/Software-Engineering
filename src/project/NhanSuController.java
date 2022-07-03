@@ -122,10 +122,8 @@ public class NhanSuController {
     @FXML
     private Circle[] anhNhanVien0 = new Circle[6];
 
-
-
     @FXML
-    void reloadBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+    public void initialize() throws IOException, SQLException, ClassNotFoundException{
         thongTin0[0] = thongTin;
         thongTin0[1] = thongTin1;
         thongTin0[2] = thongTin2;
@@ -183,9 +181,8 @@ public class NhanSuController {
 
             i1 += 1;
         }
-
-
     }
+
     @FXML
     void billBtn(ActionEvent event) throws IOException {
         Parent root1 = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));

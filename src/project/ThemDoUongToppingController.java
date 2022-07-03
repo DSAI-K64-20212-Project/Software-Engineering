@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class ThemDoUongToppingController implements BartenderInterface, Initializable {
+public class ThemDoUongToppingController implements BartenderInterface {
 
     private Scene scene;
     private Stage stage;
@@ -97,15 +97,10 @@ public class ThemDoUongToppingController implements BartenderInterface, Initiali
     @FXML
     private Circle anhDoUongTopping;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        anhDoUongTopping.setStroke(Color.SEAGREEN);
-        Image im = new Image("/project/resources/image/TraSua/images.jpeg",false);
-        anhDoUongTopping.setFill(new ImagePattern(im));
-        anhDoUongTopping.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
-    }
+
+
     @FXML
-    void reloadBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+    public void initialize() throws IOException, SQLException, ClassNotFoundException{
         nguyenLieu0[0] =  nguyenLieu;
         nguyenLieu0[1] =  nguyenLieu1;
         nguyenLieu0[2] =  nguyenLieu2;
@@ -128,7 +123,6 @@ public class ThemDoUongToppingController implements BartenderInterface, Initiali
 
             i1 += 1;
         }
-
     }
 
     @FXML
