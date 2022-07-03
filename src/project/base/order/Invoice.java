@@ -119,6 +119,6 @@ public class Invoice {
 
     public static void main(String[] args) throws Exception {
         Invoice invoice = new Invoice("5e7c1583-bb5b-4e6a-ab41-97fde6bb6edd");
-        System.out.println(invoice.getBill());
+        System.out.println(invoice.getCall(1));
     }
 }
