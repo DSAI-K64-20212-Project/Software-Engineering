@@ -1,4 +1,7 @@
 package project.base.order;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,6 +16,7 @@ public class Invoice {
     public String tenkhachhang;
     private int buy_id = 0;
     public String id;
+    public SimpleIntegerProperty bill = new SimpleIntegerProperty(0);
 
     public Invoice(){
         //tam thoi random so order
@@ -24,19 +28,33 @@ public class Invoice {
     }
     public void addCall(String drink_name, char size, double sugar, double ice, String[] toppings) throws Exception {
         this.buy_id += 1;
-        this.inFo.add(new OneCall(buy_id, drink_name, size, sugar, ice, toppings));
+        OneCall oneCall = new OneCall(buy_id, drink_name, size, sugar, ice, toppings);
+        oneCall.getAmountProperty().addListener((observableValue, number, t1) -> {
+            try {
+                updateBill();
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        this.inFo.add(oneCall);
+        updateBill();
     }
     public OneCall getCall(int index){
         return this.inFo.get(index);
     }
 
-    public int getBill() throws SQLException, ClassNotFoundException {
+    public void updateBill() throws SQLException, ClassNotFoundException {
         int total = 0;
         for (OneCall call : inFo){
             total += call.get_money();
         }
-        return total;
+        bill.setValue(total);
     }
+
+    public int getBill() {
+        return bill.getValue();
+    }
+    public SimpleIntegerProperty getBillProperty(){return bill;}
 
     public void pay(int amount, String tenkhachhang) throws SQLException, ClassNotFoundException {
         int total = this.getBill();

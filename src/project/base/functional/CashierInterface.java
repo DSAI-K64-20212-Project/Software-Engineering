@@ -21,7 +21,7 @@ public interface CashierInterface {
                         "da, duong, soluong, mahoadon, buyid) VALUES ",";");
                 for (OneCall call : invoice.getInFo()) {
                     command2.add(String.format("('%s','%s', %.2f, %.2f, %d, '%s', %d)", call.drink_name,
-                            call.size, call.ice, call.sugar, call.amount, invoice.id, call.id));
+                            call.size, call.ice, call.sugar, call.get_ammount(), invoice.id, call.id));
                 }
                 DBUtil.dbExecuteUpdate(command2.toString());
 

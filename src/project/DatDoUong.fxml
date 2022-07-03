@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -105,11 +106,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <ScrollPane prefHeight="205.0" prefWidth="571.0" style="-fx-background-color: white;">
-                                <content>
-                                    <HBox fx:id="loaiDoPane" prefHeight="155.0" prefWidth="951.0" />
-                                </content>
-                              </ScrollPane>
+                              <JFXListView fx:id="douongList" orientation="HORIZONTAL" prefHeight="157.0" prefWidth="570.0" verticalGap="10.0" />
                               <HBox prefHeight="35.0" prefWidth="561.0" spacing="100.0">
                                  <children>
                                     <HBox layoutX="6.0" layoutY="184.0" prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: linear-gradient(to right, #58C063, #58C063);">
@@ -141,7 +138,7 @@
                                           <Insets top="5.0" />
                                        </HBox.margin>
                                     </RadioButton>
-                                    <RadioButton fx:id="s" mnemonicParsing="false" prefHeight="24.0" prefWidth="119.0" text="Size L" toggleGroup="$size">
+                                    <RadioButton fx:id="sizeL" mnemonicParsing="false" prefHeight="24.0" prefWidth="119.0" text="Size L" toggleGroup="$size">
                                        <HBox.margin>
                                           <Insets top="5.0" />
                                        </HBox.margin>
@@ -220,86 +217,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <ScrollPane prefHeight="217.0" prefWidth="581.0">
-                                 <content>
-                                    <HBox prefHeight="165.0" prefWidth="1123.0">
-                                       <children>
-                                          <Pane layoutY="1.0" prefHeight="161.0" prefWidth="218.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
-                                             <children>
-                                                <Pane fx:id="topping1" layoutX="-1.0" prefHeight="164.0" prefWidth="223.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
-                                                <VBox alignment="CENTER" prefHeight="160.0" prefWidth="227.0">
-                                                   <children>
-                                                      <Button fx:id="buttonTopping1" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="116.0" prefWidth="178.0" styleClass="button-image">
-                                                         <graphic>
-                                                            <ImageView fitHeight="102.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@resources/image/Topping/images.jpeg" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Label fx:id="tenTopping1" text="trân châu" />
-                                                      <Label fx:id="giaTopping1" layoutX="49.0" layoutY="146.0" text="5000" />
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </Pane>
-                                          <Pane prefHeight="160.0" prefWidth="220.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
-                                             <children>
-                                                <Pane fx:id="topping11" layoutX="-1.0" prefHeight="163.0" prefWidth="223.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
-                                                <VBox alignment="CENTER" prefHeight="160.0" prefWidth="223.0">
-                                                   <children>
-                                                      <Button fx:id="buttonTopping11" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="110.0" prefWidth="171.0" styleClass="button-image">
-                                                         <graphic>
-                                                            <ImageView fitHeight="113.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@resources/image/Topping/images.jpeg" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Label fx:id="tenTopping11" text="pudding" />
-                                                      <Label fx:id="giaTopping11" layoutX="49.0" layoutY="146.0" text="6000" />
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </Pane>
-                                          <Pane prefHeight="165.0" prefWidth="223.0" style="-fx-background-radius: 25; -fx-border-width: 5;" styleClass="border">
-                                             <children>
-                                                <Pane fx:id="topping12" layoutX="-1.0" prefHeight="164.0" prefWidth="230.0" style="-fx-background-radius: 25; -fx-border-width: 5; -fx-border-color: #58C063;" styleClass="border" visible="false" />
-                                                <VBox alignment="CENTER" prefHeight="160.0" prefWidth="227.0">
-                                                   <children>
-                                                      <Button fx:id="buttonTopping12" blendMode="DARKEN" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#ToppingPressedBtn" prefHeight="124.0" prefWidth="185.0">
-                                                         <graphic>
-                                                            <ImageView fitHeight="101.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@resources/image/Topping/images.jpeg" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Label fx:id="tenTopping12" text="thach" />
-                                                      <Label fx:id="giaTopping12" layoutX="49.0" layoutY="146.0" text="7000" />
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </HBox>
-                                 </content>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </ScrollPane>
+                              <JFXListView fx:id="toppingList" orientation="HORIZONTAL" prefHeight="195.0" prefWidth="570.0" verticalGap="10.0" />
                               <HBox alignment="TOP_RIGHT">
                                  <children>
                                     <Button mnemonicParsing="false" onAction="#AddPressedBtn" style="-fx-background-color: CF6F6F; -fx-background-radius: 25;" text="ADD" textFill="WHITE">
@@ -316,184 +234,43 @@
                         </VBox>
                         <AnchorPane layoutX="589.0" prefHeight="648.0" prefWidth="220.0" style="-fx-background-color: #8B8BF9;">
                            <children>
-                              <ScrollPane layoutY="43.0" prefHeight="337.0" prefWidth="227.0">
-                                <content>
-                                    <VBox prefHeight="729.0" prefWidth="220.0" style="-fx-background-color: #8B8BF9;">
-                                       <children>
-                                          <VBox fx:id="hoaDon1" layoutY="10.0" prefHeight="75.0" prefWidth="220.0" visible="false">
-                                             <children>
-                                                <HBox prefHeight="60.0" prefWidth="220.0">
-                                                   <children>
-                                                      <Label fx:id="l1" text="1" textFill="WHITE">
-                                                         <font>
-                                                            <Font size="24.0" />
-                                                         </font>
-                                                         <HBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <VBox prefHeight="58.0" prefWidth="117.0">
-                                                         <children>
-                                                            <Text fx:id="tenDoUong1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Trà sữa">
-                                                               <font>
-                                                                  <Font name="System Bold" size="15.0" />
-                                                               </font>
-                                                            </Text>
-                                                            <Text fx:id="modDoUong1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" - Size M&#10; - Không đá&#10; - 50% đường" wrappingWidth="106.9765625">
-                                                               <font>
-                                                                  <Font size="10.0" />
-                                                               </font>
-                                                            </Text>
-                                                         </children>
-                                                      </VBox>
-                                                      <Button fx:id="minus1" mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
-                                                      <Button fx:id="plus1" mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="TOP_RIGHT" prefHeight="36.0" prefWidth="220.0">
-                                                   <children>
-                                                      <Text fx:id="giaHoaDon1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="64.28125">
-                                                         <HBox.margin>
-                                                            <Insets right="30.0" />
-                                                         </HBox.margin>
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                          <VBox fx:id="hoaDon11" prefHeight="75.0" prefWidth="220.0" visible="false">
-                                             <children>
-                                                <HBox prefHeight="60.0" prefWidth="220.0">
-                                                   <children>
-                                                      <Label fx:id="l11" text="1" textFill="WHITE">
-                                                         <font>
-                                                            <Font size="24.0" />
-                                                         </font>
-                                                         <HBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <VBox prefHeight="58.0" prefWidth="117.0">
-                                                         <children>
-                                                            <Text fx:id="tenDoUong11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Trà sữa">
-                                                               <font>
-                                                                  <Font name="System Bold" size="15.0" />
-                                                               </font>
-                                                            </Text>
-                                                            <Text fx:id="modDoUong11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" - Size M&#10; - Không đá&#10; - 50% đường" wrappingWidth="106.9765625">
-                                                               <font>
-                                                                  <Font size="10.0" />
-                                                               </font>
-                                                            </Text>
-                                                         </children>
-                                                      </VBox>
-                                                      <Button fx:id="minus11" mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
-                                                      <Button fx:id="plus11" mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="TOP_RIGHT" prefHeight="36.0" prefWidth="220.0">
-                                                   <children>
-                                                      <Text fx:id="giaHoaDon11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="64.28125">
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                         <HBox.margin>
-                                                            <Insets right="30.0" />
-                                                         </HBox.margin>
-                                                      </Text>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                          <VBox fx:id="hoaDon12" prefHeight="75.0" prefWidth="220.0" visible="false">
-                                             <children>
-                                                <HBox prefHeight="60.0" prefWidth="220.0">
-                                                   <children>
-                                                      <Label fx:id="l12" text="1" textFill="WHITE">
-                                                         <font>
-                                                            <Font size="24.0" />
-                                                         </font>
-                                                         <HBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <VBox prefHeight="58.0" prefWidth="117.0">
-                                                         <children>
-                                                            <Text fx:id="tenDoUong12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Trà sữa">
-                                                               <font>
-                                                                  <Font name="System Bold" size="15.0" />
-                                                               </font>
-                                                            </Text>
-                                                            <Text fx:id="modDoUong12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" - Size M&#10; - Không đá&#10; - 50% đường" wrappingWidth="106.9765625">
-                                                               <font>
-                                                                  <Font size="10.0" />
-                                                               </font>
-                                                            </Text>
-                                                         </children>
-                                                      </VBox>
-                                                      <Button fx:id="minus12" mnemonicParsing="false" onAction="#MinusPressedBtn" text="--" />
-                                                      <Button fx:id="plus12" mnemonicParsing="false" onAction="#PlusPressedBtn" text="+" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="TOP_RIGHT" prefHeight="36.0" prefWidth="220.0">
-                                                   <children>
-                                                      <Text fx:id="giaHoaDon12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="64.28125">
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                         <HBox.margin>
-                                                            <Insets right="30.0" />
-                                                         </HBox.margin>
-                                                      </Text>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </VBox>
-                                </content>
-                              </ScrollPane>
-                              <Label alignment="CENTER" layoutX="3.0" prefHeight="54.0" prefWidth="223.0" text="Hóa Đơn" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="2.0" layoutY="620.0" mnemonicParsing="false" onAction="#XacNhanPressedBtn" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" text="Xác Nhận" textFill="WHITE" fx:id="xacNhan">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Button>
-                              <Text fill="WHITE" layoutX="33.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số dư: " />
-                              <Text fill="WHITE" layoutX="15.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khách trả" wrappingWidth="105.0">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" layoutX="6.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng Tiền: ">
-                                 <font>
-                                    <Font size="21.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="khachTra" layoutX="15.0" layoutY="531.0" prefHeight="25.0" prefWidth="153.0" promptText="Input here" style="fx-background-radius: 25;" />
-                              <Button layoutX="176.0" layoutY="531.0" mnemonicParsing="false" onAction="#KhachTraPressedBtn" prefHeight="24.0" prefWidth="37.0" text="OK" />
-                              <Button layoutX="151.0" layoutY="568.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="62.0" style="-fx-background-color: #8B8BF9;">
-                                 <graphic>
-                                    <ImageView blendMode="DARKEN" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@resources/image/icons/printer.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Text fx:id="tongTien" fill="WHITE" layoutX="121.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="95.0">
-                                 <font>
-                                    <Font size="21.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="soDu" fill="WHITE" layoutX="78.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                              <VBox prefHeight="659.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="54.0" prefWidth="223.0" text="Hóa Đơn" textFill="WHITE">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="hoadonList" prefHeight="394.0" prefWidth="227.0" />
+                                    <Label fx:id="totalBillLabel" text="T" textFill="WHITE">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Khách trả" wrappingWidth="105.0">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Số dư: " />
+                                    <TextField fx:id="khachTra" prefHeight="25.0" prefWidth="153.0" promptText="Input here" style="fx-background-radius: 25;" />
+                                    <Button mnemonicParsing="false" onAction="#KhachTraPressedBtn" prefHeight="24.0" prefWidth="37.0" text="OK" />
+                                    <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="62.0" style="-fx-background-color: #8B8BF9;">
+                                       <graphic>
+                                          <ImageView blendMode="DARKEN" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@resources/image/icons/printer.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#XacNhanPressedBtn" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" text="Xác Nhận" textFill="WHITE" fx:id="xacNhan">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                      </children>

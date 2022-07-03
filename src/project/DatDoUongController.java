@@ -1,6 +1,13 @@
 package project;
 
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXSlider;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableStringValue;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,10 +18,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import project.UI.InvoiceView;
 import project.base.DBUtil;
+import project.base.order.Invoice;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class DatDoUongController {
@@ -105,129 +119,101 @@ public class DatDoUongController {
     @FXML
     private Text giaHoaDon11;
     @FXML
-    private Label giaTopping11;
-    @FXML
-    private Label giaLoai12;
-    @FXML
     private Text giaHoaDon12;
+
     @FXML
-    private Label giaTopping12;
+    private JFXListView toppingList;
     @FXML
-    private Button buttonTopping1;
+    private JFXListView douongList;
     @FXML
-    private Button buttonTopping11;
+    private ScrollPane hoadonList;
     @FXML
-    private Pane topping11;
-    @FXML
-    private Label tenTopping11;
-    @FXML
-    private Button buttonTopping12;
-    @FXML
-    private Pane topping12;
-    @FXML
-    private Label tenTopping12;
-    @FXML
-    private Label doUong11;
-    @FXML
-    private Label doUong12;
-    @FXML
-    private HBox loaiDoPane;
-    @FXML
-    private Pane pane;
+    private Label totalBillLabel;
 
 
-    Label doUong;
-    Label giaDoUong;
+    private static Invoice hoadon = new Invoice();
     private static String chosenDrink;
+    private static String[] chosenTopping;
 
     @FXML
     private void initialize() throws SQLException, ClassNotFoundException {
+        hoadonList.setContent(new InvoiceView(hoadon));
+        ObservableStringValue formattedBill = Bindings.createStringBinding(() ->
+                "Tổng tiền: " + String.format("%d.000đ",hoadon.getBill()), hoadon.getBillProperty());
+        totalBillLabel.textProperty().bind(formattedBill);
+
+        class VBoxCell extends VBox {
+            ImageView imageView = new ImageView();
+            Label ten = new Label();
+            Label gia = new Label();
+
+            VBoxCell(String ten, String tenanh) {
+                super();
+                Image background = new Image(getClass().getResourceAsStream(String.format("resources/image/TraSua/%s",
+                        tenanh)), 100, 100, false, false);
+                imageView.setImage(background);
+
+                this.ten.setText(ten);
+                this.setSpacing(10);
+                this.setAlignment(Pos.CENTER);
+
+                this.getChildren().addAll(this.imageView, this.ten);
+            }
+
+            VBoxCell(String tentopping, String tenanh, String giatien) {
+                InputStream imagestream = getClass().getResourceAsStream(String.format("resources/image/Topping/%s",
+                        tenanh));
+                if (imagestream == null){
+                    imagestream = getClass().getResourceAsStream("resources/image/Topping/senvang.jpg");
+                }
+                Image background = new Image(imagestream, 100, 100, false, false);
+                imageView.setImage(background);
+
+                this.ten.setText(tentopping);
+                this.setSpacing(10);
+                this.setAlignment(Pos.CENTER);
+                this.gia.setText(giatien+".000đ");
+                this.getChildren().addAll(this.imageView, this.ten, this.gia);
+            }
+        }
         String command = "SELECT * FROM douong WHERE onmenu = True;";
         ResultSet result = DBUtil.dbExecuteQuery(command);
+        List<VBoxCell> list = new ArrayList<>();
         while (result.next()) {
-
-            Image background = new Image(getClass().getResourceAsStream("resources/image/TraSua/images.jpeg"));
-            Button button = new Button(result.getString("tendouong"), new ImageView(background));
-            button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-            button.getStyleClass().add("button-image");
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    chosenDrink = button.getText();
-                }
-            });
-
-            Label label = new Label(result.getString("tendouong"));
-            label.setFont(Font.font("Arial",15));
-            VBox vBox = new VBox(button, label);
-            vBox.setSpacing(10);
-            vBox.setAlignment(Pos.CENTER);
-            loaiDoPane.getChildren().add(vBox);
+            list.add(new VBoxCell(result.getString("tendouong"),
+                    result.getString("anh")));
         }
+        ObservableList<VBoxCell> douong = FXCollections.observableList(list);
+        douongList.setItems(douong);
+        douongList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<VBoxCell>) (observableValue
+                , old, n) -> {
+            chosenDrink = n.ten.getText();
+            System.out.println(chosenDrink);
+        });
 
-    }
-    @FXML
-    void DoUongPressedBtn(ActionEvent event) {
-        Button doUongButtonId = (Button) event.getTarget();
-        if (doUongButtonId == buttonLoai1) {
-            if (pane1.isVisible()) {
-                pane1.setVisible(false);
-            } else {
-                pane1.setVisible(true);
-                doUong = doUong1;
-                giaDoUong = giaLoai1;
-            }
-        } else if (doUongButtonId == buttonLoai11) {
-            if (pane11.isVisible()) {
-                pane11.setVisible(false);
-            } else {
-                pane11.setVisible(true);
-                doUong = doUong11;
-                giaDoUong = giaLoai11;
-            }
-        } else if (doUongButtonId == buttonLoai12) {
-            if (pane12.isVisible()) {
-                pane12.setVisible(false);
-            } else {
-                pane12.setVisible(true);
-                doUong = doUong12;
-                giaDoUong = giaLoai12;
+        //topping
+        String command2 = "SELECT * FROM topping WHERE onmenu = True;";
+        ResultSet result2 = DBUtil.dbExecuteQuery(command2);
+        List<VBoxCell> list2 = new ArrayList<>();
+        while (result2.next()){
+            list2.add(new VBoxCell(result2.getString("tentopping"),
+                    result2.getString("anh"),
+                    result2.getString("giatopping")));
         }
+        ObservableList<VBoxCell> myObservableList = FXCollections.observableList(list2);
+        toppingList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        toppingList.setItems(myObservableList);
+        toppingList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<VBoxCell>) (observableValue, o, t1) -> {
+            ObservableList<VBoxCell> selectedItems = toppingList.getSelectionModel().getSelectedItems();
+            List<String> local = new ArrayList<>();
+            for (VBoxCell v:selectedItems){
+                local.add(v.ten.getText());
+            }
+            chosenTopping = local.toArray(new String[0]);
+            System.out.println(Arrays.toString(chosenTopping));
+        });
     }
-}
 
-    Label tenTopping;
-    Label giaTopping;
-
-    @FXML
-    void ToppingPressedBtn(ActionEvent event) {
-        Button toppingButtonId = (Button) event.getTarget();
-        if (toppingButtonId == buttonTopping1) {
-            if (topping1.isVisible()) {
-                topping1.setVisible(false);
-            } else {
-                topping1.setVisible(true);
-                tenTopping = tenTopping1;
-                giaTopping = giaTopping1;
-            }
-        }  else if   (toppingButtonId == buttonTopping11) {
-            if (topping11.isVisible()) {
-                topping11.setVisible(false);
-            } else {
-                topping11.setVisible(true);
-                tenTopping = tenTopping11;
-                giaTopping = giaTopping11;
-            }
-        }  else if (toppingButtonId == buttonTopping12) {
-            if (topping12.isVisible()) {
-                topping12.setVisible(false);
-            } else {
-                topping12.setVisible(true);
-                tenTopping = tenTopping12;
-                giaTopping = giaTopping12;
-            }
-        }
-    }
 
     @FXML
     private Button minus1;
@@ -297,38 +283,11 @@ public class DatDoUongController {
     int cAdd = 0;
 
     @FXML
-    void AddPressedBtn(ActionEvent event) {
-        int da = (int) daSlider.getValue();
-        int duong = (int) duongSlider.getValue();
-        RadioButton t = (RadioButton) size.getSelectedToggle();
-        cAdd += 1;
-        if (cAdd == 1) {
-            hoaDon1.setVisible(true);
-            modDoUong1.setText('-' + t.getText() + "\n"
-                    + '-' + tenTopping.getText() + "\n"
-                    + '-' + da + "% đá \n"
-                    + '-' + duong + "% đường \n");
-            tenDoUong1.setText(doUong.getText());
-            giaHoaDon1.setText(String.valueOf(Integer.parseInt(giaDoUong.getText())+Integer.parseInt(giaTopping.getText())));
-        } else if  ( cAdd ==2){
-            hoaDon11.setVisible(true);
-            modDoUong11.setText('-' + t.getText() + "\n"
-                    + '-' + tenTopping.getText() + "\n"
-                    + '-' + da + "% đá \n"
-                    + '-' + duong + "% đường \n");
-            tenDoUong11.setText(doUong.getText());
-            giaHoaDon11.setText(String.valueOf(Integer.parseInt(giaDoUong.getText())+Integer.parseInt(giaTopping.getText())));
-        }else if  ( cAdd ==3){
-            hoaDon12.setVisible(true);
-            modDoUong12.setText('-' + t.getText() + "\n"
-                    + '-' + tenTopping.getText() + "\n"
-                    + '-' + da + "% đá \n"
-                    + '-' + duong + "% đường \n");
-            tenDoUong12.setText(doUong.getText());
-            giaHoaDon12.setText(String.valueOf(Integer.parseInt(giaDoUong.getText())+Integer.parseInt(giaTopping.getText())));
-        }
-        tongTien.setText(String.valueOf(Integer.parseInt(giaHoaDon1.getText())*Integer.parseInt(l1.getText())+Integer.parseInt(giaHoaDon11.getText())*Integer.parseInt(l11.getText())+Integer.parseInt(giaHoaDon12.getText())*Integer.parseInt(l12.getText())));
-
+    void AddPressedBtn(ActionEvent event) throws Exception {
+        double da = daSlider.getValue()/100;
+        double duong = duongSlider.getValue()/100;
+        RadioButton s = (RadioButton) size.getSelectedToggle();
+        hoadon.addCall(chosenDrink, s.getText().charAt(s.getText().length()-1), duong, da, chosenTopping);
     }
 
     @FXML
