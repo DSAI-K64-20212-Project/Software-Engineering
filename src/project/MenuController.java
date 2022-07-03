@@ -57,7 +57,15 @@ public class MenuController {
     @FXML
     private CheckBox onMenu5;
     @FXML
-    private CheckBox[] onMenu0 = new CheckBox[6];
+    private CheckBox onMenu6;
+    @FXML
+    private CheckBox onMenu7;
+    @FXML
+    private CheckBox onMenu8;
+    @FXML
+    private CheckBox onMenu9;
+    @FXML
+    private CheckBox[] onMenu0 = new CheckBox[10];
     @FXML
     private Text thongTinDoUong;
     @FXML
@@ -71,7 +79,15 @@ public class MenuController {
     @FXML
     private Text thongTinDoUong5;
     @FXML
-    private Text[] thongTinDoUong0 = new Text[6];
+    private Text thongTinDoUong6;
+    @FXML
+    private Text thongTinDoUong7;
+    @FXML
+    private Text thongTinDoUong8;
+    @FXML
+    private Text thongTinDoUong9;
+    @FXML
+    private Text[] thongTinDoUong0 = new Text[10];
 
     @FXML
     private Circle anhDoUong;
@@ -86,7 +102,15 @@ public class MenuController {
     @FXML
     private Circle anhDoUong5;
     @FXML
-    private Circle[] anhDoUong0 = new Circle[6];
+    private Circle anhDoUong6;
+    @FXML
+    private Circle anhDoUong7;
+    @FXML
+    private Circle anhDoUong8;
+    @FXML
+    private Circle anhDoUong9;
+    @FXML
+    private Circle[] anhDoUong0 = new Circle[10];
 
     @FXML
     private CheckBox toppingOnMenu;
@@ -325,6 +349,11 @@ public class MenuController {
         onMenu0[3] = onMenu3;
         onMenu0[4] = onMenu4;
         onMenu0[5] = onMenu5;
+        onMenu0[6] = onMenu6;
+        onMenu0[7] = onMenu7;
+        onMenu0[8] = onMenu8;
+        onMenu0[9] = onMenu9;
+
 
         thongTinDoUong0[0] =  thongTinDoUong;
         thongTinDoUong0[1] =  thongTinDoUong1;
@@ -332,6 +361,10 @@ public class MenuController {
         thongTinDoUong0[3] =  thongTinDoUong3;
         thongTinDoUong0[4] =  thongTinDoUong4;
         thongTinDoUong0[5] =  thongTinDoUong5;
+        thongTinDoUong0[6] =  thongTinDoUong6;
+        thongTinDoUong0[7] =  thongTinDoUong7;
+        thongTinDoUong0[8] =  thongTinDoUong8;
+        thongTinDoUong0[9] =  thongTinDoUong9;
 
         anhDoUong0[0] =  anhDoUong;
         anhDoUong0[1] =  anhDoUong1;
@@ -339,6 +372,11 @@ public class MenuController {
         anhDoUong0[3] =  anhDoUong3;
         anhDoUong0[4] =  anhDoUong4;
         anhDoUong0[5] =  anhDoUong5;
+        anhDoUong0[6] =  anhDoUong6;
+        anhDoUong0[7] =  anhDoUong7;
+        anhDoUong0[8] =  anhDoUong8;
+        anhDoUong0[9] =  anhDoUong9;
+
 
         paneDoUong0[0] = paneDoUong;
         paneDoUong0[1] = paneDoUong1;
