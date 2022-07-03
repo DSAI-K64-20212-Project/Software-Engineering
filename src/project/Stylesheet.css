@@ -64,10 +64,29 @@
     -fx-background-color: #1259A3;
 }
 
-.buttonInvisible {
+buttonInvisible {
     -fx-background-color: Transparent;
     -fx-border-color: none !important;
     -fx-font-size:0;
+}
+
+.radio-button {
+    -fx-border-radius: 20;
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
+    -fx-padding: 10, 0, 10, 0;
+}
+
+.title-text {
+    -fx-font-family: 'Inter', monospace;
+    -fx-background-color: Transparent;
+    -fx-font-size: 32px;
+}
+
+.normal-text {
+    -fx-font-family: 'Inter', monospace;
+    -fx-background-color: Transparent;
+    -fx-font-size: 16px;
 }
 
 .scroll-pane{

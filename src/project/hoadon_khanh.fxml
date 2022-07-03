@@ -177,17 +177,7 @@
                   </Label>
                   <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@Stylesheet.css">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
-                           <children>
-                              <Label fx:id="billInfoLabel1" alignment="TOP_LEFT" layoutX="1.0" layoutY="7.0" prefHeight="275.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="19.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                           </children>
+                        <AnchorPane fx:id="billPane1" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
                            <styleClass>
                               <String fx:value="scroll-pane" />
                               <String fx:value="scroll-bar" />
@@ -245,17 +235,7 @@
                   </Label>
                   <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
-                           <children>
-                              <Label fx:id="billInfoLabel2" alignment="TOP_LEFT" layoutX="1.0" layoutY="7.0" prefHeight="275.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="19.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                           </children>
+                        <AnchorPane fx:id="billPane2" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
                            <styleClass>
                               <String fx:value="scroll-pane-hoadon" />
                               <String fx:value="scroll-bar-hoadon" />
@@ -315,17 +295,7 @@
                   </Label>
                   <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
-                           <children>
-                              <Label fx:id="billInfoLabel3" alignment="TOP_LEFT" layoutX="1.0" layoutY="7.0" prefHeight="275.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="19.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                           </children>
+                        <AnchorPane fx:id="billPane3" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
                            <styleClass>
                               <String fx:value="scroll-pane-hoadon" />
                               <String fx:value="scroll-bar-hoadon" />

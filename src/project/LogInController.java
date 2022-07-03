@@ -23,6 +23,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import project.base.DBUtil;
+import project.base.user.Admin;
+import project.base.user.Bartender;
+import project.base.user.Cashier;
 import project.base.user.User;
 
 import javax.swing.*;
@@ -62,18 +65,19 @@ public class LogInController implements Initializable {
             System.out.println("Tên đăng nhập: " + tendangnhap);
             System.out.println("Chức vụ: " + chucvu);
 
-            monitor.newSession(new User(result.getString(1)));
-
             // move to main screen
             if (Objects.equals(chucvu, "Quan Ly")) {
+                monitor.newSession(new Admin(result.getString(1)));
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/Base.fxml")));
                 Stage window = (Stage) username.getScene().getWindow();
                 window.setScene(new Scene(root));
             } else if (Objects.equals(chucvu, "Thu Ngan")) {
+                monitor.newSession(new Cashier(result.getString(1)));
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseCashier.fxml")));
                 Stage window = (Stage) username.getScene().getWindow();
                 window.setScene(new Scene(root));
             } else if (Objects.equals(chucvu, "Pha Che")) {
+                monitor.newSession(new Bartender(result.getString(1)));
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseBartender.fxml")));
                 Stage window = (Stage) username.getScene().getWindow();
                 window.setScene(new Scene(root));
@@ -94,18 +98,19 @@ public class LogInController implements Initializable {
             System.out.println("Tên đăng nhập: " + tendangnhap);
             System.out.println("Chức vụ: " + chucvu);
 
-            monitor.newSession(new User(result.getString(1)));
-
             // move to main screen
             if (Objects.equals(chucvu, "Quan Ly")) {
+                monitor.newSession(new Admin(result.getString(1)));
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/Base.fxml")));
                 Stage window = (Stage) username.getScene().getWindow();
                 window.setScene(new Scene(root));
             } else if (Objects.equals(chucvu, "Thu Ngan")) {
+                monitor.newSession(new Cashier(result.getString(1)));
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseCashier.fxml")));
                 Stage window = (Stage) username.getScene().getWindow();
                 window.setScene(new Scene(root));
             } else if (Objects.equals(chucvu, "Pha Che")) {
+                monitor.newSession(new Bartender(result.getString(1)));
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseBartender.fxml")));
                 Stage window = (Stage) username.getScene().getWindow();
                 window.setScene(new Scene(root));
