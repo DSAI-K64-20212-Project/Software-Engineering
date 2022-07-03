@@ -7,10 +7,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import project.base.DBUtil;
@@ -40,7 +45,7 @@ public class NhanSuController {
     @FXML
     private Text thongTin5;
     @FXML
-    private Text[] thongTin0 = {null,null,null,null,null,null};
+    private Text[] thongTin0 = new Text[6];
 
     @FXML
     private Text caLam4;
@@ -55,7 +60,7 @@ public class NhanSuController {
     @FXML
     private Text caLam;
     @FXML
-    private Text[] caLam0 = {null,null,null,null,null,null};
+    private Text[] caLam0 = new Text[6];
 
 
     @FXML
@@ -87,7 +92,7 @@ public class NhanSuController {
     @FXML
     private Button traLuong;
     @FXML
-    private Button[] traLuong0 = {null,null,null,null,null,null};
+    private Button[] traLuong0 = new Button[6];
 
     @FXML
     private Button chinhSuaNhanVien;
@@ -102,17 +107,29 @@ public class NhanSuController {
     @FXML
     private Button chinhSuaNhanVien5;
 
-
+    @FXML
+    private Circle anhNhanVien;
+    @FXML
+    private Circle anhNhanVien1;
+    @FXML
+    private Circle anhNhanVien2;
+    @FXML
+    private Circle anhNhanVien3;
+    @FXML
+    private Circle anhNhanVien4;
+    @FXML
+    private Circle anhNhanVien5;
+    @FXML
+    private Circle[] anhNhanVien0 = new Circle[6];
 
     @FXML
-    void reloadBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+    public void initialize() throws IOException, SQLException, ClassNotFoundException{
         thongTin0[0] = thongTin;
         thongTin0[1] = thongTin1;
         thongTin0[2] = thongTin2;
         thongTin0[3] = thongTin3;
         thongTin0[4] = thongTin4;
         thongTin0[5] = thongTin5;
-
 
         caLam0[0] =  caLam;
         caLam0[1] =  caLam1;
@@ -135,6 +152,13 @@ public class NhanSuController {
         traLuong0[4] =  traLuong4;
         traLuong0[5] =  traLuong5;
 
+        anhNhanVien0[0] =  anhNhanVien;
+        anhNhanVien0[1] =  anhNhanVien1;
+        anhNhanVien0[2] =  anhNhanVien2;
+        anhNhanVien0[3] =  anhNhanVien3;
+        anhNhanVien0[4] =  anhNhanVien4;
+        anhNhanVien0[5] =  anhNhanVien5;
+
         String command1 = String.format("SELECT * FROM nhanvien");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
         int i1 = 0;
@@ -150,11 +174,15 @@ public class NhanSuController {
             thongTin0[i1].setText(tenNhanVien + "\n"  + sdt + "\n" + chucVu);
             caLam0[i1].setText(caLam);
 
+            anhNhanVien0[i1].setStroke(Color.SEAGREEN);
+            Image im = new Image("project/resources/image/icons/user.png");
+            anhNhanVien0[i1].setFill(new ImagePattern(im));
+            anhNhanVien0[i1].setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
+
             i1 += 1;
         }
-
-
     }
+
     @FXML
     void billBtn(ActionEvent event) throws IOException {
         Parent root1 = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));
