@@ -425,7 +425,7 @@ public class MenuController {
             onMenu0[i1].setSelected(Boolean.parseBoolean(onMenu));
 
             anhDoUong0[i1].setStroke(Color.SEAGREEN);
-            Image im = new Image("/project/resources/image/TraSua/images.jpeg");
+            Image im = new Image("/project/resources/image/TraSua/"+anh);
             anhDoUong0[i1].setFill(new ImagePattern(im));
             anhDoUong0[i1].setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
             paneDoUong0[i1].setVisible(true);
@@ -540,7 +540,7 @@ public class MenuController {
             toppingOnMenu0[i2].setSelected(Boolean.parseBoolean(onMenu));
 
             anhTopping0[i2].setStroke(Color.SEAGREEN);
-            Image im = new Image("project/resources/image/Topping/tranchau.png");
+            Image im = new Image("project/resources/image/Topping/" +anh);
             anhTopping0[i2].setFill(new ImagePattern(im));
             anhTopping0[i2].setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
             paneTopping0[i2].setVisible(true);
