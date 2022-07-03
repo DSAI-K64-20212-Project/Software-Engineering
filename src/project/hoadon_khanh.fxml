@@ -193,6 +193,7 @@
                               <String fx:value="scroll-bar" />
                               <String fx:value="decrement-button" />
                               <String fx:value="increment-button" />
+                              <String fx:value="track" />
                            </styleClass>
                         </AnchorPane>
                      </content>
@@ -237,7 +238,7 @@
             </AnchorPane>
             <AnchorPane layoutX="386.0" layoutY="5.0" prefHeight="415.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
                <children>
-                  <Label alignment="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="49.0" prefWidth="207.0" text="Hóa Đơn 1" textFill="#514141">
+                  <Label alignment="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="49.0" prefWidth="207.0" text="Hóa Đơn 2" textFill="#514141">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -256,10 +257,10 @@
                               </Label>
                            </children>
                            <styleClass>
-                              <String fx:value="scroll-pane" />
-                              <String fx:value="scroll-bar" />
-                              <String fx:value="decrement-button" />
-                              <String fx:value="increment-button" />
+                              <String fx:value="scroll-pane-hoadon" />
+                              <String fx:value="scroll-bar-hoadon" />
+                              <String fx:value="decrement-button-hoadon" />
+                              <String fx:value="increment-button-hoadon" />
                            </styleClass>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -307,7 +308,7 @@
             </AnchorPane>
             <AnchorPane layoutX="724.0" layoutY="7.0" prefHeight="415.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
                <children>
-                  <Label alignment="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="49.0" prefWidth="207.0" text="Hóa Đơn 1" textFill="#514141">
+                  <Label alignment="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="49.0" prefWidth="207.0" text="Hóa Đơn 3" textFill="#514141">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -326,10 +327,10 @@
                               </Label>
                            </children>
                            <styleClass>
-                              <String fx:value="scroll-pane" />
-                              <String fx:value="scroll-bar" />
-                              <String fx:value="decrement-button" />
-                              <String fx:value="increment-button" />
+                              <String fx:value="scroll-pane-hoadon" />
+                              <String fx:value="scroll-bar-hoadon" />
+                              <String fx:value="decrement-button-hoadon" />
+                              <String fx:value="increment-button-hoadon" />
                            </styleClass>
                            <cursor>
                               <Cursor fx:constant="HAND" />
