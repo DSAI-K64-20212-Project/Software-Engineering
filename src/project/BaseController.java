@@ -36,7 +36,7 @@ public class BaseController {
 
 
     @FXML
-    void infBtn(MouseEvent event) throws IOException {
+    void infBtn(ActionEvent event) throws IOException {
 //        avaImg.setPickOnBounds(true);
         Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
