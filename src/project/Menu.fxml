@@ -12,249 +12,556 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.MenuController">
    <children>
-      <VBox fx:id="vboxLeft1" prefHeight="737.0" prefWidth="256.0" styleClass="side-bar">
-         <children>
-            <Pane prefHeight="226.0" prefWidth="256.0">
-               <children>
-                  <ImageView fitHeight="205.0" fitWidth="230.0" layoutX="13.0" layoutY="11.0">
-                     <image>
-                        <Image url="@resources/Logo/Horizon/hardegde/HUST%20Milk%20Tea-logos_white.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#datDoUongPressedBtn" prefHeight="50.0" prefWidth="256.0" text=" Đặt đồ uống" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/add.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <styleClass>
-                  <String fx:value="label" />
-                  <String fx:value="invert" />
-               </styleClass>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Nguyên liệu" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/shopping-cart.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Nhân sự" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/users.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Menu" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/list-check.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Doanh thu" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/piggy-bank.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <ToolBar layoutX="256.0" prefHeight="61.0" prefWidth="794.0">
-         <items>
-            <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
-               <image>
-                  <Image url="@resources/image/icons/search.png" />
-               </image>
-            </ImageView>
-            <Pane prefHeight="61.0" prefWidth="702.0">
-               <children>
-                  <TextField layoutX="14.0" layoutY="15.0" opacity="0.46" prefHeight="25.0" prefWidth="177.0" promptText="Search" styleClass="border">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="15.0" />
-                     </padding>
-                  </TextField>
-               </children>
-            </Pane>
-            <Button mnemonicParsing="false" onAction="#TaiKhoanCuaBanPressedBtn" style="-fx-background-color: #1259A3;">
-               <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/following.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </items>
-         <padding>
-            <Insets left="15.0" />
-         </padding>
-      </ToolBar>
-      <HBox alignment="CENTER_RIGHT" layoutX="256.0" layoutY="61.0" prefHeight="61.0" prefWidth="794.0">
-         <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #58C063;" text="Thêm đồ uống/topping" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: #CD2217;" text="Xóa" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <ScrollPane layoutX="256.0" layoutY="153.0" prefHeight="582.0" prefWidth="401.0">
+      <Button layoutX="923.0" layoutY="74.0" mnemonicParsing="false" onAction="#themDoUongTopping" style="-fx-background-color: #58C063;" text="Thêm đồ uống/topping" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin>
+      </Button>
+      <ScrollPane layoutX="200.0" layoutY="153.0" prefHeight="441.0" prefWidth="473.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="375.0">
+            <VBox layoutX="6.0" prefHeight="1299.0" prefWidth="452.0">
                <children>
-                  <VBox prefHeight="717.0" prefWidth="375.0">
+                  <Pane fx:id="paneDoUong" prefHeight="138.0" prefWidth="375.0">
                      <children>
-                        <Pane prefHeight="138.0" prefWidth="375.0">
-                           <children>
-                              <Circle fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-                              <CheckBox layoutX="244.0" layoutY="84.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </CheckBox>
-                              <Text layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống&#10;Size&#10;Thành tiền">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="138.0" prefWidth="375.0">
-                           <children>
-                              <Circle fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-                              <CheckBox layoutX="244.0" layoutY="84.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="117.0" text="On Menu">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </CheckBox>
-                              <Text layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống&#10;Size&#10;Thành tiền">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="138.0" prefWidth="375.0">
-                           <children>
-                              <Circle fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-                              <CheckBox layoutX="244.0" layoutY="84.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="117.0" text="On Menu">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </CheckBox>
-                              <Text layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống&#10;Size&#10;Thành tiền">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </Pane>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <ScrollPane layoutX="658.0" layoutY="153.0" prefHeight="582.0" prefWidth="392.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="716.0" prefWidth="402.0">
-               <children>
-                  <Pane prefHeight="138.0" prefWidth="375.0">
-                     <children>
-                        <Circle fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-                        <CheckBox layoutX="244.0" layoutY="84.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                        <Circle fx:id="anhDoUong" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </CheckBox>
-                        <Text layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping&#10;Size&#10;Thành tiền">
+                        <Text fx:id="thongTinDoUong" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
                      </children>
                   </Pane>
-                  <Pane layoutY="138.0" prefHeight="138.0" prefWidth="375.0">
+                  <Pane fx:id="paneDoUong1" prefHeight="138.0" prefWidth="375.0">
                      <children>
-                        <Circle fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-                        <CheckBox layoutX="244.0" layoutY="84.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                        <Circle fx:id="anhDoUong1" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu1" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </CheckBox>
-                        <Text layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping&#10;Size&#10;Thành tiền">
+                        <Text fx:id="thongTinDoUong1" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong1" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong1" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
                      </children>
                   </Pane>
-               </children></AnchorPane>
+                  <Pane fx:id="paneDoUong2" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong2" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu2" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong2" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong2" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong2" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneDoUong3" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong3" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu3" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong3" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong3" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong3" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneDoUong4" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong4" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu4" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong4" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong4">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong4" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong4" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneDoUong5" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong5" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu5" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong5" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong5">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong5" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong5" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneDoUong6" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong6" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu6" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong6" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong6">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong6" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong6" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneDoUong7" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong7" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu7" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong7" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong7">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong7" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong7" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneDoUong8" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong8" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu8" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong8" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong8">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong8" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong8" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneDoUong9" prefHeight="138.0" prefWidth="375.0">
+                     <children>
+                        <Circle fx:id="anhDoUong9" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <CheckBox fx:id="onMenu9" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <Text fx:id="thongTinDoUong9" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <RadioButton layoutX="371.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaDoUong9">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="sizeMDoUong9" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sizeLDoUong9" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
         </content>
       </ScrollPane>
-      <GridPane layoutX="256.0" layoutY="122.0" prefHeight="33.0" prefWidth="794.0">
+      <ScrollPane layoutX="675.0" layoutY="153.0" prefHeight="441.0" prefWidth="523.0">
+         <content>
+            <VBox prefHeight="1341.0" prefWidth="502.0">
+               <children>
+                  <Pane fx:id="paneTopping" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping1" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping1" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping1" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu1" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping1" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping2" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping2" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping2" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu2" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping2" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping3" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping3" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping3" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu3" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping3" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping4" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping4" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping4" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu4" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping4">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping4" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping5" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping5" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping5" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu5" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping5">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping5" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping6" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping6" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping6" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu6" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping6">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping6" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping7" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping7" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping7" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu7" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping7">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping7" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneTopping8" prefHeight="138.0" prefWidth="502.0">
+                     <children>
+                        <Circle fx:id="anhTopping8" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="thongTinTopping8" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="toppingOnMenu8" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                        <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping8">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Text fx:id="giaTopping8" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <GridPane layoutX="204.0" layoutY="120.0" prefHeight="33.0" prefWidth="993.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="384.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="0.0" prefWidth="410.0" />
@@ -281,5 +588,193 @@
             </Text>
          </children>
       </GridPane>
+      <VBox fx:id="vboxLeft" prefHeight="600.0" prefWidth="200.0" styleClass="side-bar">
+         <children>
+            <Pane prefHeight="111.0" prefWidth="163.0">
+               <children>
+                  <ImageView fitHeight="197.0" fitWidth="215.0" layoutX="-6.0" layoutY="-43.0">
+                     <image>
+                        <Image url="@resources/Logo/Horizon/hardegde/HUST%20Milk%20Tea-logos_white.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#billBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text="Đặt đồ uống" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ingredientBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/shopping-cart.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#hrBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/users.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/list-check.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#revBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Doanh thu" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/piggy-bank.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <HBox layoutX="200.0" prefHeight="60.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@Stylesheet.css">
+         <children>
+            <HBox prefHeight="49.0" prefWidth="739.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="41.0">
+                     <children>
+                        <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
+                           <image>
+                              <Image url="@resources/image/icons/search.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="281.0">
+                     <children>
+                        <TextField alignment="BASELINE_LEFT" opacity="0.57" prefHeight="25.0" prefWidth="251.0" promptText="Search" styleClass="border">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="566.0">
+               <children>
+                  <Label text="Theme Song " textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="61.0" prefWidth="33.0" styleClass="button-sidebar">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@resources/image/icons/pause.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMedia" prefHeight="61.0" prefWidth="49.0" styleClass="button-sidebar">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@resources/image/icons/play.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" styleClass="button-image" stylesheets="@Stylesheet.css">
+               <graphic>
+                  <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@resources/image/icons/following.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Button layoutX="845.0" layoutY="74.0" mnemonicParsing="false" onAction="#xoaBtn" style="-fx-background-color: CD2217;" text="Xóa" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

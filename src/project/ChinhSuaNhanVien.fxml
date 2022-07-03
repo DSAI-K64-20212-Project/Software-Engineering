@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.ThemNhanVienController">
+   <children>
+      <VBox fx:id="vboxLeft" prefHeight="600.0" prefWidth="200.0" styleClass="side-bar">
+         <children>
+            <Pane prefHeight="111.0" prefWidth="163.0">
+               <children>
+                  <ImageView fitHeight="197.0" fitWidth="215.0" layoutX="-6.0" layoutY="-43.0">
+                     <image>
+                        <Image url="@resources/Logo/Horizon/hardegde/HUST%20Milk%20Tea-logos_white.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#billBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text="Đặt đồ uống" textFill="WHITE">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ingredientBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/shopping-cart.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#hrBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/users.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/list-check.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#revBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Doanh thu" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/image/icons/piggy-bank.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </VBox>
+      <HBox layoutX="200.0" prefHeight="60.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@Stylesheet.css">
+         <children>
+            <HBox prefHeight="49.0" prefWidth="739.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="41.0">
+                     <children>
+                        <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
+                           <image>
+                              <Image url="@resources/image/icons/search.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="281.0">
+                     <children>
+                        <TextField alignment="BASELINE_LEFT" opacity="0.57" prefHeight="25.0" prefWidth="251.0" promptText="Search" styleClass="border">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="566.0">
+               <children>
+                  <Label text="Theme Song " textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="61.0" prefWidth="33.0" styleClass="button-sidebar">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <image>
+                              <Image url="@resources/image/icons/pause.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMedia" prefHeight="61.0" prefWidth="49.0" styleClass="button-sidebar">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <image>
+                              <Image url="@resources/image/icons/play.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" styleClass="button-image" stylesheets="@Stylesheet.css">
+               <graphic>
+                  <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
+                     <image>
+                        <Image url="@resources/image/icons/following.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <GridPane layoutX="200.0" layoutY="108.0" prefHeight="492.0" prefWidth="1000.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="CENTER_LEFT">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Họ và Tên" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField fx:id="hoVaTen" promptText="edit field" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số điện thoại" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField fx:id="soDienThoai" promptText="edit field" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" GridPane.rowIndex="2">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField fx:id="username" promptText="edit field" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" GridPane.rowIndex="3">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mật khẩu" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField fx:id="matKhau" promptText="edit field" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane prefHeight="83.0" prefWidth="334.0" GridPane.rowIndex="4">
+               <children>
+                  <Text layoutX="14.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chức vụ" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <RadioButton fx:id="thuNganBtn" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Thu ngân" GridPane.rowIndex="5">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="chucVu" />
+                     </toggleGroup>
+                  </RadioButton>
+               </children>
+            </Pane>
+            <Pane GridPane.rowIndex="5">
+               <children>
+                  <Text layoutX="14.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ca làm" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <RadioButton fx:id="sangBtn" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Sáng" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="caLam" />
+                     </toggleGroup>
+                  </RadioButton>
+               </children>
+            </Pane>
+            <RadioButton fx:id="phaCheBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Pha chế" toggleGroup="$chucVu" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="quanLyBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Quản lý" toggleGroup="$chucVu" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </RadioButton>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@resources/Logo/Round/HUST%20Milk%20Tea-logos_transparent.png" />
+               </image>
+            </ImageView>
+            <RadioButton fx:id="chieuBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Chiều" toggleGroup="$caLam" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </RadioButton>
+            <VBox alignment="CENTER_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#apDungBtn" style="-fx-background-color: #C4C4C4;" text="Áp dụng" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <GridPane layoutX="200.0" layoutY="68.0" prefHeight="42.0" prefWidth="1000.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#backBtn" style="-fx-background-color: #FFFFFF;" text="&lt; Back">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chỉnh sửa nhân viên" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
