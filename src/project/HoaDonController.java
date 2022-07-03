@@ -89,15 +89,17 @@ public class HoaDonController implements Initializable {
     void playMedia(ActionEvent event) {
 
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        billInfoLabel1.setText(null);
+        billInfoLabel2.setText(null);
+        billInfoLabel3.setText(null);
         String query = "select (tendouong, size, da, duong, soluong) from thanhphanhoadon";
         ResultSet resultSet = null;
         try {
             resultSet = DBUtil.dbExecuteQuery(query);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -113,11 +115,11 @@ public class HoaDonController implements Initializable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-//            billInfoLabel1.setText(null);
-//            billInfoLabel1.setText(tendouong);
+            billInfoLabel1.setText(null);
+            billInfoLabel1.setText(tendouong);
         }
     }
-    }    //    private void showBillInfo1(ActionEvent event) throws SQLException, ClassNotFoundException {
+}    //    private void showBillInfo1(ActionEvent event) throws SQLException, ClassNotFoundException {
 //        String query = "select (tendouong, size, da, duong, soluong) from thanhphanhoadon";
 //        ResultSet resultSet = DBUtil.dbExecuteQuery(query);
 //
