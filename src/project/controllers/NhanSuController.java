@@ -1,4 +1,4 @@
-package project;
+package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,10 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -21,7 +18,6 @@ import javafx.stage.Stage;
 import project.base.DBUtil;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -206,7 +202,7 @@ public class NhanSuController {
 
     @FXML
     void chinhSuaNhanVienBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/ChinhSuaNhanVien.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/project/screen/ChinhSuaNhanVien.fxml"));
         Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window1.setScene(new Scene(root1));
     }

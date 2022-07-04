@@ -1,4 +1,4 @@
-package project;
+package project.controllers;
 
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXSlider;
@@ -78,7 +78,8 @@ public class DatDoUongController {
 
             VBoxCell(String ten, String tenanh) {
                 super();
-                Image background = new Image(getClass().getResourceAsStream(String.format("resources/image/TraSua/%s",
+                Image background = new Image(getClass().getResourceAsStream(String.format("../resources/image" +
+                                "/TraSua/%s",
                         tenanh)), 100, 100, false, false);
                 imageView.setImage(background);
 
@@ -90,10 +91,11 @@ public class DatDoUongController {
             }
 
             VBoxCell(String tentopping, String tenanh, String giatien) {
-                InputStream imagestream = getClass().getResourceAsStream(String.format("resources/image/Topping/%s",
+                InputStream imagestream = getClass().getResourceAsStream(String.format("../resources/image" +
+                                "/Topping/%s",
                         tenanh));
                 if (imagestream == null){
-                    imagestream = getClass().getResourceAsStream("resources/image/Topping/senvang.jpg");
+                    imagestream = getClass().getResourceAsStream("../resources/image/Topping/senvang.jpg");
                 }
                 Image background = new Image(imagestream, 100, 100, false, false);
                 imageView.setImage(background);
@@ -190,5 +192,12 @@ public class DatDoUongController {
     @FXML
     void printButtonPressed(ActionEvent event){
         JOptionPane.showMessageDialog(null, "Đã in ra hóa đơn", "Sucess", JOptionPane.PLAIN_MESSAGE);
+    }
+
+    public static void main(String[] args) {
+        InputStream imagestream = DatDoUongController.class.getResourceAsStream(".." +
+                "/screen/resources/image/Topping" +
+                "/caramen.png");
+        System.out.println(imagestream);
     }
 }

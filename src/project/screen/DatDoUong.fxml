@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.DatDoUongController">
+<AnchorPane id="AnchorPane" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DatDoUongController">
    <children>
       <HBox fx:id="mainDatDoUong" maxHeight="670.0" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -218,7 +218,7 @@
                                  <graphic>
                                     <ImageView blendMode="DARKEN" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@resources/image/icons/printer.png" />
+                                          <Image url="@../resources/image/icons/printer.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainHoadon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.HoaDonController">
+<AnchorPane fx:id="mainHoadon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.HoaDonController">
    <children>
       <VBox layoutX="200.0" layoutY="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="1000.0" stylesheets="@Stylesheet.css">
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="1000.0" stylesheets="@../Stylesheet.css">
                <children>
                   <Text fill="#514141" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tool-bar" text="Hóa đơn đang chờ" textAlignment="CENTER">
                      <font>
@@ -40,9 +40,9 @@
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
-                                    <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@Stylesheet.css">
+                                    <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Stylesheet.css">
                                        <content>
-                                          <AnchorPane fx:id="billPane1" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
+                                          <AnchorPane fx:id="billPane1" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@../Stylesheet.css">
                                              <styleClass>
                                                 <String fx:value="scroll-pane" />
                                                 <String fx:value="scroll-bar" />
@@ -59,7 +59,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
+                                                      <Image url="@../resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -75,7 +75,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" styleClass="rcorners4">
                                                    <image>
-                                                      <Image url="@resources/image/icons/delete_hoadon.jpg" />
+                                                      <Image url="@../resources/image/icons/delete_hoadon.jpg" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -100,7 +100,7 @@
                                     </Label>
                                     <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
                                        <content>
-                                          <AnchorPane fx:id="billPane2" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
+                                          <AnchorPane fx:id="billPane2" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@../Stylesheet.css">
                                              <styleClass>
                                                 <String fx:value="scroll-pane-hoadon" />
                                                 <String fx:value="scroll-bar-hoadon" />
@@ -119,7 +119,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
+                                                      <Image url="@../resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -135,7 +135,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" styleClass="rcorners4">
                                                    <image>
-                                                      <Image url="@resources/image/icons/delete_hoadon.jpg" />
+                                                      <Image url="@../resources/image/icons/delete_hoadon.jpg" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -160,7 +160,7 @@
                                     </Label>
                                     <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
                                        <content>
-                                          <AnchorPane fx:id="billPane3" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
+                                          <AnchorPane fx:id="billPane3" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@../Stylesheet.css">
                                              <styleClass>
                                                 <String fx:value="scroll-pane-hoadon" />
                                                 <String fx:value="scroll-bar-hoadon" />
@@ -179,7 +179,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
+                                                      <Image url="@../resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -191,7 +191,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" styleClass="rcorners4">
                                                    <image>
-                                                      <Image url="@resources/image/icons/delete_hoadon.jpg" />
+                                                      <Image url="@../resources/image/icons/delete_hoadon.jpg" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>

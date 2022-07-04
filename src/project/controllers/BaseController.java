@@ -1,4 +1,4 @@
-package project;
+package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,9 +56,17 @@ public class BaseController {
     private AnchorPane hoadonScreen;
     @FXML
     private AnchorPane themNvScreen;
+    @FXML
+    private AnchorPane themNguyenlieuScreen;
+    @FXML
+    public AnchorPane themDrinkToppingScreen;
     @FXML private NhanSuController mainNhanSuController;
     @FXML private ThemNhanVienController mainAddStaffController;
     @FXML private TaiKhoanCuaBanController mainAccountController;
+    @FXML private KhoNguyenLieuController mainKhoNguyenLieuController;
+    @FXML private ThemNguyenLieuController mainAddIngreController;
+    @FXML private ThemDoUongToppingController mainAddDrTpController;
+    @FXML private MenuController mainMenuController;
 
     @FXML
     private void initialize() throws SQLException, ClassNotFoundException {
@@ -88,6 +96,10 @@ public class BaseController {
         mainNhanSuController.themNvBtn.setOnAction(actionEvent -> toggleScreen(themNvScreen));
         mainAddStaffController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainAccountController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainKhoNguyenLieuController.taoNguyenlieuBtn.setOnAction(actionEvent -> toggleScreen(themNguyenlieuScreen));
+        mainAddIngreController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainAddDrTpController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
     }
 
 

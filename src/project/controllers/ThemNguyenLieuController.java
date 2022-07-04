@@ -1,4 +1,4 @@
-package project;
+package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,10 +48,12 @@ public class ThemNguyenLieuController {
 
     @FXML
     private ToggleGroup status;
+    @FXML
+    public Button backBtn;
 
     @FXML
     void uploadImageBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ThemNguyenLieu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../screen/ThemNguyenLieu.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         final FileChooser fileChooser = new FileChooser();

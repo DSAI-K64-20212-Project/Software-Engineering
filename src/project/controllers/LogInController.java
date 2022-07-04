@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package project;
+package project.controllers;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -20,13 +19,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import project.base.DBUtil;
 import project.base.user.Admin;
 import project.base.user.Bartender;
 import project.base.user.Cashier;
-import project.base.user.User;
 
 import javax.swing.*;
 import static project.LogIn.monitor;
@@ -68,7 +65,7 @@ public class LogInController implements Initializable {
             // move to main screen
             if (Objects.equals(chucvu, "Quan Ly")) {
                 monitor.newSession(new Admin(result.getString(1)));
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/Base.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Base.fxml")));
                 Stage window = (Stage) username.getScene().getWindow();
                 window.setScene(new Scene(root));
             } else if (Objects.equals(chucvu, "Thu Ngan")) {
@@ -106,7 +103,7 @@ public class LogInController implements Initializable {
             } else if (Objects.equals(chucvu, "Pha Che")) {
                 monitor.newSession(new Bartender(result.getString(1)));
             }
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/Base.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Base.fxml")));
             Stage window = (Stage) username.getScene().getWindow();
             window.setScene(new Scene(root));
         }
