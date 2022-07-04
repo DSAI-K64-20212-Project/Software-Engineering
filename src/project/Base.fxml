@@ -20,7 +20,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox prefHeight="768.0" prefWidth="1024.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.BaseController">
    <children>
       <VBox fx:id="vboxLeft" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" styleClass="side-bar">
@@ -194,7 +193,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" styleClass="button-image" stylesheets="@Stylesheet.css">
+                  <Button mnemonicParsing="false" onAction="#infBtn" prefHeight="33.0" prefWidth="50.0" styleClass="button-image" stylesheets="@Stylesheet.css">
                      <graphic>
                         <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
                            <image>
@@ -208,7 +207,18 @@
                   </Button>
                </children>
             </HBox>
-            <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <StackPane layoutY="1.0" prefHeight="703.0" prefWidth="824.0">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </StackPane>
+               </children></Pane>
          </children>
       </VBox>
    </children>

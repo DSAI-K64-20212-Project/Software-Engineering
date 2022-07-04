@@ -1,5 +1,7 @@
 package project.base.order;
-
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import project.base.DBUtil;
@@ -19,8 +21,10 @@ public class Invoice {
     public int soorder;
     public int khachdua = 0;
     public String tenkhachhang;
-    public String id;
     private int buy_id = 0;
+    public String id;
+    public SimpleIntegerProperty bill = new SimpleIntegerProperty(0);
+
 
     public Invoice(String mahoadon) throws Exception {
         String query = String.format("select * from thanhphanhoadon where mahoadon='%s';", mahoadon);
@@ -49,27 +53,45 @@ public class Invoice {
         //tam thoi random so order
         soorder = ThreadLocalRandom.current().nextInt(0, 50 + 1);
         id = UUID.randomUUID().toString(); //Generates random UUID.
-    }
+    };
     public ObservableList<OneCall> getInFo() {
         return inFo;
     }
 
     public void addCall(String drink_name, char size, double sugar, double ice, String[] toppings) throws Exception {
         this.buy_id += 1;
-        this.inFo.add(new OneCall(buy_id, drink_name, size, sugar, ice, toppings));
+        OneCall oneCall = new OneCall(buy_id, drink_name, size, sugar, ice, toppings);
+        oneCall.getAmountProperty().addListener((observableValue, number, t1) -> {
+            try {
+                updateInvoice();
+                updateBill();
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        this.inFo.add(oneCall);
+        updateBill();
     }
 
     public OneCall getCall(int index) {
         return this.inFo.get(index);
     }
 
-    public int getBill() throws SQLException, ClassNotFoundException {
+    public void updateBill() throws SQLException, ClassNotFoundException {
         int total = 0;
         for (OneCall call : inFo) {
             total += call.get_money();
         }
-        return total;
+        bill.setValue(total);
     }
+
+    public int getBill() {
+        return bill.getValue();
+    }
+    public void updateInvoice(){
+        this.getInFo().removeIf(o -> o.get_ammount() == 0);
+    }
+    public SimpleIntegerProperty getBillProperty(){return bill;}
 
     public void pay(int amount, String tenkhachhang) throws SQLException, ClassNotFoundException {
         int total = this.getBill();
@@ -97,6 +119,6 @@ public class Invoice {
 
     public static void main(String[] args) throws Exception {
         Invoice invoice = new Invoice("5e7c1583-bb5b-4e6a-ab41-97fde6bb6edd");
-        System.out.println(invoice.getBill());
+        System.out.println(invoice.getCall(1));
     }
 }

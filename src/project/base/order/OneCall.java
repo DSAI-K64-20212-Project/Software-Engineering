@@ -1,5 +1,6 @@
 package project.base.order;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import project.base.DBUtil;
 
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ public class OneCall {
     public double sugar;
     public double ice;
     public String[] toppings;
-    public int amount;
+    public SimpleIntegerProperty amount;
 
     public OneCall(int id, String drink_name, char size, double sugar, double ice, String[] toppings) throws Exception {
         if (0<=sugar && sugar<=1 && 0<=ice && ice<=1){
@@ -23,22 +24,24 @@ public class OneCall {
             this.sugar = sugar;
             this.ice = ice;
             this.toppings = toppings;
-            this.amount = 1;
+            this.amount = new SimpleIntegerProperty(1);
         } else {
             throw new Exception("Invalid sugar or ice rate");
         }
     }
 
     public void increase_amount(){
-        this.amount += 1;
+        this.amount.setValue(this.amount.getValue() + 1);
     }
     public void decrease_amount(){
-        if (this.amount > 0) {
-            this.amount -= 1;
+        if (this.amount.getValue() > 0) {
+            this.amount.setValue(this.amount.getValue() - 1);
         } else {
             System.out.println("Not allow negative ammount");
         }
     }
+    public int get_ammount(){return this.amount.getValue();}
+    public SimpleIntegerProperty getAmountProperty(){return amount;}
 
     public int get_money() throws SQLException, ClassNotFoundException {
         int total;
@@ -58,7 +61,7 @@ public class OneCall {
         }
         //tra lại tổng số tiền trong 1 call, bao gồm tiền của đồ uống, phụ thuộc vào size + tiền của topping
         //viết lệnh sql query
-        return total*this.amount;
+        return total*this.amount.getValue();
     }
     public boolean check_availability() throws SQLException, ClassNotFoundException {
         StringJoiner command = new StringJoiner("', '", """
