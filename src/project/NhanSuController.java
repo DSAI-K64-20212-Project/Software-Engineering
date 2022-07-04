@@ -121,6 +121,8 @@ public class NhanSuController {
     private Circle anhNhanVien5;
     @FXML
     private Circle[] anhNhanVien0 = new Circle[6];
+    @FXML
+    public Button themNvBtn;
 
     @FXML
     public void initialize() throws IOException, SQLException, ClassNotFoundException{
@@ -183,81 +185,6 @@ public class NhanSuController {
         }
     }
 
-    @FXML
-    void billBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void ingredientBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void hrBtn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void menuBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void revBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/FXML.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void TaiKhoanCuaBanPressedBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/TaiKhoanCuaBan.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-    @FXML
-    void pauseMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        if(mediaPlayer != null) {
-            System.out.println("Pause !");
-            mediaPlayer.setMute(true);
-        }
-    }
-
-    // Music ON !!!
-    @FXML
-    void playMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        System.out.println("Play Music !");
-        mediaPlayer.setAutoPlay(true);
-    }
-    @FXML
-    void infBtn(MouseEvent event) throws IOException {
-//        avaImg.setPickOnBounds(true);
-        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void themNhanVienBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/ThemNhanVien.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
 
     @FXML
     void traLuongBtn(ActionEvent event) throws IOException {

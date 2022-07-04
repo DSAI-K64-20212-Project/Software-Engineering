@@ -3,7 +3,6 @@ package project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,29 +10,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import project.base.DBUtil;
 import project.base.functional.BartenderInterface;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 public class ThemDoUongToppingController implements BartenderInterface {
 
@@ -137,7 +130,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
 
     @FXML
     void billBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HoaDon.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("HoaDon_temp.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

@@ -2,315 +2,216 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.HoaDonController">
+<AnchorPane fx:id="mainHoadon" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.HoaDonController">
    <children>
-      <VBox fx:id="vboxLeft1" prefHeight="737.0" prefWidth="256.0" styleClass="side-bar">
+      <VBox layoutX="200.0" layoutY="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="226.0" prefWidth="256.0">
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="1000.0" stylesheets="@Stylesheet.css">
                <children>
-                  <ImageView fitHeight="205.0" fitWidth="230.0" layoutX="13.0" layoutY="11.0">
-                     <image>
-                        <Image url="@resources/Logo/Horizon/hardegde/HUST%20Milk%20Tea-logos_white.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="256.0" text=" Đặt đồ uống" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/add.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <styleClass>
-                  <String fx:value="label" />
-                  <String fx:value="invert" />
-               </styleClass>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nguyenLieuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Nguyên liệu" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/shopping-cart.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nhanSuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Nhân sự" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/users.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Menu" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/list-check.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#doanhThuPressedBtn" prefHeight="50.0" prefWidth="256.0" styleClass="label" text=" Doanh thu" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/piggy-bank.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <VBox layoutX="256.0" prefHeight="737.0" prefWidth="835.0">
-         <children>
-            <ToolBar prefHeight="61.0" prefWidth="794.0">
-               <items>
-                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
-                     <image>
-                        <Image url="@resources/image/icons/search.png" />
-                     </image>
-                  </ImageView>
-                  <Pane prefHeight="36.0" prefWidth="708.0">
-                     <children>
-                        <TextField layoutX="14.0" layoutY="15.0" opacity="0.46" prefHeight="25.0" prefWidth="177.0" promptText="Search" styleClass="border">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </Pane>
-                  <Button mnemonicParsing="false" onAction="#TaiKhoanCuaBanPressedBtn" style="-fx-background-color: #1259A3;">
-                     <graphic>
-                        <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@resources/image/icons/following.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </items>
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-            </ToolBar>
-            <HBox prefHeight="38.0" prefWidth="225.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hóa đơn đang chờ" wrappingWidth="351.7294921875">
+                  <Text fill="#514141" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tool-bar" text="Hóa đơn đang chờ" textAlignment="CENTER">
                      <font>
-                        <Font size="37.0" />
+                        <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
                </children>
             </HBox>
-            <ScrollPane layoutY="47.0" prefHeight="630.0" prefWidth="835.0">
+            <ScrollPane prefHeight="600.0" prefWidth="824.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="613.0" prefWidth="1251.0">
+                <AnchorPane prefHeight="489.0" prefWidth="800.0">
                      <children>
-                        <AnchorPane layoutX="35.0" prefHeight="614.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
+                        <HBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="2.0" prefHeight="54.0" prefWidth="223.0" text="Hóa Đơn" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                              </Label>
-                              <HBox layoutX="1.0" layoutY="340.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #58C063, #58C063);" AnchorPane.topAnchor="340.0">
+                              <AnchorPane prefHeight="415.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Đã xong" textAlignment="CENTER" wrappingWidth="224.7294921875">
+                                    <Label alignment="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="49.0" prefWidth="207.0" text="Hóa Đơn 1" textFill="#514141">
                                        <font>
-                                          <Font size="37.0" />
+                                          <Font name="System Bold" size="25.0" />
                                        </font>
-                                    </Text>
-                                 </children>
-                              </HBox>
-                              <ScrollPane layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
+                                    </Label>
+                                    <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@Stylesheet.css">
+                                       <content>
+                                          <AnchorPane fx:id="billPane1" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
+                                             <styleClass>
+                                                <String fx:value="scroll-pane" />
+                                                <String fx:value="scroll-bar" />
+                                                <String fx:value="decrement-button" />
+                                                <String fx:value="increment-button" />
+                                                <String fx:value="track" />
+                                             </styleClass>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <HBox layoutX="28.0" layoutY="354.0">
                                        <children>
-                                          <Label alignment="TOP_LEFT" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="TOP_LEFT" layoutX="2.0" layoutY="81.0" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="162.0" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
+                                          <Button fx:id="billCheckedButton1" mnemonicParsing="false" prefHeight="58.0" prefWidth="83.0" textFill="#2fd419">
+                                             <graphic>
+                                                <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <styleClass>
+                                                <String fx:value="buttonInvisible" />
+                                                <String fx:value="button-bill" />
+                                             </styleClass>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button fx:id="billCancelButton1" mnemonicParsing="false" prefHeight="58.0" prefWidth="83.0" style="-fx-background-radius: 15;" textFill="#2fd419">
+                                             <graphic>
+                                                <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" styleClass="rcorners4">
+                                                   <image>
+                                                      <Image url="@resources/image/icons/delete_hoadon.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <styleClass>
+                                                <String fx:value="buttonInvisible" />
+                                                <String fx:value="rounded-corners" />
+                                             </styleClass>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
                                        </children>
-                                    </AnchorPane>
-                                </content>
-                              </ScrollPane>
-                              <HBox alignment="CENTER" layoutX="1.0" layoutY="296.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #FFFFFF, #FFFFFF);">
-                                 <children>
-                                    <Text fill="#220000" strokeType="OUTSIDE" strokeWidth="0.0" text="Thời gian chờ:" textAlignment="CENTER" wrappingWidth="224.7294921875">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                    </Text>
+                                    </HBox>
                                  </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="296.0" prefHeight="615.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
-                           <children>
-                              <Label alignment="CENTER" layoutX="2.0" prefHeight="54.0" prefWidth="223.0" text="Hóa Đơn" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                              </Label>
-                              <HBox layoutX="1.0" layoutY="340.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #9C9797, #9C9797);" AnchorPane.topAnchor="340.0">
+                              </AnchorPane>
+                              <AnchorPane prefHeight="415.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Đang chờ" textAlignment="CENTER" wrappingWidth="224.7294921875">
+                                    <Label alignment="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="49.0" prefWidth="207.0" text="Hóa Đơn 2" textFill="#514141">
                                        <font>
-                                          <Font size="37.0" />
+                                          <Font name="System Bold" size="25.0" />
                                        </font>
-                                    </Text>
-                                 </children>
-                              </HBox>
-                              <ScrollPane layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="336.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
+                                    </Label>
+                                    <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
+                                       <content>
+                                          <AnchorPane fx:id="billPane2" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
+                                             <styleClass>
+                                                <String fx:value="scroll-pane-hoadon" />
+                                                <String fx:value="scroll-bar-hoadon" />
+                                                <String fx:value="decrement-button-hoadon" />
+                                                <String fx:value="increment-button-hoadon" />
+                                             </styleClass>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <HBox alignment="CENTER" layoutX="24.0" layoutY="356.0" prefHeight="49.0" prefWidth="183.0">
                                        <children>
-                                          <Label alignment="TOP_LEFT" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="TOP_LEFT" layoutX="2.0" layoutY="81.0" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="162.0" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
+                                          <Button fx:id="billCheckedButton2" mnemonicParsing="false" prefHeight="58.0" prefWidth="83.0" textFill="#2fd419">
+                                             <graphic>
+                                                <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <styleClass>
+                                                <String fx:value="buttonInvisible" />
+                                                <String fx:value="button-bill" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button fx:id="billCancelButton2" mnemonicParsing="false" prefHeight="58.0" prefWidth="83.0" style="-fx-background-radius: 15;" textFill="#2fd419">
+                                             <graphic>
+                                                <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" styleClass="rcorners4">
+                                                   <image>
+                                                      <Image url="@resources/image/icons/delete_hoadon.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <styleClass>
+                                                <String fx:value="buttonInvisible" />
+                                                <String fx:value="rounded-corners" />
+                                             </styleClass>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
                                        </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <HBox alignment="CENTER" layoutX="1.0" layoutY="296.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #FFFFFF, #FFFFFF);">
-                                 <children>
-                                    <Text fill="#220000" strokeType="OUTSIDE" strokeWidth="0.0" text="Thời gian chờ:" textAlignment="CENTER" wrappingWidth="224.7294921875">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                    </Text>
+                                    </HBox>
                                  </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="556.0" prefHeight="615.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
-                           <children>
-                              <Label alignment="CENTER" layoutX="2.0" prefHeight="54.0" prefWidth="223.0" text="Hóa Đơn" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                              </Label>
-                              <HBox layoutX="1.0" layoutY="340.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #D73838, #D73838);" AnchorPane.topAnchor="340.0">
+                              </AnchorPane>
+                              <AnchorPane prefHeight="415.0" prefWidth="227.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hủy đơn" textAlignment="CENTER" wrappingWidth="224.7294921875">
+                                    <Label alignment="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="49.0" prefWidth="207.0" text="Hóa Đơn 3" textFill="#514141">
                                        <font>
-                                          <Font size="37.0" />
+                                          <Font name="System Bold" size="25.0" />
                                        </font>
-                                    </Text>
-                                 </children>
-                              </HBox>
-                              <ScrollPane layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);">
+                                    </Label>
+                                    <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0">
+                                       <content>
+                                          <AnchorPane fx:id="billPane3" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="196.0" style="-fx-background-color: linear-gradient(to right, #CF6F6F, #CF6F6F);" stylesheets="@Stylesheet.css">
+                                             <styleClass>
+                                                <String fx:value="scroll-pane-hoadon" />
+                                                <String fx:value="scroll-bar-hoadon" />
+                                                <String fx:value="decrement-button-hoadon" />
+                                                <String fx:value="increment-button-hoadon" />
+                                             </styleClass>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <HBox alignment="CENTER" layoutX="24.0" layoutY="356.0" prefHeight="49.0" prefWidth="183.0">
                                        <children>
-                                          <Label alignment="TOP_LEFT" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="TOP_LEFT" layoutX="2.0" layoutY="81.0" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="162.0" prefHeight="81.0" prefWidth="193.0" text="1 X Trà thái&#10;&#9;Size M&#10;&#9;Không đá&#10;&#9;50% đường&#10;" textFill="WHITE">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </Label>
+                                          <Button fx:id="billCheckedButton3" mnemonicParsing="false" prefHeight="58.0" prefWidth="83.0" styleClass="buttonInvisible" textFill="#2fd419">
+                                             <graphic>
+                                                <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@resources/image/icons/White_check_mark_in_dark_green_rounded_square.svg.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button fx:id="billCancelButton3" mnemonicParsing="false" prefHeight="58.0" prefWidth="83.0" style="-fx-background-radius: 15;" textFill="#2fd419">
+                                             <graphic>
+                                                <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" styleClass="rcorners4">
+                                                   <image>
+                                                      <Image url="@resources/image/icons/delete_hoadon.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <styleClass>
+                                                <String fx:value="buttonInvisible" />
+                                                <String fx:value="rounded-corners" />
+                                             </styleClass>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
                                        </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <HBox alignment="CENTER" layoutX="1.0" layoutY="296.0" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: linear-gradient(to right, #FFFFFF, #FFFFFF);">
-                                 <children>
-                                    <Text fill="#220000" strokeType="OUTSIDE" strokeWidth="0.0" text="Thời gian chờ:" textAlignment="CENTER" wrappingWidth="224.7294921875">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                    </Text>
+                                    </HBox>
                                  </children>
-                              </HBox>
+                              </AnchorPane>
                            </children>
-                        </AnchorPane>
+                           <padding>
+                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </AnchorPane>
               </content>

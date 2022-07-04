@@ -1,40 +1,21 @@
 package project;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
+import project.base.DBUtil;
 
-import java.io.IOException;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import static project.LogIn.monitor;
 
 public class BaseController {
-
-    private Scene scene;
-    private Stage stage;
-    private Parent root;
-    @FXML
-    private Button pauseButton;
-
-    @FXML
-    private ImageView avaImg;
-
-    @FXML
-    private VBox vboxLeft;
-
-    @FXML
-    private Button playButton;
     @FXML
     private Button datdoUongBtn;
     @FXML
@@ -45,9 +26,17 @@ public class BaseController {
     private Button menuBtn;
     @FXML
     private Button doanhthuBtn;
-    private AnchorPane activeScreen = new AnchorPane();
+    @FXML
+    private Label welcomeLabel;
+    @FXML
+    private AnchorPane initPane;
+    private AnchorPane activeScreen;
+    private AnchorPane prevScreen;
+
+
     private void toggleScreen(AnchorPane screen){
         activeScreen.setVisible(false);
+        prevScreen = activeScreen;
         activeScreen = screen;
         activeScreen.setVisible(true);
     }
@@ -62,7 +51,24 @@ public class BaseController {
     @FXML
     private AnchorPane doanhthuScreen;
     @FXML
-    private void initialize(){
+    private AnchorPane infoScreen;
+    @FXML
+    private AnchorPane hoadonScreen;
+    @FXML
+    private AnchorPane themNvScreen;
+    @FXML private NhanSuController mainNhanSuController;
+    @FXML private ThemNhanVienController mainAddStaffController;
+    @FXML private TaiKhoanCuaBanController mainAccountController;
+
+    @FXML
+    private void initialize() throws SQLException, ClassNotFoundException {
+        activeScreen = initPane;
+        ResultSet result =
+                DBUtil.dbExecuteQuery(String.format("Select tennhanvien from nhanvien where tendangnhap = '%s';",
+                        monitor.getActiveUser().getUsername()));
+        result.next();
+        String hovaten = result.getString(1);
+        welcomeLabel.setText(String.format("Chào mừng %s", hovaten));
         if (monitor.getCashier() != null) {
             datdoUongBtn.setOnAction(actionEvent -> toggleScreen(datdouongScreen));
             nguyenlieuBtn.setVisible(false);
@@ -71,26 +77,23 @@ public class BaseController {
             doanhthuBtn.setVisible(false);
         } else if (monitor.getBartender() != null) {
             datdoUongBtn.setText("Hóa đơn");
-            datdoUongBtn.setOnAction(actionEvent -> toggleScreen(datdouongScreen));
+            datdoUongBtn.setOnAction(actionEvent -> toggleScreen(hoadonScreen));
             nhansuBtn.setVisible(false);
             menuBtn.setVisible(false);
             doanhthuBtn.setVisible(false);
         } else if (monitor.getAdmin() != null) {
             datdoUongBtn.setText("Hóa đơn");
-            datdoUongBtn.setOnAction(actionEvent -> toggleScreen(datdouongScreen));
+            datdoUongBtn.setOnAction(actionEvent -> toggleScreen(hoadonScreen));
         }
-
+        mainNhanSuController.themNvBtn.setOnAction(actionEvent -> toggleScreen(themNvScreen));
+        mainAddStaffController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainAccountController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
     }
 
 
     @FXML
-    void infBtn(ActionEvent event) throws IOException {
-//        avaImg.setPickOnBounds(true);
-        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    void infBtn(ActionEvent event) {
+        toggleScreen(infoScreen);
     }
 
     @FXML
@@ -104,7 +107,7 @@ public class BaseController {
     }
 
     @FXML
-    void menuOnPressed(ActionEvent event) throws IOException {
+    void menuOnPressed(ActionEvent event) {
         toggleScreen(menuScreen);
     }
 
@@ -132,7 +135,5 @@ public class BaseController {
         System.out.println("Play Music !");
         mediaPlayer.setAutoPlay(true);
     }
-
-
 }
 

@@ -24,60 +24,8 @@ import java.util.ResourceBundle;
  *
  * @author Mr Pham Truong
  */
-public class TaiKhoanCuaBanController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-
+public class TaiKhoanCuaBanController{
     @FXML
-    private VBox vboxLeft1;
+    public Button backBtn;
 
-    @FXML
-    private Button btnDoanhThu1;
-
-    @FXML
-    void datDoUongPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    @FXML
-    void nguyenLieuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    @FXML
-    void nhanSuPressedBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/NhanSu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void menuPressedBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void doanhThuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    @FXML
-    void TaiKhoanCuaBanPressedBtn(ActionEvent event) {
-
-    }
-    
 }
