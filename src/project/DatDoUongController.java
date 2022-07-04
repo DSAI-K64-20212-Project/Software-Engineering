@@ -175,12 +175,16 @@ public class DatDoUongController {
 
     @FXML
     void XacNhanPressedBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        Cashier cashier = (Cashier) monitor.getActiveUser();
-        String message = cashier.confirm_new_invoice(cashier.getUsername(), hoadon);
-        JOptionPane.showMessageDialog(null, message);
-        if (Objects.equals(message, "Success!")){
-            hoadon = new Invoice();
-            initialize();
+        if (monitor.getCashier() != null){
+            Cashier user = monitor.getCashier();
+            String message = user.confirm_new_invoice(user.getUsername(), hoadon);
+            JOptionPane.showMessageDialog(null, message);
+            if (Objects.equals(message, "Success!")){
+                hoadon = new Invoice();
+                initialize();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid user, not cashier, pls log out and log in again!");
         }
     }
     @FXML

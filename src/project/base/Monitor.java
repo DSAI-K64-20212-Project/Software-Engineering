@@ -11,11 +11,6 @@ public class Monitor {
     private Cashier cashier;
     private Bartender bartender;
     private Admin admin;
-    private User activeUser;
-
-    public User getActiveUser() {
-        return activeUser;
-    }
 
     public Monitor() throws SQLException, ClassNotFoundException {
         DBUtil.dbConnect();
@@ -38,11 +33,14 @@ public class Monitor {
         this.admin = admin;
     }
 
-    public User getActiveUser() {
-        if (this.cashier != null)  return this.cashier;
-        if (this.bartender != null) return this.bartender;
-        if (this.admin != null) return this.admin;
-        return null;
+    public Cashier getCashier() {
+        return this.cashier;
+    }
+    public Bartender getBartender() {
+        return this.bartender;
+    }
+    public Admin getAdmin() {
+        return this.admin;
     }
 
 
