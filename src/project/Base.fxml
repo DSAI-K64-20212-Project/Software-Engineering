@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -17,209 +10,235 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="768.0" prefWidth="1024.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.BaseController">
+<AnchorPane maxHeight="740.0" maxWidth="1024.0" minHeight="720.0" minWidth="1024.0" prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.BaseController">
    <children>
-      <VBox fx:id="vboxLeft" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" styleClass="side-bar">
+      <HBox layoutX="6.0" layoutY="43.0" prefHeight="740.0" prefWidth="1024.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="111.0" prefWidth="163.0">
+            <VBox fx:id="vboxLeft" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" styleClass="side-bar">
                <children>
-                  <ImageView fitHeight="197.0" fitWidth="215.0" layoutX="-6.0" layoutY="-43.0">
-                     <image>
-                        <Image url="@resources/Logo/Horizon/hardegde/HUST%20Milk%20Tea-logos_white.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#billBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text="Đặt đồ uống" textFill="WHITE">
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/add.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ingredientBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/shopping-cart.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#hrBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/users.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/list-check.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#revBtn" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Doanh thu" textFill="WHITE">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/image/icons/piggy-bank.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </VBox>
-      <VBox prefHeight="600.0" prefWidth="488.0" HBox.hgrow="ALWAYS">
-         <children>
-            <HBox prefHeight="60.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@Stylesheet.css">
-               <children>
-                  <HBox prefHeight="49.0" prefWidth="739.0">
+                  <Pane prefHeight="111.0" prefWidth="163.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="0.0" prefWidth="41.0">
-                           <children>
-                              <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
-                                 <image>
-                                    <Image url="@resources/image/icons/search.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="281.0">
-                           <children>
-                              <TextField alignment="BASELINE_LEFT" opacity="0.57" prefHeight="25.0" prefWidth="251.0" promptText="Search" styleClass="border">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </TextField>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefWidth="566.0">
-                     <children>
-                        <Label text="Theme Song " textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="61.0" prefWidth="33.0" styleClass="button-sidebar">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0">
-                                 <image>
-                                    <Image url="@resources/image/icons/pause.png" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMedia" prefHeight="61.0" prefWidth="49.0" styleClass="button-sidebar">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0">
-                                 <image>
-                                    <Image url="@resources/image/icons/play.png" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <Button mnemonicParsing="false" onAction="#infBtn" prefHeight="33.0" prefWidth="50.0" styleClass="button-image" stylesheets="@Stylesheet.css">
-                     <graphic>
-                        <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
+                        <ImageView fitHeight="197.0" fitWidth="215.0" layoutX="-6.0" layoutY="-43.0">
                            <image>
-                              <Image url="@resources/image/icons/following.png" />
+                              <Image url="@resources/Logo/Horizon/hardegde/HUST%20Milk%20Tea-logos_white.png" />
                            </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Button fx:id="datdoUongBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text="Đặt đồ uống" textFill="WHITE">
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/image/icons/add.png" />
+                           </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="nguyenlieuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nguyenlieuOnPressed" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nguyên liệu" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/image/icons/shopping-cart.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="nhansuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nhansuOnPressed" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/image/icons/users.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="menuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuOnPressed" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/image/icons/list-check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="doanhthuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#doanhthuOnPressed" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Doanh thu" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/image/icons/piggy-bank.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
-            </HBox>
-            <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            </VBox>
+            <VBox prefHeight="600.0" prefWidth="488.0" HBox.hgrow="ALWAYS">
                <children>
-                  <StackPane layoutY="1.0" prefHeight="703.0" prefWidth="824.0">
+                  <HBox maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@Stylesheet.css">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <HBox maxHeight="49.0" minHeight="49.0" prefHeight="49.0" prefWidth="739.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="0.0" prefWidth="41.0">
+                                 <children>
+                                    <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
+                                       <image>
+                                          <Image url="@resources/image/icons/search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="281.0">
+                                 <children>
+                                    <TextField alignment="BASELINE_LEFT" opacity="0.57" prefHeight="25.0" prefWidth="251.0" promptText="Search" styleClass="border">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="566.0">
+                           <children>
+                              <Label text="Theme Song " textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="61.0" prefWidth="33.0" styleClass="button-sidebar">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0">
+                                       <image>
+                                          <Image url="@resources/image/icons/pause.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMedia" prefHeight="61.0" prefWidth="49.0" styleClass="button-sidebar">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0">
+                                       <image>
+                                          <Image url="@resources/image/icons/play.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#infBtn" prefHeight="33.0" prefWidth="50.0" styleClass="button-image" stylesheets="@Stylesheet.css">
+                           <graphic>
+                              <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
+                                 <image>
+                                    <Image url="@resources/image/icons/following.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
-                  </StackPane>
-               </children></Pane>
+                  </HBox>
+                  <AnchorPane maxHeight="670.0" minHeight="670.0" minWidth="824.0" prefHeight="670.0" prefWidth="200.0">
+                     <children>
+                        <StackPane prefHeight="675.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane fx:id="datdouongScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <children>
+                                         <fx:include fx:id="mainDatDoUong" source="DatDoUong.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="khoNguyenLieuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <children>
+                                    <fx:include fx:id="mainKhoNguyenLieu" source="KhoNguyenLieu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="nhansuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <children>
+                                    <fx:include fx:id="mainNhanSu" source="NhanSu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="menuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <children>
+                                    <fx:include fx:id="mainMenu" source="Menu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="doanhthuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <children>
+                                    <fx:include fx:id="mainDoanhthu" source="DoanhThu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
-</HBox>
+</AnchorPane>

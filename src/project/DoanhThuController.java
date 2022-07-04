@@ -45,8 +45,6 @@ public class DoanhThuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//        vboxLeft.setStyle("-fx-background-color: #19A1CF");
-        btnDoanhThu.setStyle("-fx-background-color: #C4C4C4");
     }
 
     private void handleBtnDashBoard(ActionEvent event) {
