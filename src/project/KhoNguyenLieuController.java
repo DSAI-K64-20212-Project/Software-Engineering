@@ -29,7 +29,7 @@ public class KhoNguyenLieuController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         // TODO
     }
 
@@ -75,5 +75,13 @@ public class KhoNguyenLieuController implements Initializable {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
-    
+
+
+    @FXML
+    void taoNguyenLieuOnPressed(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/project/ThemNguyenLieu.fxml"));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
+    }
+
 }
