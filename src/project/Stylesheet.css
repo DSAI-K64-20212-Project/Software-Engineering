@@ -80,7 +80,7 @@ buttonInvisible {
 .title-text {
     -fx-font-family: 'Inter', monospace;
     -fx-background-color: Transparent;
-    -fx-font-size: 32px;
+    -fx-font-size: 20;
 }
 
 .normal-text {

@@ -1,6 +1,7 @@
 package project;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import static project.LogIn.monitor;
 
 public class BaseController {
 
@@ -33,6 +35,52 @@ public class BaseController {
 
     @FXML
     private Button playButton;
+    @FXML
+    private Button datdoUongBtn;
+    @FXML
+    private Button nguyenlieuBtn;
+    @FXML
+    private Button nhansuBtn;
+    @FXML
+    private Button menuBtn;
+    @FXML
+    private Button doanhthuBtn;
+    private AnchorPane activeScreen = new AnchorPane();
+    private void toggleScreen(AnchorPane screen){
+        activeScreen.setVisible(false);
+        activeScreen = screen;
+        activeScreen.setVisible(true);
+    }
+    @FXML
+    private AnchorPane datdouongScreen;
+    @FXML
+    private AnchorPane khoNguyenLieuScreen;
+    @FXML
+    private AnchorPane nhansuScreen;
+    @FXML
+    private AnchorPane menuScreen;
+    @FXML
+    private AnchorPane doanhthuScreen;
+    @FXML
+    private void initialize(){
+        if (monitor.getCashier() != null) {
+            datdoUongBtn.setOnAction(actionEvent -> toggleScreen(datdouongScreen));
+            nguyenlieuBtn.setVisible(false);
+            nhansuBtn.setVisible(false);
+            menuBtn.setVisible(false);
+            doanhthuBtn.setVisible(false);
+        } else if (monitor.getBartender() != null) {
+            datdoUongBtn.setText("Hóa đơn");
+            datdoUongBtn.setOnAction(actionEvent -> toggleScreen(datdouongScreen));
+            nhansuBtn.setVisible(false);
+            menuBtn.setVisible(false);
+            doanhthuBtn.setVisible(false);
+        } else if (monitor.getAdmin() != null) {
+            datdoUongBtn.setText("Hóa đơn");
+            datdoUongBtn.setOnAction(actionEvent -> toggleScreen(datdouongScreen));
+        }
+
+    }
 
 
     @FXML
@@ -46,59 +94,24 @@ public class BaseController {
     }
 
     @FXML
-    void billBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HoaDon.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    void nguyenlieuOnPressed(ActionEvent event) {
+        toggleScreen(khoNguyenLieuScreen);
     }
 
     @FXML
-    void ingredientBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ThemNguyenLieu.fxml")); // TEST THÔI, NHỚ SỬA LẠI
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    void nhansuOnPressed(ActionEvent event) {
+        toggleScreen(nhansuScreen);
     }
 
     @FXML
-    void hrBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    void menuOnPressed(ActionEvent event) throws IOException {
+        toggleScreen(menuScreen);
     }
 
     @FXML
-    void menuBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    void doanhthuOnPressed(ActionEvent event) {
+        toggleScreen(doanhthuScreen);
     }
-
-    @FXML
-    void revBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DoanhThu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void ordBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DatDoUong.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     @FXML
     void pauseMedia(ActionEvent event) {
         String f = "src/project/resources/music/home.mp3";

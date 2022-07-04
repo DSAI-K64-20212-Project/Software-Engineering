@@ -14,34 +14,27 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import project.UI.InvoiceView;
 import project.base.DBUtil;
 import project.base.order.Invoice;
+import project.base.user.Cashier;
 
+import javax.swing.*;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+
 import static project.LogIn.monitor;
 
 
 public class DatDoUongController {
     @FXML
-    private RadioButton sizeM;
-    @FXML
-    private RadioButton sizeL;
-    @FXML
     private ToggleGroup size;
-    @FXML
-    private Label doUong1;
-    @FXML
-    private Label tenTopping1;
-    @FXML
-    private Label giaTopping1;
 
     @FXML
     private JFXSlider daSlider;
@@ -50,75 +43,9 @@ public class DatDoUongController {
     private JFXSlider duongSlider;
 
     @FXML
-    private Label l1;
-
-    @FXML
-    private Pane pane1;
-    @FXML
-    private VBox vboxLeft;
-
-    @FXML
     private TextField khachTra;
     @FXML
-    private VBox hoaDon1;
-    @FXML
-    private Text tenDoUong1;
-    @FXML
-    private Text modDoUong1;
-    @FXML
-    private Text tongTien;
-    @FXML
-    private Text soDu;
-
-    @FXML
-    private Label l11;
-
-    @FXML
-    private VBox hoaDon11;
-
-    @FXML
-    private Text tenDoUong11;
-
-    @FXML
-    private Pane pane11;
-    @FXML
-    private Text modDoUong11;
-
-    @FXML
-    private Label l12;
-
-    @FXML
-    private VBox hoaDon12;
-
-    @FXML
-    private Text tenDoUong12;
-
-    @FXML
-    private Pane pane12;
-    @FXML
-    private Text modDoUong12;
-    @FXML
-    private Pane topping1;
-    @FXML
-    private Text giaHoaDon1;
-
-    @FXML
-    private Button buttonLoai1;
-
-    @FXML
-    private Button buttonLoai11;
-    @FXML
-    private Button buttonLoai12;
-    @FXML
-    private Label giaLoai1;
-
-    @FXML
-    private Label giaLoai11;
-    @FXML
-    private Text giaHoaDon11;
-    @FXML
-    private Text giaHoaDon12;
-
+    private TextField tenKhach;
     @FXML
     private JFXListView toppingList;
     @FXML
@@ -127,6 +54,10 @@ public class DatDoUongController {
     private ScrollPane hoadonList;
     @FXML
     private Label totalBillLabel;
+    @FXML
+    private Text khachTraLabel;
+    @FXML
+    private Label soDuLabel;
 
 
     private static Invoice hoadon = new Invoice();
@@ -210,9 +141,14 @@ public class DatDoUongController {
             chosenTopping = local.toArray(new String[0]);
             System.out.println(Arrays.toString(chosenTopping));
         });
+        ObservableStringValue formattedPaid = Bindings.createStringBinding(() ->
+                String.format("Khách trả: %d.000đ",hoadon.getPaid()), hoadon.getPaidProperty());
+        khachTraLabel.textProperty().bind(formattedPaid);
+        ObservableStringValue formattedOdd = Bindings.createStringBinding(() ->
+                String.format("Số dư: %d.000đ",hoadon.getPaid() - hoadon.getBill()), hoadon.getBillProperty(),
+                hoadon.getPaidProperty());
+        soDuLabel.textProperty().bind(formattedOdd);
     }
-
-    int cAdd = 0;
 
     @FXML
     void AddPressedBtn(ActionEvent event) throws Exception {
@@ -224,13 +160,35 @@ public class DatDoUongController {
 
     @FXML
     void KhachTraPressedBtn(ActionEvent event) {
-        int i = Integer.parseInt(khachTra.getText());
-        System.out.print(i);
-        soDu.setText(String.valueOf(i-Integer.parseInt(tongTien.getText())));
+        if (tenKhach.getText().trim().isEmpty() || khachTra.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Empty Field", "ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            int i = Integer.parseInt(khachTra.getText());
+            hoadon.pay(i, tenKhach.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid Number", "ERROR!", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    void XacNhanPressedBtn(ActionEvent event) {
-
+    void XacNhanPressedBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+        if (monitor.getCashier() != null){
+            Cashier user = monitor.getCashier();
+            String message = user.confirm_new_invoice(user.getUsername(), hoadon);
+            JOptionPane.showMessageDialog(null, message);
+            if (Objects.equals(message, "Success!")){
+                hoadon = new Invoice();
+                initialize();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid user, not cashier, pls log out and log in again!");
+        }
+    }
+    @FXML
+    void printButtonPressed(ActionEvent event){
+        JOptionPane.showMessageDialog(null, "Đã in ra hóa đơn", "Sucess", JOptionPane.PLAIN_MESSAGE);
     }
 }
