@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.base.user.Admin;
 import project.base.user.Bartender;
+import project.base.user.Cashier;
 import project.base.user.User;
 
 import javax.swing.*;
@@ -28,6 +29,10 @@ import static project.LogIn.monitor;
 public class ThemNguyenLieuController {
 
     private Stage stage;
+
+    private User user;
+
+    private String sta;
 
     @FXML
     private Button imageBtn;
@@ -43,8 +48,6 @@ public class ThemNguyenLieuController {
 
     @FXML
     private ToggleGroup status;
-
-    private List imgList;
 
     @FXML
     void uploadImageBtn(ActionEvent event) throws IOException {
@@ -63,8 +66,6 @@ public class ThemNguyenLieuController {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
         File file = fileChooser.showOpenDialog(stage);
-        System.out.println(file);
-
 
         // Set image sau khi upload ảnh
         Image img = new Image(String.valueOf(file));
@@ -73,6 +74,7 @@ public class ThemNguyenLieuController {
         view.setFitWidth(200);
         // Hide text
         uploadTxt.setVisible(false);
+        uploadTxt.setText(String.valueOf(file));
         imageBtn.setGraphic(view);
 
         System.out.println(imageBtn.getText());
@@ -82,19 +84,39 @@ public class ThemNguyenLieuController {
     @FXML
     void addNewBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
 
-        User user = monitor.getActiveUser();
-        if (user instanceof Bartender) {
+        // Check trạng thái
+        if (String.valueOf(status.getSelectedToggle()).contains("Còn hàng")) {
+            sta = "Con hang";
+        }
+        else if (String.valueOf(status.getSelectedToggle()).contains("Hết hàng")) {
+            sta = "Het hang";
+        }
+        else {
+            sta = null;
+        }
+
+        // Check file ảnh
+        String imgPath = uploadTxt.getText();
+        imgPath = imgPath.substring(imgPath.lastIndexOf("\\") + 1);
+
+
+        if (monitor.getBartender() != null) {
             Bartender user2 = (Bartender) user;
-            user2.add_ingredient(monitor.getActiveUser().getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), String.valueOf(status.getSelectedToggle()), "TEST");
+            user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
         }
-        else if (user instanceof Admin){
+        else if (monitor.getAdmin() != null){
             Admin user2 = (Admin) user;
-            user2.add_ingredient(monitor.getActiveUser().getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), String.valueOf(status.getSelectedToggle()), "TEST");
+            user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
         }
 
+        else if (monitor.getCashier() != null){
+            JOptionPane.showMessageDialog(null, "Chỉ có Quản Lý và Pha Chế được phép thêm đồ uống", "No Permission", 0);
+        }
 
-//        String command = String.format("INSERT INTO nguyenlieu (tennguyenlieu, nhacungcap, trangthai, anh) VALUES ('%s', '%s', '%s', '%s')",
-//                );
+        tenNguyenLieu.setText("");
+        nhaCungCap.setText("");
+
+
         // Notification
         JOptionPane.showMessageDialog(null, "Topping đã được thêm thành công", "Notification", 1);
     }

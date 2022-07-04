@@ -79,7 +79,6 @@ public class BaseController {
             datdoUongBtn.setText("Hóa đơn");
             datdoUongBtn.setOnAction(actionEvent -> toggleScreen(datdouongScreen));
         }
-
     }
 
 
