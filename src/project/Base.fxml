@@ -211,11 +211,11 @@
                <children>
                   <StackPane layoutY="1.0" prefHeight="703.0" prefWidth="824.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </StackPane>
                </children></Pane>
