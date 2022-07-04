@@ -56,7 +56,7 @@ public class BaseController {
 
     @FXML
     void ingredientBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ThemNguyenLieu.fxml")); // TEST THÔI, NHỚ SỬA LẠI
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

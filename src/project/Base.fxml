@@ -20,9 +20,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="768.0" prefWidth="1024.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.BaseController">
+<HBox prefHeight="740.0" prefWidth="1024.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.BaseController">
    <children>
-      <VBox fx:id="vboxLeft" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" styleClass="side-bar">
+      <VBox fx:id="vboxLeft" prefHeight="740.0" prefWidth="200.0" styleClass="side-bar">
          <children>
             <Pane prefHeight="111.0" prefWidth="163.0">
                <children>
@@ -128,11 +128,11 @@
             </Button>
          </children>
       </VBox>
-      <VBox prefHeight="600.0" prefWidth="488.0" HBox.hgrow="ALWAYS">
+      <VBox prefHeight="740.0" prefWidth="824.0" HBox.hgrow="ALWAYS">
          <children>
-            <HBox prefHeight="60.0" prefWidth="1000.0" styleClass="tool-bar" stylesheets="@Stylesheet.css">
+            <HBox prefHeight="40.0" prefWidth="824.0" styleClass="tool-bar" stylesheets="@Stylesheet.css">
                <children>
-                  <HBox prefHeight="49.0" prefWidth="739.0">
+                  <HBox prefHeight="40.0" prefWidth="740.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="0.0" prefWidth="41.0">
                            <children>
@@ -160,7 +160,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefWidth="566.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="560.0">
                      <children>
                         <Label text="Theme Song " textFill="WHITE">
                            <font>
