@@ -5,7 +5,6 @@ import project.base.order.Invoice;
 import project.base.order.OneCall;
 
 import java.sql.SQLException;
-import java.util.Map;
 import java.util.StringJoiner;
 
 public interface CashierInterface {
@@ -14,7 +13,7 @@ public interface CashierInterface {
             if (invoice.check_payment()){
                 String command = String.format("INSERT INTO hoadon(tendangnhap, soorder, khachdua, trangthai, " +
                                 "mahoadon, tenkhachhang) VALUES ('%s', %d, %d, '%s', '%s', '%s');", username,
-                        invoice.soorder, invoice.khachdua, "Dang chuan bi", invoice.id, invoice.tenkhachhang);
+                        invoice.soorder, invoice.getPaid(), "Dang chuan bi", invoice.id, invoice.tenkhachhang);
                 DBUtil.dbExecuteUpdate(command);
 
                 StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphanhoadon(tendouong, size, " +

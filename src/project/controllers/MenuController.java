@@ -1,12 +1,12 @@
-package project;
+package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.effect.DropShadow;
@@ -21,28 +21,17 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import project.base.DBUtil;
-import project.base.user.User;
 import javafx.scene.paint.Color;
-import javafx.fxml.Initializable;
 
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-
-
-import static project.LogIn.monitor;
 
 public class MenuController {
     @FXML
-    private VBox vboxLeft;
-    private Stage stage;
-    private Scene scene;
+    public Button themDoUongToppingBtn;
 
     @FXML
     private CheckBox onMenu;
@@ -553,74 +542,6 @@ public class MenuController {
         }
     }
 
-    @FXML
-    void billBtn(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void ingredientBtn(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    @FXML
-    void hrBtn(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/NhanSu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void menuBtn(ActionEvent event) throws IOException{
-
-    }
-
-    @FXML
-    void revBtn(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/DoanhThu.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-
-    @FXML
-    void TaiKhoanCuaBanPressedBtn(ActionEvent event) throws IOException{
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/TaiKhoanCuaBan.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
-    @FXML
-    void pauseMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        if(mediaPlayer != null) {
-            System.out.println("Pause !");
-            mediaPlayer.setMute(true);
-        }
-    }
-
-    // Music ON !!!
-    @FXML
-    void playMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        System.out.println("Play Music !");
-        mediaPlayer.setAutoPlay(true);
-    }
-    @FXML
-    void infBtn(MouseEvent event) throws IOException {
-//        avaImg.setPickOnBounds(true);
-        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @FXML
     void xoaBtn(MouseEvent event) {
@@ -636,12 +557,6 @@ public class MenuController {
         xoaDoUong0[9] =  xoaDoUong9;
     }
 
-    @FXML
-    void themDoUongTopping(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/project/ThemDoUongTopping.fxml"));
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-    }
 
     @FXML
     void onMenuBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {

@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.HoaDonController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.HoaDonController">
    <children>
       <VBox fx:id="vboxLeft1" prefHeight="737.0" prefWidth="256.0" styleClass="side-bar">
          <children>
@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/image/icons/add.png" />
+                        <Image url="@../resources/image/icons/add.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -52,7 +52,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/image/icons/shopping-cart.png" />
+                        <Image url="@../resources/image/icons/shopping-cart.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -70,7 +70,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/image/icons/users.png" />
+                        <Image url="@../resources/image/icons/users.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -85,7 +85,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/image/icons/list-check.png" />
+                        <Image url="@../resources/image/icons/list-check.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -100,7 +100,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/image/icons/piggy-bank.png" />
+                        <Image url="@../resources/image/icons/piggy-bank.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -119,7 +119,7 @@
                <items>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="center">
                      <image>
-                        <Image url="@resources/image/icons/search.png" />
+                        <Image url="@../resources/image/icons/search.png" />
                      </image>
                   </ImageView>
                   <Pane prefHeight="36.0" prefWidth="708.0">
@@ -138,7 +138,7 @@
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/image/icons/following.png" />
+                              <Image url="@../resources/image/icons/following.png" />
                            </image>
                         </ImageView>
                      </graphic>

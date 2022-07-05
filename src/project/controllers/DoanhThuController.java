@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package project;
+package project.controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,8 +45,6 @@ public class DoanhThuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//        vboxLeft.setStyle("-fx-background-color: #19A1CF");
-        btnDoanhThu.setStyle("-fx-background-color: #C4C4C4");
     }
 
     private void handleBtnDashBoard(ActionEvent event) {
@@ -60,35 +58,35 @@ public class DoanhThuController implements Initializable {
 
     @FXML
     void nguyenLieuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/KhoNguyenLieu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/KhoNguyenLieu.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
     @FXML
     void nhanSuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/NhanSu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/NhanSu.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
     @FXML
     void menuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/Menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/Menu.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
     @FXML
     void datDoUongPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/DatDoUong.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/DatDoUong.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
     @FXML
     void TaiKhoanCuaBanPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/TaiKhoanCuaBan.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/TaiKhoanCuaBan.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
