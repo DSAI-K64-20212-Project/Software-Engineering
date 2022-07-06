@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:id="paneTopping" prefHeight="138.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ToppingController">
+   <children>
+      <Circle fx:id="anhTopping" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fx:id="thongTinTopping" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <CheckBox fx:id="toppingOnMenu" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <RadioButton layoutX="421.0" layoutY="100.0" mnemonicParsing="false" text="Xóa" textFill="RED" fx:id="xoaTopping">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <Text fx:id="giaTopping" layoutX="134.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gia">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
