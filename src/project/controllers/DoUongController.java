@@ -2,6 +2,10 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.effect.DropShadow;
@@ -11,12 +15,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import project.UI.DoUong;
 import project.base.DBUtil;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class DoUongController {
+
+    private Scene scene;
+    private Stage stage;
+    private Parent root;
+
     @FXML
     private Pane paneDoUong;
 
@@ -40,8 +51,8 @@ public class DoUongController {
 
     @FXML
     void onMenuBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-            String command2 = String.format("UPDATE douong SET onmenu = '%s' WHERE tendouong = '%s'",onMenu.isSelected(),thongTinDoUong.getText());
-            DBUtil.dbExecuteUpdate(command2);
+        String command2 = String.format("UPDATE douong SET onmenu = '%s' WHERE tendouong = '%s'",onMenu.isSelected(),thongTinDoUong.getText());
+        DBUtil.dbExecuteUpdate(command2);
     }
 
     @FXML
@@ -59,5 +70,10 @@ public class DoUongController {
         sizeLDoUong.setText("SizeL\n" + doUong.getGiaLDoUong());
         sizeMDoUong.setText("SizeM\n" + doUong.getGiaMDoUong());
         onMenu.setSelected(doUong.getOnMenu());
+    }
+
+    @FXML
+    void chinhSuaDoUongBtn(ActionEvent event) throws IOException {
+
     }
 }

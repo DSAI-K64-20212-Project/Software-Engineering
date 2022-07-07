@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane fx:id="paneDoUong" prefHeight="125.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DoUongController">
    <children>
       <Circle fx:id="anhDoUong" fill="DODGERBLUE" layoutX="65.0" layoutY="63.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
@@ -37,5 +36,6 @@
             <Font size="18.0" />
          </font>
       </Text>
+      <Button blendMode="DARKEN" mnemonicParsing="false" onAction="#chinhSuaDoUongBtn" prefHeight="125.0" prefWidth="314.0" style="-fx-background-color: #ffffff;" />
    </children>
 </Pane>
