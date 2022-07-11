@@ -13,7 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import project.UI.InvoiceView;
 import project.base.DBUtil;
@@ -65,7 +65,7 @@ public class DatDoUongController {
     private static String[] chosenTopping;
 
     @FXML
-    private void initialize() throws SQLException, ClassNotFoundException {
+    public void initialize() throws SQLException, ClassNotFoundException {
         hoadonList.setContent(new InvoiceView(hoadon));
         ObservableStringValue formattedBill = Bindings.createStringBinding(() ->
                 "Tổng tiền: " + String.format("%d.000đ",hoadon.getBill()), hoadon.getBillProperty());
@@ -118,8 +118,9 @@ public class DatDoUongController {
         douongList.setItems(douong);
         douongList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<VBoxCell>) (observableValue
                 , old, n) -> {
-            chosenDrink = n.ten.getText();
-            System.out.println(chosenDrink);
+            if (n != null) {
+                chosenDrink = n.ten.getText();
+            } else { chosenDrink = null;}
         });
 
         //topping

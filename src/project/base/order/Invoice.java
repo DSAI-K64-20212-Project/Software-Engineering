@@ -1,18 +1,16 @@
 package project.base.order;
+
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import project.base.DBUtil;
 
-import java.io.Reader;
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -24,10 +22,23 @@ public class Invoice {
     private int buy_id = 0;
     public String id;
     public SimpleIntegerProperty bill = new SimpleIntegerProperty(0);
+    public Timestamp createdAt = new Timestamp(0);
+    public String trangthai;
 
 
     public Invoice(String mahoadon) throws Exception {
         // load invoice từ database
+        String command = String.format("select * from hoadon where mahoadon = '%s';",mahoadon);
+        ResultSet hoadonResult = DBUtil.dbExecuteQuery(command);
+        hoadonResult.next();
+        this.id = hoadonResult.getString("mahoadon");
+        this.khachdua.setValue(hoadonResult.getInt("khachdua"));
+        this.soorder = hoadonResult.getInt("soorder");
+        this.createdAt = Timestamp.valueOf(hoadonResult.getTimestamp("thoigian").toLocalDateTime());
+        this.trangthai = hoadonResult.getString("trangthai");
+        this.tenkhachhang = hoadonResult.getString("tenkhachhang");
+
+        //load all calls info
         String query = String.format("select * from thanhphanhoadon where mahoadon='%s';", mahoadon);
         ResultSet resultSet = DBUtil.dbExecuteQuery(query);
         while (resultSet.next()) {
@@ -47,8 +58,10 @@ public class Invoice {
                 toppingList.add(topping);
             }
             String[] topppingArray = Arrays.copyOf(toppingList.toArray(), toppingList.size(), String[].class);
-            this.inFo.add(new OneCall(buyId, drinkName, size, duong, da, topppingArray));
+            this.inFo.add(new OneCall(buyId, drinkName, size, duong, da, topppingArray, soLuong));
         }
+        this.updateBill();
+        this.buy_id = this.getInFo().size();
     }
     public Invoice() {
         //tam thoi random so order
@@ -124,6 +137,7 @@ public class Invoice {
 
     public static void main(String[] args) throws Exception {
         Invoice invoice = new Invoice("5e7c1583-bb5b-4e6a-ab41-97fde6bb6edd");
-        System.out.println(invoice.getCall(1));
+        String formattedTime = new SimpleDateFormat("HH:mm").format(invoice.createdAt);
+        System.out.println(formattedTime);
     }
 }

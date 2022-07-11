@@ -22,15 +22,27 @@
 .button-image:hover{
     -fx-background-color: rgba(217, 217, 217, 0.22);
 }
-.button-image:focused{
-    -fx-border-color: #58C063;
-    -fx-border-width: 5px;
-    -fx-border-radius: 25;
+/*.button-image:focused{*/
+/*    -fx-border-color: #58C063;*/
+/*    -fx-border-width: 5px;*/
+/*    -fx-border-radius: 25;*/
+/*}*/
+/*.button-image:pressed{*/
+/*    -fx-border-color: #58C063;*/
+/*    -fx-border-width: 5px;*/
+/*    -fx-border-radius: 25;*/
+/*}*/
+.button-text {
+    -fx-background-color: transparent;
 }
-.button-image:pressed{
-    -fx-border-color: #58C063;
-    -fx-border-width: 5px;
-    -fx-border-radius: 25;
+.button-text:hover {
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+.button-text:pressed {
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-text-fill: blue;
 }
 
 /* buttons on left side-bar */

@@ -4,90 +4,166 @@
  */
 package project.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTreeView;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.control.TreeItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import project.UI.InvoiceTreeView;
+import project.base.DBUtil;
+import project.base.order.Invoice;
 
+import java.sql.ResultSet;
 
-/**
- * FXML Controller class
- *
- * @author Mr Pham Truong
- */
-public class DoanhThuController implements Initializable {
-
-    private Label lbQuynhTrang;
+public class DoanhThuController {
     @FXML
-    private VBox vboxLeft;
-    @FXML
-    private Button btnDoanhThu;
+    private JFXTreeView lichsuTree;
+    @FXML private JFXButton rightBtn;
+    @FXML private JFXButton leftBtn;
+    @FXML private DatePicker datePicker;
+    @FXML private Label trendDrinkLabel;
+    @FXML private Label daySumLabel;
+    @FXML private Label monthSumLabel;
+    @FXML private ImageView monthImage;
+    @FXML private ImageView dayImage;
+    @FXML private Label dayComparisionLabel;
+    @FXML private Label monthComparisionLabel;
 
-    @FXML
-    private VBox vboxLeft1;
 
-    @FXML
-    private Button btnDoanhThu1;
+    static int i = 0;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    void set_text(int i, String[] MONTH_ABBR){
+        if (i < MONTH_ABBR.length - 1) {
+            leftBtn.setText(MONTH_ABBR[i]);
+            rightBtn.setText(MONTH_ABBR[i + 1]);
+        } else if (i == MONTH_ABBR.length - 1) {
+            leftBtn.setText(MONTH_ABBR[i]);
+            rightBtn.setText(MONTH_ABBR[0]);
+        }
     }
-
-    private void handleBtnDashBoard(ActionEvent event) {
-        lbQuynhTrang.setText("Thanh Truong");
-    }
-
     @FXML
-    private void doanhThuPressedBtn(ActionEvent event) {
+    void initialize() throws Exception {
+        String[] MONTH_ABBR = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-    }
+        rightBtn.setOnAction(actionEvent -> {
+            if (i < MONTH_ABBR.length - 1) { i += 1; }
+            else if (i == MONTH_ABBR.length - 1) { i = 0; }
+            set_text(i, MONTH_ABBR);
+        });
+        leftBtn.setOnAction(actionEvent -> {
+            if (i > 0) { i -= 1; }
+            else if (i == 0) { i = MONTH_ABBR.length-1; }
+            set_text(i, MONTH_ABBR);
+        });
+        TreeItem<InvoiceTreeView> rootNode = new TreeItem<>(new InvoiceTreeView(new Invoice(),true));
+        datePicker.valueProperty().addListener(((observableValue, localDate, t1) -> {
+            rootNode.getChildren().clear();
+            String command = String.format("select mahoadon from hoadon where thoigian::date = '%s' order by thoigian;",
+                    t1);
+            try {
+                ResultSet result = DBUtil.dbExecuteQuery(command);
+                while (result.next()){
+                    Invoice in = new Invoice(result.getString(1));
+                    TreeItem<InvoiceTreeView> invoiceline = new TreeItem<>(new InvoiceTreeView(in, true));
+                    invoiceline.getChildren().add(new TreeItem<>(new InvoiceTreeView(in, false)));
+                    rootNode.getChildren().add(invoiceline);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }));
+        lichsuTree.setRoot(rootNode);
 
-    @FXML
-    void nguyenLieuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/KhoNguyenLieu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
+        //Get label info
+        ResultSet monthresult = DBUtil.dbExecuteQuery("""
+                select extract(month from thi.thoigian) as thang, sum(thanhtien) as tong from (
+                                                   select hoadon.thoigian, (sum(giaTopping) + giaDoUong)*soluong as thanhtien from hoadon
+                                                                                                                                       inner join thanhphanhoadon t on hoadon.maHoaDon = t.mahoadon
+                                                                                                                                       inner join giadouong GDU on GDU.tenDoUong = t.tenDoUong and GDU.size = t.size
+                                                                                                                                       inner join toppingtronghoadon t2 on t.buyID = t2.buyid and t.maHoaDon = t2.maHoaDon
+                                                                                                                                       inner join topping t3 on t2.tenTopping = t3.tentopping
+                                                   group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
+                                               ) as thi group by extract(month from thi.thoigian) having extract(month from thi.thoigian) >= extract(month from current_date) -1
+                                                order by thang desc;
+                """);
+        if (monthresult.next()) {
+            int this_profit = monthresult.getInt("tong");
+            monthSumLabel.setText(String.format("%,8d,000đ", this_profit));
+            if (monthresult.next() && monthresult.getInt("tong") != 0) {
+                double ratio = (double) this_profit/monthresult.getInt("tong");
+                if (ratio >= 1) {
+                    monthImage.setImage(new Image(getClass().getResourceAsStream("../resources/image/icons/increase" +
+                            ".png")));
+                    monthComparisionLabel.setText(String.format("Tăng %.1f%% so với tháng %s", (ratio-1)*100,
+                            monthresult.getString("thang").split("\\.")[0]));
+                } else {
+                    monthImage.setImage(new Image(getClass().getResourceAsStream("../resources/image/icons/decrease" +
+                            ".png")));
+                    monthComparisionLabel.setText(String.format("Giảm %.1f%% so với tháng %s", (1-ratio)*100,
+                            monthresult.getString("thang").split("\\.")[0]));
+                }
+            } else {
+                monthComparisionLabel.setText("No data");
+            }
+        } else {
+            monthSumLabel.setText("No data");
+        }
 
-    @FXML
-    void nhanSuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/NhanSu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
+        ResultSet dayResult = DBUtil.dbExecuteQuery("""
+                select date(thi.thoigian) as ngay, sum(thanhtien) as tong from (
+                    select hoadon.thoigian, (sum(giaTopping) + giaDoUong)*soluong as thanhtien from hoadon
+                    inner join thanhphanhoadon t on hoadon.maHoaDon = t.mahoadon
+                    inner join giadouong GDU on GDU.tenDoUong = t.tenDoUong and GDU.size = t.size
+                    inner join toppingtronghoadon t2 on t.buyID = t2.buyid and t.maHoaDon = t2.maHoaDon
+                    inner join topping t3 on t2.tenTopping = t3.tentopping
+                    where trangThai = 'Da giao'
+                    group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
+                ) as thi group by date(thi.thoigian) having date(thi.thoigian) >= current_date - 1
+                order by ngay desc;
+                """);
+        if (dayResult.next()) {
+            int day_revenue = dayResult.getInt("tong");
+            daySumLabel.setText(String.format("%,8d,000đ", day_revenue));
+            if (dayResult.next() && dayResult.getInt("tong") != 0) {
+                double day_ratio = (double) day_revenue/dayResult.getInt("tong");
+                if (day_ratio >= 1) {
+                    dayImage.setImage(new Image(getClass().getResourceAsStream("../resources/image/icons/increase" +
+                            ".png")));
+                    dayComparisionLabel.setText(String.format("Tăng %.1f%% so với hôm qua", (day_ratio-1)*100));
+                } else {
+                    dayImage.setImage(new Image(getClass().getResourceAsStream("../resources/image/icons/decrease" +
+                            ".png")));
+                    dayComparisionLabel.setText(String.format("Giảm %.1f%% so với hôm qua", (1-day_ratio)*100));
+                }
+            } else {
+                dayComparisionLabel.setText("No data");
+            }
+        } else {
+            daySumLabel.setText("No data");
+        }
 
-    @FXML
-    void menuPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/Menu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    @FXML
-    void datDoUongPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/DatDoUong.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    @FXML
-    void TaiKhoanCuaBanPressedBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/TaiKhoanCuaBan.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
+        ResultSet trendingDrinks = DBUtil.dbExecuteQuery("""
+                select tenDoUong, sum(soluong) as tong from thanhphanhoadon
+                inner join HoaDon HD on HD.maHoaDon = ThanhPhanHoaDon.maHoaDon
+                where thoigian <= ('now'::timestamp) at time zone 'utc' at time zone 'wast' and thoigian > ('now'::timestamp - '1 week'::interval) at time zone 'utc' at time zone 'wast'
+                and trangThai = 'Da giao'
+                group by tenDoUong
+                order by sum(soluong) desc;
+                """);
+        StringBuilder trendingString = new StringBuilder("");
+        for (int i=1;i<=3;i++){
+            if (trendingDrinks.isLast()){
+                break;
+            }
+            if (trendingDrinks.next()){
+                trendingString.append(i).append(". ").append(trendingDrinks.getString("tendouong")).append("\n");
+            } else {
+                trendingString.append(i).append(". ").append("No data").append("\n");
+            }
+        }
+        trendDrinkLabel.setText(trendingString.toString());
     }
 }

@@ -5,13 +5,13 @@ import javafx.beans.value.ObservableStringValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import project.base.order.Invoice;
 import project.base.order.OneCall;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 
 public class InvoiceView extends VBox {
@@ -22,16 +22,20 @@ public class InvoiceView extends VBox {
         this.setSpacing(10);
         this.invoice = invoice;
         this.invoice.getInFo().addListener((ListChangeListener<? super OneCall>) change -> {
-            update();
+            try {
+                update();
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
-    public InvoiceView(Invoice invoice, boolean haveButton, boolean haveCash) {
+    public InvoiceView(Invoice invoice, boolean haveButton, boolean haveCash) throws SQLException, ClassNotFoundException {
         this(invoice);
         this.button = haveButton;
         this.thanhtien = haveCash;
         update();
     }
-    public void update(){
+    public void update() throws SQLException, ClassNotFoundException {
         this.getChildren().clear();
         for (OneCall oneCall: this.invoice.getInFo()){
             if (oneCall.get_ammount() == 0){
@@ -45,6 +49,8 @@ public class InvoiceView extends VBox {
 
             Label title = new Label(oneCall.drink_name);
             title.getStyleClass().add("title-text");
+            title.setWrapText(true);
+            title.setMaxWidth(170);
             String toppingArray = Arrays.toString(oneCall.toppings);
             Label middleText = new Label(String.format("""
                             - Size %s
@@ -68,12 +74,9 @@ public class InvoiceView extends VBox {
             } else {
                 hBox = new HBox(numLabel, new VBox(title, middleText));
             }
-            hBox.setSpacing(5);
+            hBox.setSpacing(3);
             //them thanh tien
-            Label thanhtien = new Label();
-            ObservableStringValue formattedCash = Bindings.createStringBinding(() ->
-                    "Giá: " + String.format("%d.000đ",oneCall.get_money()), oneCall.getAmountProperty());
-            thanhtien.textProperty().bind(formattedCash);
+            Label thanhtien = new Label(String.format("Đơn Giá: %d.000đ",oneCall.get_money()/oneCall.get_ammount()));
 
             if (this.thanhtien){
                 this.getChildren().addAll(new VBox(hBox, thanhtien));
@@ -82,5 +85,4 @@ public class InvoiceView extends VBox {
             }
         }
     }
-
 }

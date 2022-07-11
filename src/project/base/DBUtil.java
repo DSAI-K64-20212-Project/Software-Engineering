@@ -9,7 +9,7 @@ public class DBUtil {
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
 
     //Connection
-    private static Connection conn = null;
+    public static Connection conn = null;
 
     //Connection String
     //String connStr = "jdbc:postgresql://host/database

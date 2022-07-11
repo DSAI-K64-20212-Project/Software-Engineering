@@ -2,7 +2,6 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -10,14 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import project.UI.InvoiceView;
 import project.base.DBUtil;
 import project.base.order.Invoice;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class HoaDonController {
 
@@ -118,7 +115,5 @@ public class HoaDonController {
         pane.setContent(new InvoiceView(hoadon, false, false));
         pane.setBackground(Background.EMPTY);
         billPane3.getChildren().add(pane);
-
-
     }
 }
