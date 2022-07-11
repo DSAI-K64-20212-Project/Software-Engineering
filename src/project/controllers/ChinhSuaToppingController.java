@@ -23,8 +23,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ChinhSuaToppingController {
-    @FXML
-    private AnchorPane mainAddDrTp;
+
+    @FXML public Button backBtn;
 
     @FXML
     private Pane paneGiaTopping;
@@ -32,8 +32,6 @@ public class ChinhSuaToppingController {
     @FXML
     private RadioButton doUong;
 
-    @FXML
-    private Button backBtn;
 
     @FXML
     private ToggleGroup loai;
@@ -98,7 +96,7 @@ public class ChinhSuaToppingController {
         System.out.print(hBoxNguyenLieu.getChildren());
         for (Node n: hBoxNguyenLieu.getChildren()){
             RadioButton radioBtn = (RadioButton) n;
-            if (radioBtn.isSelected()){
+            if (radioBtn.isSelected()) {
                 String command4 = String.format("INSERT INTO thanhphantopping VALUES ('%s','%s')",old, radioBtn.getText());
                 DBUtil.dbExecuteUpdate(command4);
             }
@@ -106,6 +104,7 @@ public class ChinhSuaToppingController {
     }
 
     public void open() throws IOException, SQLException, ClassNotFoundException{
+        hBoxNguyenLieu.getChildren().clear();
         String command1 = String.format("SELECT * FROM nguyenlieu");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 

@@ -37,6 +37,11 @@ public class NhanVienController {
 
     @FXML
     private Text thongTin;
+    private BaseController baseController;
+
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
 
     @FXML
     void traLuongBtn(ActionEvent event) {
@@ -45,13 +50,9 @@ public class NhanVienController {
 
     @FXML
     void chinhSuaNhanVienBtn(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/project/screen/ChinhSuaNhanVien.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
+        baseController.toggleScreen(baseController.chinhsuaNVScreen);
 
-        ChinhSuaNhanVienController chinhSuaNhanVienController = fxmlLoader.getController();
+        ChinhSuaNhanVienController chinhSuaNhanVienController = baseController.mainEditEmplController;
         int nIndex = thongTin.getText().indexOf("\n");
         chinhSuaNhanVienController.getHoVaTen().setText(thongTin.getText().substring(0,nIndex));
         chinhSuaNhanVienController.getSoDienThoai().setText(thongTin.getText().substring(nIndex+1,nIndex+11));

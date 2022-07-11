@@ -26,11 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NhanSuController {
+    private BaseController baseController;
 
-    @FXML
-    private VBox vboxLeft;
-    private Stage stage;
-    private Scene scene;
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
+
 
     @FXML
     public Button themNvBtn;
@@ -42,6 +43,7 @@ public class NhanSuController {
 
     @FXML
     public void initialize() throws IOException, SQLException, ClassNotFoundException {
+        vBoxNhanVien.getChildren().clear();
         nhanViens = new ArrayList<>(nhanViens());
 
         try {
@@ -51,6 +53,7 @@ public class NhanSuController {
                 AnchorPane box = fxmlLoader.load();
                 NhanVienController nhanVienController = fxmlLoader.getController();
                 nhanVienController.setData(nhanViens.get(i));
+                nhanVienController.setBaseController(baseController);
 
                 vBoxNhanVien.getChildren().add(box);
             }

@@ -14,8 +14,9 @@ public interface AdminInterface {
                                  String position,
                                  String shift
     ) throws SQLException, ClassNotFoundException {
-        String command = String.format("INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, chucvu, calam) " +
-                        "VALUES ('%s', '%s', '%s','%s','%s', '%s', '%s');",
+        String command = String.format("INSERT INTO nhanvien(tendangnhap, tennhanvien, matkhau, sdt, anhdaidien, " +
+                        "chucvu, calam, active) " +
+                        "VALUES ('%s', '%s', '%s','%s','%s', '%s', '%s', true);",
                 username, fullname, password, phone, avatar, position, shift);
         try {
             DBUtil.dbExecuteUpdate(command);

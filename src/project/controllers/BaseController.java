@@ -42,7 +42,7 @@ public class BaseController {
     private AnchorPane prevScreen;
 
 
-    private void toggleScreen(AnchorPane screen){
+    public void toggleScreen(AnchorPane screen){
         activeScreen.setVisible(false);
         prevScreen = activeScreen;
         activeScreen = screen;
@@ -68,6 +68,9 @@ public class BaseController {
     private AnchorPane themNguyenlieuScreen;
     @FXML
     public AnchorPane themDrinkToppingScreen;
+    @FXML public AnchorPane chinhsuaDoUongScreen;
+    @FXML public AnchorPane chinhsuaNVScreen;
+    @FXML public AnchorPane chinhsuaToppingScreen;
     @FXML private NhanSuController mainNhanSuController;
     @FXML private ThemNhanVienController mainAddStaffController;
     @FXML private TaiKhoanCuaBanController mainAccountController;
@@ -76,11 +79,19 @@ public class BaseController {
     @FXML private ThemDoUongToppingController mainAddDrTpController;
     @FXML private DatDoUongController mainDatDoUongController;
     @FXML private MenuController mainMenuController;
+    @FXML public ChinhSuaNhanVienController mainEditEmplController;
+    @FXML public ChinhSuaDoUongController mainModifyDrController;
+    @FXML public ChinhSuaToppingController mainEditToppingController;
+
 
     private DBListener dbListener;
 
     @FXML
-    private void initialize() throws SQLException, ClassNotFoundException {
+    private void initialize() throws SQLException, ClassNotFoundException, IOException {
+        mainMenuController.setBaseController(this);
+        mainNhanSuController.setBaseController(this);
+        mainMenuController.initialize();
+        mainNhanSuController.initialize();
         activeScreen = initPane;
         ResultSet result =
                 DBUtil.dbExecuteQuery(String.format("Select tennhanvien from nhanvien where tendangnhap = '%s';",
@@ -110,7 +121,11 @@ public class BaseController {
         mainKhoNguyenLieuController.taoNguyenlieuBtn.setOnAction(actionEvent -> toggleScreen(themNguyenlieuScreen));
         mainAddIngreController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainAddDrTpController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainEditEmplController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainEditToppingController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainModifyDrController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
+
         dbListener = new DBListener(DBUtil.conn, mainDatDoUongController);
         dbListener.start();
     }

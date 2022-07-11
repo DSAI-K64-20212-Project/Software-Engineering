@@ -34,6 +34,8 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     @FXML
     private Button pauseButton;
 
+    @FXML public Button backBtn;
+
     @FXML
     private Button imageBtn;
 
@@ -122,90 +124,6 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         oldUsername = username.getText();
     }
 
-    @FXML
-    void infBtn(MouseEvent event) throws IOException {
-//        avaImg.setPickOnBounds(true);
-        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void billBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HoaDon_temp.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void ingredientBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void hrBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void menuBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void revBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DoanhThu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void ordBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DatDoUong.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void pauseMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        if(mediaPlayer != null) {
-            System.out.println("Pause !");
-            mediaPlayer.setMute(true);
-        }
-    }
-
-    // Music ON !!!
-    @FXML
-    void playMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        System.out.println("Play Music !");
-        mediaPlayer.setAutoPlay(true);
-    }
 
     @FXML
     void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {

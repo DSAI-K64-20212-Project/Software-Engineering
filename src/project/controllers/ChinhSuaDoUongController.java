@@ -58,9 +58,6 @@ public class ChinhSuaDoUongController {
     private RadioButton nguyenLieu6;
 
     @FXML
-    private Button backBtn;
-
-    @FXML
     private RadioButton radioButtonSize2;
 
     @FXML
@@ -77,6 +74,8 @@ public class ChinhSuaDoUongController {
 
     @FXML
     private TextField giaSizeM;
+
+    @FXML public Button backBtn;
 
     @FXML
     private HBox hBoxNguyenLieu;
@@ -101,6 +100,7 @@ public class ChinhSuaDoUongController {
     }
 
     public void open() throws IOException, SQLException, ClassNotFoundException{
+        hBoxNguyenLieu.getChildren().clear();
 
         int columns = 1;
 
