@@ -73,7 +73,18 @@ public class DoUongController {
     }
 
     @FXML
-    void chinhSuaDoUongBtn(ActionEvent event) throws IOException {
+    void chinhSuaDoUongBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/project/screen/ChinhSuaDoUong.fxml"));
+        Parent root1 = fxmlLoader.load();
+        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window1.setScene(new Scene(root1));
 
+        ChinhSuaDoUongController chinhSuaDoUongController = fxmlLoader.getController();
+        chinhSuaDoUongController.old = thongTinDoUong.getText();
+        chinhSuaDoUongController.getTen().setText(thongTinDoUong.getText());
+        chinhSuaDoUongController.getGiaSizeL().setText(sizeLDoUong.getText().substring(sizeLDoUong.getText().indexOf("\n")));
+        chinhSuaDoUongController.getGiaSizeM().setText(sizeMDoUong.getText().substring(sizeMDoUong.getText().indexOf("\n")));
+        chinhSuaDoUongController.open();
     }
 }

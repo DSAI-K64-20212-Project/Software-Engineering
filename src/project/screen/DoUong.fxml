@@ -21,11 +21,6 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <RadioButton layoutX="366.0" layoutY="77.0" mnemonicParsing="false" onAction="#xoaBtn" text="Xóa" textFill="RED" fx:id="xoaDoUong">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </RadioButton>
       <Text fx:id="sizeMDoUong" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
          <font>
             <Font size="18.0" />

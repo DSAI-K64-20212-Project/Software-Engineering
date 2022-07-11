@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -24,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainAddDrTp" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ThemDoUongToppingController">
+<AnchorPane fx:id="mainAddDrTp" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ChinhSuaToppingController">
    <children>
       <VBox layoutX="200.0" layoutY="60.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -46,7 +45,7 @@
                         <Font size="26.0" />
                      </font>
                   </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm đồ uống/topping" GridPane.columnIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chỉnh sửa topping" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
@@ -78,7 +77,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <RadioButton layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#doUongBtn" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Đồ uống" GridPane.rowIndex="5">
+                        <RadioButton fx:id="doUong" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#doUongBtn" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Đồ uống" GridPane.rowIndex="5">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -94,17 +93,21 @@
                         </RadioButton>
                      </children>
                   </Pane>
-                  <RadioButton mnemonicParsing="false" onAction="#toppingBtn" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping" toggleGroup="$loai" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </RadioButton>
+                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <RadioButton fx:id="topping" layoutY="29.0" mnemonicParsing="false" onAction="#toppingBtn" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping" toggleGroup="$loai" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </RadioButton>
+                     </children>
+                  </Pane>
                   <Pane GridPane.rowIndex="3">
                      <children>
-                        <Pane fx:id="paneGiaTopping" layoutY="33.0" visible="false">
+                        <Pane fx:id="paneGiaTopping" layoutY="33.0">
                            <children>
                               <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giá">
                                  <font>
@@ -118,70 +121,10 @@
                               </TextField>
                            </children>
                         </Pane>
-                        <Pane fx:id="paneSize1" prefHeight="132.0" prefWidth="334.0" GridPane.rowIndex="3">
-                           <children>
-                              <Text layoutX="14.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <RadioButton layoutX="14.0" layoutY="24.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                                 <graphic>
-                                    <VBox>
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="M&#10;Giá tiền">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Text>
-                                          <TextField fx:id="giaSizeM" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
-                                       </children>
-                                    </VBox>
-                                 </graphic>
-                              </RadioButton>
-                           </children>
-                        </Pane>
                      </children>
                   </Pane>
-                  <RadioButton fx:id="radioButtonSize2" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <graphic>
-                        <VBox>
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="L&#10;Giá tiền">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="giaSizeL" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
-                           </children>
-                        </VBox>
-                     </graphic>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </RadioButton>
-                  <Pane GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <children>
-                        <Button fx:id="imageBtn" layoutX="-9.0" layoutY="-53.0" mnemonicParsing="false" onAction="#uploadImageBtn" prefHeight="200.0" prefWidth="200.0">
-                           <graphic>
-                              <ImageView fitHeight="86.0" fitWidth="84.0">
-                                 <image>
-                                    <Image url="@../resources/image/icons/upload2.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </Pane>
+                  <Circle fx:id="anhDoUongTopping" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên liệu">

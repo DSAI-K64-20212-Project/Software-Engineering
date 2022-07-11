@@ -94,7 +94,7 @@ public class MenuController {
             String onMenuStr = result1.getString(3);
 
             DoUong doUong = new DoUong();
-            doUong.setAnhDoUong("/project/resources/image/TraSua/images.jpeg");
+            doUong.setAnhDoUong("/project/resources/image/TraSua/" +anh);
             doUong.setThongTinDoUong(tenDoUong);
             doUong.setOnMenu(Boolean.parseBoolean(onMenuStr));
 

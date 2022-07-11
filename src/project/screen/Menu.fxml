@@ -28,11 +28,6 @@
          <children>
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <Button mnemonicParsing="false" onAction="#xoaBtn" style="-fx-background-color: CD2217;" text="Xóa" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="themDoUongToppingBtn" mnemonicParsing="false" style="-fx-background-color: #58C063;" text="Thêm đồ uống/topping" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
