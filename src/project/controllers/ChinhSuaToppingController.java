@@ -142,4 +142,12 @@ public class ChinhSuaToppingController {
         }
     }
 
+    @FXML
+    void xoaBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String command1 = String.format("DELETE FROM topping WHERE  tentopping = '%s'",old);
+        DBUtil.dbExecuteUpdate(command1);
+        String command2 = String.format("DELETE FROM thanhphantopping WHERE  tentopping = '%s'",old);
+        DBUtil.dbExecuteUpdate(command2);
+    }
+
 }

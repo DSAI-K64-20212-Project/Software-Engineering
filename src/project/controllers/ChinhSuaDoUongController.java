@@ -157,19 +157,18 @@ public class ChinhSuaDoUongController {
         String command3 = String.format("UPDATE giadouong " + "SET giadouong = '%s' WHERE size = 'L' AND tendouong = '%s'",giaSizeL.getText(),ten.getText());
         DBUtil.dbExecuteUpdate(command3);
 
-        String command1 = String.format("SELECT * FROM thanhphantopping WHERE tentopping = '%s'",old);
+        String command1 = String.format("SELECT * FROM thanhphandouong WHERE tendouong = '%s'",old);
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
         while (result1.next()) {
             nguyenLieuHienTai.add(result1.getString(2));
-            String command4 = String.format("DELETE FROM thanhphantopping WHERE tentopping = '%s'",old);
+            String command4 = String.format("DELETE FROM thanhphandouong WHERE tendouong = '%s'",old);
             DBUtil.dbExecuteUpdate(command4);
         }
 
-        System.out.print(hBoxNguyenLieu.getChildren());
         for (Node n: hBoxNguyenLieu.getChildren()){
             RadioButton radioBtn = (RadioButton) n;
             if (radioBtn.isSelected()){
-                String command5 = String.format("INSERT INTO thanhphantopping VALUES ('%s','%s')",old, radioBtn.getText());
+                String command5 = String.format("INSERT INTO thanhphandouong VALUES ('%s','%s')",old, radioBtn.getText());
                 DBUtil.dbExecuteUpdate(command5);
             }
         }
@@ -181,9 +180,13 @@ public class ChinhSuaDoUongController {
     }
 
     @FXML
-    void xoaBtn(ActionEvent event) {
-//        String command2 = String.format("UPDATE giadouong " + "SET giadouong = '%s' WHERE size = 'M' AND tendouong = '%s'",giaSizeM.getText(),ten.getText());
-//        DBUtil.dbExecuteUpdate(command2);
+    void xoaBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String command1 = String.format("DELETE FROM giadouong WHERE  tendouong = '%s'",old);
+        DBUtil.dbExecuteUpdate(command1);
+        String command2 = String.format("DELETE FROM thanhphandouong WHERE  tendouong = '%s'",old);
+        DBUtil.dbExecuteUpdate(command2);
+        String command3 = String.format("DELETE FROM douong WHERE  tendouong = '%s'",old);
+        DBUtil.dbExecuteUpdate(command3);
     }
 
 }

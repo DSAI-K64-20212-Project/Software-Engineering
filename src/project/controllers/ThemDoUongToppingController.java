@@ -189,6 +189,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
         File file = fileChooser.showOpenDialog(stage);
 
         // Set image sau khi upload ảnh
+        System.out.println(file);
         Image img = new Image(String.valueOf(file));
         ImageView view = new ImageView(img);
         view.setFitHeight(200);

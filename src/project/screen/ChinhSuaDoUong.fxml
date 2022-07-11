@@ -93,18 +93,7 @@
                         </RadioButton>
                      </children>
                   </Pane>
-                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <children>
-                        <RadioButton fx:id="topping" layoutY="29.0" mnemonicParsing="false" onAction="#toppingBtn" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping" toggleGroup="$loai" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </RadioButton>
-                     </children>
-                  </Pane>
+                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Pane GridPane.rowIndex="3">
                      <children>
                         <Pane fx:id="paneGiaTopping" layoutY="33.0" visible="false">
