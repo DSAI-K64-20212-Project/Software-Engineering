@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="paneDoUong" prefHeight="125.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DoUongController">
+   <children>
+      <Circle fx:id="anhDoUong" fill="DODGERBLUE" layoutX="65.0" layoutY="63.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+      <CheckBox fx:id="onMenu" layoutX="321.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMenuBtn" prefHeight="32.0" prefWidth="117.0" selected="true" text="On Menu">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <Text fx:id="thongTinDoUong" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đồ uống">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="sizeMDoUong" layoutX="134.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size M">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="sizeLDoUong" layoutX="134.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size L">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button blendMode="DARKEN" mnemonicParsing="false" onAction="#chinhSuaDoUongBtn" prefHeight="125.0" prefWidth="314.0" style="-fx-background-color: #ffffff;" />
+   </children>
+</Pane>

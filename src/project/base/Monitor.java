@@ -43,5 +43,11 @@ public class Monitor {
         return this.admin;
     }
 
+    public User getActiveUser() {
+        if (this.cashier != null)  return this.cashier;
+        if (this.bartender != null) return this.bartender;
+        if (this.admin != null) return this.admin;
+        return null;
+    }
 
 }

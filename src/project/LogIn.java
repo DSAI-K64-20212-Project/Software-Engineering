@@ -26,7 +26,7 @@ public class LogIn extends Application {
     @Override
     public void start(Stage stage) throws IOException, Exception {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/project/LogIn.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/project/screen/LogIn.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Hust Milk Tea ♥");
