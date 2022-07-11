@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="183.0" style="-fx-background-color: #CDCDCD;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.ThumbController">
+   <children>
+      <ImageView fx:id="anhNguyenLieu" fitHeight="122.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/image/Topping/caramen.png" />
+         </image>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label fx:id="tenNguyenLieu" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="188.0" text="Caramen">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Button fx:id="trangThai" mnemonicParsing="false" prefHeight="40.0" prefWidth="163.0" text="Còn hàng">
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>
