@@ -98,22 +98,23 @@ public class HoaDonController {
         String query = String.format("select mahoadon, trangthai from hoadon where trangthai='Dang chuan bi'");
         ResultSet resultSet = DBUtil.dbExecuteQuery(query);
 
-        resultSet.next();
-        String mahoadon = resultSet.getString("mahoadon");
-        Invoice hoadon = new Invoice(mahoadon);
-        billPane1.getChildren().add(new InvoiceView(hoadon, false, false));
+        if (resultSet.next()){
+            String mahoadon = resultSet.getString("mahoadon");
+            Invoice hoadon = new Invoice(mahoadon);
+            billPane1.getChildren().add(new InvoiceView(hoadon, false, false));
+        };
 
-        resultSet.next();
-        String mahoadon2 = resultSet.getString("mahoadon");
-        Invoice hoadon2 = new Invoice(mahoadon);
-        billPane2.getChildren().add(new InvoiceView(hoadon, false, false));
-
-        resultSet.next();
-        String mahoadon3 = resultSet.getString("mahoadon");
-        Invoice hoadon3 = new Invoice(mahoadon);
-        ScrollPane pane = new ScrollPane();
-        pane.setContent(new InvoiceView(hoadon, false, false));
-        pane.setBackground(Background.EMPTY);
-        billPane3.getChildren().add(pane);
+//        resultSet.next();
+//        String mahoadon2 = resultSet.getString("mahoadon");
+//        Invoice hoadon2 = new Invoice(mahoadon);
+//        billPane2.getChildren().add(new InvoiceView(hoadon, false, false));
+//
+//        resultSet.next();
+//        String mahoadon3 = resultSet.getString("mahoadon");
+//        Invoice hoadon3 = new Invoice(mahoadon);
+//        ScrollPane pane = new ScrollPane();
+//        pane.setContent(new InvoiceView(hoadon, false, false));
+//        pane.setBackground(Background.EMPTY);
+//        billPane3.getChildren().add(pane);
     }
 }

@@ -80,14 +80,14 @@ public class DoanhThuController {
         //Get label info
         ResultSet monthresult = DBUtil.dbExecuteQuery("""
                 select extract(month from thi.thoigian) as thang, sum(thanhtien) as tong from (
-                                                   select hoadon.thoigian, (sum(giaTopping) + giaDoUong)*soluong as thanhtien from hoadon
-                                                                                                                                       inner join thanhphanhoadon t on hoadon.maHoaDon = t.mahoadon
-                                                                                                                                       inner join giadouong GDU on GDU.tenDoUong = t.tenDoUong and GDU.size = t.size
-                                                                                                                                       inner join toppingtronghoadon t2 on t.buyID = t2.buyid and t.maHoaDon = t2.maHoaDon
-                                                                                                                                       inner join topping t3 on t2.tenTopping = t3.tentopping
-                                                   group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
-                                               ) as thi group by extract(month from thi.thoigian) having extract(month from thi.thoigian) >= extract(month from current_date) -1
-                                                order by thang desc;
+                                                                                  select hoadon.thoigian, (sum(giaTopping) + giaDoUong)*soluong as thanhtien from hoadon
+                                                                                                                                                                      inner join thanhphanhoadon t on hoadon.maHoaDon = t.mahoadon
+                                                                                                                                                                      inner join giadouong GDU on GDU.idDoUong = t.idDoUong and GDU.size = t.size
+                                                                                                                                                                      inner join toppingtronghoadon t2 on t.buyID = t2.buyid and t.maHoaDon = t2.maHoaDon
+                                                                                                                                                                      inner join topping t3 on t2.idTopping = t3.idTopping
+                                                                                  group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
+                                                                              ) as thi group by extract(month from thi.thoigian) having extract(month from thi.thoigian) >= extract(month from current_date) -1
+                order by thang desc;
                 """);
         if (monthresult.next()) {
             int this_profit = monthresult.getInt("tong");
@@ -116,9 +116,9 @@ public class DoanhThuController {
                 select date(thi.thoigian) as ngay, sum(thanhtien) as tong from (
                     select hoadon.thoigian, (sum(giaTopping) + giaDoUong)*soluong as thanhtien from hoadon
                     inner join thanhphanhoadon t on hoadon.maHoaDon = t.mahoadon
-                    inner join giadouong GDU on GDU.tenDoUong = t.tenDoUong and GDU.size = t.size
+                    inner join giadouong GDU on GDU.idDoUong = t.idDoUong and GDU.size = t.size
                     inner join toppingtronghoadon t2 on t.buyID = t2.buyid and t.maHoaDon = t2.maHoaDon
-                    inner join topping t3 on t2.tenTopping = t3.tentopping
+                    inner join topping t3 on t2.idTopping = t3.idtopping
                     where trangThai = 'Da giao'
                     group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
                 ) as thi group by date(thi.thoigian) having date(thi.thoigian) >= current_date - 1
@@ -146,11 +146,12 @@ public class DoanhThuController {
         }
 
         ResultSet trendingDrinks = DBUtil.dbExecuteQuery("""
-                select tenDoUong, sum(soluong) as tong from thanhphanhoadon
-                inner join HoaDon HD on HD.maHoaDon = ThanhPhanHoaDon.maHoaDon
+                select DU.tenDoUong, sum(soluong) as tong from thanhphanhoadon
+                                                       inner join HoaDon HD on HD.maHoaDon = ThanhPhanHoaDon.maHoaDon
+                                                       inner join DoUong DU on ThanhPhanHoaDon.idDoUong = DU.idDoUong
                 where thoigian <= ('now'::timestamp) at time zone 'utc' at time zone 'wast' and thoigian > ('now'::timestamp - '1 week'::interval) at time zone 'utc' at time zone 'wast'
-                and trangThai = 'Da giao'
-                group by tenDoUong
+                  and trangThai = 'Da giao'
+                group by DU.idDoUong
                 order by sum(soluong) desc;
                 """);
         StringBuilder trendingString = new StringBuilder("");
