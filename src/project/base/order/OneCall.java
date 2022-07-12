@@ -29,6 +29,10 @@ public class OneCall {
             throw new Exception("Invalid sugar or ice rate");
         }
     }
+    public OneCall(int id, String drink_name, char size, double sugar, double ice, String[] toppings, int ammount) throws Exception {
+        this(id, drink_name, size, sugar, ice, toppings);
+        this.amount.setValue(ammount);
+    }
 
     public void increase_amount(){
         this.amount.setValue(this.amount.getValue() + 1);

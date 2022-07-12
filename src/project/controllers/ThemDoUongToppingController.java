@@ -3,13 +3,11 @@ package project.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +22,7 @@ import javafx.stage.Stage;
 import project.base.DBUtil;
 import project.base.functional.BartenderInterface;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -63,23 +62,6 @@ public class ThemDoUongToppingController implements BartenderInterface {
     private TextField giaTopping;
 
     @FXML
-    private RadioButton nguyenLieu3;
-    @FXML
-    private RadioButton nguyenLieu4;
-    @FXML
-    private RadioButton nguyenLieu5;
-    @FXML
-    private RadioButton nguyenLieu6;
-    @FXML
-    private RadioButton nguyenLieu;
-    @FXML
-    private RadioButton nguyenLieu1;
-    @FXML
-    private RadioButton nguyenLieu2;
-    @FXML
-    private RadioButton[] nguyenLieu0 = new  RadioButton[7];
-
-    @FXML
     private ToggleGroup loai;
 
     @FXML
@@ -107,6 +89,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
             nguyenLieuRadioBtn.setStyle("-fx-border-color:#000000");
             nguyenLieuRadioBtn.setStyle("-fx-border-width:3");
             nguyenLieuRadioBtn.setStyle("-fx-border-radius:20");
+            nguyenLieuRadioBtn.setPadding(new Insets(5, 5, 5, 5));
 
             hBoxNguyenLieu.getChildren().add(nguyenLieuRadioBtn);
         }
@@ -129,44 +112,37 @@ public class ThemDoUongToppingController implements BartenderInterface {
 
     @FXML
     void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        nguyenLieu0[0] =  nguyenLieu;
-        nguyenLieu0[1] =  nguyenLieu1;
-        nguyenLieu0[2] =  nguyenLieu2;
-        nguyenLieu0[3] =  nguyenLieu3;
-        nguyenLieu0[4] =  nguyenLieu4;
-        nguyenLieu0[5] =  nguyenLieu5;
-        nguyenLieu0[6] =  nguyenLieu6;
+        ArrayList<String> ar = new ArrayList<String>();
+        for (Node n: hBoxNguyenLieu.getChildren()){
+            RadioButton radioBtn = (RadioButton) n;
+            if (radioBtn.isSelected()){
+                ar.add(radioBtn.getText());
+            }
+        }
+
+        String[] nl = new String[ar.toArray().length];
+        for (int i=0; i<ar.toArray().length;i++){
+            nl[i] = ar.get(i);
+        }
 
         RadioButton loaiB = (RadioButton) loai.getSelectedToggle();
         if (loaiB.getText().equals("Đồ uống")) {
-            ArrayList<String> ar = new ArrayList<String>();
-            for (int j = 0; j < nguyenLieu0.length; j++) {
-                System.out.print(j);
-                if (nguyenLieu0[j].isSelected() == true) {
-                    ar.add(nguyenLieu0[j].getText());
-                }
-            }
-
-            String[] nl = new String[ar.toArray().length];
-            for (int i=0; i<ar.toArray().length;i++){
-                nl[i] = ar.get(i);
-            }
-
             add_drink("Tam", ten.getText(), "add.png", new HashMap<>() {{put('M',Integer.parseInt(giaSizeM.getText()));put('L',Integer.parseInt(giaSizeL.getText()));}}, nl);
         }  else {
-            ArrayList<String> ar = new ArrayList<String>();
-            for (int j = 0; j < nguyenLieu0.length; j++) {
-                if (nguyenLieu0[j].isSelected() == true) {
-                    ar.add(nguyenLieu0[j].getText());
-                }
-            }
-
-            String[] nl = new String[ar.toArray().length];
-            for (int i=0; i<ar.toArray().length;i++){
-                nl[i] = ar.get(i);
-            }
-
             add_topping("Tam", ten.getText(), "add.png", Integer.parseInt(giaTopping.getText()), nl);
+        }
+
+        JOptionPane.showMessageDialog(null, "Đồ uống/topping đã được thêm thành công", "Notification", 1);
+        ten.setText("");
+        giaSizeL.setText("");
+        giaSizeM.setText("");
+        giaTopping.setText("");
+
+        for (Node n: hBoxNguyenLieu.getChildren()){
+            RadioButton radioBtn = (RadioButton) n;
+            if (radioBtn.isSelected()){
+                radioBtn.setSelected(false);
+            }
         }
     }
 

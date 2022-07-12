@@ -23,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainAddDrTp" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ChinhSuaToppingController">
+<AnchorPane fx:id="mainEditTopping" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ChinhSuaToppingController">
    <children>
       <VBox layoutX="200.0" layoutY="60.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -72,43 +72,27 @@
                   </VBox>
                   <Pane prefHeight="83.0" prefWidth="334.0" GridPane.rowIndex="2">
                      <children>
-                        <Text layoutX="14.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loại" GridPane.rowIndex="5">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <RadioButton fx:id="topping" layoutY="29.0" mnemonicParsing="false" onAction="#toppingBtn" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="loai" />
-                           </toggleGroup>
-                        </RadioButton>
-                     </children>
-                  </Pane>
-                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Pane GridPane.rowIndex="3">
-                     <children>
-                        <Pane fx:id="paneGiaTopping" layoutY="33.0">
+                        <Pane layoutX="6.0" layoutY="30.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giá">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="giaTopping" layoutX="14.0" layoutY="33.0" promptText="Input field">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
+                              <Pane fx:id="paneGiaTopping" layoutY="33.0">
+                                 <children>
+                                    <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giá">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="giaTopping" layoutX="14.0" layoutY="33.0" promptText="Input field">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </Pane>
                            </children>
                         </Pane>
                      </children>
                   </Pane>
+                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Circle fx:id="anhDoUongTopping" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Pane GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
@@ -121,9 +105,12 @@
                   <Insets left="15.0" />
                </VBox.margin>
             </Text>
-            <ScrollPane prefHeight="85.0" prefWidth="1000.0">
+            <ScrollPane prefHeight="74.0" prefWidth="774.0">
                <content>
-                  <HBox fx:id="hBoxNguyenLieu" alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="1321.0" />
+                  <HBox fx:id="hBoxNguyenLieu" alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="1321.0" spacing="10.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding></HBox>
                </content>
                <VBox.margin>
                   <Insets left="10.0" />
@@ -139,6 +126,6 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button layoutX="49.0" layoutY="516.0" mnemonicParsing="false" onAction="#xoaBtn" prefHeight="33.0" prefWidth="75.0" style="-fx-background-color: #D73838;" text="Xóa" textFill="WHITE" />
+      <Button layoutX="49.0" layoutY="516.0" mnemonicParsing="false" onAction="#xoaBtn" prefHeight="33.0" prefWidth="75.0" style="-fx-background-color: #D73838;" text="Xóa" textFill="WHITE" visible="false" />
    </children>
 </AnchorPane>

@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="92.0" prefWidth="956.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.NhanVienController">
+<AnchorPane prefHeight="96.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.NhanVienController">
    <children>
-      <GridPane prefHeight="96.0" prefWidth="1000.0">
+      <GridPane prefHeight="96.0" prefWidth="793.0">
          <children>
             <Button fx:id="traLuong" mnemonicParsing="false" onAction="#traLuongBtn" style="-fx-background-color: #58C063;" text="Trả lương" textFill="WHITE" GridPane.columnIndex="4">
                <font>
@@ -57,6 +57,6 @@
             <RowConstraints maxHeight="495.0" minHeight="0.0" prefHeight="120.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button fx:id="chinhSuaNhanVien" blendMode="DARKEN" mnemonicParsing="false" onAction="#chinhSuaNhanVienBtn" prefHeight="89.0" prefWidth="794.0" style="-fx-background-color: #ffffff;" />
+      <Button fx:id="chinhSuaNhanVien" blendMode="DARKEN" mnemonicParsing="false" onAction="#chinhSuaNhanVienBtn" prefHeight="96.0" prefWidth="610.0" style="-fx-background-color: #ffffff;" />
    </children>
 </AnchorPane>

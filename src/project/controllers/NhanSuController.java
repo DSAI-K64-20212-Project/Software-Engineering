@@ -26,11 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NhanSuController {
+    private BaseController baseController;
 
-    @FXML
-    private VBox vboxLeft;
-    private Stage stage;
-    private Scene scene;
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
+
 
     @FXML
     public Button themNvBtn;
@@ -42,6 +43,7 @@ public class NhanSuController {
 
     @FXML
     public void initialize() throws IOException, SQLException, ClassNotFoundException {
+        vBoxNhanVien.getChildren().clear();
         nhanViens = new ArrayList<>(nhanViens());
 
         try {
@@ -51,6 +53,7 @@ public class NhanSuController {
                 AnchorPane box = fxmlLoader.load();
                 NhanVienController nhanVienController = fxmlLoader.getController();
                 nhanVienController.setData(nhanViens.get(i));
+                nhanVienController.setBaseController(baseController);
 
                 vBoxNhanVien.getChildren().add(box);
             }
@@ -81,7 +84,7 @@ public class NhanSuController {
             nhanVien.setCaLam(chucVu+ "\n" + caLam);
             nhanVien.setThongTin(tenNhanVien + "\n" + sdt + "\n" + tenDangNhap);
 
-            String commandNgay = String.format("SELECT COUNT(*) FROM lichsulamviec WHERE tendangnhap = '%s'",tenDangNhap);
+            String commandNgay = String.format("SELECT COUNT(*) FROM lichsulamviec WHERE tendangnhap = '%s' and datraluong = '%b'",tenDangNhap,false);
             ResultSet resultNgay = DBUtil.dbExecuteQuery(commandNgay);
             if (resultNgay.next()) {
                 int ngayChuaTraLuong = resultNgay.getInt("count");

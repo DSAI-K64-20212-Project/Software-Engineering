@@ -16,8 +16,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import project.UI.NhanVien;
+import project.base.DBUtil;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class NhanVienController {
     @FXML
@@ -37,21 +40,24 @@ public class NhanVienController {
 
     @FXML
     private Text thongTin;
+    private BaseController baseController;
 
-    @FXML
-    void traLuongBtn(ActionEvent event) {
-        luongChuaTra.setText("0");
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
     }
 
     @FXML
-    void chinhSuaNhanVienBtn(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/project/screen/ChinhSuaNhanVien.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
+    void traLuongBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+        luongChuaTra.setText("0");
+        String command1 = String.format("UPDATE lichsulamviec set datraluong = '%b' WHERE tendangnhap = '%s'",true,thongTin.getText().substring(thongTin.getText().indexOf("\n")+12));
+        DBUtil.dbExecuteUpdate(command1);
+    }
 
-        ChinhSuaNhanVienController chinhSuaNhanVienController = fxmlLoader.getController();
+    @FXML
+    void chinhSuaNhanVienBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+        baseController.toggleScreen(baseController.chinhsuaNVScreen);
+
+        ChinhSuaNhanVienController chinhSuaNhanVienController = baseController.mainEditEmplController;
         int nIndex = thongTin.getText().indexOf("\n");
         chinhSuaNhanVienController.getHoVaTen().setText(thongTin.getText().substring(0,nIndex));
         chinhSuaNhanVienController.getSoDienThoai().setText(thongTin.getText().substring(nIndex+1,nIndex+11));
@@ -69,6 +75,7 @@ public class NhanVienController {
             chinhSuaNhanVienController.getCaLam().selectToggle(chinhSuaNhanVienController.getChieuBtn());
         }
         chinhSuaNhanVienController.getUsername().setText(thongTin.getText().substring(nIndex+12));
+        chinhSuaNhanVienController.open();
     }
 
     public void setData(NhanVien nhanVien){

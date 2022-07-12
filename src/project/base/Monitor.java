@@ -16,7 +16,12 @@ public class Monitor {
         DBUtil.dbConnect();
     }
 
+    public void newSession(User user){
+        System.out.println(user instanceof Cashier);
+
+    }
     public void newSession(Cashier cashier){
+        System.out.println("Lần đăng nhập mới");
         this.cashier = cashier;
         this.bartender = null;
         this.admin = null;
@@ -31,6 +36,12 @@ public class Monitor {
         this.cashier = null;
         this.bartender = null;
         this.admin = admin;
+    }
+    public void logout(){
+        System.out.println("User đã đăng xuất");
+        this.cashier = null;
+        this.bartender = null;
+        this.admin = null;
     }
 
     public Cashier getCashier() {
@@ -48,6 +59,10 @@ public class Monitor {
         if (this.bartender != null) return this.bartender;
         if (this.admin != null) return this.admin;
         return null;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

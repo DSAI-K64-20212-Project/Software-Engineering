@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <HBox fx:id="mainAddIngre" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ThemNguyenLieuController">
     <children>
         <VBox prefHeight="600.0" prefWidth="488.0" HBox.hgrow="ALWAYS">

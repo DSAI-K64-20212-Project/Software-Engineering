@@ -22,15 +22,19 @@ import java.util.List;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class KhoController implements Initializable {
+public class KhoController {
+    private BaseController baseController;
+
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
 
     @FXML
     private GridPane imageGrid;
     private List<ImageMain> images;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resourceBundle) {
-
+    @FXML
+    public void initialize(){
         try {
             images = new ArrayList<>(images());
         } catch (SQLException e) {
@@ -45,7 +49,7 @@ public class KhoController implements Initializable {
         try {
             for (int i = 0; i < images.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("thumb.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/project/screen/thumb.fxml"));
                 VBox box = fxmlLoader.load();
                 ThumbController thumbController = fxmlLoader.getController();
                 thumbController.setData(images.get(i));

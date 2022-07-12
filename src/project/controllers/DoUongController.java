@@ -27,6 +27,7 @@ public class DoUongController {
     private Scene scene;
     private Stage stage;
     private Parent root;
+    private BaseController baseController;
 
     @FXML
     private Pane paneDoUong;
@@ -48,6 +49,10 @@ public class DoUongController {
 
     @FXML
     private Text sizeLDoUong;
+
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
 
     @FXML
     void onMenuBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -74,13 +79,8 @@ public class DoUongController {
 
     @FXML
     void chinhSuaDoUongBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/project/screen/ChinhSuaDoUong.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-
-        ChinhSuaDoUongController chinhSuaDoUongController = fxmlLoader.getController();
+        baseController.toggleScreen(baseController.chinhsuaDoUongScreen);
+        ChinhSuaDoUongController chinhSuaDoUongController = baseController.mainModifyDrController;
         chinhSuaDoUongController.old = thongTinDoUong.getText();
         chinhSuaDoUongController.getTen().setText(thongTinDoUong.getText());
         chinhSuaDoUongController.getGiaSizeL().setText(sizeLDoUong.getText().substring(sizeLDoUong.getText().indexOf("\n")));

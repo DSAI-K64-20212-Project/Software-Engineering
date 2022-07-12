@@ -36,6 +36,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuController {
+    private BaseController baseController;
+
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
+
     @FXML
     public Button themDoUongToppingBtn;
 
@@ -49,15 +55,19 @@ public class MenuController {
 
     @FXML
     public void initialize() throws IOException, SQLException, ClassNotFoundException{
+        vBoxDoUong.getChildren().clear();
+        vBoxTopping.getChildren().clear();
+
         doUongs = new ArrayList<>(doUongs());
 
         try {
-            for (int i = 0; i < doUongs.size(); i++) {
+            for (DoUong doUong : doUongs) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/project/screen/DoUong.fxml"));
                 Pane box = fxmlLoader.load();
                 DoUongController doUongController = fxmlLoader.getController();
-                doUongController.setData(doUongs.get(i));
+                doUongController.setBaseController(baseController);
+                doUongController.setData(doUong);
 
                 vBoxDoUong.getChildren().add(box);
             }
@@ -74,6 +84,7 @@ public class MenuController {
                 Pane box = fxmlLoader.load();
                 ToppingController toppingController = fxmlLoader.getController();
                 toppingController.setData(toppings.get(i));
+                toppingController.setBaseController(baseController);
 
                 vBoxTopping.getChildren().add(box);
             }

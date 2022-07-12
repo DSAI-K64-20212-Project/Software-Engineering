@@ -191,13 +191,22 @@
                         </HBox>
                         <Button mnemonicParsing="false" onAction="#infBtn" prefHeight="33.0" prefWidth="50.0" styleClass="button-image" stylesheets="@../Stylesheet.css">
                            <graphic>
-                              <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true" styleClass="imageView">
+                              <ImageView fx:id="avaImg" fitHeight="34.0" fitWidth="33.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#infBtn" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../resources/image/icons/following.png" />
                                  </image>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#logoutPressed" styleClass="button-sidebar" stylesheets="@../Stylesheet.css">
+                           <graphic>
+                              <ImageView fitHeight="82.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/image/icons/logout.png" />
+                                 </image>
                               </ImageView>
                            </graphic>
                         </Button>
@@ -211,7 +220,7 @@
                                  <fx:include fx:id="mainDatDoUong" source="DatDoUong.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               </AnchorPane>
                               <AnchorPane fx:id="khoNguyenLieuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
-                                 <fx:include fx:id="mainKhoNguyenLieu" source="KhoNguyenLieu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 <fx:include fx:id="mainKhoNguyenLieu" source="Kho.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               </AnchorPane>
                               <AnchorPane fx:id="nhansuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
                                     <fx:include fx:id="mainNhanSu" source="NhanSu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -237,6 +246,15 @@
                               <AnchorPane fx:id="themDrinkToppingScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
                                  <fx:include fx:id="mainAddDrTp" source="ThemDoUongTopping.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               </AnchorPane>
+                              <AnchorPane fx:id="chinhsuaDoUongScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <fx:include fx:id="mainModifyDr" source="ChinhSuaDoUong.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              </AnchorPane>
+                              <AnchorPane fx:id="chinhsuaNVScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <fx:include fx:id="mainEditEmpl" source="ChinhSuaNhanVien.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              </AnchorPane>
+                              <AnchorPane fx:id="chinhsuaToppingScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
+                                 <fx:include fx:id="mainEditTopping" source="ChinhSuaTopping.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              </AnchorPane>
                               <AnchorPane fx:id="initPane" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <Label layoutX="49.0" layoutY="116.0" prefHeight="111.0" prefWidth="325.0" styleClass="normal-text" text="&lt;- Nhấn vào một tab bên trái để bắt đầu. Chúc bạn có một ngày làm việc thật hiệu quả!" textAlignment="JUSTIFY" wrapText="true" />
@@ -245,8 +263,8 @@
                                           <Font name="System Bold" size="27.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="725.0" layoutY="-14.0" prefHeight="111.0" prefWidth="85.0" styleClass="normal-text" text="Xem thông tin cá nhân" textAlignment="JUSTIFY" wrapText="true" />
-                                    <Label layoutX="779.0" layoutY="-6.0" prefHeight="40.0" prefWidth="10.0" styleClass="normal-text" text="^" textAlignment="JUSTIFY" wrapText="true">
+                                    <Label layoutX="659.0" prefHeight="111.0" prefWidth="85.0" styleClass="normal-text" text="Xem thông tin cá nhân" textAlignment="JUSTIFY" wrapText="true" />
+                                    <Label layoutX="713.0" layoutY="8.0" prefHeight="40.0" prefWidth="10.0" styleClass="normal-text" text="^" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font name="Arial Black" size="27.0" />
                                        </font>

@@ -23,6 +23,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class ToppingController {
+    private BaseController baseController;
+
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
+
     @FXML
     private RadioButton xoaTopping;
 
@@ -60,13 +66,8 @@ public class ToppingController {
 
     @FXML
     void chinhSuaToppingBtn(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/project/screen/ChinhSuaTopping.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage window1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window1.setScene(new Scene(root1));
-
-        ChinhSuaToppingController chinhSuaToppingController = fxmlLoader.getController();
+        baseController.toggleScreen(baseController.chinhsuaToppingScreen);
+        ChinhSuaToppingController chinhSuaToppingController = baseController.mainEditToppingController;
         chinhSuaToppingController.old = thongTinTopping.getText();
         chinhSuaToppingController.getTen().setText(thongTinTopping.getText());
         chinhSuaToppingController.getGiaTopping().setText(giaTopping.getText().substring(giaTopping.getText().indexOf("\n")+1));

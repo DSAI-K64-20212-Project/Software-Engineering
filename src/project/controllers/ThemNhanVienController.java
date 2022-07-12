@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.base.functional.AdminInterface;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -37,7 +35,7 @@ public class ThemNhanVienController implements AdminInterface {
     @FXML
     private TextField username;
     @FXML
-    private TextField matKhau;
+    private PasswordField matKhau;
 
     @FXML
     private ToggleGroup chucVu;
@@ -81,6 +79,11 @@ public class ThemNhanVienController implements AdminInterface {
         }
 
         create_new_user("Tam",tenDangNhap,tenNhanVien,mk,sdt,avatar,cv1,cl1);
+        JOptionPane.showMessageDialog(null, "Nhân viên đã được thêm thành công", "Notification", 1);
+        hoVaTen.setText("");
+        soDienThoai.setText("");
+        username.setText("");
+        matKhau.setText("");
     }
 
     @FXML
@@ -98,7 +101,7 @@ public class ThemNhanVienController implements AdminInterface {
 
         // Set thư mục bắt đầu khi mở FileChooser
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-
+        System.out.println(imageBtn.getText());
         File file = fileChooser.showOpenDialog(stage);
 
         // Set image sau khi upload ảnh

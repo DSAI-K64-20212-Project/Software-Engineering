@@ -2,6 +2,7 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -18,6 +19,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import project.base.DBUtil;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,9 +60,6 @@ public class ChinhSuaDoUongController {
     private RadioButton nguyenLieu6;
 
     @FXML
-    private Button backBtn;
-
-    @FXML
     private RadioButton radioButtonSize2;
 
     @FXML
@@ -77,6 +76,8 @@ public class ChinhSuaDoUongController {
 
     @FXML
     private TextField giaSizeM;
+
+    @FXML public Button backBtn;
 
     @FXML
     private HBox hBoxNguyenLieu;
@@ -101,6 +102,7 @@ public class ChinhSuaDoUongController {
     }
 
     public void open() throws IOException, SQLException, ClassNotFoundException{
+        hBoxNguyenLieu.getChildren().clear();
 
         int columns = 1;
 
@@ -121,6 +123,7 @@ public class ChinhSuaDoUongController {
             nguyenLieuRadioBtn.setStyle("-fx-border-color:#000000");
             nguyenLieuRadioBtn.setStyle("-fx-border-width:3");
             nguyenLieuRadioBtn.setStyle("-fx-border-radius:20");
+            nguyenLieuRadioBtn.setPadding(new Insets(5, 5, 5, 5));
             if (nguyenLieuHienTai.contains(tenNguyenLieu)){
                 nguyenLieuRadioBtn.setSelected(true);
             }
@@ -152,26 +155,30 @@ public class ChinhSuaDoUongController {
 
     @FXML
     void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String command2 = String.format("UPDATE giadouong " + "SET giadouong = '%s' WHERE size = 'M' AND tendouong = '%s'",giaSizeM.getText(),ten.getText());
+        DBUtil.dbExecuteUpdate(String.format("delete from giadouong where tendouong = '%s';",old));
+        DBUtil.dbExecuteUpdate(String.format("delete from thanhphandouong where tendouong = '%s';",old));
+        DBUtil.dbExecuteUpdate(String.format("update douong set tendouong = '%s' where tendouong = '%s';",
+                ten.getText(), old));
+
+        String command2 = String.format("insert into giadouong(giadouong, size, tendouong) values ('%s', 'M', '%s');"
+                ,giaSizeM.getText(),ten.getText());
         DBUtil.dbExecuteUpdate(command2);
-        String command3 = String.format("UPDATE giadouong " + "SET giadouong = '%s' WHERE size = 'L' AND tendouong = '%s'",giaSizeL.getText(),ten.getText());
+        String command3 = String.format("insert into giadouong(giadouong, size, tendouong) values ('%s', 'L', '%s');"
+                ,giaSizeL.getText(),ten.getText());
         DBUtil.dbExecuteUpdate(command3);
 
-        String command1 = String.format("SELECT * FROM thanhphandouong WHERE tendouong = '%s'",old);
-        ResultSet result1 = DBUtil.dbExecuteQuery(command1);
-        while (result1.next()) {
-            nguyenLieuHienTai.add(result1.getString(2));
-            String command4 = String.format("DELETE FROM thanhphandouong WHERE tendouong = '%s'",old);
-            DBUtil.dbExecuteUpdate(command4);
-        }
 
         for (Node n: hBoxNguyenLieu.getChildren()){
             RadioButton radioBtn = (RadioButton) n;
             if (radioBtn.isSelected()){
-                String command5 = String.format("INSERT INTO thanhphandouong VALUES ('%s','%s')",old, radioBtn.getText());
+                String command5 = String.format("INSERT INTO thanhphandouong VALUES ('%s','%s')",ten.getText(),
+                        radioBtn.getText());
                 DBUtil.dbExecuteUpdate(command5);
             }
         }
+
+        JOptionPane.showMessageDialog(null, "Đồ uống đã được chỉnh sửa thành công", "Notification", 1);
+        backBtn.fire();
     }
 
     @FXML
@@ -187,6 +194,8 @@ public class ChinhSuaDoUongController {
         DBUtil.dbExecuteUpdate(command2);
         String command3 = String.format("DELETE FROM douong WHERE  tendouong = '%s'",old);
         DBUtil.dbExecuteUpdate(command3);
+
+        JOptionPane.showMessageDialog(null, "Đồ uống đã được xóa thành công", "Notification", 1);
     }
 
 }

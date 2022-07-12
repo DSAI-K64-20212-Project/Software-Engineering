@@ -2,16 +2,24 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+import project.base.DBListener;
 import project.base.DBUtil;
 
+import javax.swing.*;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 import static project.LogIn.monitor;
 
@@ -34,7 +42,7 @@ public class BaseController {
     private AnchorPane prevScreen;
 
 
-    private void toggleScreen(AnchorPane screen){
+    public void toggleScreen(AnchorPane screen){
         activeScreen.setVisible(false);
         prevScreen = activeScreen;
         activeScreen = screen;
@@ -57,19 +65,35 @@ public class BaseController {
     @FXML
     private AnchorPane themNvScreen;
     @FXML
-    private AnchorPane themNguyenlieuScreen;
+    public AnchorPane themNguyenlieuScreen;
     @FXML
     public AnchorPane themDrinkToppingScreen;
+    @FXML public AnchorPane chinhsuaDoUongScreen;
+    @FXML public AnchorPane chinhsuaNVScreen;
+    @FXML public AnchorPane chinhsuaToppingScreen;
     @FXML private NhanSuController mainNhanSuController;
     @FXML private ThemNhanVienController mainAddStaffController;
     @FXML private TaiKhoanCuaBanController mainAccountController;
-    @FXML private KhoNguyenLieuController mainKhoNguyenLieuController;
+    @FXML private KhoController mainKhoNguyenLieuController;
     @FXML private ThemNguyenLieuController mainAddIngreController;
     @FXML private ThemDoUongToppingController mainAddDrTpController;
+    @FXML private DatDoUongController mainDatDoUongController;
     @FXML private MenuController mainMenuController;
+    @FXML public ChinhSuaNhanVienController mainEditEmplController;
+    @FXML public ChinhSuaDoUongController mainModifyDrController;
+    @FXML public ChinhSuaToppingController mainEditToppingController;
+
+
+    private DBListener dbListener;
 
     @FXML
-    private void initialize() throws SQLException, ClassNotFoundException {
+    private void initialize() throws SQLException, ClassNotFoundException, IOException {
+        mainMenuController.setBaseController(this);
+        mainNhanSuController.setBaseController(this);
+        mainKhoNguyenLieuController.setBaseController(this);
+        mainKhoNguyenLieuController.initialize();
+        mainMenuController.initialize();
+        mainNhanSuController.initialize();
         activeScreen = initPane;
         ResultSet result =
                 DBUtil.dbExecuteQuery(String.format("Select tennhanvien from nhanvien where tendangnhap = '%s';",
@@ -96,10 +120,15 @@ public class BaseController {
         mainNhanSuController.themNvBtn.setOnAction(actionEvent -> toggleScreen(themNvScreen));
         mainAddStaffController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainAccountController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
-        mainKhoNguyenLieuController.taoNguyenlieuBtn.setOnAction(actionEvent -> toggleScreen(themNguyenlieuScreen));
         mainAddIngreController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainAddDrTpController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainEditEmplController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainEditToppingController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
+        mainModifyDrController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
+
+        dbListener = new DBListener(DBUtil.conn, mainDatDoUongController);
+        dbListener.start();
     }
 
 
@@ -146,6 +175,22 @@ public class BaseController {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         System.out.println("Play Music !");
         mediaPlayer.setAutoPlay(true);
+    }
+    @FXML
+    void logoutPressed(ActionEvent event) throws IOException {
+        int n = JOptionPane.showConfirmDialog(
+                null,
+                "Bạn có muốn đăng xuất không?",
+                "Đăng xuất",
+                JOptionPane.YES_NO_OPTION);
+        if (n == 0) {
+            monitor.logout();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/LogIn.fxml")));
+            Stage window = (Stage) datdoUongBtn.getScene().getWindow();
+            window.setScene(new Scene(root));
+        } else {
+            event.consume();
+        }
     }
 }
 

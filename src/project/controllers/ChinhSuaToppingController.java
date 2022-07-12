@@ -2,6 +2,7 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -17,14 +18,15 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import project.base.DBUtil;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ChinhSuaToppingController {
-    @FXML
-    private AnchorPane mainAddDrTp;
+
+    @FXML public Button backBtn;
 
     @FXML
     private Pane paneGiaTopping;
@@ -32,8 +34,6 @@ public class ChinhSuaToppingController {
     @FXML
     private RadioButton doUong;
 
-    @FXML
-    private Button backBtn;
 
     @FXML
     private ToggleGroup loai;
@@ -98,14 +98,18 @@ public class ChinhSuaToppingController {
         System.out.print(hBoxNguyenLieu.getChildren());
         for (Node n: hBoxNguyenLieu.getChildren()){
             RadioButton radioBtn = (RadioButton) n;
-            if (radioBtn.isSelected()){
+            if (radioBtn.isSelected()) {
                 String command4 = String.format("INSERT INTO thanhphantopping VALUES ('%s','%s')",old, radioBtn.getText());
                 DBUtil.dbExecuteUpdate(command4);
             }
         }
+
+        JOptionPane.showMessageDialog(null, "Topping đã được chỉnh sửa thành công", "Notification", 1);
+        backBtn.fire();
     }
 
-    public void open() throws IOException, SQLException, ClassNotFoundException{
+    public void open() throws SQLException, ClassNotFoundException{
+        hBoxNguyenLieu.getChildren().clear();
         String command1 = String.format("SELECT * FROM nguyenlieu");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
@@ -123,6 +127,7 @@ public class ChinhSuaToppingController {
             nguyenLieuRadioBtn.setStyle("-fx-border-color:#000000");
             nguyenLieuRadioBtn.setStyle("-fx-border-width:3");
             nguyenLieuRadioBtn.setStyle("-fx-border-radius:20");
+            nguyenLieuRadioBtn.setPadding(new Insets(5, 5, 5, 5));
             if (nguyenLieuHienTai.contains(tenNguyenLieu)){
                 nguyenLieuRadioBtn.setSelected(true);
             }
@@ -148,6 +153,8 @@ public class ChinhSuaToppingController {
         DBUtil.dbExecuteUpdate(command1);
         String command2 = String.format("DELETE FROM thanhphantopping WHERE  tentopping = '%s'",old);
         DBUtil.dbExecuteUpdate(command2);
+
+        JOptionPane.showMessageDialog(null, "Topping đã được xóa thành công", "Notification", 1);
     }
 
 }

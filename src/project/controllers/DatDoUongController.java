@@ -9,13 +9,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import project.UI.InvoiceView;
+import project.UI.VBoxCell;
 import project.base.DBUtil;
 import project.base.order.Invoice;
 import project.base.user.Cashier;
@@ -47,9 +44,9 @@ public class DatDoUongController {
     @FXML
     private TextField tenKhach;
     @FXML
-    private JFXListView toppingList;
+    private JFXListView<VBoxCell> toppingList;
     @FXML
-    private JFXListView douongList;
+    private JFXListView<VBoxCell> douongList;
     @FXML
     private ScrollPane hoadonList;
     @FXML
@@ -65,48 +62,17 @@ public class DatDoUongController {
     private static String[] chosenTopping;
 
     @FXML
-    private void initialize() throws SQLException, ClassNotFoundException {
+    public void initialize() throws SQLException, ClassNotFoundException {
+//        douongList.getItems().clear();
+//        toppingList.getItems().clear();
+        tenKhach.setText("");
+        khachTra.setText("");
+
         hoadonList.setContent(new InvoiceView(hoadon));
         ObservableStringValue formattedBill = Bindings.createStringBinding(() ->
                 "Tổng tiền: " + String.format("%d.000đ",hoadon.getBill()), hoadon.getBillProperty());
         totalBillLabel.textProperty().bind(formattedBill);
 
-        class VBoxCell extends VBox {
-            ImageView imageView = new ImageView();
-            Label ten = new Label();
-            Label gia = new Label();
-
-            VBoxCell(String ten, String tenanh) {
-                super();
-                Image background = new Image(getClass().getResourceAsStream(String.format("../resources/image" +
-                                "/TraSua/%s",
-                        tenanh)), 100, 100, false, false);
-                imageView.setImage(background);
-
-                this.ten.setText(ten);
-                this.setSpacing(10);
-                this.setAlignment(Pos.CENTER);
-
-                this.getChildren().addAll(this.imageView, this.ten);
-            }
-
-            VBoxCell(String tentopping, String tenanh, String giatien) {
-                InputStream imagestream = getClass().getResourceAsStream(String.format("../resources/image" +
-                                "/Topping/%s",
-                        tenanh));
-                if (imagestream == null){
-                    imagestream = getClass().getResourceAsStream("../resources/image/Topping/senvang.jpg");
-                }
-                Image background = new Image(imagestream, 100, 100, false, false);
-                imageView.setImage(background);
-
-                this.ten.setText(tentopping);
-                this.setSpacing(10);
-                this.setAlignment(Pos.CENTER);
-                this.gia.setText(giatien+".000đ");
-                this.getChildren().addAll(this.imageView, this.ten, this.gia);
-            }
-        }
         String command = "SELECT * FROM douong WHERE onmenu = True;";
         ResultSet result = DBUtil.dbExecuteQuery(command);
         List<VBoxCell> list = new ArrayList<>();
@@ -118,8 +84,9 @@ public class DatDoUongController {
         douongList.setItems(douong);
         douongList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<VBoxCell>) (observableValue
                 , old, n) -> {
-            chosenDrink = n.ten.getText();
-            System.out.println(chosenDrink);
+            if (n != null) {
+                chosenDrink = n.ten.getText();
+            } else { chosenDrink = null;}
         });
 
         //topping
@@ -134,7 +101,7 @@ public class DatDoUongController {
         ObservableList<VBoxCell> myObservableList = FXCollections.observableList(list2);
         toppingList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         toppingList.setItems(myObservableList);
-        toppingList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<VBoxCell>) (observableValue, o, t1) -> {
+        toppingList.getSelectionModel().selectedItemProperty().addListener((observableValue, o, t1) -> {
             ObservableList<VBoxCell> selectedItems = toppingList.getSelectionModel().getSelectedItems();
             List<String> local = new ArrayList<>();
             for (VBoxCell v:selectedItems){

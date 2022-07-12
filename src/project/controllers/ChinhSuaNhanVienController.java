@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,9 +18,11 @@ import javafx.stage.Stage;
 import project.base.DBUtil;
 import project.base.functional.AdminInterface;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ChinhSuaNhanVienController implements AdminInterface {
@@ -33,6 +32,8 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     private Parent root;
     @FXML
     private Button pauseButton;
+
+    @FXML public Button backBtn;
 
     @FXML
     private Button imageBtn;
@@ -64,7 +65,7 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     @FXML
     private TextField username;
     @FXML
-    private TextField matKhau;
+    private PasswordField matKhau;
     @FXML
     private ToggleGroup chucVu;
     @FXML
@@ -102,10 +103,6 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         return username;
     }
 
-    public TextField getMatKhau() {
-        return matKhau;
-    }
-
     public ToggleGroup getChucVu() {
         return chucVu;
     }
@@ -114,98 +111,27 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         return caLam;
     }
 
+    public void setMatKhau(PasswordField matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public PasswordField getMatKhau() {
+        return matKhau;
+    }
+
     private String oldUsername;
     private String anh = "null";
 
-    @FXML
-    public void initialize() throws IOException, SQLException, ClassNotFoundException {
+    public void open() throws IOException, SQLException, ClassNotFoundException {
         oldUsername = username.getText();
-    }
+        String command2 = String.format("SELECT matkhau FROM nhanvien WHERE tendangnhap = '%s'", oldUsername);
+        ResultSet result2 = DBUtil.dbExecuteQuery(command2);
 
-    @FXML
-    void infBtn(MouseEvent event) throws IOException {
-//        avaImg.setPickOnBounds(true);
-        Parent root = FXMLLoader.load(getClass().getResource("TaiKhoanCuaBan.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void billBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HoaDon_temp.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void ingredientBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void hrBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void menuBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("KhoNguyenLieu.fxml")); // Chưa có màn hình
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void revBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DoanhThu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void ordBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DatDoUong.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void pauseMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        if(mediaPlayer != null) {
-            System.out.println("Pause !");
-            mediaPlayer.setMute(true);
+        if (result2.next()){
+            matKhau.setText(result2.getString(4));
         }
     }
 
-    // Music ON !!!
-    @FXML
-    void playMedia(ActionEvent event) {
-        String f = "src/project/resources/music/home.mp3";
-        Media media = new Media(Paths.get(f).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        System.out.println("Play Music !");
-        mediaPlayer.setAutoPlay(true);
-    }
 
     @FXML
     void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -227,6 +153,9 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         }
         String command2 = String.format("UPDATE nhanvien SET tendangnhap = '%s',tennhanvien = '%s', sdt = '%s', matkhau = '%s', chucvu = '%s', calam = '%s' WHERE tendangnhap = '%s'", username.getText(),hoVaTen.getText(),soDienThoai.getText(),matKhau.getText(),cv,cl,username.getText());
         DBUtil.dbExecuteUpdate(command2);
+
+        JOptionPane.showMessageDialog(null, "Nhân viên đã được chỉnh sửa thành công", "Notification", 1);
+        backBtn.fire();
     }
 
     @FXML

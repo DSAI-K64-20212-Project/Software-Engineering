@@ -4,13 +4,6 @@
  */
 package project.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Objects;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +19,13 @@ import project.base.user.Bartender;
 import project.base.user.Cashier;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
 import static project.LogIn.monitor;
 
 
@@ -65,19 +65,10 @@ public class LogInController implements Initializable {
             // move to main screen
             if (Objects.equals(chucvu, "Quan Ly")) {
                 monitor.newSession(new Admin(result.getString(1)));
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Base.fxml")));
-                Stage window = (Stage) username.getScene().getWindow();
-                window.setScene(new Scene(root));
             } else if (Objects.equals(chucvu, "Thu Ngan")) {
                 monitor.newSession(new Cashier(result.getString(1)));
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseCashier.fxml")));
-                Stage window = (Stage) username.getScene().getWindow();
-                window.setScene(new Scene(root));
             } else if (Objects.equals(chucvu, "Pha Che")) {
                 monitor.newSession(new Bartender(result.getString(1)));
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/BaseBartender.fxml")));
-                Stage window = (Stage) username.getScene().getWindow();
-                window.setScene(new Scene(root));
             }
         }
     }
@@ -111,6 +102,6 @@ public class LogInController implements Initializable {
 
     @FXML
     public void forgetPasswordButton(ActionEvent e) {
-        JOptionPane.showMessageDialog(null, "Hãy đến gặp quản lí để được cấp lại mật khẩu");
+        JOptionPane.showMessageDialog(new JFrame(), "Hãy đến gặp quản lí để được cấp lại mật khẩu");
     }
 }
