@@ -101,7 +101,7 @@ public class ThemNhanVienController implements AdminInterface {
 
         // Set thư mục bắt đầu khi mở FileChooser
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-
+        System.out.println(imageBtn.getText());
         File file = fileChooser.showOpenDialog(stage);
 
         // Set image sau khi upload ảnh

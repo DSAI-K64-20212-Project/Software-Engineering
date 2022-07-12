@@ -84,7 +84,7 @@ public class NhanSuController {
             nhanVien.setCaLam(chucVu+ "\n" + caLam);
             nhanVien.setThongTin(tenNhanVien + "\n" + sdt + "\n" + tenDangNhap);
 
-            String commandNgay = String.format("SELECT COUNT(*) FROM lichsulamviec WHERE tendangnhap = '%s'",tenDangNhap);
+            String commandNgay = String.format("SELECT COUNT(*) FROM lichsulamviec WHERE tendangnhap = '%s' and datraluong = '%b'",tenDangNhap,false);
             ResultSet resultNgay = DBUtil.dbExecuteQuery(commandNgay);
             if (resultNgay.next()) {
                 int ngayChuaTraLuong = resultNgay.getInt("count");

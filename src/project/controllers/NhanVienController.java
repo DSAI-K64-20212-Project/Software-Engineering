@@ -16,8 +16,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import project.UI.NhanVien;
+import project.base.DBUtil;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NhanVienController {
@@ -45,8 +47,10 @@ public class NhanVienController {
     }
 
     @FXML
-    void traLuongBtn(ActionEvent event) {
+    void traLuongBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
         luongChuaTra.setText("0");
+        String command1 = String.format("UPDATE lichsulamviec set datraluong = '%b' WHERE tendangnhap = '%s'",true,thongTin.getText().substring(thongTin.getText().indexOf("\n")+12));
+        DBUtil.dbExecuteUpdate(command1);
     }
 
     @FXML
