@@ -133,14 +133,14 @@
                               <Insets left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="matKhau" promptText="Input field" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
+                        <PasswordField fx:id="matKhau" promptText="input field">
                            <VBox.margin>
                               <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
                            </VBox.margin>
-                        </TextField>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </PasswordField>
                      </children>
                   </VBox>
                   <Pane prefHeight="83.0" prefWidth="334.0" GridPane.rowIndex="4">

@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import project.UI.NhanVien;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class NhanVienController {
     @FXML
@@ -49,7 +50,7 @@ public class NhanVienController {
     }
 
     @FXML
-    void chinhSuaNhanVienBtn(ActionEvent event) throws IOException {
+    void chinhSuaNhanVienBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         baseController.toggleScreen(baseController.chinhsuaNVScreen);
 
         ChinhSuaNhanVienController chinhSuaNhanVienController = baseController.mainEditEmplController;
@@ -70,6 +71,7 @@ public class NhanVienController {
             chinhSuaNhanVienController.getCaLam().selectToggle(chinhSuaNhanVienController.getChieuBtn());
         }
         chinhSuaNhanVienController.getUsername().setText(thongTin.getText().substring(nIndex+12));
+        chinhSuaNhanVienController.open();
     }
 
     public void setData(NhanVien nhanVien){

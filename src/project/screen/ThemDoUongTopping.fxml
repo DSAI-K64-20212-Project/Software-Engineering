@@ -94,14 +94,18 @@
                         </RadioButton>
                      </children>
                   </Pane>
-                  <RadioButton mnemonicParsing="false" onAction="#toppingBtn" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping" toggleGroup="$loai" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </RadioButton>
+                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <RadioButton layoutY="29.0" mnemonicParsing="false" onAction="#toppingBtn" prefHeight="42.0" prefWidth="168.0" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" text="Topping" toggleGroup="$loai" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </RadioButton>
+                     </children>
+                  </Pane>
                   <Pane GridPane.rowIndex="3">
                      <children>
                         <Pane fx:id="paneGiaTopping" layoutY="33.0" visible="false">
@@ -149,26 +153,30 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <RadioButton fx:id="radioButtonSize2" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <graphic>
-                        <VBox>
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="L&#10;Giá tiền">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="giaSizeL" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
-                           </children>
-                        </VBox>
-                     </graphic>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </RadioButton>
+                  <Pane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <RadioButton fx:id="radioButtonSize2" layoutY="24.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <VBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="L&#10;Giá tiền">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="giaSizeL" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
+                                 </children>
+                              </VBox>
+                           </graphic>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </RadioButton>
+                     </children>
+                  </Pane>
                   <Pane GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
                         <Button fx:id="imageBtn" layoutX="-9.0" layoutY="-53.0" mnemonicParsing="false" onAction="#uploadImageBtn" prefHeight="200.0" prefWidth="200.0">
@@ -192,9 +200,9 @@
                   <Insets left="15.0" />
                </VBox.margin>
             </Text>
-            <ScrollPane prefHeight="85.0" prefWidth="1000.0">
+            <ScrollPane prefHeight="75.0" prefWidth="774.0">
                <content>
-                  <HBox fx:id="hBoxNguyenLieu" alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="1321.0" />
+                  <HBox fx:id="hBoxNguyenLieu" alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="1321.0" />
                </content>
                <VBox.margin>
                   <Insets left="10.0" />

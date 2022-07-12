@@ -2,6 +2,7 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -18,6 +19,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import project.base.DBUtil;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -121,6 +123,7 @@ public class ChinhSuaDoUongController {
             nguyenLieuRadioBtn.setStyle("-fx-border-color:#000000");
             nguyenLieuRadioBtn.setStyle("-fx-border-width:3");
             nguyenLieuRadioBtn.setStyle("-fx-border-radius:20");
+            nguyenLieuRadioBtn.setPadding(new Insets(5, 5, 5, 5));
             if (nguyenLieuHienTai.contains(tenNguyenLieu)){
                 nguyenLieuRadioBtn.setSelected(true);
             }
@@ -172,6 +175,8 @@ public class ChinhSuaDoUongController {
                 DBUtil.dbExecuteUpdate(command5);
             }
         }
+
+        JOptionPane.showMessageDialog(null, "Đồ uống đã được chỉnh sửa thành công", "Notification", 1);
     }
 
     @FXML
@@ -187,6 +192,8 @@ public class ChinhSuaDoUongController {
         DBUtil.dbExecuteUpdate(command2);
         String command3 = String.format("DELETE FROM douong WHERE  tendouong = '%s'",old);
         DBUtil.dbExecuteUpdate(command3);
+
+        JOptionPane.showMessageDialog(null, "Đồ uống đã được xóa thành công", "Notification", 1);
     }
 
 }

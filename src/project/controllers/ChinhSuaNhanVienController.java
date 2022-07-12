@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +21,7 @@ import project.base.functional.AdminInterface;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ChinhSuaNhanVienController implements AdminInterface {
@@ -66,7 +64,7 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     @FXML
     private TextField username;
     @FXML
-    private TextField matKhau;
+    private PasswordField matKhau;
     @FXML
     private ToggleGroup chucVu;
     @FXML
@@ -104,10 +102,6 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         return username;
     }
 
-    public TextField getMatKhau() {
-        return matKhau;
-    }
-
     public ToggleGroup getChucVu() {
         return chucVu;
     }
@@ -116,12 +110,25 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         return caLam;
     }
 
+    public void setMatKhau(PasswordField matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public PasswordField getMatKhau() {
+        return matKhau;
+    }
+
     private String oldUsername;
     private String anh = "null";
 
-    @FXML
-    public void initialize() throws IOException, SQLException, ClassNotFoundException {
+    public void open() throws IOException, SQLException, ClassNotFoundException {
         oldUsername = username.getText();
+        String command2 = String.format("SELECT matkhau FROM nhanvien WHERE tendangnhap = '%s'", oldUsername);
+        ResultSet result2 = DBUtil.dbExecuteQuery(command2);
+
+        if (result2.next()){
+            matKhau.setText(result2.getString(4));
+        }
     }
 
 
