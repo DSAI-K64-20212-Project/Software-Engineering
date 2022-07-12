@@ -220,7 +220,7 @@
                                  <fx:include fx:id="mainDatDoUong" source="DatDoUong.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               </AnchorPane>
                               <AnchorPane fx:id="khoNguyenLieuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
-                                 <fx:include fx:id="mainKhoNguyenLieu" source="KhoNguyenLieu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 <fx:include fx:id="mainKhoNguyenLieu" source="Kho.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               </AnchorPane>
                               <AnchorPane fx:id="nhansuScreen" minHeight="670.0" prefHeight="670.0" prefWidth="824.0" visible="false">
                                     <fx:include fx:id="mainNhanSu" source="NhanSu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

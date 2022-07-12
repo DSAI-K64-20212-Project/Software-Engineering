@@ -152,23 +152,24 @@ public class ChinhSuaDoUongController {
 
     @FXML
     void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String command2 = String.format("UPDATE giadouong " + "SET giadouong = '%s' WHERE size = 'M' AND tendouong = '%s'",giaSizeM.getText(),ten.getText());
+        DBUtil.dbExecuteUpdate(String.format("delete from giadouong where tendouong = '%s';",old));
+        DBUtil.dbExecuteUpdate(String.format("delete from thanhphandouong where tendouong = '%s';",old));
+        DBUtil.dbExecuteUpdate(String.format("update douong set tendouong = '%s' where tendouong = '%s';",
+                ten.getText(), old));
+
+        String command2 = String.format("insert into giadouong(giadouong, size, tendouong) values ('%s', 'M', '%s');"
+                ,giaSizeM.getText(),ten.getText());
         DBUtil.dbExecuteUpdate(command2);
-        String command3 = String.format("UPDATE giadouong " + "SET giadouong = '%s' WHERE size = 'L' AND tendouong = '%s'",giaSizeL.getText(),ten.getText());
+        String command3 = String.format("insert into giadouong(giadouong, size, tendouong) values ('%s', 'L', '%s');"
+                ,giaSizeL.getText(),ten.getText());
         DBUtil.dbExecuteUpdate(command3);
 
-        String command1 = String.format("SELECT * FROM thanhphandouong WHERE tendouong = '%s'",old);
-        ResultSet result1 = DBUtil.dbExecuteQuery(command1);
-        while (result1.next()) {
-            nguyenLieuHienTai.add(result1.getString(2));
-            String command4 = String.format("DELETE FROM thanhphandouong WHERE tendouong = '%s'",old);
-            DBUtil.dbExecuteUpdate(command4);
-        }
 
         for (Node n: hBoxNguyenLieu.getChildren()){
             RadioButton radioBtn = (RadioButton) n;
             if (radioBtn.isSelected()){
-                String command5 = String.format("INSERT INTO thanhphandouong VALUES ('%s','%s')",old, radioBtn.getText());
+                String command5 = String.format("INSERT INTO thanhphandouong VALUES ('%s','%s')",ten.getText(),
+                        radioBtn.getText());
                 DBUtil.dbExecuteUpdate(command5);
             }
         }

@@ -161,34 +161,9 @@ select date(thi.thoigian), sum(thanhtien) from (
                                                    group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
                                                ) as thi group by date(thi.thoigian);
 
-select date(thi.thoigian) as ngay, sum(thanhtien) as tong from (
-    select hoadon.thoigian, (sum(giaTopping) + giaDoUong)*soluong as thanhtien from hoadon
-    inner join thanhphanhoadon t on hoadon.maHoaDon = t.mahoadon
-    inner join giadouong GDU on GDU.tenDoUong = t.tenDoUong and GDU.size = t.size
-    inner join toppingtronghoadon t2 on t.buyID = t2.buyid and t.maHoaDon = t2.maHoaDon
-    inner join topping t3 on t2.tenTopping = t3.tentopping
-    where trangThai = 'Da giao'
-    group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
-) as thi group by date(thi.thoigian) having date(thi.thoigian) >= current_date - 1
-order by ngay desc;
-
-select extract(month from thi.thoigian) as thang, sum(thanhtien) as tong from (
-                                                   select hoadon.thoigian, (sum(giaTopping) + giaDoUong)*soluong as thanhtien from hoadon
-                                                                                                                                       inner join thanhphanhoadon t on hoadon.maHoaDon = t.mahoadon
-                                                                                                                                       inner join giadouong GDU on GDU.tenDoUong = t.tenDoUong and GDU.size = t.size
-                                                                                                                                       inner join toppingtronghoadon t2 on t.buyID = t2.buyid and t.maHoaDon = t2.maHoaDon
-                                                                                                                                       inner join topping t3 on t2.tenTopping = t3.tentopping
-                                                   group by hoadon.maHoaDon, t.buyID, giaDoUong, soluong
-                                               ) as thi group by extract(month from thi.thoigian) having extract(month from thi.thoigian) >= extract(month from current_date) -1
-                                                order by thang desc;
 
 
-select tenDoUong, sum(soluong) as tong from thanhphanhoadon
-                               inner join HoaDon HD on HD.maHoaDon = ThanhPhanHoaDon.maHoaDon
-where thoigian <= ('now'::timestamp) at time zone 'utc' at time zone 'wast' and thoigian > ('now'::timestamp - '1 month'::interval) at time zone 'utc' at time zone 'wast'
-and trangThai = 'Da giao'
-group by tenDoUong
-order by sum(soluong) desc;
+
 
 CREATE OR REPLACE FUNCTION conversation_notify()
     RETURNS trigger AS
@@ -202,11 +177,15 @@ $BODY$
     LANGUAGE plpgsql VOLATILE
                      COST 100;
 
-CREATE TRIGGER conversation_notify
+CREATE TRIGGER douong_notify
     AFTER INSERT OR UPDATE
     ON douong
     EXECUTE PROCEDURE conversation_notify();
 
+CREATE TRIGGER topping_notify
+    AFTER INSERT OR UPDATE
+    ON topping
+EXECUTE PROCEDURE conversation_notify();
 
 select 6*count(*) from lichsulamviec where tendangnhap = 'doubleK24' and ngaylam >= date_trunc('month', CURRENT_DATE);
 select * from hoadon where thoigian::date = '2022-07-11' order by thoigian;

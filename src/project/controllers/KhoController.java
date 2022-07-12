@@ -1,4 +1,4 @@
-package project;
+package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,26 +10,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import project.base.DBUtil;
 import project.model.ImageMain;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class KhoController implements Initializable {
+public class KhoController {
+    private BaseController baseController;
+
+    public void setBaseController(BaseController baseController) {
+        this.baseController = baseController;
+    }
 
     @FXML
     private GridPane imageGrid;
     private List<ImageMain> images;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resourceBundle) {
+    @FXML
+    public void initialize(){
         try {
             images = new ArrayList<>(images());
         } catch (SQLException e) {
@@ -44,7 +47,7 @@ public class KhoController implements Initializable {
         try {
             for (int i = 0; i < images.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("thumb.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/project/screen/thumb.fxml"));
                 VBox box = fxmlLoader.load();
                 ThumbController thumbController = fxmlLoader.getController();
                 thumbController.setData(images.get(i));
@@ -118,9 +121,7 @@ public class KhoController implements Initializable {
 
     @FXML
     void taoNguyenLieuOnPressed(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/ThemNguyenLieu.fxml"));
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(root));
+        baseController.toggleScreen(baseController.themNguyenlieuScreen);
     }
 }
 
