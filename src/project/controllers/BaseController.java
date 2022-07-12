@@ -65,7 +65,7 @@ public class BaseController {
     @FXML
     private AnchorPane themNvScreen;
     @FXML
-    private AnchorPane themNguyenlieuScreen;
+    public AnchorPane themNguyenlieuScreen;
     @FXML
     public AnchorPane themDrinkToppingScreen;
     @FXML public AnchorPane chinhsuaDoUongScreen;
@@ -74,7 +74,7 @@ public class BaseController {
     @FXML private NhanSuController mainNhanSuController;
     @FXML private ThemNhanVienController mainAddStaffController;
     @FXML private TaiKhoanCuaBanController mainAccountController;
-    @FXML private KhoNguyenLieuController mainKhoNguyenLieuController;
+    @FXML private KhoController mainKhoNguyenLieuController;
     @FXML private ThemNguyenLieuController mainAddIngreController;
     @FXML private ThemDoUongToppingController mainAddDrTpController;
     @FXML private DatDoUongController mainDatDoUongController;
@@ -90,6 +90,8 @@ public class BaseController {
     private void initialize() throws SQLException, ClassNotFoundException, IOException {
         mainMenuController.setBaseController(this);
         mainNhanSuController.setBaseController(this);
+        mainKhoNguyenLieuController.setBaseController(this);
+        mainKhoNguyenLieuController.initialize();
         mainMenuController.initialize();
         mainNhanSuController.initialize();
         activeScreen = initPane;
@@ -118,7 +120,6 @@ public class BaseController {
         mainNhanSuController.themNvBtn.setOnAction(actionEvent -> toggleScreen(themNvScreen));
         mainAddStaffController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainAccountController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
-        mainKhoNguyenLieuController.taoNguyenlieuBtn.setOnAction(actionEvent -> toggleScreen(themNguyenlieuScreen));
         mainAddIngreController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainAddDrTpController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainEditEmplController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));

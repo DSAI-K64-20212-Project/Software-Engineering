@@ -108,7 +108,7 @@ public class ChinhSuaToppingController {
 
     }
 
-    public void open() throws IOException, SQLException, ClassNotFoundException{
+    public void open() throws SQLException, ClassNotFoundException{
         hBoxNguyenLieu.getChildren().clear();
         String command1 = String.format("SELECT * FROM nguyenlieu");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
