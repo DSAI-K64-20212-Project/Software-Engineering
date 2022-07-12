@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import project.base.DBUtil;
 import project.base.functional.AdminInterface;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -152,6 +153,9 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         }
         String command2 = String.format("UPDATE nhanvien SET tendangnhap = '%s',tennhanvien = '%s', sdt = '%s', matkhau = '%s', chucvu = '%s', calam = '%s' WHERE tendangnhap = '%s'", username.getText(),hoVaTen.getText(),soDienThoai.getText(),matKhau.getText(),cv,cl,username.getText());
         DBUtil.dbExecuteUpdate(command2);
+
+        JOptionPane.showMessageDialog(null, "Nhân viên đã được chỉnh sửa thành công", "Notification", 1);
+        backBtn.fire();
     }
 
     @FXML

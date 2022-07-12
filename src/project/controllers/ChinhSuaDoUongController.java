@@ -178,6 +178,7 @@ public class ChinhSuaDoUongController {
         }
 
         JOptionPane.showMessageDialog(null, "Đồ uống đã được chỉnh sửa thành công", "Notification", 1);
+        backBtn.fire();
     }
 
     @FXML

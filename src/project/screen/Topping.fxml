@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="paneTopping" prefHeight="130.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ToppingController">
+<Pane fx:id="paneTopping" prefHeight="130.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ToppingController">
    <children>
       <Circle fx:id="anhTopping" fill="DODGERBLUE" layoutX="65.0" layoutY="65.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
       <Text fx:id="thongTinTopping" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên topping">
@@ -16,7 +16,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <CheckBox fx:id="toppingOnMenu" layoutX="263.0" layoutY="51.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
+      <CheckBox fx:id="toppingOnMenu" layoutX="252.0" layoutY="51.0" mnemonicParsing="false" onAction="#toppingOnMenuBtn" prefHeight="32.0" prefWidth="117.0" text="On Menu">
          <font>
             <Font size="18.0" />
          </font>
@@ -26,6 +26,6 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button blendMode="DARKEN" layoutY="2.0" mnemonicParsing="false" onAction="#chinhSuaToppingBtn" prefHeight="128.0" prefWidth="263.0" style="-fx-background-color: #ffffff;" />
+      <Button blendMode="DARKEN" layoutY="2.0" mnemonicParsing="false" onAction="#chinhSuaToppingBtn" prefHeight="128.0" prefWidth="252.0" style="-fx-background-color: #ffffff;" />
    </children>
 </Pane>

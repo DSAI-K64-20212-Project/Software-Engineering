@@ -153,12 +153,12 @@
                   <Insets left="15.0" />
                </VBox.margin>
             </Text>
-            <ScrollPane prefHeight="87.0" prefWidth="774.0">
+            <ScrollPane prefHeight="68.0" prefWidth="774.0">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
                <content>
-                  <HBox fx:id="hBoxNguyenLieu" prefHeight="51.0" prefWidth="1297.0" />
+                  <HBox fx:id="hBoxNguyenLieu" prefHeight="51.0" prefWidth="1297.0" spacing="10.0" />
                </content>
             </ScrollPane>
          </children>
@@ -173,4 +173,7 @@
       </Button>
       <Button layoutX="45.0" layoutY="516.0" mnemonicParsing="false" onAction="#xoaBtn" prefHeight="33.0" prefWidth="75.0" style="-fx-background-color: #D73838;" text="Xóa" textFill="WHITE" visible="false" />
    </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
 </AnchorPane>

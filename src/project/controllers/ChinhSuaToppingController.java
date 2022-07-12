@@ -105,7 +105,7 @@ public class ChinhSuaToppingController {
         }
 
         JOptionPane.showMessageDialog(null, "Topping đã được chỉnh sửa thành công", "Notification", 1);
-
+        backBtn.fire();
     }
 
     public void open() throws SQLException, ClassNotFoundException{
