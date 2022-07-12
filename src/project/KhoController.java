@@ -30,6 +30,7 @@ public class KhoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
+
         try {
             images = new ArrayList<>(images());
         } catch (SQLException e) {
@@ -67,58 +68,38 @@ public class KhoController implements Initializable {
         List<ImageMain> ls = new ArrayList<>();
 
         ImageMain image;
+        // Số lượng nguyên liệu trong db
+        String countQuery = String.format(("select COUNT(*) as cnt from nguyenlieu"));
+        ResultSet rs = DBUtil.dbExecuteQuery(countQuery);
+        rs.next();
+        int count = rs.getInt("cnt");
 
-        image = new ImageMain();
-        image.setThumbSrc("/project/resources/image/NguyenLieu/duong.png");
-        image.setName("1");
-        image.setTrangThai("Con Hang");
-        ls.add(image);
+        // Các nguyên liệu trong db
+        String query = String.format("select * from nguyenlieu");
+        ResultSet resultSet = DBUtil.dbExecuteQuery(query);
+        for(int i=0; i<count; i++) {
+            resultSet.next();
+            String tennguyenlieu = resultSet.getString("tennguyenlieu");
+            String trangthai = resultSet.getString("trangthai");
+            String anh = resultSet.getString("anh");
 
-        image = new ImageMain();
-        image.setThumbSrc("/project/resources/image/NguyenLieu/pudding.png");
-        image.setName("2");
-        image.setTrangThai("Het Hang");
-        ls.add(image);
+            image = new ImageMain();
+            image.setThumbSrc(String.format("/project/resources/image/NguyenLieu/%s", anh));
+            image.setName(tennguyenlieu);
+            image.setTrangThai(trangthai);
 
-        image = new ImageMain();
-        image.setThumbSrc("/project/resources/image/NguyenLieu/tranchau.png");
-        image.setName("3");
-        image.setTrangThai("Con Hang");
-        ls.add(image);
-//
-//        ImageMain image;
-//        // Số lượng nguyên liệu trong db
-//        String countQuery = String.format(("select COUNT(*) as cnt from nguyenlieu"));
-//        ResultSet rs = DBUtil.dbExecuteQuery(countQuery);
-//        rs.next();
-//        int count = rs.getInt("cnt");
-//
-//        // Các nguyên liệu trong db
-//        String query = String.format("select * from nguyenlieu");
-//        ResultSet resultSet = DBUtil.dbExecuteQuery(query);
-//        for(int i=0; i<count; i++) {
-//            resultSet.next();
-//            String tennguyenlieu = resultSet.getString("tennguyenlieu");
-//            String trangthai = resultSet.getString("trangthai");
-//            String anh = resultSet.getString("anh");
-//
-//            image = new ImageMain();
-//            image.setThumbSrc(String.format("/project/resources/image/%s", anh));
-//            image.setName(tennguyenlieu);
-//            image.setTrangThai(trangthai);
-//
-//            System.out.println(image.getName());
-//            System.out.println(image.getTrangThai());
-//            System.out.println(image.getThumbSrc());
-//
-//            ls.add(image);
-//        }
+            System.out.println(image.getName());
+            System.out.println(image.getTrangThai());
+            System.out.println(image.getThumbSrc());
+
+            ls.add(image);
+        }
         return ls;
     }
 
     @FXML
     void taoNguyenLieuOnPressed(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/project/ThemNguyenLieu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/ThemNguyenLieu.fxml"));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
     }
