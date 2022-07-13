@@ -15,9 +15,13 @@ public class VBoxCell extends VBox {
 
     public VBoxCell(String ten, String tenanh) {
         super();
-        Image background = new Image(getClass().getResourceAsStream(String.format("../resources/image" +
+        InputStream imagestream = getClass().getResourceAsStream(String.format("../resources/image" +
                         "/TraSua/%s",
-                tenanh)), 100, 100, false, false);
+                tenanh));
+        if (imagestream == null){
+            imagestream = getClass().getResourceAsStream("../resources/image/TraSua/matcha.jpg");
+        }
+        Image background = new Image(imagestream, 100, 100, false, false);
         imageView.setImage(background);
 
         this.ten.setText(ten);
