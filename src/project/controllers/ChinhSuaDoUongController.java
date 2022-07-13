@@ -241,7 +241,7 @@ public class ChinhSuaDoUongController {
         view.setFitHeight(200);
         view.setFitWidth(200);
         // Hide text
-        anh = String.valueOf(file).substring(String.valueOf(file).lastIndexOf("/"));
+        anh = String.valueOf(file).substring(String.valueOf(file).lastIndexOf("/")+1);
         imageBtn.setGraphic(view);
 
         anhDoUongTopping.setVisible(false);

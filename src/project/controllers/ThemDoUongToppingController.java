@@ -171,7 +171,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
         view.setFitHeight(200);
         view.setFitWidth(200);
         // Hide text
-        anh = String.valueOf(file);
+        anh = String.valueOf(file).substring(String.valueOf(file).lastIndexOf("/")+1);
         imageBtn.setGraphic(view);
 
         System.out.println(imageBtn.getText());
