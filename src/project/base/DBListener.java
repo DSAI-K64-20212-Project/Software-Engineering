@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DBListener extends Thread {
     private Connection conn;
@@ -31,6 +32,7 @@ public class DBListener extends Thread {
                 // org.postgresql.PGNotification notifications[] = pgconn.getNotifications(10000);
 
                 if (notifications != null) {
+                    System.out.println(Arrays.toString(notifications));
                     for (org.postgresql.PGNotification notification : notifications)
                         System.out.println("Got notification: " + notification.getName());
                     datDoUongController.initialize();

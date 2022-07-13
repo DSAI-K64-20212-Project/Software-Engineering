@@ -15,8 +15,9 @@ public interface BartenderInterface {
                                 String anh,
                                 String trangthai
     ) throws SQLException, ClassNotFoundException {
-        String command = String.format("INSERT INTO nguyenlieu(tenNguyenLieu, nhaCungCap, trangThai, anh) " +
-                        "VALUES ('%s', '%s', '%s', '%s');", tennguyenlieu, nhacungcap, trangthai, anh);
+        String command = String.format("INSERT INTO nguyenlieu(idNguyenLieu, tenNguyenLieu, nhaCungCap, trangThai, " +
+                "anh) " +
+                        "VALUES ('%s','%s', '%s', '%s', '%s');", tennguyenlieu,tennguyenlieu, nhacungcap, trangthai, anh);
         DBUtil.dbExecuteUpdate(command);
         System.out.printf("User %s đã thêm nguyên liệu %s, nhà cung cấp %s, trạng thái %s\n", username,
                 tennguyenlieu, nhacungcap, trangthai);
@@ -29,19 +30,19 @@ public interface BartenderInterface {
                            String[] nhungnguyenlieu
                            ) throws SQLException, ClassNotFoundException {
 
-        String command = String.format("INSERT INTO douong(tendouong, anh) " +
-                "VALUES ('%s', '%s');", tendouong, anh);
+        String command = String.format("INSERT INTO douong(iddouong, tendouong, anh, onmenu) " +
+                "VALUES ('%s', '%s', '%s', true);",tendouong, tendouong, anh);
         DBUtil.dbExecuteUpdate(command);
 
 
-        StringJoiner command2 = new StringJoiner(",", "INSERT INTO giadouong(tendouong, size, giadouong) VALUES ",";");
+        StringJoiner command2 = new StringJoiner(",", "INSERT INTO giadouong(iddouong, size, giadouong) VALUES ",";");
         for (Map.Entry<Character, Integer> entry : size_giatien.entrySet()) {
             command2.add(String.format("('%s','%s', %d)", tendouong, entry.getKey(), entry.getValue()));
         }
         DBUtil.dbExecuteUpdate(command2.toString());
 
 
-        StringJoiner command3 = new StringJoiner(",", "INSERT INTO thanhphandouong(tendouong, tennguyenlieu) VALUES ",
+        StringJoiner command3 = new StringJoiner(",", "INSERT INTO thanhphandouong(iddouong, tennguyenlieu) VALUES ",
                 ";");
         for (String nguyenlieu: nhungnguyenlieu) {
             command3.add(String.format("('%s', '%s')", tendouong, nguyenlieu));
@@ -51,11 +52,11 @@ public interface BartenderInterface {
                 username, tendouong, size_giatien.get('M'), size_giatien.get('L'), Arrays.toString(nhungnguyenlieu));
     }
     default void add_topping(String username, String tentopping, String anh, int giatien, String[] nhungnguyenlieu) throws SQLException, ClassNotFoundException {
-        String command = String.format("INSERT INTO topping(tentopping, anh, giatopping) " +
-                "VALUES ('%s', '%s', %d);", tentopping, anh, giatien);
+        String command = String.format("INSERT INTO topping(idtopping, tentopping, anh, giatopping) " +
+                "VALUES ('%s', '%s', %d);", tentopping, tentopping, anh, giatien);
         DBUtil.dbExecuteUpdate(command);
 
-        StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphantopping(tentopping, tennguyenlieu) VALUES ",
+        StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphantopping(idtopping, idnguyenlieu) VALUES ",
                 ";");
         for (String nguyenlieu: nhungnguyenlieu) {
             command2.add(String.format("('%s', '%s')", tentopping, nguyenlieu));

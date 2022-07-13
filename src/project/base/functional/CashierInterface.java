@@ -25,7 +25,7 @@ public interface CashierInterface {
                 DBUtil.dbExecuteUpdate(command2.toString());
 
                 StringJoiner command3 = new StringJoiner(",", "INSERT INTO toppingtronghoadon(mahoadon, buyid, " +
-                        "tentopping) VALUES ",";");
+                        "idtopping) VALUES ",";");
                 for (OneCall call : invoice.getInFo()) {
                     for (String topping: call.toppings){
                         command3.add(String.format("('%s', %d, '%s')", invoice.id, call.id, topping));
