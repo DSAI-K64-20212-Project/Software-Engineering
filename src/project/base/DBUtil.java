@@ -100,7 +100,7 @@ public class DBUtil {
     }
 
     //DB Execute Update (For Update/Insert/Delete) Operation
-    public static void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
+    public static ResultSet dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
         //Declare statement as null
         Statement stmt = null;
         try {
@@ -124,5 +124,6 @@ public class DBUtil {
             //Close connection
 //            dbDisconnect();
         }
+        return null;
     }
 }
