@@ -7,12 +7,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.base.DBUtil;
@@ -70,6 +74,9 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     private ToggleGroup chucVu;
     @FXML
     private ToggleGroup caLam;
+
+    @FXML
+    private Circle anhNhanVien;
 
     public RadioButton getThuNganBtn() {
         return thuNganBtn;
@@ -130,6 +137,11 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         if (result2.next()){
             matKhau.setText(result2.getString(4));
         }
+
+        anhNhanVien.setStroke(Color.SEAGREEN);
+        Image im = new Image("project/resources/image/Topping/default-image.jpg");
+        anhNhanVien.setFill(new ImagePattern(im));
+        anhNhanVien.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
     }
 
 

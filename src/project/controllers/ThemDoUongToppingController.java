@@ -82,7 +82,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
         while (result1.next()) {
-            String tenNguyenLieu = result1.getString(1);
+            String tenNguyenLieu = result1.getString("tennguyenlieu");
 
             RadioButton nguyenLieuRadioBtn = new RadioButton();
             nguyenLieuRadioBtn.setText(tenNguyenLieu);
@@ -160,7 +160,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
         fileChooser.setTitle("Select Some Files");
 
         // Set thư mục bắt đầu khi mở FileChooser
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home.tam")));
 
         File file = fileChooser.showOpenDialog(stage);
 

@@ -104,7 +104,6 @@ public class ChinhSuaDoUongController {
     public void open() throws IOException, SQLException, ClassNotFoundException{
         hBoxNguyenLieu.getChildren().clear();
 
-        int columns = 1;
 
         String command1 = String.format("SELECT * FROM nguyenlieu");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
@@ -112,11 +111,11 @@ public class ChinhSuaDoUongController {
         String command2 = String.format("SELECT * FROM thanhphandouong WHERE iddouong = '%s'",old);
         ResultSet result2 = DBUtil.dbExecuteQuery(command2);
         while (result2.next()) {
-            nguyenLieuHienTai.add(result2.getString(2));
+            nguyenLieuHienTai.add(result2.getString("idnguyenlieu"));
         }
 
         while (result1.next()) {
-            String tenNguyenLieu = result1.getString(1);
+            String tenNguyenLieu = result1.getString("idnguyenlieu");
 
             RadioButton nguyenLieuRadioBtn = new RadioButton();
             nguyenLieuRadioBtn.setText(tenNguyenLieu);
@@ -132,12 +131,12 @@ public class ChinhSuaDoUongController {
 
         }
 
-        String command3 = String.format("SELECT * FROM douong WHERE tendouong = '%s'",old);
+        String command3 = String.format("SELECT * FROM douong WHERE iddouong = '%s'",old);
         ResultSet result3 = DBUtil.dbExecuteQuery(command3);
 
         if (result3.next()) {
             anhDoUongTopping.setStroke(Color.SEAGREEN);
-            Image im = new Image("project/resources/image/TraSua/"+ result3.getString(2));
+            Image im = new Image("project/resources/image/TraSua/"+ result3.getString("anh"));
             anhDoUongTopping.setFill(new ImagePattern(im));
             anhDoUongTopping.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
         }
@@ -155,25 +154,19 @@ public class ChinhSuaDoUongController {
 
     @FXML
     void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        DBUtil.dbExecuteUpdate(String.format("delete from giadouong where tendouong = '%s';",old));
-        DBUtil.dbExecuteUpdate(String.format("delete from thanhphandouong where tendouong = '%s';",old));
-        DBUtil.dbExecuteUpdate(String.format("update douong set tendouong = '%s' where tendouong = '%s';",
-                ten.getText(), old));
-
-        String command2 = String.format("insert into giadouong(giadouong, size, tendouong) values ('%s', 'M', '%s');"
-                ,giaSizeM.getText(),ten.getText());
-        DBUtil.dbExecuteUpdate(command2);
-        String command3 = String.format("insert into giadouong(giadouong, size, tendouong) values ('%s', 'L', '%s');"
-                ,giaSizeL.getText(),ten.getText());
-        DBUtil.dbExecuteUpdate(command3);
-
+        DBUtil.dbExecuteUpdate(String.format("UPDATE giadouong set giadouong = '%s' where iddouong = '%s' AND size = 'L';",giaSizeL.getText(),old));
+        DBUtil.dbExecuteUpdate(String.format("UPDATE giadouong set giadouong = '%s' where iddouong = '%s' AND size = 'M';",giaSizeM.getText(),old));
+        DBUtil.dbExecuteUpdate(String.format("update douong set tendouong = '%s' where iddouong = '%s';", ten.getText(), old));
+        DBUtil.dbExecuteUpdate(String.format("delete from thanhphandouong where iddouong = '%s';",old));
 
         for (Node n: hBoxNguyenLieu.getChildren()){
             RadioButton radioBtn = (RadioButton) n;
             if (radioBtn.isSelected()){
-                String command5 = String.format("INSERT INTO thanhphandouong VALUES ('%s','%s')",ten.getText(),
-                        radioBtn.getText());
-                DBUtil.dbExecuteUpdate(command5);
+                ResultSet result3 = DBUtil.dbExecuteQuery(String.format("SELECT * FROM nguyenlieu WHERE tennguyenlieu = '%s'",radioBtn.getText()));
+                if (result3.next()){
+                    String command5 = String.format("INSERT INTO thanhphandouong VALUES ('%s','%s')", old, result3.getString("idnguyenlieu"));
+                    DBUtil.dbExecuteUpdate(command5);
+                }
             }
         }
 
@@ -188,11 +181,11 @@ public class ChinhSuaDoUongController {
 
     @FXML
     void xoaBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String command1 = String.format("DELETE FROM giadouong WHERE  tendouong = '%s'",old);
+        String command1 = String.format("DELETE FROM giadouong WHERE  iddouong = '%s'",old);
         DBUtil.dbExecuteUpdate(command1);
-        String command2 = String.format("DELETE FROM thanhphandouong WHERE  tendouong = '%s'",old);
+        String command2 = String.format("DELETE FROM thanhphandouong WHERE  iddouong = '%s'",old);
         DBUtil.dbExecuteUpdate(command2);
-        String command3 = String.format("DELETE FROM douong WHERE  tendouong = '%s'",old);
+        String command3 = String.format("DELETE FROM douong WHERE  iddouong = '%s'",old);
         DBUtil.dbExecuteUpdate(command3);
 
         JOptionPane.showMessageDialog(null, "Đồ uống đã được xóa thành công", "Notification", 1);

@@ -76,7 +76,7 @@ public class DoUongController {
         anhDoUong.setFill(new ImagePattern(im));
         anhDoUong.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
 
-        thongTinDoUong.setText(doUong.getThongTinDoUong());
+        thongTinDoUong.setText(String.format(doUong.getThongTinDoUong() + " (%s)", doUong.getId()));
         sizeLDoUong.setText("SizeL\n" + doUong.getGiaLDoUong());
         sizeMDoUong.setText("SizeM\n" + doUong.getGiaMDoUong());
         onMenu.setSelected(doUong.getOnMenu());
@@ -86,7 +86,8 @@ public class DoUongController {
     void chinhSuaDoUongBtn(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         baseController.toggleScreen(baseController.chinhsuaDoUongScreen);
         ChinhSuaDoUongController chinhSuaDoUongController = baseController.mainModifyDrController;
-        chinhSuaDoUongController.old = thongTinDoUong.getText();
+        chinhSuaDoUongController.old = thongTinDoUong.getText().substring(thongTinDoUong.getText().indexOf("(")+1,thongTinDoUong.getText().indexOf(")"));
+                //thongTinDoUong.getText().substring(0,thongTinDoUong.getText().indexOf("(")-1);;
         chinhSuaDoUongController.getTen().setText(thongTinDoUong.getText());
         chinhSuaDoUongController.getGiaSizeL().setText(sizeLDoUong.getText().substring(sizeLDoUong.getText().indexOf("\n")));
         chinhSuaDoUongController.getGiaSizeM().setText(sizeMDoUong.getText().substring(sizeMDoUong.getText().indexOf("\n")));
