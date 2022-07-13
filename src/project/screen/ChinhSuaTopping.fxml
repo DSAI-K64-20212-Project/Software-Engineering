@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -93,7 +94,12 @@
                      </children>
                   </Pane>
                   <Pane GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Circle fx:id="anhDoUongTopping" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Pane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Circle fx:id="anhDoUongTopping" fill="DODGERBLUE" layoutX="31.0" layoutY="58.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="imageBtn" blendMode="DARKEN" layoutX="-69.0" layoutY="-42.0" mnemonicParsing="false" onAction="#uploadImageBtn" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                     </children>
+                  </Pane>
                   <Pane GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>

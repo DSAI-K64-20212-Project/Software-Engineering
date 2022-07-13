@@ -80,7 +80,7 @@ public class NhanSuController {
             String caLam = result1.getString(7);
 
             NhanVien nhanVien = new NhanVien();
-            nhanVien.setAnhNhanVienSrc("project/resources/image/icons/user.png");
+            nhanVien.setAnhNhanVienSrc("project/resources/image/icons/" + anhNhanVien);
             nhanVien.setCaLam(chucVu+ "\n" + caLam);
             nhanVien.setThongTin(tenNhanVien + "\n" + sdt + "\n" + tenDangNhap);
 

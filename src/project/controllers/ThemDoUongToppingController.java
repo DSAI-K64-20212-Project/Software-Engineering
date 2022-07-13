@@ -70,8 +70,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
     @FXML
     public Button imageBtn;
 
-    private String anh = "null";
-
+    static String anh = "null";
 
     @FXML
     private HBox hBoxNguyenLieu;
@@ -144,6 +143,8 @@ public class ThemDoUongToppingController implements BartenderInterface {
                 radioBtn.setSelected(false);
             }
         }
+
+        backBtn.fire();
     }
 
     @FXML
@@ -160,13 +161,12 @@ public class ThemDoUongToppingController implements BartenderInterface {
         fileChooser.setTitle("Select Some Files");
 
         // Set thư mục bắt đầu khi mở FileChooser
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home.tam")));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
         File file = fileChooser.showOpenDialog(stage);
 
         // Set image sau khi upload ảnh
-        System.out.println(file);
-        Image img = new Image(String.valueOf(file));
+        Image img = new Image(String.valueOf(file).substring(String.valueOf(file).indexOf("project")-1));
         ImageView view = new ImageView(img);
         view.setFitHeight(200);
         view.setFitWidth(200);

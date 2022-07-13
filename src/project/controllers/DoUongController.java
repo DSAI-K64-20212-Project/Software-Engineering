@@ -56,7 +56,7 @@ public class DoUongController {
 
     @FXML
     void onMenuBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String command2 = String.format("UPDATE douong SET onmenu = '%s' WHERE tendouong = '%s'",onMenu.isSelected(),thongTinDoUong.getText());
+        String command2 = String.format("UPDATE douong SET onmenu = '%s' WHERE iddouong = '%s'",onMenu.isSelected(),thongTinDoUong.getText().substring(thongTinDoUong.getText().indexOf("(")+1,thongTinDoUong.getText().indexOf(")")));
         DBUtil.dbExecuteUpdate(command2);
     }
 
@@ -88,7 +88,7 @@ public class DoUongController {
         ChinhSuaDoUongController chinhSuaDoUongController = baseController.mainModifyDrController;
         chinhSuaDoUongController.old = thongTinDoUong.getText().substring(thongTinDoUong.getText().indexOf("(")+1,thongTinDoUong.getText().indexOf(")"));
                 //thongTinDoUong.getText().substring(0,thongTinDoUong.getText().indexOf("(")-1);;
-        chinhSuaDoUongController.getTen().setText(thongTinDoUong.getText());
+        chinhSuaDoUongController.getTen().setText(thongTinDoUong.getText().substring(0,thongTinDoUong.getText().indexOf("(")-1));
         chinhSuaDoUongController.getGiaSizeL().setText(sizeLDoUong.getText().substring(sizeLDoUong.getText().indexOf("\n")));
         chinhSuaDoUongController.getGiaSizeM().setText(sizeMDoUong.getText().substring(sizeMDoUong.getText().indexOf("\n")));
         chinhSuaDoUongController.open();

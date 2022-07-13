@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -127,21 +129,34 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     }
 
     private String oldUsername;
-    private String anh = "null";
+    static String anh;
 
     public void open() throws IOException, SQLException, ClassNotFoundException {
         oldUsername = username.getText();
-        String command2 = String.format("SELECT matkhau FROM nhanvien WHERE tendangnhap = '%s'", oldUsername);
+        String command2 = String.format("SELECT * FROM nhanvien WHERE tendangnhap = '%s'", oldUsername);
         ResultSet result2 = DBUtil.dbExecuteQuery(command2);
 
         if (result2.next()){
-            matKhau.setText(result2.getString(4));
+            matKhau.setText(result2.getString("matkhau"));
         }
 
         anhNhanVien.setStroke(Color.SEAGREEN);
-        Image im = new Image("project/resources/image/Topping/default-image.jpg");
+        Image im;
+        try {
+            im = new Image("project/resources/image/Topping/" + result2.getString("anh"));
+            anh = result2.getString("anh");
+        } catch (Exception e){
+            im = new Image("/project/resources/image/icons/default-image.jpg");
+            anh = "default-image.jpg";
+        }
         anhNhanVien.setFill(new ImagePattern(im));
         anhNhanVien.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
+
+        anhNhanVien.setVisible(true);
+
+        Blend blend = new Blend();
+        blend.setMode(BlendMode.DARKEN);
+        imageBtn.setEffect(blend);
     }
 
 
@@ -163,7 +178,7 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         } else {
             cl = "Chieu";
         }
-        String command2 = String.format("UPDATE nhanvien SET tendangnhap = '%s',tennhanvien = '%s', sdt = '%s', matkhau = '%s', chucvu = '%s', calam = '%s' WHERE tendangnhap = '%s'", username.getText(),hoVaTen.getText(),soDienThoai.getText(),matKhau.getText(),cv,cl,username.getText());
+        String command2 = String.format("UPDATE nhanvien SET tendangnhap = '%s',tennhanvien = '%s', sdt = '%s', matkhau = '%s', chucvu = '%s', calam = '%s', anhdaidien = '%s' WHERE tendangnhap = '%s'", username.getText(),hoVaTen.getText(),soDienThoai.getText(),matKhau.getText(),cv,cl,anh,username.getText());
         DBUtil.dbExecuteUpdate(command2);
 
         JOptionPane.showMessageDialog(null, "Nhân viên đã được chỉnh sửa thành công", "Notification", 1);
@@ -193,16 +208,19 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         File file = fileChooser.showOpenDialog(stage);
 
         // Set image sau khi upload ảnh
-        Image img = new Image(String.valueOf(file));
+        Image img = new Image(String.valueOf(file).substring(String.valueOf(file).indexOf("project")-1));
         ImageView view = new ImageView(img);
         view.setFitHeight(200);
         view.setFitWidth(200);
         // Hide text
-        anh = String.valueOf(file);
+        anh = String.valueOf(file).substring(String.valueOf(file).lastIndexOf("/"));
         imageBtn.setGraphic(view);
 
-        System.out.println(imageBtn.getText());
+        anhNhanVien.setVisible(false);
 
+        Blend blend = new Blend();
+        blend.setMode(BlendMode.SRC_OVER);
+        imageBtn.setEffect(blend);
     }
 }
 
