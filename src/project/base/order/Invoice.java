@@ -39,7 +39,8 @@ public class Invoice {
         this.tenkhachhang = hoadonResult.getString("tenkhachhang");
 
         //load all calls info
-        String query = String.format("select * from thanhphanhoadon where mahoadon='%s';", mahoadon);
+        String query = String.format("select * from thanhphanhoadon inner join DoUong DU on ThanhPhanHoaDon.idDoUong " +
+                "= DU.idDoUong where mahoadon='%s';", mahoadon);
         ResultSet resultSet = DBUtil.dbExecuteQuery(query);
         while (resultSet.next()) {
             int buyId = resultSet.getInt("buyid");
@@ -50,7 +51,9 @@ public class Invoice {
             double duong = resultSet.getDouble("duong");
             int soLuong = resultSet.getInt("soluong");
 
-            String queryTopping = String.format("select tentopping from toppingtronghoadon where mahoadon = '%s' and buyid = %d;", invoiceCode, buyId);
+            String queryTopping = String.format("select tentopping from toppingtronghoadon inner join topping t on " +
+                    "ToppingTrongHoaDon.idTopping = t.idtopping where mahoadon = '%s' " +
+                    "and buyid = %d;", invoiceCode, buyId);
             ResultSet resultSet1 = DBUtil.dbExecuteQuery(queryTopping);
             ArrayList<String> toppingList = new ArrayList<String>();
             while (resultSet1.next()) {
@@ -111,10 +114,11 @@ public class Invoice {
     public SimpleIntegerProperty getBillProperty(){return bill;}
     public SimpleIntegerProperty getPaidProperty(){return khachdua;}
 
-    public void pay(int amount, String tenkhachhang) throws SQLException, ClassNotFoundException {
+    public void pay(int amount, String tenkhachhang) throws Exception {
         int total = this.getBill();
         if (amount < total) {
             System.out.println("Chưa đủ số tiền cần trả");
+            throw new Exception("Chưa đủ số tiền cần trả");
         } else {
             this.khachdua.setValue(amount);
             this.tenkhachhang = tenkhachhang;

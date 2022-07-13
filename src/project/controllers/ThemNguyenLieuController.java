@@ -82,41 +82,50 @@ public class ThemNguyenLieuController {
 
     @FXML
     void addNewBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+        System.out.println(uploadTxt.getText());
+        if (tenNguyenLieu.getText().equals("") || nhaCungCap.getText().equals("") || uploadTxt.getText().equals("Upload image")) {
+            // Notification
+            JOptionPane.showMessageDialog(null, "Bạn phải điền đầy đủ thông tin nguyên liệu !", "Denial", 0);
+        }
 
-        // Check trạng thái
-        if (String.valueOf(status.getSelectedToggle()).contains("Còn hàng")) {
-            sta = "Con hang";
-        }
-        else if (String.valueOf(status.getSelectedToggle()).contains("Hết hàng")) {
-            sta = "Het hang";
-        }
         else {
-            sta = null;
+            // Check trạng thái
+            if (String.valueOf(status.getSelectedToggle()).contains("Còn hàng")) {
+                sta = "Con hang";
+            }
+            else if (String.valueOf(status.getSelectedToggle()).contains("Hết hàng")) {
+                sta = "Het hang";
+            }
+            else {
+                sta = null;
+            }
+
+            // Check file ảnh
+            String imgPath = uploadTxt.getText();
+            imgPath = imgPath.substring(imgPath.lastIndexOf("\\") + 1);
+            if(imgPath.length() > 20) {
+                imgPath = imgPath.substring(imgPath.length() - 20);
+            }
+
+            if (monitor.getBartender() != null) {
+                Bartender user2 = monitor.getBartender();
+                user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
+            }
+            else if (monitor.getAdmin() != null){
+                Admin user2 = monitor.getAdmin();
+                user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
+            }
+
+            else if (monitor.getCashier() != null){
+                JOptionPane.showMessageDialog(null, "Chỉ có Quản Lý và Pha Chế được phép thêm đồ uống", "No Permission", 0);
+            }
+
+            tenNguyenLieu.setText("");
+            nhaCungCap.setText("");
+
+
+            // Notification
+            JOptionPane.showMessageDialog(null, "Topping đã được thêm thành công", "Notification", 1);
         }
-
-        // Check file ảnh
-        String imgPath = uploadTxt.getText();
-        imgPath = imgPath.substring(imgPath.lastIndexOf("\\") + 1);
-
-
-        if (monitor.getBartender() != null) {
-            Bartender user2 = monitor.getBartender();
-            user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
-        }
-        else if (monitor.getAdmin() != null){
-            Admin user2 = monitor.getAdmin();
-            user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
-        }
-
-        else if (monitor.getCashier() != null){
-            JOptionPane.showMessageDialog(null, "Chỉ có Quản Lý và Pha Chế được phép thêm đồ uống", "No Permission", 0);
-        }
-
-        tenNguyenLieu.setText("");
-        nhaCungCap.setText("");
-
-
-        // Notification
-        JOptionPane.showMessageDialog(null, "Topping đã được thêm thành công", "Notification", 1);
     }
 }

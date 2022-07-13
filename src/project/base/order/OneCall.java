@@ -50,8 +50,10 @@ public class OneCall {
     public int get_money() throws SQLException, ClassNotFoundException {
         int total;
         StringJoiner command = new StringJoiner("', '",
-                "select sum(giatopping) + giadouong from topping, giadouong where tenTopping in ('",
-                String.format("') group by tendouong, size having tendouong = '%s' and size = '%s';", this.drink_name,
+                "select sum(giatopping) + giadouong from giadouong g, topping, douong d\n" +
+                        "               where g.idDoUong = d.iddouong and\n" +
+                        "                     tenTopping in ('",
+                String.format("') and d.tendouong = '%s' and size = '%s' group by g.idDoUong, size;", this.drink_name,
                         this.size)
                 );
         for (String topping: this.toppings) {
@@ -69,12 +71,14 @@ public class OneCall {
     }
     public boolean check_availability() throws SQLException, ClassNotFoundException {
         StringJoiner command = new StringJoiner("', '", """
-        select n.tennguyenlieu, tenTopping from thanhphantopping inner join nguyenlieu n on ThanhPhanTopping.tenNguyenLieu = n.tennguyenlieu
-        where tenTopping in ('""", String.format("""
+        select n.tennguyenlieu, t.tenTopping from thanhphantopping inner join nguyenlieu n on ThanhPhanTopping.idNguyenLieu = n.idnguyenlieu
+        inner join topping t on thanhphantopping.idtopping = t.idtopping
+        where t.tenTopping in ('""", String.format("""
         ') and n.trangThai = 'Het hang'
         union
-        select n2.tennguyenlieu, tenDoUong from thanhphandouong inner join nguyenlieu n2 on ThanhPhanDoUong.tenNguyenLieu = n2.tennguyenlieu
-        where tendouong = '%s' and n2.trangThai = 'Het hang';
+        select n2.tennguyenlieu, tenDoUong from thanhphandouong inner join nguyenlieu n2 on ThanhPhanDoUong.idNguyenLieu = n2.idnguyenlieu
+        inner join douong d on thanhphandouong.iddouong = d.iddouong
+        where d.tendouong = '%s' and n2.trangThai = 'Het hang';
         """, this.drink_name));
 
         for (String topping: this.toppings) {

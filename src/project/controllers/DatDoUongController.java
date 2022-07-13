@@ -59,20 +59,8 @@ public class DatDoUongController {
 
     private static Invoice hoadon = new Invoice();
     private static String chosenDrink;
-    private static String[] chosenTopping;
-
-    @FXML
-    public void initialize() throws SQLException, ClassNotFoundException {
-//        douongList.getItems().clear();
-//        toppingList.getItems().clear();
-        tenKhach.setText("");
-        khachTra.setText("");
-
-        hoadonList.setContent(new InvoiceView(hoadon));
-        ObservableStringValue formattedBill = Bindings.createStringBinding(() ->
-                "Tổng tiền: " + String.format("%d.000đ",hoadon.getBill()), hoadon.getBillProperty());
-        totalBillLabel.textProperty().bind(formattedBill);
-
+    private static String[] chosenTopping = {};
+    public void refresh_data() throws SQLException, ClassNotFoundException {
         String command = "SELECT * FROM douong WHERE onmenu = True;";
         ResultSet result = DBUtil.dbExecuteQuery(command);
         List<VBoxCell> list = new ArrayList<>();
@@ -82,13 +70,6 @@ public class DatDoUongController {
         }
         ObservableList<VBoxCell> douong = FXCollections.observableList(list);
         douongList.setItems(douong);
-        douongList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<VBoxCell>) (observableValue
-                , old, n) -> {
-            if (n != null) {
-                chosenDrink = n.ten.getText();
-            } else { chosenDrink = null;}
-        });
-
         //topping
         String command2 = "SELECT * FROM topping WHERE onmenu = True;";
         ResultSet result2 = DBUtil.dbExecuteQuery(command2);
@@ -99,8 +80,43 @@ public class DatDoUongController {
                     result2.getString("giatopping")));
         }
         ObservableList<VBoxCell> myObservableList = FXCollections.observableList(list2);
-        toppingList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         toppingList.setItems(myObservableList);
+    }
+    void new_instance() throws SQLException, ClassNotFoundException {
+        tenKhach.setText("");
+        khachTra.setText("");
+        douongList.getSelectionModel().clearSelection();
+        toppingList.getSelectionModel().clearSelection();
+        ObservableStringValue formattedBill = Bindings.createStringBinding(() ->
+                "Tổng tiền: " + String.format("%d.000đ",hoadon.getBill()), hoadon.getBillProperty());
+        totalBillLabel.textProperty().bind(formattedBill);
+
+        hoadonList.setContent(new InvoiceView(hoadon));
+        refresh_data();
+
+        ObservableStringValue formattedPaid = Bindings.createStringBinding(() ->
+                String.format("Khách trả: %d.000đ",hoadon.getPaid()), hoadon.getPaidProperty());
+        khachTraLabel.textProperty().bind(formattedPaid);
+        ObservableStringValue formattedOdd = Bindings.createStringBinding(() ->
+                        String.format("Số dư: %d.000đ",hoadon.getPaid() - hoadon.getBill()), hoadon.getBillProperty(),
+                hoadon.getPaidProperty());
+        soDuLabel.textProperty().bind(formattedOdd);
+    }
+
+    @FXML
+    private void initialize() throws SQLException, ClassNotFoundException {
+//        douongList.getItems().clear();
+//        toppingList.getItems().clear();
+        new_instance();
+        douongList.getSelectionModel().selectedItemProperty().addListener((observableValue
+                , old, n) -> {
+            if (n != null) {
+                chosenDrink = n.ten.getText();
+                System.out.println(chosenDrink);
+            } else { chosenDrink = null;}
+        });
+
+        toppingList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         toppingList.getSelectionModel().selectedItemProperty().addListener((observableValue, o, t1) -> {
             ObservableList<VBoxCell> selectedItems = toppingList.getSelectionModel().getSelectedItems();
             List<String> local = new ArrayList<>();
@@ -110,21 +126,18 @@ public class DatDoUongController {
             chosenTopping = local.toArray(new String[0]);
             System.out.println(Arrays.toString(chosenTopping));
         });
-        ObservableStringValue formattedPaid = Bindings.createStringBinding(() ->
-                String.format("Khách trả: %d.000đ",hoadon.getPaid()), hoadon.getPaidProperty());
-        khachTraLabel.textProperty().bind(formattedPaid);
-        ObservableStringValue formattedOdd = Bindings.createStringBinding(() ->
-                String.format("Số dư: %d.000đ",hoadon.getPaid() - hoadon.getBill()), hoadon.getBillProperty(),
-                hoadon.getPaidProperty());
-        soDuLabel.textProperty().bind(formattedOdd);
     }
 
     @FXML
     void AddPressedBtn(ActionEvent event) throws Exception {
-        double da = daSlider.getValue()/100;
-        double duong = duongSlider.getValue()/100;
-        RadioButton s = (RadioButton) size.getSelectedToggle();
-        hoadon.addCall(chosenDrink, s.getText().charAt(s.getText().length()-1), duong, da, chosenTopping);
+        if (chosenDrink == null || chosenTopping.length == 0) {
+            JOptionPane.showMessageDialog(new JFrame(), "Chưa chọn đồ uống hoặc topping");
+        } else {
+            double da = daSlider.getValue()/100;
+            double duong = duongSlider.getValue()/100;
+            RadioButton s = (RadioButton) size.getSelectedToggle();
+            hoadon.addCall(chosenDrink, s.getText().charAt(s.getText().length()-1), duong, da, chosenTopping);
+        }
     }
 
     @FXML
@@ -137,8 +150,8 @@ public class DatDoUongController {
             hoadon.pay(i, tenKhach.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Invalid Number", "ERROR!", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Chưa đủ số tiền cần trả", "ERROR!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -150,7 +163,7 @@ public class DatDoUongController {
             JOptionPane.showMessageDialog(null, message);
             if (Objects.equals(message, "Success!")){
                 hoadon = new Invoice();
-                initialize();
+                refresh_data();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Invalid user, not cashier, pls log out and log in again!");

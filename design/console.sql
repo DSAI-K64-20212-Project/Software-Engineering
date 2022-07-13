@@ -219,7 +219,14 @@ EXECUTE PROCEDURE conversation_notify();
 select 6*count(*) from lichsulamviec where tendangnhap = 'doubleK24' and ngaylam >= date_trunc('month', CURRENT_DATE);
 select * from hoadon where thoigian::date = '2022-07-11' order by thoigian;
 
-select * from douong where onmenu = True;
+
+-- select sum(giatopping) + giadouong from giadouong g, topping, douong d
+--                where g.idDoUong = d.iddouong and
+--                      tenTopping in ('Hạt ngọc trai', 'Sen Bột Lọc') and
+--                      d.tendouong = 'Trà sữa Hạt Sen' and size = 'M'
+--                                    group by g.idDoUong, size;
+
+select * from toppingtronghoadon inner join topping t on ToppingTrongHoaDon.idTopping = t.idtopping
 -- select n.tennguyenlieu, tenTopping from thanhphantopping inner join nguyenlieu n on ThanhPhanTopping.tenNguyenLieu = n.tennguyenlieu
 -- where tenTopping in ('Hạt ngọc trai', 'Hạt châu xanh') and n.trangThai = 'Het hang'
 -- union

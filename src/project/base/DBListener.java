@@ -35,7 +35,7 @@ public class DBListener extends Thread {
                     System.out.println(Arrays.toString(notifications));
                     for (org.postgresql.PGNotification notification : notifications)
                         System.out.println("Got notification: " + notification.getName());
-                    datDoUongController.initialize();
+                    datDoUongController.refresh_data();
                 }
 
                 // wait a while before checking again for new
