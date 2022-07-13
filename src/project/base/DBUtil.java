@@ -64,7 +64,7 @@ public class DBUtil {
         CachedRowSetImpl crs = null;
         try {
             //Connect to DB (Establish Postgres Connection)
-            if (conn == null) {
+            if (conn == null || conn.isClosed()) {
                 dbConnect();
             }
             System.out.println("Select statement: " + queryStmt + "\n");
@@ -105,7 +105,7 @@ public class DBUtil {
         Statement stmt = null;
         try {
             //Connect to DB (Establish Postgres Connection)
-            if (conn == null) {
+            if (conn == null || conn.isClosed()) {
                 dbConnect();
             }
             System.out.println("Update statement: " + sqlStmt + "\n");
