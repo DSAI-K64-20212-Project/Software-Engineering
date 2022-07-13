@@ -28,7 +28,6 @@ public class ThemNguyenLieuController {
 
     private Stage stage;
 
-    private User user;
 
     private String sta;
 
@@ -101,11 +100,11 @@ public class ThemNguyenLieuController {
 
 
         if (monitor.getBartender() != null) {
-            Bartender user2 = (Bartender) user;
+            Bartender user2 = monitor.getBartender();
             user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
         }
         else if (monitor.getAdmin() != null){
-            Admin user2 = (Admin) user;
+            Admin user2 = monitor.getAdmin();
             user2.add_ingredient(user2.getUsername(), tenNguyenLieu.getText(), nhaCungCap.getText(), imgPath, sta);
         }
 

@@ -1,4 +1,4 @@
-package project;
+package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import project.base.DBUtil;
+import project.controllers.BaseController;
+import project.controllers.ThumbController;
 import project.model.ImageMain;
 import javafx.scene.layout.GridPane;
 
