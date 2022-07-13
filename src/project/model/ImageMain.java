@@ -5,10 +5,6 @@ public class ImageMain {
     private String name;
     private String trangThai;
 
-//    public ImageMain() {
-//        this.thumbSrc = thumbSrc;
-//    }
-
     public String getThumbSrc() {
         return thumbSrc;
     }

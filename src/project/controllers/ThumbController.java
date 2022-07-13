@@ -1,5 +1,6 @@
 package project.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,8 +18,18 @@ public class ThumbController {
     @FXML
     private ImageView anhNguyenLieu;
 
+    @FXML
+    void trangThaiBtn(ActionEvent event) {
+        if (trangThai.getText() == "Het Hang") {
+            trangThai.setText("Con Hang");
+        }
+        else {
+            trangThai.setText("Het Hang");
+        }
+    }
+
     public void setData(ImageMain image){
-        Image img = new Image(getClass().getResourceAsStream(image.getThumbSrc()));
+        Image img = new Image(getClass().getResourceAsStream(image.getThumbSrc()), 163, 122, false, false);
         anhNguyenLieu.setImage(img);
 
         trangThai.setText(image.getTrangThai());

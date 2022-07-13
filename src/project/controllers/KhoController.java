@@ -1,4 +1,4 @@
-package project.controllers;
+package project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import project.base.DBUtil;
 import project.model.ImageMain;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,58 +72,40 @@ public class KhoController {
         List<ImageMain> ls = new ArrayList<>();
 
         ImageMain image;
+        // Số lượng nguyên liệu trong db
+        String countQuery = String.format(("select COUNT(*) as cnt from nguyenlieu"));
+        ResultSet rs = DBUtil.dbExecuteQuery(countQuery);
+        rs.next();
+        int count = rs.getInt("cnt");
 
-        image = new ImageMain();
-        image.setThumbSrc("/project/resources/image/NguyenLieu/duong.png");
-        image.setName("1");
-        image.setTrangThai("Con Hang");
-        ls.add(image);
+        // Các nguyên liệu trong db
+        String query = String.format("select * from nguyenlieu");
+        ResultSet resultSet = DBUtil.dbExecuteQuery(query);
+        for(int i=0; i<count; i++) {
+            resultSet.next();
+            String tennguyenlieu = resultSet.getString("tennguyenlieu");
+            String trangthai = resultSet.getString("trangthai");
+            String anh = resultSet.getString("anh");
 
-        image = new ImageMain();
-        image.setThumbSrc("/project/resources/image/NguyenLieu/pudding.png");
-        image.setName("2");
-        image.setTrangThai("Het Hang");
-        ls.add(image);
+            image = new ImageMain();
+            image.setThumbSrc(String.format("/project/resources/image/NguyenLieu/%s", anh));
+            image.setName(tennguyenlieu);
+            image.setTrangThai(trangthai);
 
-        image = new ImageMain();
-        image.setThumbSrc("/project/resources/image/NguyenLieu/tranchau.png");
-        image.setName("3");
-        image.setTrangThai("Con Hang");
-        ls.add(image);
-//
-//        ImageMain image;
-//        // Số lượng nguyên liệu trong db
-//        String countQuery = String.format(("select COUNT(*) as cnt from nguyenlieu"));
-//        ResultSet rs = DBUtil.dbExecuteQuery(countQuery);
-//        rs.next();
-//        int count = rs.getInt("cnt");
-//
-//        // Các nguyên liệu trong db
-//        String query = String.format("select * from nguyenlieu");
-//        ResultSet resultSet = DBUtil.dbExecuteQuery(query);
-//        for(int i=0; i<count; i++) {
-//            resultSet.next();
-//            String tennguyenlieu = resultSet.getString("tennguyenlieu");
-//            String trangthai = resultSet.getString("trangthai");
-//            String anh = resultSet.getString("anh");
-//
-//            image = new ImageMain();
-//            image.setThumbSrc(String.format("/project/resources/image/%s", anh));
-//            image.setName(tennguyenlieu);
-//            image.setTrangThai(trangthai);
-//
-//            System.out.println(image.getName());
-//            System.out.println(image.getTrangThai());
-//            System.out.println(image.getThumbSrc());
-//
-//            ls.add(image);
-//        }
+            System.out.println(image.getName());
+            System.out.println(image.getTrangThai());
+            System.out.println(image.getThumbSrc());
+
+            ls.add(image);
+        }
         return ls;
     }
 
     @FXML
     void taoNguyenLieuOnPressed(ActionEvent event) throws IOException {
-        baseController.toggleScreen(baseController.themNguyenlieuScreen);
+        Parent root = FXMLLoader.load(getClass().getResource("/project/screen/ThemNguyenLieu.fxml"));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 }
 
