@@ -70,6 +70,9 @@ public class LogInController implements Initializable {
             } else if (Objects.equals(chucvu, "Pha Che")) {
                 monitor.newSession(new Bartender(result.getString(1)));
             }
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Base.fxml")));
+            Stage window = (Stage) username.getScene().getWindow();
+            window.setScene(new Scene(root));
         }
     }
 

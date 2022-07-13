@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.io.InputStream;
-
 public class VBoxCell extends VBox {
     ImageView imageView = new ImageView();
     public Label ten = new Label();

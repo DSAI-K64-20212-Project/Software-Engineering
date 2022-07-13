@@ -4,7 +4,10 @@ public class ImageMain {
     private String thumbSrc;
     private String name;
     private String trangThai;
+    private String idNguyenLieu;
 
+    public String getIdNguyenLieu() { return idNguyenLieu; }
+    public void setIdNguyenLieu(String id) { this.idNguyenLieu = id; }
     public String getThumbSrc() {
         return thumbSrc;
     }
