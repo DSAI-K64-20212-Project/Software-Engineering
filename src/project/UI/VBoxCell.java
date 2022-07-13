@@ -19,7 +19,7 @@ public class VBoxCell extends VBox {
                         "/TraSua/%s",
                 tenanh));
         if (imagestream == null){
-            imagestream = getClass().getResourceAsStream("../resources/image/TraSua/matcha.jpg");
+            imagestream = getClass().getResourceAsStream("../resources/image/icons/default-image.jpg");
         }
         Image background = new Image(imagestream, 100, 100, false, false);
         imageView.setImage(background);
@@ -36,7 +36,7 @@ public class VBoxCell extends VBox {
                         "/Topping/%s",
                 tenanh));
         if (imagestream == null){
-            imagestream = getClass().getResourceAsStream("../resources/image/Topping/senvang.jpg");
+            imagestream = getClass().getResourceAsStream("../resources/image/icons/default-image.jpg");
         }
         Image background = new Image(imagestream, 100, 100, false, false);
         imageView.setImage(background);

@@ -67,7 +67,12 @@ public class DoUongController {
 
     public void setData(DoUong doUong){
         anhDoUong.setStroke(Color.SEAGREEN);
-        Image im = new Image(doUong.getAnhDoUong());
+        Image im;
+        try {
+            im = new Image(doUong.getAnhDoUong());
+        } catch (Exception e){
+            im = new Image("/project/resources/image/icons/default-image.jpg");
+        }
         anhDoUong.setFill(new ImagePattern(im));
         anhDoUong.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
 

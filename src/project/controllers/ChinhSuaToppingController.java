@@ -113,7 +113,7 @@ public class ChinhSuaToppingController {
         String command1 = String.format("SELECT * FROM nguyenlieu");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
-        String command2 = String.format("SELECT * FROM thanhphantopping WHERE tentopping = '%s'",old);
+        String command2 = String.format("SELECT * FROM thanhphantopping WHERE idtopping = '%s'",old);
         ResultSet result2 = DBUtil.dbExecuteQuery(command2);
         while (result2.next()) {
             nguyenLieuHienTai.add(result2.getString(2));
@@ -149,7 +149,7 @@ public class ChinhSuaToppingController {
 
     @FXML
     void xoaBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String command1 = String.format("DELETE FROM topping WHERE  tentopping = '%s'",old);
+        String command1 = String.format("DELETE FROM topping WHERE tentopping = '%s'",old);
         DBUtil.dbExecuteUpdate(command1);
         String command2 = String.format("DELETE FROM thanhphantopping WHERE  tentopping = '%s'",old);
         DBUtil.dbExecuteUpdate(command2);

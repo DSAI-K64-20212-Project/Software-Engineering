@@ -4,6 +4,7 @@ import project.base.DBUtil;
 import project.base.order.Invoice;
 import project.base.order.OneCall;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.StringJoiner;
 
@@ -16,10 +17,13 @@ public interface CashierInterface {
                         invoice.soorder, invoice.getPaid(), "Dang chuan bi", invoice.id, invoice.tenkhachhang);
                 DBUtil.dbExecuteUpdate(command);
 
-                StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphanhoadon(tendouong, size, " +
+                StringJoiner command2 = new StringJoiner(",", "INSERT INTO thanhphanhoadon(iddouong, size, " +
                         "da, duong, soluong, mahoadon, buyid) VALUES ",";");
                 for (OneCall call : invoice.getInFo()) {
-                    command2.add(String.format("('%s','%s', %.2f, %.2f, %d, '%s', %d)", call.drink_name,
+                    ResultSet idDouong = DBUtil.dbExecuteQuery(String.format("select iddouong from douong where " +
+                            "tendouong = '%s';",call.drink_name));
+                    idDouong.next();
+                    command2.add(String.format("('%s','%s', %.2f, %.2f, %d, '%s', %d)", idDouong.getString(1),
                             call.size, call.ice, call.sugar, call.get_ammount(), invoice.id, call.id));
                 }
                 DBUtil.dbExecuteUpdate(command2.toString());
@@ -28,7 +32,10 @@ public interface CashierInterface {
                         "idtopping) VALUES ",";");
                 for (OneCall call : invoice.getInFo()) {
                     for (String topping: call.toppings){
-                        command3.add(String.format("('%s', %d, '%s')", invoice.id, call.id, topping));
+                        ResultSet idTopping = DBUtil.dbExecuteQuery(String.format("select idtopping from topping " +
+                                "where tentopping = '%s';",topping));
+                        idTopping.next();
+                        command3.add(String.format("('%s', %d, '%s')", invoice.id, call.id, idTopping.getString(1)));
                     }
                 }
                 DBUtil.dbExecuteUpdate(command3.toString());

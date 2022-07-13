@@ -109,14 +109,16 @@ public class MenuController {
             doUong.setThongTinDoUong(tenDoUong);
             doUong.setOnMenu(Boolean.parseBoolean(onMenuStr));
 
-            String commandGiaMDoUong = String.format("SELECT * FROM giadouong WHERE tendouong = '%s' and size = 'M'",tenDoUong);
+            String commandGiaMDoUong = String.format("SELECT * FROM giadouong WHERE iddouong = '%s' and size = 'M'",
+                    tenDoUong);
             ResultSet resultGiaMDoUong = DBUtil.dbExecuteQuery(commandGiaMDoUong);
 
             if (resultGiaMDoUong.next()){
                 doUong.setGiaMDoUong(resultGiaMDoUong.getString(3));
             }
 
-            String commandGiaLDoUong = String.format("SELECT * FROM giadouong WHERE tendouong = '%s' and size = 'L'",tenDoUong);
+            String commandGiaLDoUong = String.format("SELECT * FROM giadouong WHERE iddouong = '%s' and size = 'L'",
+                    tenDoUong);
             ResultSet resultGiaLDoUong = DBUtil.dbExecuteQuery(commandGiaLDoUong);
 
             if (resultGiaLDoUong.next()){

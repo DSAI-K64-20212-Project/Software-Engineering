@@ -55,7 +55,12 @@ public class ToppingController {
 
     public void setData(Topping topping){
         anhTopping.setStroke(Color.SEAGREEN);
-        Image im = new Image(topping.getAnhTopping());
+        Image im;
+        try {
+            im = new Image(topping.getAnhTopping());
+        } catch (Exception e){
+            im = new Image("/project/resources/image/icons/default-image.jpg");
+        }
         anhTopping.setFill(new ImagePattern(im));
         anhTopping.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
 

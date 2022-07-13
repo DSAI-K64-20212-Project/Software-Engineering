@@ -109,7 +109,7 @@ public class ChinhSuaDoUongController {
         String command1 = String.format("SELECT * FROM nguyenlieu");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
-        String command2 = String.format("SELECT * FROM thanhphandouong WHERE tendouong = '%s'",old);
+        String command2 = String.format("SELECT * FROM thanhphandouong WHERE iddouong = '%s'",old);
         ResultSet result2 = DBUtil.dbExecuteQuery(command2);
         while (result2.next()) {
             nguyenLieuHienTai.add(result2.getString(2));
