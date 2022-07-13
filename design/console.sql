@@ -158,6 +158,7 @@ ALTER TABLE nguyenlieu ADD COLUMN anh varchar(20);
 ALTER TABLE douong ADD COLUMN onmenu boolean;
 ALTER TABLE topping ADD COLUMN onmenu boolean;
 ALTER TABLE nhanvien ADD COLUMN active boolean;
+ALTER TABLE nguyenlieu ADD COLUMN dongia int;
 
 
 ALTER TABLE hoadon ALTER Column thoigian type timestamp without time zone;
