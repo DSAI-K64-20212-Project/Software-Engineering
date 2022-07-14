@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<HBox fx:id="mainAddIngre" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ThemNguyenLieuController">
+
+<HBox fx:id="mainAddIngre" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.ThemNguyenLieuController">
     <children>
         <VBox prefHeight="600.0" prefWidth="488.0" HBox.hgrow="ALWAYS">
             <children>
@@ -16,7 +19,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="824.0" spacing="200.0">
                            <children>
-                              <Button fx:id="backBtn" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;" text="&lt; Back">
+                              <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backBtnOnClicked" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;" text="&lt; Back">
                                  <font>
                                     <Font size="26.0" />
                                  </font>

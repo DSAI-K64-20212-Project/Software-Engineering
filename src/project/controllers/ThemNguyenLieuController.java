@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -21,6 +22,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 import static project.LogIn.monitor;
 
@@ -127,5 +129,12 @@ public class ThemNguyenLieuController {
             // Notification
             JOptionPane.showMessageDialog(null, "Topping đã được thêm thành công", "Notification", 1);
         }
+    }
+
+    @FXML
+    void backBtnOnClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Kho.fxml")));
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 }
