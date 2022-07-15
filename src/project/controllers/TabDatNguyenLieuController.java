@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -15,16 +16,21 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
 
-public class TabDatNguyenLieuController {
+public  class TabDatNguyenLieuController {
+
+
 
     @FXML
     private VBox tabPane;
 
     @FXML
-    private VBox vboxDaChon;
+    public TextArea textAreaSum;
 
     @FXML
-    private VBox vboxTongTien;
+    public TextArea textAreaListItem;
+
+    @FXML
+    public Label daChonLb;
 
     @FXML
     void datNguyenLieuBtn(ActionEvent event) throws IOException {
@@ -41,9 +47,5 @@ public class TabDatNguyenLieuController {
             window.setScene(new Scene(root));
         }
     }
-
-    public void chonNguyenLieu(String name) {
-        Text duocChon = new Text(name);
-        vboxDaChon.getChildren().add(duocChon);
-    }
 }
+

@@ -1,9 +1,11 @@
 package project.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,11 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import project.base.DBUtil;
-import project.controllers.BaseController;
-import project.controllers.ThumbController;
 import project.model.ImageMain;
 import javafx.scene.layout.GridPane;
 
@@ -24,19 +23,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
+
+import javax.swing.*;
 
 public class KhoController {
     private BaseController baseController;
-
-    public static List<String> thumbList = new ArrayList<String>();
-
+    public static ObservableList<String> thumbList = FXCollections.observableArrayList();
     public void setBaseController(BaseController baseController) {
         this.baseController = baseController;
     }
-
     @FXML
     private GridPane imageGrid;
     @FXML
@@ -44,6 +40,10 @@ public class KhoController {
     private List<ImageMain> images;
     @FXML
     private HBox bigHbox;
+    @FXML
+    private Label daChonLb;
+    @FXML
+    private Label tongTienLb;
 
 
     @FXML
@@ -81,33 +81,36 @@ public class KhoController {
             throw new RuntimeException(e);
         }
 
-        // Thêm Pane đặt đồ bên phải
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/project/screen/TabDatNguyenLieu.fxml"));
-        VBox datDoUongVBox = fxmlLoader.load();
-        bigHbox.getChildren().add(datDoUongVBox);
+        thumbList.addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                StringBuilder daChon = new StringBuilder("Đã chọn:\n");
+                int sum = 0;
+                for (String s:thumbList) {
+                    try {
+                    daChon.append(String.format("  - %s\n ", s));
 
+                    String command = String.format("SELECT dongia FROM nguyenlieu WHERE tennguyenlieu = '%s'", s);
+                    ResultSet result = DBUtil.dbExecuteQuery(command);
+                    result.next();
+                    int dongia = result.getInt(1);
+                    sum += dongia;
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                daChonLb.setText(daChon.toString());
 
-//        // Cột đặt nguyên liệu
-//        rightVBox.getChildren().clear();
-//
-//        Label knlText = new Label("Kho Nguyên Liệu");
-//        Font font1 = new Font("SansSerif", 20);
-//        knlText.setFont(font1);
-//        rightVBox.getChildren().add(knlText);
-//
-//
-//        Label dcText = new Label("Đã chọn: ");
-//        Label ttText = new Label("Tổng tiền: ");
-//
-//
-//        rightVBox.getChildren().add(dcText);
-//        rightVBox.getChildren().add(ttText);
-//
-//        Label label = new Label("Đặt Nguyên Liệu");
-//        rightVBox.getChildren().add(label);
+                StringBuilder tongTien = new StringBuilder("Tổng tiền:\n");
+                tongTien.append(String.format("         %d đồng", sum*100));
+                tongTienLb.setText(tongTien.toString());
 
-
+                if (thumbList.isEmpty()) {
+                    daChonLb.setText("");
+                    tongTienLb.setText("");
+                }
+            }
+        });
     }
 
     private List<ImageMain> images() throws SQLException, ClassNotFoundException {
@@ -151,5 +154,21 @@ public class KhoController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/ThemNguyenLieu.fxml")));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
+    }
+
+    @FXML
+    void datNguyenLieuBtn(ActionEvent event) throws IOException {
+        // Notification
+        if (KhoController.thumbList.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Chưa có nguyên liệu nào được thêm", "Denial", 2);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Nguyên liêu đã được đặt hàng", "Notification", 1);
+            // Reset màn hình
+            KhoController.thumbList.clear();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Kho.fxml")));
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root));
+        }
     }
 }

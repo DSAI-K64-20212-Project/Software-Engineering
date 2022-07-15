@@ -55,6 +55,36 @@
                         </ScrollPane>
                     </children>
                 </VBox>
+            <VBox prefHeight="690.0" prefWidth="200.0" style="-fx-background-color: #D85454;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="Kho Nguyên Liệu" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="daChonLb" alignment="TOP_LEFT" prefHeight="530.0" prefWidth="200.0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="tongTienLb" alignment="TOP_LEFT" prefHeight="70.0" prefWidth="200.0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#datNguyenLieuBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #58C063;" text="Đặt Nguyên Liệu" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
             </children>
         </HBox>
     </children>

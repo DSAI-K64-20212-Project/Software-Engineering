@@ -2,17 +2,12 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import project.base.DBUtil;
 import project.model.ImageMain;
-
-import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,16 +17,12 @@ public class ThumbController {
     private String idnguyenlieu;
     @FXML
     private Button trangThai;
-
     @FXML
     private Label tenNguyenLieu;
-
     @FXML
     private ImageView anhNguyenLieu;
-
     @FXML
     private ImageView checkMark;
-
     @FXML
     void trangThaiBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
         if (trangThai.getText().equals("Het hang")) {
@@ -76,13 +67,4 @@ public class ThumbController {
               KhoController.thumbList.remove(tenNguyenLieu.getText());
               checkMark.setVisible(false);
           }
-
-        System.out.println(String.format("Trạng thái chọn nguyên liệu: %s", KhoController.thumbList));
-
-//          FXMLLoader fxmlLoader = new FXMLLoader();
-//          fxmlLoader.setLocation(getClass().getResource("/project/screen/TabDatNguyenLieu.fxml"));
-//          VBox datDoUongVBox = fxmlLoader.load();
-//          TabDatNguyenLieuController tabDatNguyenLieuController = fxmlLoader.getController();
-//          tabDatNguyenLieuController.chonNguyenLieu(tenNguyenLieu.getText());
-    }
-}
+          System.out.println(String.format("Trạng thái chọn nguyên liệu: %s", KhoController.thumbList));
