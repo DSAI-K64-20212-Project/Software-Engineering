@@ -8,7 +8,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import project.base.DBUtil;
 import project.controllers.BaseController;
@@ -28,16 +31,24 @@ import java.util.ResourceBundle;
 public class KhoController {
     private BaseController baseController;
 
+    public static List<String> thumbList = new ArrayList<String>();
+
     public void setBaseController(BaseController baseController) {
         this.baseController = baseController;
     }
 
     @FXML
     private GridPane imageGrid;
+    @FXML
+    private VBox rightVBox;
     private List<ImageMain> images;
+    @FXML
+    private HBox bigHbox;
+
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
+
         try {
             images = new ArrayList<>(images());
         } catch (SQLException e) {
@@ -69,6 +80,34 @@ public class KhoController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        // Thêm Pane đặt đồ bên phải
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/project/screen/TabDatNguyenLieu.fxml"));
+        VBox datDoUongVBox = fxmlLoader.load();
+        bigHbox.getChildren().add(datDoUongVBox);
+
+
+//        // Cột đặt nguyên liệu
+//        rightVBox.getChildren().clear();
+//
+//        Label knlText = new Label("Kho Nguyên Liệu");
+//        Font font1 = new Font("SansSerif", 20);
+//        knlText.setFont(font1);
+//        rightVBox.getChildren().add(knlText);
+//
+//
+//        Label dcText = new Label("Đã chọn: ");
+//        Label ttText = new Label("Tổng tiền: ");
+//
+//
+//        rightVBox.getChildren().add(dcText);
+//        rightVBox.getChildren().add(ttText);
+//
+//        Label label = new Label("Đặt Nguyên Liệu");
+//        rightVBox.getChildren().add(label);
+
+
     }
 
     private List<ImageMain> images() throws SQLException, ClassNotFoundException {
