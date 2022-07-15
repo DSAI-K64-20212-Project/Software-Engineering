@@ -51,9 +51,7 @@ public class KhoController {
 
         try {
             images = new ArrayList<>(images());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -131,6 +129,15 @@ public class KhoController {
             String idnguyenlieu = resultSet.getString("idnguyenlieu");
             String tennguyenlieu = resultSet.getString("tennguyenlieu");
             String trangthai = resultSet.getString("trangthai");
+            if (trangthai.equals("Con hang")) {
+                trangthai = "Còn Hàng";
+            }
+            if (trangthai.equals("Sap het")) {
+                trangthai = "Sắp Hết";
+            }
+            if (trangthai.equals("Het hang")) {
+                trangthai = "Hết Hàng";
+            }
             String anh = resultSet.getString("anh");
 
             image = new ImageMain();
@@ -163,7 +170,7 @@ public class KhoController {
             JOptionPane.showMessageDialog(null, "Chưa có nguyên liệu nào được thêm", "Denial", 2);
         }
         else {
-            JOptionPane.showMessageDialog(null, "Nguyên liêu đã được đặt hàng", "Notification", 1);
+            JOptionPane.showMessageDialog(null, "Nguyên liệu đã được đặt hàng", "Notification", 1);
             // Reset màn hình
             KhoController.thumbList.clear();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Kho.fxml")));

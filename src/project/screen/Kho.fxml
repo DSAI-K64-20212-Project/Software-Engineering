@@ -75,7 +75,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                      <padding>
-                        <Insets left="40.0" />
+                        <Insets left="30.0" />
                      </padding>
                   </Label>
                   <Button mnemonicParsing="false" onAction="#datNguyenLieuBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #58C063;" text="Đặt Nguyên Liệu" textFill="WHITE">
