@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class VBoxCell extends VBox {
+    public boolean disable = false;
     ImageView imageView = new ImageView();
     public Label ten = new Label();
     Label gia = new Label();
@@ -46,11 +47,10 @@ public class VBoxCell extends VBox {
         """, ten));
         if (hethang.next()){
             this.getChildren().addAll(this.imageView, this.ten);
-            this.setDisable(true);
+            this.disable = true;
         } else if (saphet.next()) {
             Label warning = new Label("Sắp hết");
-            warning.setStyle("-fx-background-color: #c50808");
-            warning.setStyle("-fx-text-fill: white");
+            warning.setStyle("-fx-text-fill: #c50808");
             this.getChildren().addAll(warning, this.imageView, this.ten);
         } else {
             this.getChildren().addAll(this.imageView, this.ten);
@@ -85,13 +85,12 @@ public class VBoxCell extends VBox {
         inner join topping t on thanhphantopping.idtopping = t.idtopping
         where t.tenTopping = '%s' and n.trangThai = 'Sap het';
         """, tentopping));
-        if (hethang.next()){
+        if (hethang.next()) {
             this.getChildren().addAll(this.imageView, this.ten, this.gia);
-            this.setDisable(true);
+            this.disable = true;
         } else if (saphet.next()) {
             Label warning = new Label("Sắp hết");
-            warning.setStyle("-fx-background-color: #c50808");
-            warning.setStyle("-fx-text-fill: white");
+            warning.setStyle("-fx-text-fill: #c50808");
             this.getChildren().addAll(warning, this.imageView, this.ten, this.gia);
         } else {
             this.getChildren().addAll(this.imageView, this.ten, this.gia);

@@ -82,26 +82,38 @@ public class DatDoUongController {
         }
         ObservableList<VBoxCell> myObservableList = FXCollections.observableList(list2);
         toppingList.setItems(myObservableList);
-        toppingList.setCellFactory(vBoxCellListView -> new ListCell<>() {
+        toppingList.setCellFactory(new Callback<>() {
             @Override
-            protected void updateItem(VBoxCell item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null){
-                    try {
-                        ResultSet hethang =
-                                DBUtil.dbExecuteQuery(String.format("""
-                            select n.tennguyenlieu, t.tenTopping from thanhphantopping inner join nguyenlieu n on ThanhPhanTopping.idNguyenLieu = n.idnguyenlieu
-                            inner join topping t on thanhphantopping.idtopping = t.idtopping
-                            where t.tenTopping = '%s' and n.trangThai = 'Het hang';
-                            """, item.ten.getText()));
-                        boolean ishethang = hethang.next();
-                        setMouseTransparent(ishethang); //added this line
-                        setFocusTraversable(!ishethang); //added this line
-                        setDisable(ishethang);
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
+            public ListCell<VBoxCell> call(ListView<VBoxCell> vBoxCellListView) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(VBoxCell item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setGraphic(item);
+                        if (item != null) {
+                            setMouseTransparent(item.disable); //added this line
+                            setFocusTraversable(!item.disable); //added this line
+                            setDisable(item.disable);
+                        }
                     }
-                }
+                };
+            }
+        });
+        douongList.setCellFactory(new Callback<ListView<VBoxCell>, ListCell<VBoxCell>>() {
+            @Override
+            public ListCell<VBoxCell> call(ListView<VBoxCell> vBoxCellListView) {
+                return new ListCell<VBoxCell>() {
+                    @Override
+                    protected void updateItem(VBoxCell item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setGraphic(item);
+                        if (item != null) {
+                            setMouseTransparent(item.disable); //added this line
+                            setFocusTraversable(!item.disable); //added this line
+                            setDisable(item.disable);
+                        }
+                    }
+                };
             }
         });
     }
