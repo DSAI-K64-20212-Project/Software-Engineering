@@ -6,9 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import project.UI.HoaDon;
 import project.UI.InvoiceView;
+import project.base.DBUtil;
 import project.base.order.Invoice;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
+
+import java.sql.SQLException;
 
 public class HoaDonDetailController {
 
@@ -24,19 +27,27 @@ public class HoaDonDetailController {
     @FXML
     private Label idHoaDon;
     static int ID=0;
+    private HoaDonController hoaDonController;
+    private String mahoadon;
 
     public void setData(HoaDon hoaDon) throws Exception {
         ID++;
+        this.mahoadon = hoaDon.getMahoadon();
         Invoice invoice = new Invoice(hoaDon.getMahoadon());
         idHoaDon.setText("Hóa Đơn " + ID);
         billPane.getChildren().add(new InvoiceView(invoice, false, false));
     }
-//
-//    @FXML
-//    public void setBillDoneButton(ActionEvent event) {
-//        int i = ID;
-//        String query = String.format("update hoadon set trangthai = 'Da giao' where mahoadon = '%s';",  );
-//    }
+
+    public void setHoaDonController(HoaDonController hoaDonController) {
+        this.hoaDonController = hoaDonController;
+    }
+
+    @FXML
+    void setBillDoneButton(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String query = String.format("update hoadon set trangthai = 'Da giao' where mahoadon = '%s';", this.mahoadon );
+        DBUtil.dbExecuteUpdate(query);
+    }
+
 }
 //    private void initialize() throws Exception, SQLException {
 //        String query = String.format("select mahoadon, trangthai from hoadon where trangthai='Dang chuan bi'");

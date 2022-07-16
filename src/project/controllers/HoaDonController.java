@@ -11,6 +11,7 @@ import project.UI.HoaDon;
 import project.base.DBUtil;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class HoaDonController {
     private List<HoaDon> hoaDonList;
 
     @FXML
-    public void initialize() throws Exception {
+    public void initialize() throws Exception, IOException {
         hBoxHoaDon.getChildren().clear();
         hoaDonList = new ArrayList<>(hoaDonList());
 
@@ -42,6 +43,8 @@ public class HoaDonController {
             fxmlLoader.setLocation(getClass().getResource("/project/screen/HoaDonDetail.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             HoaDonDetailController hoaDonDetailController = fxmlLoader.getController();
+
+            hoaDonDetailController.setHoaDonController(this);
             hoaDonDetailController.setData(hoaDonList.get(i));
 
             hBoxHoaDon.getChildren().add(anchorPane);
@@ -51,9 +54,6 @@ public class HoaDonController {
         }
     }
 
-//    public void setBillDoneButton(ActionEvent event) {
-//
-//    }
 
     private List<HoaDon> hoaDonList() throws SQLException, ClassNotFoundException {
         List<HoaDon> hoaDonList1 = new ArrayList<>();
