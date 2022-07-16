@@ -94,7 +94,10 @@ public class DatDoUongController {
                             inner join topping t on thanhphantopping.idtopping = t.idtopping
                             where t.tenTopping = '%s' and n.trangThai = 'Het hang';
                             """, item.ten.getText()));
-                        setDisable(hethang.next());
+                        boolean ishethang = hethang.next();
+                        setMouseTransparent(ishethang); //added this line
+                        setFocusTraversable(!ishethang); //added this line
+                        setDisable(ishethang);
                     } catch (SQLException | ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }

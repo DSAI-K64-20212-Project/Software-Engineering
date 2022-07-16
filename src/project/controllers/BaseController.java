@@ -112,7 +112,7 @@ public class BaseController {
             datdoUongBtn.setText("Hóa đơn");
             datdoUongBtn.setOnAction(actionEvent -> toggleScreen(hoadonScreen));
             nhansuBtn.setVisible(false);
-            menuBtn.setVisible(false);
+            menuBtn.setVisible(true);
             doanhthuBtn.setVisible(false);
         } else if (monitor.getAdmin() != null) {
             datdoUongBtn.setText("Hóa đơn");
