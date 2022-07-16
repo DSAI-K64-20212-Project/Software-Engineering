@@ -62,7 +62,7 @@ public class NhanSuController {
             e.printStackTrace();
         }
 
-        vBoxNhanVien.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        vBoxNhanVien.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
     }
 

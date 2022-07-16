@@ -93,8 +93,8 @@ public class MenuController {
             e.printStackTrace();
         }
 
-        vBoxDoUong.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        vBoxTopping.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        vBoxDoUong.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        vBoxTopping.setPrefHeight(Region.USE_COMPUTED_SIZE);
     }
 
     private List<DoUong> doUongs() throws SQLException, ClassNotFoundException, IOException {
