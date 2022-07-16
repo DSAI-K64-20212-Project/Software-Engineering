@@ -31,27 +31,27 @@ public class HoaDonController {
     @FXML
     private AnchorPane mainHoadon;
 
-    private List<HoaDon> hoaDonList;
+    private List<HoaDon> invoiceList;
 
     @FXML
-    public void initialize() throws Exception, IOException {
+    public void initialize() throws Exception {
         hBoxHoaDon.getChildren().clear();
-        hoaDonList = new ArrayList<>(hoaDonList());
+        invoiceList = new ArrayList<>(hoaDonList());
 
-        for (int i = 0; i < hoaDonList.size(); i++) {
+        for (HoaDon hoaDon : invoiceList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/project/screen/HoaDonDetail.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             HoaDonDetailController hoaDonDetailController = fxmlLoader.getController();
 
             hoaDonDetailController.setHoaDonController(this);
-            hoaDonDetailController.setData(hoaDonList.get(i));
+            hoaDonDetailController.setData(hoaDon);
 
             hBoxHoaDon.getChildren().add(anchorPane);
-            hBoxHoaDon.setSpacing(10);
-            Insets insets = new Insets(15);
-            hBoxHoaDon.setPadding(insets);
         }
+        hBoxHoaDon.setSpacing(10);
+        Insets insets = new Insets(15);
+        hBoxHoaDon.setPadding(insets);
     }
 
 

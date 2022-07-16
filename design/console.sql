@@ -195,11 +195,23 @@ where thoigian <= ('now'::timestamp) at time zone 'utc' at time zone 'wast' and 
 group by DU.idDoUong
 order by sum(soluong) desc;
 
-CREATE OR REPLACE FUNCTION conversation_notify()
+CREATE OR REPLACE FUNCTION datdouong_notify()
     RETURNS trigger AS
 $BODY$
 BEGIN
-    PERFORM pg_notify('mymessage', 'fired by FUNCTION');
+    PERFORM pg_notify('DatDoUong', 'fired by FUNCTION');
+    --NOTIFY mymessage, 'fired by NOTIFY';
+    RETURN NULL;
+END;
+$BODY$
+    LANGUAGE plpgsql VOLATILE
+                     COST 100;
+
+CREATE OR REPLACE FUNCTION hoadon_notify()
+    RETURNS trigger AS
+$BODY$
+BEGIN
+    PERFORM pg_notify('HoaDon', 'fired by FUNCTION');
     --NOTIFY mymessage, 'fired by NOTIFY';
     RETURN NULL;
 END;
@@ -210,17 +222,19 @@ $BODY$
 CREATE TRIGGER douong_notify
     AFTER INSERT OR UPDATE
     ON douong
-    EXECUTE PROCEDURE conversation_notify();
+    EXECUTE PROCEDURE datdouong_notify();
+
+drop trigger hoadon_notify on hoadon;
 
 CREATE TRIGGER topping_notify
     AFTER INSERT OR UPDATE
     ON topping
-EXECUTE PROCEDURE conversation_notify();
+EXECUTE PROCEDURE datdouong_notify();
 
 CREATE TRIGGER hoadon_notify
     AFTER INSERT OR UPDATE
     ON hoadon
-EXECUTE PROCEDURE conversation_notify();
+EXECUTE PROCEDURE hoadon_notify();
 
 select 6*count(*) from lichsulamviec where tendangnhap = 'doubleK24' and ngaylam >= date_trunc('month', CURRENT_DATE);
 select * from hoadon where thoigian::date = '2022-07-11' order by thoigian;
