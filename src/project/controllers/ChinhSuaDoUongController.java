@@ -15,10 +15,7 @@ import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -138,10 +135,12 @@ public class ChinhSuaDoUongController {
             if (nguyenLieuHienTai.contains(idNguyenLieu)){
                 nguyenLieuRadioBtn.setSelected(true);
             }
+            nguyenLieuRadioBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
             hBoxNguyenLieu.getChildren().add(nguyenLieuRadioBtn);
-
         }
+
+        hBoxNguyenLieu.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
         String command3 = String.format("SELECT * FROM douong WHERE iddouong = '%s'",old);
         ResultSet result3 = DBUtil.dbExecuteQuery(command3);

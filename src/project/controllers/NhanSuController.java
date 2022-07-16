@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -60,6 +61,8 @@ public class NhanSuController {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        vBoxNhanVien.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
     }
 

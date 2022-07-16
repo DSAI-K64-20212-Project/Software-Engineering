@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -91,6 +92,9 @@ public class MenuController {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        vBoxDoUong.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        vBoxTopping.setPrefWidth(Region.USE_COMPUTED_SIZE);
     }
 
     private List<DoUong> doUongs() throws SQLException, ClassNotFoundException, IOException {

@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -89,9 +90,12 @@ public class ThemDoUongToppingController implements BartenderInterface {
             nguyenLieuRadioBtn.setStyle("-fx-border-width:3");
             nguyenLieuRadioBtn.setStyle("-fx-border-radius:20");
             nguyenLieuRadioBtn.setPadding(new Insets(5, 5, 5, 5));
+            nguyenLieuRadioBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
             hBoxNguyenLieu.getChildren().add(nguyenLieuRadioBtn);
         }
+
+        hBoxNguyenLieu.setPrefWidth(Region.USE_COMPUTED_SIZE);
     }
 
 
