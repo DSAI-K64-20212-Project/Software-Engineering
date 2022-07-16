@@ -1,18 +1,20 @@
 package project.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import project.base.DBUtil;
-import project.controllers.BaseController;
-import project.controllers.ThumbController;
 import project.model.ImageMain;
 import javafx.scene.layout.GridPane;
 
@@ -21,28 +23,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
+
+import javax.swing.*;
 
 public class KhoController {
     private BaseController baseController;
-
+    public static ObservableList<String> thumbList = FXCollections.observableArrayList();
     public void setBaseController(BaseController baseController) {
         this.baseController = baseController;
     }
-
     @FXML
     private GridPane imageGrid;
+    @FXML
+    private VBox rightVBox;
     private List<ImageMain> images;
+    @FXML
+    private HBox bigHbox;
+    @FXML
+    private Label daChonLb;
+    @FXML
+    private Label tongTienLb;
+
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
+
         try {
             images = new ArrayList<>(images());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -69,6 +78,37 @@ public class KhoController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        thumbList.addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                StringBuilder daChon = new StringBuilder("Đã chọn:\n");
+                int sum = 0;
+                for (String s:thumbList) {
+                    try {
+                    daChon.append(String.format("  - %s\n ", s));
+
+                    String command = String.format("SELECT dongia FROM nguyenlieu WHERE tennguyenlieu = '%s'", s);
+                    ResultSet result = DBUtil.dbExecuteQuery(command);
+                    result.next();
+                    int dongia = result.getInt(1);
+                    sum += dongia;
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                daChonLb.setText(daChon.toString());
+
+                StringBuilder tongTien = new StringBuilder("Tổng tiền:\n");
+                tongTien.append(String.format("         %d đồng", sum*100));
+                tongTienLb.setText(tongTien.toString());
+
+                if (thumbList.isEmpty()) {
+                    daChonLb.setText("");
+                    tongTienLb.setText("");
+                }
+            }
+        });
     }
 
     private List<ImageMain> images() throws SQLException, ClassNotFoundException {
@@ -89,6 +129,15 @@ public class KhoController {
             String idnguyenlieu = resultSet.getString("idnguyenlieu");
             String tennguyenlieu = resultSet.getString("tennguyenlieu");
             String trangthai = resultSet.getString("trangthai");
+            if (trangthai.equals("Con hang")) {
+                trangthai = "Còn Hàng";
+            }
+            if (trangthai.equals("Sap het")) {
+                trangthai = "Sắp Hết";
+            }
+            if (trangthai.equals("Het hang")) {
+                trangthai = "Hết Hàng";
+            }
             String anh = resultSet.getString("anh");
 
             image = new ImageMain();
@@ -112,5 +161,21 @@ public class KhoController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/ThemNguyenLieu.fxml")));
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(root));
+    }
+
+    @FXML
+    void datNguyenLieuBtn(ActionEvent event) throws IOException {
+        // Notification
+        if (KhoController.thumbList.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Chưa có nguyên liệu nào được thêm", "Denial", 2);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Nguyên liệu đã được đặt hàng", "Notification", 1);
+            // Reset màn hình
+            KhoController.thumbList.clear();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/project/screen/Kho.fxml")));
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root));
+        }
     }
 }

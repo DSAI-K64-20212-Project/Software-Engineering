@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,11 +18,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="mainKhoNguyenLieu" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.KhoController">
+<AnchorPane id="AnchorPane" fx:id="mainKhoNguyenLieu" prefHeight="690.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.KhoController">
     <children>
-        <HBox layoutX="256.0" layoutY="61.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox fx:id="bigHbox" layoutX="256.0" layoutY="61.0" prefHeight="670.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox prefWidth="604.0">
+                <VBox prefHeight="690.0" prefWidth="624.0">
                     <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="567.0">
                             <children>
@@ -49,41 +55,36 @@
                         </ScrollPane>
                     </children>
                 </VBox>
-                <VBox maxWidth="220.0" minWidth="220.0" prefWidth="220.0">
-                    <children>
-                        <AnchorPane layoutX="823.0" layoutY="61.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="220.0" style="-fx-background-color: #8B8BF9;">
-                            <children>
-                                <Label alignment="CENTER" layoutX="3.0" prefHeight="54.0" prefWidth="220.0" text="Kho nguyên liệu">
-                                    <font>
-                                        <Font size="27.0" />
-                                    </font>
-                                </Label>
-                                <Text layoutX="85.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hết nguyên liệu:&#10;+ Pudding&#10;+ Hạt thủy tinh" wrappingWidth="190.63720703125" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-                                    <font>
-                                        <Font size="20.0" />
-                                    </font>
-                                </Text>
-                                <Button layoutX="1.0" layoutY="633.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="220.0" style="-fx-background-color: linear-gradient(to right, #8410DF, #8410DF);" text="Đặt nguyên liệu" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="633.0">
-                                    <font>
-                                        <Font name="System Bold" size="19.0" />
-                                    </font>
-                                </Button>
-                                <HBox alignment="TOP_CENTER" layoutY="308.0" prefHeight="368.0" prefWidth="220.0" style="-fx-border-radius: 25; -fx-border-color: #000000;">
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Đã chọn:&#10;- Pudding">
-                                            <HBox.margin>
-                                                <Insets top="20.0" />
-                                            </HBox.margin>
-                                            <font>
-                                                <Font size="22.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                    </children>
-                </VBox>
+            <VBox prefHeight="690.0" prefWidth="200.0" style="-fx-background-color: #D85454;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="Kho Nguyên Liệu" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="daChonLb" alignment="TOP_LEFT" prefHeight="530.0" prefWidth="200.0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="tongTienLb" alignment="TOP_LEFT" prefHeight="70.0" prefWidth="200.0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#datNguyenLieuBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #58C063;" text="Đặt Nguyên Liệu" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
             </children>
         </HBox>
     </children>
