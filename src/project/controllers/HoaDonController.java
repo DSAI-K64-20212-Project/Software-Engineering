@@ -58,26 +58,29 @@ public class HoaDonController {
     private List<HoaDon> hoaDonList() throws SQLException, ClassNotFoundException {
         List<HoaDon> hoaDonList1 = new ArrayList<>();
 
-        String query = "select mahoadon, trangthai from hoadon where trangthai='Dang chuan bi';";
+        String query = "select mahoadon, thoigian, trangthai from hoadon where trangthai='Dang chuan bi';";
         ResultSet resultSet = DBUtil.dbExecuteQuery(query);
 
         while (resultSet.next()) {
             String mahoadon = resultSet.getString("mahoadon");
+            String thoigian = resultSet.getString("thoigian");
+
 
             HoaDon hoaDon = new HoaDon();
             hoaDon.setMahoadon(mahoadon);
+            hoaDon.setDate(thoigian);
             hoaDonList1.add(hoaDon);
         }
         return hoaDonList1;
     }
-//    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-//        String query = String.format("select mahoadon, trangthai from hoadon where trangthai='Dang chuan bi';");
-//        ResultSet resultSet = DBUtil.dbExecuteQuery(query);
-//        while (resultSet.next()) {
-//            String mahoadon = resultSet.getString("mahoadon");
-//            System.out.println(mahoadon);
-//            }
-//        }
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        String query = String.format("select mahoadon, thoigian, trangthai from hoadon where trangthai='Dang chuan bi';");
+        ResultSet resultSet = DBUtil.dbExecuteQuery(query);
+        while (resultSet.next()) {
+            String mahoadon = resultSet.getString("thoigian");
+            System.out.println(mahoadon);
+            }
+        }
 }
 //    private void initialize() throws Exception, SQLException {
 //        String query = String.format("select mahoadon, trangthai from hoadon where trangthai='Dang chuan bi'");
