@@ -23,18 +23,20 @@ public class HoaDonDetailController {
 
     @FXML
     private AnchorPane billPane;
+    @FXML
+    private Label timeStampLabel;
 
     @FXML
     private Label idHoaDon;
-    static int ID=0;
     private HoaDonController hoaDonController;
     private String mahoadon;
+    private String date;
 
     public void setData(HoaDon hoaDon) throws Exception {
-        ID++;
         this.mahoadon = hoaDon.getMahoadon();
         Invoice invoice = new Invoice(hoaDon.getMahoadon());
-        idHoaDon.setText("Hóa Đơn " + ID);
+        idHoaDon.setText("Hóa Đơn " + this.mahoadon);
+        idHoaDon.setMaxWidth(300);
         billPane.getChildren().add(new InvoiceView(invoice, false, false));
     }
 
@@ -43,9 +45,16 @@ public class HoaDonDetailController {
     }
 
     @FXML
-    void setBillDoneButton(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void setBillDoneButton(ActionEvent event) throws Exception {
         String query = String.format("update hoadon set trangthai = 'Da giao' where mahoadon = '%s';", this.mahoadon );
         DBUtil.dbExecuteUpdate(query);
+        hoaDonController.initialize();
+    }
+    @FXML
+    void setBillCancelButton(ActionEvent event) throws Exception {
+        String query = String.format("update hoadon set trangthai = 'Huy' where mahoadon = '%s';", this.mahoadon );
+        DBUtil.dbExecuteUpdate(query);
+        hoaDonController.initialize();
     }
 
 }
