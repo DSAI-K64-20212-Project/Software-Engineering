@@ -1,6 +1,7 @@
 package project.base;
 
 import project.controllers.DatDoUongController;
+import project.controllers.HoaDonController;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,9 +13,11 @@ public class DBListener extends Thread {
     private Connection conn;
     private org.postgresql.PGConnection pgconn;
     private DatDoUongController datDoUongController;
+    private HoaDonController hoaDonController;
 
-    public DBListener(Connection conn, DatDoUongController controllers) throws SQLException {
-        this.datDoUongController = controllers;
+    public DBListener(Connection conn, DatDoUongController datDoUongController, HoaDonController hoaDonController) throws SQLException {
+        this.datDoUongController = datDoUongController;
+        this.hoaDonController = hoaDonController;
         this.conn = conn;
         this.pgconn = conn.unwrap(org.postgresql.PGConnection.class);
         Statement stmt = conn.createStatement();
@@ -36,6 +39,7 @@ public class DBListener extends Thread {
                     for (org.postgresql.PGNotification notification : notifications)
                         System.out.println("Got notification: " + notification.getName());
                     datDoUongController.refresh_data();
+                    hoaDonController.initialize();
                 }
 
                 // wait a while before checking again for new
@@ -45,7 +49,7 @@ public class DBListener extends Thread {
             }
         } catch (SQLException | InterruptedException sqle) {
             sqle.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

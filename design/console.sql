@@ -217,6 +217,11 @@ CREATE TRIGGER topping_notify
     ON topping
 EXECUTE PROCEDURE conversation_notify();
 
+CREATE TRIGGER hoadon_notify
+    AFTER INSERT OR UPDATE
+    ON hoadon
+EXECUTE PROCEDURE conversation_notify();
+
 select 6*count(*) from lichsulamviec where tendangnhap = 'doubleK24' and ngaylam >= date_trunc('month', CURRENT_DATE);
 select * from hoadon where thoigian::date = '2022-07-11' order by thoigian;
 
