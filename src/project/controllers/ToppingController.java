@@ -49,7 +49,7 @@ public class ToppingController {
 
     @FXML
     void toppingOnMenuBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String command2 = String.format("UPDATE topping SET onmenu = '%s' WHERE tentopping = '%s'",toppingOnMenu.isSelected(),thongTinTopping.getText());
+        String command2 = String.format("UPDATE topping SET onmenu = '%s' WHERE idtopping = '%s'",toppingOnMenu.isSelected(),thongTinTopping.getText().substring(thongTinTopping.getText().indexOf("(")+1,thongTinTopping.getText().indexOf(")")));
         DBUtil.dbExecuteUpdate(command2);
     }
 
@@ -73,8 +73,8 @@ public class ToppingController {
     void chinhSuaToppingBtn(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         baseController.toggleScreen(baseController.chinhsuaToppingScreen);
         ChinhSuaToppingController chinhSuaToppingController = baseController.mainEditToppingController;
-        chinhSuaToppingController.old = thongTinTopping.getText();
-        chinhSuaToppingController.getTen().setText(thongTinTopping.getText());
+        chinhSuaToppingController.old = thongTinTopping.getText().substring(thongTinTopping.getText().indexOf("(")+1,thongTinTopping.getText().indexOf(")"));
+        chinhSuaToppingController.getTen().setText(thongTinTopping.getText().substring(0,thongTinTopping.getText().indexOf("(")));
         chinhSuaToppingController.getGiaTopping().setText(giaTopping.getText().substring(giaTopping.getText().indexOf("\n")+1));
         chinhSuaToppingController.open();
     }

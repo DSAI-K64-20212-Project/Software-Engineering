@@ -1,5 +1,6 @@
 package project.controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,6 +74,7 @@ public class BaseController {
     @FXML public AnchorPane chinhsuaNVScreen;
     @FXML public AnchorPane chinhsuaToppingScreen;
     @FXML private NhanSuController mainNhanSuController;
+    @FXML private HoaDonController mainHoadonController;
     @FXML private ThemNhanVienController mainAddStaffController;
     @FXML private TaiKhoanCuaBanController mainAccountController;
     @FXML private KhoController mainKhoNguyenLieuController;
@@ -112,7 +114,7 @@ public class BaseController {
             datdoUongBtn.setText("Hóa đơn");
             datdoUongBtn.setOnAction(actionEvent -> toggleScreen(hoadonScreen));
             nhansuBtn.setVisible(false);
-            menuBtn.setVisible(false);
+            menuBtn.setVisible(true);
             doanhthuBtn.setVisible(false);
         } else if (monitor.getAdmin() != null) {
             datdoUongBtn.setText("Hóa đơn");
@@ -128,8 +130,8 @@ public class BaseController {
         mainModifyDrController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
 
-        dbListener = new DBListener(DBUtil.conn, mainDatDoUongController);
-        dbListener.start();
+        new DBListener(DBUtil.conn, mainDatDoUongController).start();
+        new DBListener(DBUtil.conn, mainHoadonController).start();
     }
 
 

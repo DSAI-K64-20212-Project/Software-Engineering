@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -216,15 +217,8 @@
                   <VBox alignment="CENTER_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <Pane GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="imageBtn" layoutX="-100.0" layoutY="-32.0" mnemonicParsing="false" onAction="#uploadImageBtn" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <graphic>
-                              <ImageView fitHeight="86.0" fitWidth="84.0">
-                                 <image>
-                                    <Image url="@../resources/image/icons/upload2.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <Circle fx:id="anhNhanVien" fill="DODGERBLUE" layoutY="68.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Button fx:id="imageBtn" blendMode="DARKEN" layoutX="-100.0" layoutY="-32.0" mnemonicParsing="false" onAction="#uploadImageBtn" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </Pane>
                </children>

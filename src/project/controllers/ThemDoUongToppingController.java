@@ -70,8 +70,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
     @FXML
     public Button imageBtn;
 
-    private String anh = "null";
-
+    static String anh = "null";
 
     @FXML
     private HBox hBoxNguyenLieu;
@@ -82,7 +81,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
         while (result1.next()) {
-            String tenNguyenLieu = result1.getString(1);
+            String tenNguyenLieu = result1.getString("tennguyenlieu");
 
             RadioButton nguyenLieuRadioBtn = new RadioButton();
             nguyenLieuRadioBtn.setText(tenNguyenLieu);
@@ -144,6 +143,8 @@ public class ThemDoUongToppingController implements BartenderInterface {
                 radioBtn.setSelected(false);
             }
         }
+
+        backBtn.fire();
     }
 
     @FXML
@@ -165,13 +166,12 @@ public class ThemDoUongToppingController implements BartenderInterface {
         File file = fileChooser.showOpenDialog(stage);
 
         // Set image sau khi upload ảnh
-        System.out.println(file);
-        Image img = new Image(String.valueOf(file));
+        Image img = new Image(String.valueOf(file).substring(String.valueOf(file).indexOf("project")-1));
         ImageView view = new ImageView(img);
         view.setFitHeight(200);
         view.setFitWidth(200);
         // Hide text
-        anh = String.valueOf(file);
+        anh = String.valueOf(file).substring(String.valueOf(file).lastIndexOf("/")+1);
         imageBtn.setGraphic(view);
 
         System.out.println(imageBtn.getText());

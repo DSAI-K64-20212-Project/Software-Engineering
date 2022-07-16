@@ -68,24 +68,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="nhansuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nhansuOnPressed" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="40.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/image/icons/users.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Button fx:id="menuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#menuOnPressed" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Menu" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="15.0" />
@@ -97,6 +79,24 @@
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/image/icons/list-check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="nhansuBtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#nhansuOnPressed" prefHeight="75.0" prefWidth="200.0" styleClass="button-sidebar" text=" Nhân sự" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/image/icons/users.png" />
                            </image>
                         </ImageView>
                      </graphic>

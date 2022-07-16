@@ -80,7 +80,12 @@ public class NhanVienController {
 
     public void setData(NhanVien nhanVien){
         anhNhanVien.setStroke(Color.SEAGREEN);
-        Image im = new Image(nhanVien.getAnhNhanVienSrc());
+        Image im;
+        try {
+            im = new Image(nhanVien.getAnhNhanVienSrc());
+        } catch (Exception e){
+            im = new Image("/project/resources/image/icons/default-image.jpg");
+        }
         anhNhanVien.setFill(new ImagePattern(im));
         anhNhanVien.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
 

@@ -1,6 +1,11 @@
 package project.base;
 
+import javafx.application.Platform;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import project.controllers.DatDoUongController;
+import project.controllers.HoaDonController;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,45 +13,65 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DBListener extends Thread {
+public class DBListener extends ScheduledService {
     private Connection conn;
     private org.postgresql.PGConnection pgconn;
     private DatDoUongController datDoUongController;
+    private HoaDonController hoaDonController;
 
-    public DBListener(Connection conn, DatDoUongController controllers) throws SQLException {
-        this.datDoUongController = controllers;
+    public DBListener(Connection conn, DatDoUongController datDoUongController) throws SQLException {
+        this.datDoUongController = datDoUongController;
         this.conn = conn;
         this.pgconn = conn.unwrap(org.postgresql.PGConnection.class);
         Statement stmt = conn.createStatement();
-        stmt.execute("LISTEN mymessage");
+        stmt.execute("LISTEN DatDoUong");
         stmt.close();
     }
+    public DBListener(Connection conn, HoaDonController hoaDonController) throws SQLException {
+        this.hoaDonController = hoaDonController;
+        this.conn = conn;
+        this.pgconn = conn.unwrap(org.postgresql.PGConnection.class);
+        Statement stmt = conn.createStatement();
+        stmt.execute("LISTEN HoaDon");
+        stmt.close();
+    }
+    @Override
+    protected Task createTask() {
+        return new Task() {
+            @Override
+            protected Object call() {
+                Platform.runLater(() -> {
+                    try {
+                        org.postgresql.PGNotification notifications[] = pgconn.getNotifications();
 
-    public void run() {
-        try {
-            while (true) {
-                org.postgresql.PGNotification notifications[] = pgconn.getNotifications();
+                        // If this thread is the only one that uses the connection, a timeout can be used to
+                        // receive notifications immediately:
+                        // org.postgresql.PGNotification notifications[] = pgconn.getNotifications(10000);
 
-                // If this thread is the only one that uses the connection, a timeout can be used to
-                // receive notifications immediately:
-                // org.postgresql.PGNotification notifications[] = pgconn.getNotifications(10000);
+                        if (notifications != null) {
+                            StringBuilder notifyString = new StringBuilder();
+                            for (org.postgresql.PGNotification notification : notifications)
+                                notifyString.append(notification.getName());
+                            System.out.println("Got notification: "+ notifyString);
+                            if (notifyString.toString().equals("DatDoUong")) {
+                                datDoUongController.refresh_data();
+                            } else if (notifyString.toString().equals("HoaDon")) {
+                                hoaDonController.initialize();
+                            }
+                        }
 
-                if (notifications != null) {
-                    System.out.println(Arrays.toString(notifications));
-                    for (org.postgresql.PGNotification notification : notifications)
-                        System.out.println("Got notification: " + notification.getName());
-                    datDoUongController.refresh_data();
-                }
+                        // wait a while before checking again for new
+                        // notifications
 
-                // wait a while before checking again for new
-                // notifications
-
-                Thread.sleep(500);
+//                            Thread.sleep(500);
+                    } catch(SQLException | InterruptedException sqle){
+                        sqle.printStackTrace();
+                    } catch(Exception e){
+                        throw new RuntimeException(e);
+                    }
+                });
+                return null;
             }
-        } catch (SQLException | InterruptedException sqle) {
-            sqle.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        };
     }
 }

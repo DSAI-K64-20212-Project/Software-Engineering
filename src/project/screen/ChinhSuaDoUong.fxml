@@ -118,7 +118,12 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Circle fx:id="anhDoUongTopping" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Pane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Circle fx:id="anhDoUongTopping" blendMode="DARKEN" fill="DODGERBLUE" layoutX="78.0" layoutY="40.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="imageBtn" blendMode="DARKEN" layoutX="-21.0" layoutY="-60.0" mnemonicParsing="false" onAction="#uploadImageBtn" prefHeight="200.0" prefWidth="198.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                     </children>
+                  </Pane>
                   <Pane GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <RadioButton fx:id="radioButtonSize2" layoutY="24.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="168.0" selected="true" style="-fx-border-color: #000000; -fx-border-width: 3; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">

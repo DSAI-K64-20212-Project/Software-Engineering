@@ -45,8 +45,8 @@ public class ThumbController {
             Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(image.getThumbSrc())), 163, 122, false, false);
             anhNguyenLieu.setImage(img);
         } catch (Exception e) {
-            Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("../project/resources/image/icons/default-image.jpg")), 163, 122, false, false);
-            anhNguyenLieu.setImage(img);
+//            Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("../project/resources/image/icons/default-image.jpg")), 163, 122, false, false);
+//            anhNguyenLieu.setImage(img);
         }
         trangThai.setText(image.getTrangThai());
         tenNguyenLieu.setText(image.getName());

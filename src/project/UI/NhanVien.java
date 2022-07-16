@@ -5,6 +5,15 @@ public class NhanVien {
     private String anhNhanVienSrc;
     private String caLam;
     private String thongTin;
+    private String matkhau;
+
+    public String getMatkhau() {
+        return matkhau;
+    }
+
+    public void setMatkhau(String matkhau) {
+        this.matkhau = matkhau;
+    }
 
     public String getLuongChuaTra() {
         return luongChuaTra;

@@ -73,4 +73,18 @@ public interface BartenderInterface {
         System.out.printf("User %s đã thêm topping %s, giá %d, nguyên liệu: %s\n", username, tentopping
                 , giatien, Arrays.toString(nhungnguyenlieu));
     }
+    default void order_ingredient(String username, String tennguyenlieu, int soluong
+                                ) throws SQLException, ClassNotFoundException {
+        ResultSet idnguyenlieu = DBUtil.dbExecuteQuery(String.format("Select idnguyenlieu from nguyenlieu where " +
+                "tennguyenlieu = '%s';", tennguyenlieu));
+        if (idnguyenlieu.next()){
+            DBUtil.dbExecuteUpdate(String.format("Insert into lichsudatnguyenlieu(tendangnhap,idnguyenlieu,soluong) " +
+                    "values ('%s', " +
+                    "'%s', %d);", username, idnguyenlieu.getString(1), soluong));
+            System.out.printf("User %s đã đặt nguyên liệu '%s', số lượng %d thành công!\n", username, tennguyenlieu ,
+                    soluong);
+        } else {
+            throw new SQLException("Can not find ingredient with provided id");
+        }
+    }
 }
