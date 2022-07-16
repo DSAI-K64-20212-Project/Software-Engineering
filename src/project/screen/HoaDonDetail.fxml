@@ -33,7 +33,7 @@
       </ScrollPane>
       <HBox layoutX="31.0" layoutY="383.0">
          <children>
-            <Button fx:id="billDoneButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="83.0" styleClass="buttonInvisible" stylesheets="@../Stylesheet.css" textFill="#2fd419">
+            <Button fx:id="billDoneButton" mnemonicParsing="false" onAction="#setBillDoneButton" prefHeight="58.0" prefWidth="83.0" styleClass="buttonInvisible" stylesheets="@../Stylesheet.css" textFill="#2fd419">
                <graphic>
                   <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
