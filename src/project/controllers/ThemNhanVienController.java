@@ -47,7 +47,7 @@ public class ThemNhanVienController implements AdminInterface {
     @FXML
     public Button imageBtn;
 
-    private String anh = "null";
+    static String anh = "null";
 
 
 
@@ -84,6 +84,7 @@ public class ThemNhanVienController implements AdminInterface {
         soDienThoai.setText("");
         username.setText("");
         matKhau.setText("");
+        backBtn.fire();
     }
 
     @FXML
@@ -101,20 +102,17 @@ public class ThemNhanVienController implements AdminInterface {
 
         // Set thư mục bắt đầu khi mở FileChooser
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        System.out.println(imageBtn.getText());
+
         File file = fileChooser.showOpenDialog(stage);
 
         // Set image sau khi upload ảnh
-        Image img = new Image(String.valueOf(file));
+        Image img = new Image(String.valueOf(file).substring(String.valueOf(file).indexOf("project")-1));
         ImageView view = new ImageView(img);
         view.setFitHeight(200);
         view.setFitWidth(200);
         // Hide text
-        anh = String.valueOf(file);
+        anh = String.valueOf(file).substring(String.valueOf(file).lastIndexOf("/")+1);
         imageBtn.setGraphic(view);
-
-        System.out.println(imageBtn.getText());
-
     }
 }
 

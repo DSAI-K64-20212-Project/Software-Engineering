@@ -100,11 +100,14 @@ public class MenuController {
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
         while (result1.next()) {
-            String tenDoUong = result1.getString(1);
-            String anh = result1.getString(2);
-            String onMenuStr = result1.getString(3);
+            String idDoUong = result1.getString("iddouong");
+            String tenDoUong = result1.getString("tendouong");
+            String anh = result1.getString("anh");
+            String onMenuStr = result1.getString("onmenu");
 
             DoUong doUong = new DoUong();
+            doUong.setId(idDoUong);
+            doUong.setThongTinDoUong(tenDoUong);
             doUong.setAnhDoUong("/project/resources/image/TraSua/" +anh);
             doUong.setThongTinDoUong(tenDoUong);
             doUong.setOnMenu(Boolean.parseBoolean(onMenuStr));
@@ -138,14 +141,15 @@ public class MenuController {
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
         while (result1.next()) {
-            String tenTopping = result1.getString(1);
-            String giaTopping = result1.getString(2);
-            String anh = result1.getString(3);
-            String onMenuStr = result1.getString(4);
+            String idTopping = result1.getString("idtopping");
+            String tenTopping = result1.getString("tentopping");
+            String giaTopping = result1.getString("giatopping");
+            String anh = result1.getString("anh");
+            String onMenuStr = result1.getString("onmenu");
 
             Topping topping = new Topping();
             topping.setAnhTopping("project/resources/image/Topping/" + anh);
-            topping.setThongTinTopping(tenTopping);
+            topping.setThongTinTopping(String.format(tenTopping + " (%s)",idTopping));
             topping.setToppingOnMenu(Boolean.parseBoolean(onMenuStr));
             topping.setGiaTopping(giaTopping);
 
