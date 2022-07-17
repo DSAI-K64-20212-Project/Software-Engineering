@@ -6,6 +6,15 @@ public class NhanVien {
     private String caLam;
     private String thongTin;
     private String matkhau;
+    private String active;
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
 
     public String getMatkhau() {
         return matkhau;

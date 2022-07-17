@@ -85,6 +85,7 @@ public class ThemNhanVienController implements AdminInterface {
         username.setText("");
         matKhau.setText("");
         backBtn.fire();
+
     }
 
     @FXML

@@ -40,6 +40,10 @@ public class NhanVienController {
 
     @FXML
     private Text thongTin;
+
+    @FXML
+    private Text active;
+
     private BaseController baseController;
 
     public void setBaseController(BaseController baseController) {
@@ -92,5 +96,6 @@ public class NhanVienController {
         luongChuaTra.setText(nhanVien.getLuongChuaTra());
         caLam.setText(nhanVien.getCaLam());
         thongTin.setText(nhanVien.getThongTin());
+        active.setText(nhanVien.getActive());
     }
 }

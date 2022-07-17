@@ -60,7 +60,7 @@
                               <Insets left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="ten" promptText="Input field" style="-fx-background-color: #C4C4C4;" GridPane.rowIndex="1">
+                        <TextField fx:id="ten" promptText="nhập tên chỉnh sửa" style="-fx-background-color: #C4C4C4;" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -109,7 +109,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Text>
-                                          <TextField fx:id="giaSizeM" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
+                                          <TextField fx:id="giaSizeM" promptText="nhập giá chỉnh sửa" style="-fx-background-color: #C4C4C4;" />
                                        </children>
                                     </VBox>
                                  </graphic>
@@ -138,7 +138,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Text>
-                                    <TextField fx:id="giaSizeL" promptText="Input field" style="-fx-background-color: #C4C4C4;" />
+                                    <TextField fx:id="giaSizeL" promptText="nhập giá chỉnh sửa" style="-fx-background-color: #C4C4C4;" />
                                  </children>
                               </VBox>
                            </graphic>

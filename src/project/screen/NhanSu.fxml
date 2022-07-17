@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -27,6 +28,9 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <GridPane prefHeight="30.0" prefWidth="1000.0">
               <columnConstraints>
@@ -59,7 +63,10 @@
             </GridPane>
             <ScrollPane prefHeight="458.0" prefViewportHeight="96.0" prefViewportWidth="1000.0" prefWidth="1002.0">
                <content>
-                  <VBox fx:id="vBoxNhanVien" layoutX="200.0" layoutY="197.0" prefHeight="624.0" prefWidth="785.0" />
+                  <VBox fx:id="vBoxNhanVien" layoutX="200.0" layoutY="197.0" prefHeight="624.0" prefWidth="785.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></VBox>
                </content>
             </ScrollPane>
          </children>
