@@ -1,6 +1,5 @@
 package project.controllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import project.controllers.KhoController;
+import javafx.util.Duration;
 import project.base.DBListener;
 import project.base.DBUtil;
 
@@ -130,8 +129,12 @@ public class BaseController {
         mainModifyDrController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
 
-        new DBListener(DBUtil.conn, mainDatDoUongController).start();
-        new DBListener(DBUtil.conn, mainHoadonController).start();
+        DBListener dbListener1 = new DBListener(DBUtil.conn, mainDatDoUongController, mainHoadonController);
+        dbListener1.setPeriod(Duration.millis(500));
+        dbListener1.start();
+//        DBListener dbListener2 = new DBListener(DBUtil.conn, mainHoadonController);
+//        dbListener2.setPeriod(Duration.millis(500));
+//        dbListener2.start();
     }
 
 

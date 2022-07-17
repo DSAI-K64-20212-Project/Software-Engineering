@@ -224,11 +224,16 @@ CREATE TRIGGER douong_notify
     ON douong
     EXECUTE PROCEDURE datdouong_notify();
 
-drop trigger hoadon_notify on hoadon;
+drop trigger douong_notify on douong;
 
 CREATE TRIGGER topping_notify
     AFTER INSERT OR UPDATE
     ON topping
+EXECUTE PROCEDURE datdouong_notify();
+
+CREATE TRIGGER nguyenlieu_notify
+    AFTER INSERT OR UPDATE
+    ON nguyenlieu
 EXECUTE PROCEDURE datdouong_notify();
 
 CREATE TRIGGER hoadon_notify

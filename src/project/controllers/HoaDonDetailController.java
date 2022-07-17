@@ -1,5 +1,12 @@
 package project.controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableStringValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +18,11 @@ import project.base.order.Invoice;
 
 import javafx.event.ActionEvent;
 
+import javax.print.attribute.standard.JobMessageFromOperator;
+import javax.swing.*;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.*;
 
 public class HoaDonDetailController {
 
@@ -21,6 +32,8 @@ public class HoaDonDetailController {
     @FXML
     private Button billDoneButton;
 
+    @FXML private Label soOrderLabel;
+    @FXML private Label tenKhachLabel;
     @FXML
     private AnchorPane billPane;
     @FXML
@@ -30,7 +43,18 @@ public class HoaDonDetailController {
     private Label idHoaDon;
     private HoaDonController hoaDonController;
     private String mahoadon;
-    private String date;
+
+    private long mins, secs;
+    private void change(Label text) {
+        secs++;
+        if(secs == 60) {
+            mins++;
+            secs = 0;
+        }
+        text.setText(String.format("Thời gian chờ: %02d:%02d", mins, secs));
+//        text.setText((((mins/10) == 0) ? "0" : "") + mins + ":"
+//                + (((secs/10) == 0) ? "0" : "") + secs);
+    }
 
     public void setData(HoaDon hoaDon) throws Exception {
         this.mahoadon = hoaDon.getMahoadon();
@@ -38,6 +62,22 @@ public class HoaDonDetailController {
         idHoaDon.setText("Hóa Đơn " + this.mahoadon);
         idHoaDon.setMaxWidth(300);
         billPane.getChildren().add(new InvoiceView(invoice, false, false));
+        tenKhachLabel.setText("Khách hàng: " + hoaDon.getTenkhach());
+        soOrderLabel.setText("Số order: " + hoaDon.getSoorder());
+
+        Instant start = Instant.now();
+        LocalDateTime end = hoaDon.getDate().toLocalDateTime();
+        Duration timeElapsed = Duration.between(end.atZone(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant(), start);
+        mins = timeElapsed.toMinutes();
+        secs = timeElapsed.toSecondsPart();
+        timeStampLabel.setText(String.format(String.format("Thời gian chờ: %02d:%02d", timeElapsed.toMinutes(),
+                timeElapsed.toSecondsPart())));
+//        System.out.println("Time taken: "+ timeElapsed.toMillis() +" milliseconds");
+        Timeline timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1),
+                event -> change(timeStampLabel)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setAutoReverse(false);
+        timeline.play();
     }
 
     public void setHoaDonController(HoaDonController hoaDonController) {
@@ -47,14 +87,25 @@ public class HoaDonDetailController {
     @FXML
     void setBillDoneButton(ActionEvent event) throws Exception {
         String query = String.format("update hoadon set trangthai = 'Da giao' where mahoadon = '%s';", this.mahoadon );
-        DBUtil.dbExecuteUpdate(query);
-        hoaDonController.initialize();
+        try {
+            DBUtil.dbExecuteUpdate(query);
+            JOptionPane.showMessageDialog(new JFrame(), "Giao hóa đơn thành công!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), "Giao hóa đơn không thành công!");
+        }
+
     }
     @FXML
     void setBillCancelButton(ActionEvent event) throws Exception {
         String query = String.format("update hoadon set trangthai = 'Huy' where mahoadon = '%s';", this.mahoadon );
-        DBUtil.dbExecuteUpdate(query);
-        hoaDonController.initialize();
+        try {
+            DBUtil.dbExecuteUpdate(query);
+            JOptionPane.showMessageDialog(new JFrame(), "Hủy hóa đơn thành công!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(new JFrame(), "Hủy hóa đơn không thành công!");
+        }
     }
 
 }
