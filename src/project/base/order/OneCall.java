@@ -49,21 +49,28 @@ public class OneCall {
 
     public int get_money() throws SQLException, ClassNotFoundException {
         int total;
-        StringJoiner command = new StringJoiner("', '",
-                "select sum(giatopping) + giadouong from giadouong g, topping, douong d\n" +
-                        "               where g.idDoUong = d.iddouong and\n" +
-                        "                     tenTopping in ('",
-                String.format("') and d.tendouong = '%s' and size = '%s' group by g.idDoUong, size;", this.drink_name,
-                        this.size)
-                );
-        for (String topping: this.toppings) {
-            command.add(topping);
+        StringJoiner command;
+        if (this.toppings.length != 0){
+            command = new StringJoiner("', '",
+                    "select sum(giatopping) + giadouong from giadouong g, topping, douong d\n" +
+                            "               where g.idDoUong = d.iddouong and\n" +
+                            "                     tenTopping in ('",
+                    String.format("') and d.tendouong = '%s' and size = '%s' group by g.idDoUong, size;", this.drink_name,
+                            this.size)
+            );
+            for (String topping: this.toppings) {
+                command.add(topping);
+            }
+        } else {
+            command = new StringJoiner("", String.format("select giadouong from giadouong inner join douong d on " +
+                    "giadouong.iddouong = d.iddouong where tendouong = '%s' and size = '%s';", this.drink_name,
+                    this.size), "");
         }
-        ResultSet result = DBUtil.dbExecuteQuery(command.toString());
+           ResultSet result = DBUtil.dbExecuteQuery(command.toString());
         if (result.next()) {
             total = result.getInt(1);
         } else {
-            throw new SQLException("Invalid drink and topping");
+            throw new SQLException("Invalid drink name or topping name");
         }
         //tra lại tổng số tiền trong 1 call, bao gồm tiền của đồ uống, phụ thuộc vào size + tiền của topping
         //viết lệnh sql query

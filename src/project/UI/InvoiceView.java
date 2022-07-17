@@ -51,16 +51,28 @@ public class InvoiceView extends VBox {
             title.getStyleClass().add("title-text");
             title.setWrapText(true);
             title.setMaxWidth(170);
-            String toppingArray = Arrays.toString(oneCall.toppings);
-            Label middleText = new Label(String.format("""
+            Label middleText;
+            if (oneCall.toppings.length != 0){
+                String toppingArray = Arrays.toString(oneCall.toppings);
+                middleText = new Label(String.format("""
                             - Size %s
                             - %.0f %% đá
                             - %.0f %% đường
                             - Topping: %s""",
-                    oneCall.size,
-                    oneCall.ice*100,
-                    oneCall.sugar*100,
-                    toppingArray.substring(1,toppingArray.length()-1)));
+                        oneCall.size,
+                        oneCall.ice*100,
+                        oneCall.sugar*100,
+                        toppingArray.substring(1,toppingArray.length()-1)));
+            } else {
+                middleText = new Label(String.format("""
+                            - Size %s
+                            - %.0f %% đá
+                            - %.0f %% đường""",
+                        oneCall.size,
+                        oneCall.ice*100,
+                        oneCall.sugar*100
+                ));
+            }
             middleText.setWrapText(true);
             middleText.setMaxWidth(170);
             Button minus = new Button("--");

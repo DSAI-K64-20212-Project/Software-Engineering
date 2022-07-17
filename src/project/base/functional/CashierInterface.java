@@ -6,6 +6,7 @@ import project.base.order.OneCall;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public interface CashierInterface {
@@ -30,6 +31,7 @@ public interface CashierInterface {
 
                 StringJoiner command3 = new StringJoiner(",", "INSERT INTO toppingtronghoadon(mahoadon, buyid, " +
                         "idtopping) VALUES ",";");
+                String command3_cp = "INSERT INTO toppingtronghoadon(mahoadon, buyid, idtopping) VALUES ;";
                 for (OneCall call : invoice.getInFo()) {
                     for (String topping: call.toppings){
                         ResultSet idTopping = DBUtil.dbExecuteQuery(String.format("select idtopping from topping " +
@@ -38,7 +40,9 @@ public interface CashierInterface {
                         command3.add(String.format("('%s', %d, '%s')", invoice.id, call.id, idTopping.getString(1)));
                     }
                 }
-                DBUtil.dbExecuteUpdate(command3.toString());
+                if (!Objects.equals(command3.toString(), command3_cp))
+                    DBUtil.dbExecuteUpdate(command3.toString());
+
                 System.out.printf("User %s add new invoice successfully, id %s\n", username, invoice.id);
                 return "Success!";
             } else {

@@ -176,7 +176,7 @@ public class DatDoUongController {
 
     @FXML
     void AddPressedBtn(ActionEvent event) throws Exception {
-        if (chosenDrink == null || chosenTopping.length == 0) {
+        if (chosenDrink == null) {
             JOptionPane.showMessageDialog(new JFrame(), "Chưa chọn đồ uống hoặc topping");
         } else {
             double da = daSlider.getValue()/100;
@@ -206,18 +206,18 @@ public class DatDoUongController {
         if (monitor.getCashier() != null){
             Cashier user = monitor.getCashier();
             String message = user.confirm_new_invoice(user.getUsername(), hoadon);
-            JOptionPane.showMessageDialog(null, message + ", Order number: " + hoadon.soorder);
+            JOptionPane.showMessageDialog(new JFrame(), message + ", Order number: " + hoadon.soorder);
             if (Objects.equals(message, "Success!")){
                 hoadon = new Invoice();
                 new_instance();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Invalid user, not cashier, pls log out and log in again!");
+            JOptionPane.showMessageDialog(new JFrame(), "Invalid user, not cashier, pls log out and log in again!");
         }
     }
     @FXML
     void printButtonPressed(ActionEvent event){
-        JOptionPane.showMessageDialog(null, "Đã in ra hóa đơn", "Sucess", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(new JFrame(), "Đã in ra hóa đơn", "Sucess", JOptionPane.PLAIN_MESSAGE);
     }
 
     public static void main(String[] args) throws IOException {
