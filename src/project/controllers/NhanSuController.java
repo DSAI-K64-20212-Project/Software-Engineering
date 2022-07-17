@@ -71,7 +71,6 @@ public class NhanSuController {
 
         String command1 = String.format("SELECT * FROM nhanvien");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
-        int i1 = 0;
 
         while (result1.next()) {
             String tenDangNhap = result1.getString(1);
@@ -81,6 +80,7 @@ public class NhanSuController {
             String anhNhanVien = result1.getString(5);
             String chucVu = result1.getString(6);
             String caLam = result1.getString(7);
+            String active = result1.getString(8);
 
             NhanVien nhanVien = new NhanVien();
             nhanVien.setAnhNhanVienSrc("project/resources/image/icons/" + anhNhanVien);
@@ -99,6 +99,11 @@ public class NhanSuController {
                 }
             } else{
                 nhanVien.setLuongChuaTra(String.format("0"));
+            }
+            if(active == "true"){
+                nhanVien.setActive("active");
+            }else{
+                nhanVien.setActive("not active");
             }
 
             ls.add(nhanVien);

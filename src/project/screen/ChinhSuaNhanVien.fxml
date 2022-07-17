@@ -74,7 +74,7 @@
                               <Insets left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="hoVaTen" promptText="edit field" GridPane.rowIndex="1">
+                        <TextField fx:id="hoVaTen" promptText="nhập tên chỉnh sửa" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -94,7 +94,7 @@
                               <Insets left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="soDienThoai" promptText="edit field" GridPane.rowIndex="1">
+                        <TextField fx:id="soDienThoai" promptText="nhập sđt chỉnh sửa" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -114,7 +114,7 @@
                               <Insets left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="username" promptText="edit field" GridPane.rowIndex="1">
+                        <TextField fx:id="username" promptText="nhập username" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -134,7 +134,7 @@
                               <Insets left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
-                        <PasswordField fx:id="matKhau" promptText="edit field">
+                        <PasswordField fx:id="matKhau" promptText="nhập mật khẩu">
                            <font>
                               <Font size="18.0" />
                            </font>

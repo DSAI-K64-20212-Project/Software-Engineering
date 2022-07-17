@@ -13,6 +13,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -159,9 +160,8 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         imageBtn.setEffect(blend);
     }
 
-
     @FXML
-    void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         String cv = "null";
         String cl;
         if (thuNganBtn.isSelected()) {
@@ -183,6 +183,12 @@ public class ChinhSuaNhanVienController implements AdminInterface {
 
         JOptionPane.showMessageDialog(null, "Nhân viên đã được chỉnh sửa thành công", "Notification", 1);
         backBtn.fire();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/project/screen/NhanSu.fxml"));
+        AnchorPane box = fxmlLoader.load();
+        NhanSuController nhanSuController = fxmlLoader.getController();
+        nhanSuController.initialize();
     }
 
     @FXML
