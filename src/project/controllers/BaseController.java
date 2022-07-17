@@ -129,12 +129,12 @@ public class BaseController {
         mainModifyDrController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
 
-        DBListener dbListener1 = new DBListener(DBUtil.conn, mainDatDoUongController);
+        DBListener dbListener1 = new DBListener(DBUtil.conn, mainDatDoUongController, mainHoadonController);
         dbListener1.setPeriod(Duration.millis(500));
         dbListener1.start();
-        DBListener dbListener2 = new DBListener(DBUtil.conn, mainHoadonController);
-        dbListener2.setPeriod(Duration.millis(500));
-        dbListener2.start();
+//        DBListener dbListener2 = new DBListener(DBUtil.conn, mainHoadonController);
+//        dbListener2.setPeriod(Duration.millis(500));
+//        dbListener2.start();
     }
 
 

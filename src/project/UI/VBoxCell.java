@@ -2,6 +2,7 @@ package project.UI;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -46,6 +47,9 @@ public class VBoxCell extends VBox {
         where d.tendouong = '%s' and n2.trangThai = 'Sap het';
         """, ten));
         if (hethang.next()){
+            ColorAdjust desaturate = new ColorAdjust();
+            desaturate.setSaturation(-1);
+            this.imageView.setEffect(desaturate);
             this.getChildren().addAll(this.imageView, this.ten);
             this.disable = true;
         } else if (saphet.next()) {
@@ -86,6 +90,9 @@ public class VBoxCell extends VBox {
         where t.tenTopping = '%s' and n.trangThai = 'Sap het';
         """, tentopping));
         if (hethang.next()) {
+            ColorAdjust desaturate = new ColorAdjust();
+            desaturate.setSaturation(-1);
+            this.imageView.setEffect(desaturate);
             this.getChildren().addAll(this.imageView, this.ten, this.gia);
             this.disable = true;
         } else if (saphet.next()) {

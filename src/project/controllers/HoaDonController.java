@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import project.UI.HoaDon;
@@ -14,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class HoaDonController {
 
     @FXML
     private Button billDoneButton;
+
 
     @FXML
     private HBox hBoxHoaDon;
@@ -58,17 +61,15 @@ public class HoaDonController {
     private List<HoaDon> hoaDonList() throws SQLException, ClassNotFoundException {
         List<HoaDon> hoaDonList1 = new ArrayList<>();
 
-        String query = "select mahoadon, thoigian, trangthai from hoadon where trangthai='Dang chuan bi';";
+        String query = "select * from hoadon where trangthai='Dang chuan bi';";
         ResultSet resultSet = DBUtil.dbExecuteQuery(query);
 
         while (resultSet.next()) {
-            String mahoadon = resultSet.getString("mahoadon");
-            String thoigian = resultSet.getString("thoigian");
-
-
             HoaDon hoaDon = new HoaDon();
-            hoaDon.setMahoadon(mahoadon);
-            hoaDon.setDate(thoigian);
+            hoaDon.setMahoadon(resultSet.getString("mahoadon"));
+            hoaDon.setDate(resultSet.getTimestamp("thoigian"));
+            hoaDon.setSoorder(resultSet.getString("soorder"));
+            hoaDon.setTenkhach(resultSet.getString("tenkhachhang"));
             hoaDonList1.add(hoaDon);
         }
         return hoaDonList1;

@@ -19,22 +19,26 @@ public class DBListener extends ScheduledService {
     private DatDoUongController datDoUongController;
     private HoaDonController hoaDonController;
 
-    public DBListener(Connection conn, DatDoUongController datDoUongController) throws SQLException {
+    public DBListener(Connection conn,
+                      DatDoUongController datDoUongController,
+                      HoaDonController hoaDonController
+    ) throws SQLException {
         this.datDoUongController = datDoUongController;
-        this.conn = conn;
-        this.pgconn = conn.unwrap(org.postgresql.PGConnection.class);
-        Statement stmt = conn.createStatement();
-        stmt.execute("LISTEN \"DatDoUong\";");
-        stmt.close();
-    }
-    public DBListener(Connection conn, HoaDonController hoaDonController) throws SQLException {
         this.hoaDonController = hoaDonController;
         this.conn = conn;
         this.pgconn = conn.unwrap(org.postgresql.PGConnection.class);
         Statement stmt = conn.createStatement();
+        stmt.execute("LISTEN \"DatDoUong\";");
         stmt.execute("LISTEN \"HoaDon\";");
         stmt.close();
     }
+//    public DBListener(Connection conn, HoaDonController hoaDonController) throws SQLException {
+//        this.hoaDonController = hoaDonController;
+//        this.conn = conn;
+//        this.pgconn = conn.unwrap(org.postgresql.PGConnection.class);
+//        Statement stmt = conn.createStatement();
+//        stmt.close();
+//    }
     @Override
     protected Task createTask() {
         return new Task() {

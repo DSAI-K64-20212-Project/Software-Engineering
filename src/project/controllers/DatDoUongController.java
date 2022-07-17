@@ -10,6 +10,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import project.UI.InvoiceView;
@@ -18,7 +21,15 @@ import project.base.DBUtil;
 import project.base.order.Invoice;
 import project.base.user.Cashier;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -196,9 +207,9 @@ public class DatDoUongController {
             Cashier user = monitor.getCashier();
             String message = user.confirm_new_invoice(user.getUsername(), hoadon);
             JOptionPane.showMessageDialog(null, message);
-            if (Objects.equals(message, "Success!")){
+            if (Objects.equals(message, "Success!, Order number" + hoadon.soorder)){
                 hoadon = new Invoice();
-                refresh_data();
+                new_instance();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Invalid user, not cashier, pls log out and log in again!");
@@ -209,10 +220,15 @@ public class DatDoUongController {
         JOptionPane.showMessageDialog(null, "Đã in ra hóa đơn", "Sucess", JOptionPane.PLAIN_MESSAGE);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         InputStream imagestream = DatDoUongController.class.getResourceAsStream(".." +
                 "/screen/resources/image/Topping" +
                 "/caramen.png");
+        File input = new File("../screen/resources/image/Topping/caramen.jpg");
+        BufferedImage bufferedImage = ImageIO.read(input);
+        ImageFilter filter = new GrayFilter(true, 50);
+        ImageProducer producer = new FilteredImageSource(bufferedImage.getSource(), filter);
+        Image image = Toolkit.getDefaultToolkit().createImage(producer);
         System.out.println(imagestream);
     }
 }
