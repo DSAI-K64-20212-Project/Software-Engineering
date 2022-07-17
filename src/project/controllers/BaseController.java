@@ -128,6 +128,7 @@ public class BaseController {
         mainEditToppingController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainModifyDrController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
+        mainKhoNguyenLieuController.taoNguyenLieuBtn.setOnAction(actionEvent -> toggleScreen(themNguyenlieuScreen));
 
         DBListener dbListener1 = new DBListener(DBUtil.conn, mainDatDoUongController, mainHoadonController);
         dbListener1.setPeriod(Duration.millis(500));

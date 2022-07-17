@@ -51,7 +51,7 @@ public interface CashierInterface {
             }
         } else {
             System.out.printf("User %s add new invoice unsuccessfully, out of ingredients\n",username);
-            return "Out of ingredients!";
+            return "Out of ingredints!";
         }
     }
 }

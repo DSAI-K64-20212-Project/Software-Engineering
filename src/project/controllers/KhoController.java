@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,6 +30,7 @@ import javax.swing.*;
 
 public class KhoController {
     private BaseController baseController;
+    @FXML public Button taoNguyenLieuBtn;
     public static ObservableList<String> thumbList = FXCollections.observableArrayList();
     public void setBaseController(BaseController baseController) {
         this.baseController = baseController;
@@ -79,34 +81,31 @@ public class KhoController {
             throw new RuntimeException(e);
         }
 
-        thumbList.addListener(new ListChangeListener<String>() {
-            @Override
-            public void onChanged(Change<? extends String> change) {
-                StringBuilder daChon = new StringBuilder("Đã chọn:\n");
-                int sum = 0;
-                for (String s:thumbList) {
-                    try {
-                    daChon.append(String.format("  - %s\n ", s));
+        thumbList.addListener((ListChangeListener<String>) change -> {
+            StringBuilder daChon = new StringBuilder("Đã chọn:\n");
+            int sum = 0;
+            for (String s:thumbList) {
+                try {
+                daChon.append(String.format("  - %s\n ", s));
 
-                    String command = String.format("SELECT dongia FROM nguyenlieu WHERE tennguyenlieu = '%s'", s);
-                    ResultSet result = DBUtil.dbExecuteQuery(command);
-                    result.next();
-                    int dongia = result.getInt(1);
-                    sum += dongia;
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
+                String command = String.format("SELECT dongia FROM nguyenlieu WHERE tennguyenlieu = '%s'", s);
+                ResultSet result = DBUtil.dbExecuteQuery(command);
+                result.next();
+                int dongia = result.getInt(1);
+                sum += dongia;
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
-                daChonLb.setText(daChon.toString());
+            }
+            daChonLb.setText(daChon.toString());
 
-                StringBuilder tongTien = new StringBuilder("Tổng tiền:\n");
-                tongTien.append(String.format("         %d đồng", sum*100));
-                tongTienLb.setText(tongTien.toString());
+            StringBuilder tongTien = new StringBuilder("Tổng tiền:\n");
+            tongTien.append(String.format("         %d đồng", sum*100));
+            tongTienLb.setText(tongTien.toString());
 
-                if (thumbList.isEmpty()) {
-                    daChonLb.setText("");
-                    tongTienLb.setText("");
-                }
+            if (thumbList.isEmpty()) {
+                daChonLb.setText("");
+                tongTienLb.setText("");
             }
         });
     }

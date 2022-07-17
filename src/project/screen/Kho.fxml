@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -16,9 +10,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="mainKhoNguyenLieu" prefHeight="690.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.KhoController">
+<AnchorPane id="AnchorPane" fx:id="mainKhoNguyenLieu" prefHeight="690.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.KhoController">
     <children>
         <HBox fx:id="bigHbox" layoutX="256.0" layoutY="61.0" prefHeight="670.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -26,17 +19,9 @@
                     <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="567.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#taoNguyenLieuOnPressed" style="-fx-background-color: #58C063;" text="Tạo Nguyên Liệu" textFill="WHITE">
+                                <Button fx:id="taoNguyenLieuBtn" mnemonicParsing="false" style="-fx-background-color: #58C063;" text="Tạo Nguyên Liệu" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
-                                    </font>
-                                    <HBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </HBox.margin>
-                                </Button>
-                                <Button mnemonicParsing="false" style="-fx-background-color: #CD2217;" text="Xóa Nguyên Liệu" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
                                     </font>
                                     <HBox.margin>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
