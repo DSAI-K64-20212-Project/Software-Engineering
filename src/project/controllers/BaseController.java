@@ -84,18 +84,18 @@ public class BaseController {
     @FXML public ChinhSuaNhanVienController mainEditEmplController;
     @FXML public ChinhSuaDoUongController mainModifyDrController;
     @FXML public ChinhSuaToppingController mainEditToppingController;
+    @FXML private DoanhThuController mainDoanhthuController;
 
 
-    private DBListener dbListener;
 
     @FXML
     private void initialize() throws SQLException, ClassNotFoundException, IOException {
         mainMenuController.setBaseController(this);
         mainNhanSuController.setBaseController(this);
         mainKhoNguyenLieuController.setBaseController(this);
-        mainKhoNguyenLieuController.initialize();
-        mainMenuController.initialize();
-        mainNhanSuController.initialize();
+        mainEditEmplController.setNhanSuController(mainNhanSuController);
+        mainAddStaffController.setNhanSuController(mainNhanSuController);
+
         activeScreen = initPane;
         ResultSet result =
                 DBUtil.dbExecuteQuery(String.format("Select tennhanvien from nhanvien where tendangnhap = '%s';",
@@ -119,6 +119,12 @@ public class BaseController {
             datdoUongBtn.setText("Hóa đơn");
             datdoUongBtn.setOnAction(actionEvent -> toggleScreen(hoadonScreen));
         }
+        if (nguyenlieuBtn.isVisible())
+            mainKhoNguyenLieuController.initialize();
+        if (menuBtn.isVisible())
+            mainMenuController.initialize();
+        if (nhansuBtn.isVisible())
+            mainNhanSuController.initialize();
         mainNhanSuController.themNvBtn.setOnAction(actionEvent -> toggleScreen(themNvScreen));
         mainAddStaffController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
         mainAccountController.backBtn.setOnAction(actionEvent -> toggleScreen(prevScreen));
@@ -130,7 +136,8 @@ public class BaseController {
         mainMenuController.themDoUongToppingBtn.setOnAction(actionEvent -> toggleScreen(themDrinkToppingScreen));
         mainKhoNguyenLieuController.taoNguyenLieuBtn.setOnAction(actionEvent -> toggleScreen(themNguyenlieuScreen));
 
-        DBListener dbListener1 = new DBListener(DBUtil.conn, mainDatDoUongController, mainHoadonController);
+        DBListener dbListener1 = new DBListener(DBUtil.conn, mainDatDoUongController, mainHoadonController,
+                mainMenuController, mainDoanhthuController);
         dbListener1.setPeriod(Duration.millis(500));
         dbListener1.start();
 //        DBListener dbListener2 = new DBListener(DBUtil.conn, mainHoadonController);

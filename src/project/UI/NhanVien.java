@@ -6,13 +6,23 @@ public class NhanVien {
     private String caLam;
     private String thongTin;
     private String matkhau;
-    private String active;
+    private boolean active;
 
-    public String getActive() {
+    public String getTendangnhap() {
+        return tendangnhap;
+    }
+
+    public void setTendangnhap(String tendangnhap) {
+        this.tendangnhap = tendangnhap;
+    }
+
+    private String tendangnhap;
+
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 

@@ -24,6 +24,11 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 public class ThemNhanVienController implements AdminInterface {
+    private NhanSuController nhanSuController;
+
+    public void setNhanSuController(NhanSuController nhanSuController) {
+        this.nhanSuController = nhanSuController;
+    }
 
     private Scene scene;
     private Stage stage;
@@ -52,7 +57,7 @@ public class ThemNhanVienController implements AdminInterface {
 
 
     @FXML
-    void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         String tenNhanVien = hoVaTen.getText();
         String sdt = soDienThoai.getText();
         String tenDangNhap = username.getText();
@@ -85,7 +90,7 @@ public class ThemNhanVienController implements AdminInterface {
         username.setText("");
         matKhau.setText("");
         backBtn.fire();
-
+        nhanSuController.initialize();
     }
 
     @FXML

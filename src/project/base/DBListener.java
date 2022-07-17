@@ -5,7 +5,9 @@ import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import project.controllers.DatDoUongController;
+import project.controllers.DoanhThuController;
 import project.controllers.HoaDonController;
+import project.controllers.MenuController;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,13 +20,19 @@ public class DBListener extends ScheduledService {
     private org.postgresql.PGConnection pgconn;
     private DatDoUongController datDoUongController;
     private HoaDonController hoaDonController;
+    private MenuController menuController;
+    private DoanhThuController doanhThuController;
 
     public DBListener(Connection conn,
                       DatDoUongController datDoUongController,
-                      HoaDonController hoaDonController
+                      HoaDonController hoaDonController,
+                      MenuController menuController,
+                      DoanhThuController doanhThuController
     ) throws SQLException {
         this.datDoUongController = datDoUongController;
         this.hoaDonController = hoaDonController;
+        this.menuController = menuController;
+        this.doanhThuController = doanhThuController;
         this.conn = conn;
         this.pgconn = conn.unwrap(org.postgresql.PGConnection.class);
         Statement stmt = conn.createStatement();
@@ -58,11 +66,13 @@ public class DBListener extends ScheduledService {
                                 notifyString.append(notification.getName());
                             System.out.println("Got notification: "+ notifyString);
                             if (notifyString.toString().equals("DatDoUong")) {
-                                System.out.println("Refresh dat do uong");
+                                System.out.println("Refresh dat do uong va menu");
                                 datDoUongController.refresh_data();
+                                menuController.initialize();
                             } else if (notifyString.toString().equals("HoaDon")) {
-                                System.out.println("Refresh hoadon");
+                                System.out.println("Refresh hoadon va doanhthu");
                                 hoaDonController.initialize();
+                                doanhThuController.refresh_data();
                             } else {
                                 System.out.println("Khong nhan");
                             }

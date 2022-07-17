@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -23,11 +24,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NhanVienController {
-    @FXML
-    private Button chinhSuaNhanVien;
+    @FXML private Button chinhSuaNhanVien;
 
-    @FXML
-    private Text luongChuaTra;
+    @FXML private Text luongChuaTra;
+
+    private String tendangnhap;
 
     @FXML
     private Button traLuong;
@@ -42,7 +43,7 @@ public class NhanVienController {
     private Text thongTin;
 
     @FXML
-    private Text active;
+    private CheckBox active;
 
     private BaseController baseController;
 
@@ -55,6 +56,13 @@ public class NhanVienController {
         luongChuaTra.setText("0");
         String command1 = String.format("UPDATE lichsulamviec set datraluong = '%b' WHERE tendangnhap = '%s'",true,thongTin.getText().substring(thongTin.getText().indexOf("\n")+12));
         DBUtil.dbExecuteUpdate(command1);
+    }
+    @FXML
+    void onActiveBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+        traLuong.setDisable(!active.isSelected());
+        String command2 = String.format("UPDATE nhanvien SET active = '%s' WHERE tendangnhap = '%s'",
+                active.isSelected(), tendangnhap);
+        DBUtil.dbExecuteUpdate(command2);
     }
 
     @FXML
@@ -96,6 +104,8 @@ public class NhanVienController {
         luongChuaTra.setText(nhanVien.getLuongChuaTra());
         caLam.setText(nhanVien.getCaLam());
         thongTin.setText(nhanVien.getThongTin());
-        active.setText(nhanVien.getActive());
+        active.setSelected(nhanVien.getActive());
+        tendangnhap = nhanVien.getTendangnhap();
+        traLuong.setDisable(!active.isSelected());
     }
 }

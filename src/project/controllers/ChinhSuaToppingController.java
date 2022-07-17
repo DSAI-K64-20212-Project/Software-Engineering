@@ -95,7 +95,8 @@ public class ChinhSuaToppingController {
 
     @FXML
     void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String command2 = String.format("UPDATE topping SET giatopping = '%s', anh = '%s' WHERE idtopping = '%s'",giaTopping.getText(),anh,old);
+        String command2 = String.format("UPDATE topping SET tentopping = '%s', giatopping = '%s', anh = '%s' WHERE " +
+                "idtopping = '%s'",ten.getText(), giaTopping.getText(),anh,old);
         DBUtil.dbExecuteUpdate(command2);
 
         String command1 = String.format("SELECT * FROM thanhphantopping WHERE idtopping = '%s'",old);
@@ -123,6 +124,7 @@ public class ChinhSuaToppingController {
 
     public void open() throws SQLException, ClassNotFoundException{
         hBoxNguyenLieu.getChildren().clear();
+        nguyenLieuHienTai = new ArrayList<>();
         String command1 = String.format("SELECT * FROM nguyenlieu");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
@@ -142,9 +144,7 @@ public class ChinhSuaToppingController {
             nguyenLieuRadioBtn.setStyle("-fx-border-width:3");
             nguyenLieuRadioBtn.setStyle("-fx-border-radius:20");
             nguyenLieuRadioBtn.setPadding(new Insets(5, 5, 5, 5));
-            if (nguyenLieuHienTai.contains(idNguyenLieu)){
-                nguyenLieuRadioBtn.setSelected(true);
-            }
+            nguyenLieuRadioBtn.setSelected(nguyenLieuHienTai.contains(idNguyenLieu));
             nguyenLieuRadioBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
             hBoxNguyenLieu.getChildren().add(nguyenLieuRadioBtn);

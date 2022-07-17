@@ -110,7 +110,8 @@ public class ChinhSuaDoUongController {
 
     static String anh;
 
-    public void open() throws IOException, SQLException, ClassNotFoundException{
+    public void open() throws SQLException, ClassNotFoundException{
+        nguyenLieuHienTai = new ArrayList<>();
         hBoxNguyenLieu.getChildren().clear();
 
         String command1 = String.format("SELECT * FROM nguyenlieu");
@@ -132,9 +133,7 @@ public class ChinhSuaDoUongController {
             nguyenLieuRadioBtn.setStyle("-fx-border-width:3");
             nguyenLieuRadioBtn.setStyle("-fx-border-radius:20");
             nguyenLieuRadioBtn.setPadding(new Insets(5, 5, 5, 5));
-            if (nguyenLieuHienTai.contains(idNguyenLieu)){
-                nguyenLieuRadioBtn.setSelected(true);
-            }
+            nguyenLieuRadioBtn.setSelected(nguyenLieuHienTai.contains(idNguyenLieu));
             nguyenLieuRadioBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
             hBoxNguyenLieu.getChildren().add(nguyenLieuRadioBtn);
@@ -218,7 +217,6 @@ public class ChinhSuaDoUongController {
     private Stage stage;
     @FXML
     void uploadImageBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../screen/ChinhSuaNhanVien.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         final FileChooser fileChooser = new FileChooser();

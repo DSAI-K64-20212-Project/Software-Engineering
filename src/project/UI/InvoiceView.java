@@ -88,9 +88,9 @@ public class InvoiceView extends VBox {
             }
             hBox.setSpacing(3);
             //them thanh tien
-            Label thanhtien = new Label(String.format("Đơn Giá: %d.000đ",oneCall.get_money()/oneCall.get_ammount()));
 
             if (this.thanhtien){
+                Label thanhtien = new Label(String.format("Đơn Giá: %d.000đ",oneCall.get_money()/oneCall.get_ammount()));
                 this.getChildren().addAll(new VBox(hBox, thanhtien));
             } else {
                 this.getChildren().add(hBox);

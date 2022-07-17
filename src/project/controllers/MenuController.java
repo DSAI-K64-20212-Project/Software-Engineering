@@ -117,7 +117,7 @@ public class MenuController {
             doUong.setOnMenu(Boolean.parseBoolean(onMenuStr));
 
             String commandGiaMDoUong = String.format("SELECT * FROM giadouong WHERE iddouong = '%s' and size = 'M'",
-                    tenDoUong);
+                    idDoUong);
             ResultSet resultGiaMDoUong = DBUtil.dbExecuteQuery(commandGiaMDoUong);
 
             if (resultGiaMDoUong.next()){
@@ -125,7 +125,7 @@ public class MenuController {
             }
 
             String commandGiaLDoUong = String.format("SELECT * FROM giadouong WHERE iddouong = '%s' and size = 'L'",
-                    tenDoUong);
+                    idDoUong);
             ResultSet resultGiaLDoUong = DBUtil.dbExecuteQuery(commandGiaLDoUong);
 
             if (resultGiaLDoUong.next()){

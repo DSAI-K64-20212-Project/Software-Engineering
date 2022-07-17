@@ -2,15 +2,21 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTreeView?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane id="AnchorPane" fx:id="mainDoanhthu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="824.0" stylesheets="@../Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.DoanhThuController">
    <children>
       <HBox layoutX="-7.0" prefHeight="691.0" prefWidth="1052.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -37,7 +43,7 @@
                                           <Image url="@../resources/image/icons/decrease.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="monthComparisionLabel" text="Tăng 30% so với tháng 6" />
+                                    <Label fx:id="monthComparisionLabel" text="No data" />
                                  </children>
                               </HBox>
                            </children>
@@ -60,7 +66,7 @@
                                           <Image url="@../resources/image/icons/increase.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="dayComparisionLabel" text="Tăng 30% so với hôm qua" />
+                                    <Label fx:id="dayComparisionLabel" text="No data" />
                                  </children>
                               </HBox>
                            </children>

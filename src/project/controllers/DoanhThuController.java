@@ -17,6 +17,7 @@ import project.base.DBUtil;
 import project.base.order.Invoice;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DoanhThuController {
     @FXML
@@ -44,8 +45,24 @@ public class DoanhThuController {
             rightBtn.setText(MONTH_ABBR[0]);
         }
     }
+    private void reset_hoadon() throws Exception {
+        TreeItem<InvoiceTreeView> rootNode = new TreeItem<>(new InvoiceTreeView(new Invoice(),true));
+        rootNode.getChildren().clear();
+        if (datePicker.getValue() != null){
+            String command = String.format("select mahoadon from hoadon where thoigian::date = '%s' order by thoigian;",
+                    datePicker.getValue());
+            ResultSet result = DBUtil.dbExecuteQuery(command);
+            while (result.next()){
+                Invoice in = new Invoice(result.getString(1));
+                TreeItem<InvoiceTreeView> invoiceline = new TreeItem<>(new InvoiceTreeView(in, true));
+                invoiceline.getChildren().add(new TreeItem<>(new InvoiceTreeView(in, false)));
+                rootNode.getChildren().add(invoiceline);
+            }
+        }
+        lichsuTree.setRoot(rootNode);
+    }
     @FXML
-    void initialize() throws Exception {
+    private void initialize() throws Exception {
         String[] MONTH_ABBR = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
         rightBtn.setOnAction(actionEvent -> {
@@ -58,25 +75,17 @@ public class DoanhThuController {
             else if (i == 0) { i = MONTH_ABBR.length-1; }
             set_text(i, MONTH_ABBR);
         });
-        TreeItem<InvoiceTreeView> rootNode = new TreeItem<>(new InvoiceTreeView(new Invoice(),true));
         datePicker.valueProperty().addListener(((observableValue, localDate, t1) -> {
-            rootNode.getChildren().clear();
-            String command = String.format("select mahoadon from hoadon where thoigian::date = '%s' order by thoigian;",
-                    t1);
             try {
-                ResultSet result = DBUtil.dbExecuteQuery(command);
-                while (result.next()){
-                    Invoice in = new Invoice(result.getString(1));
-                    TreeItem<InvoiceTreeView> invoiceline = new TreeItem<>(new InvoiceTreeView(in, true));
-                    invoiceline.getChildren().add(new TreeItem<>(new InvoiceTreeView(in, false)));
-                    rootNode.getChildren().add(invoiceline);
-                }
+                reset_hoadon();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }));
-        lichsuTree.setRoot(rootNode);
-
+        refresh_data();
+    }
+    public void refresh_data() throws Exception {
+        reset_hoadon();
         //Get label info
         ResultSet monthresult = DBUtil.dbExecuteQuery("""
                 select extract(month from thi.thoigian) as thang, sum(thanhtien) as tong from (

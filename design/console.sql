@@ -150,6 +150,7 @@ VALUES ('Quan Ly', 'Sang', 80),
        ;
 
 ALTER TABLE hoadon ALTER COLUMN mahoadon TYPE varchar(36);
+Alter table nhanvien alter column tennhanvien type varchar(40);
 ALTER TABLE thanhphanhoadon ALTER COLUMN mahoadon TYPE varchar(36);
 ALTER TABLE toppingtronghoadon ALTER COLUMN mahoadon TYPE varchar(36);
 ALTER TABLE thanhphanhoadon ALTER COLUMN da TYPE real;

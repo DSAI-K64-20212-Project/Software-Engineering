@@ -69,7 +69,7 @@ public class NhanSuController {
     private List<NhanVien> nhanViens() throws SQLException, ClassNotFoundException, IOException {
         List<NhanVien> ls = new ArrayList<>();
 
-        String command1 = String.format("SELECT * FROM nhanvien");
+        String command1 = String.format("SELECT * FROM nhanvien order by active desc;");
         ResultSet result1 = DBUtil.dbExecuteQuery(command1);
 
         while (result1.next()) {
@@ -80,7 +80,7 @@ public class NhanSuController {
             String anhNhanVien = result1.getString(5);
             String chucVu = result1.getString(6);
             String caLam = result1.getString(7);
-            String active = result1.getString(8);
+            boolean active = result1.getBoolean(8);
 
             NhanVien nhanVien = new NhanVien();
             nhanVien.setAnhNhanVienSrc("project/resources/image/icons/" + anhNhanVien);
@@ -100,11 +100,8 @@ public class NhanSuController {
             } else{
                 nhanVien.setLuongChuaTra(String.format("0"));
             }
-            if(active == "true"){
-                nhanVien.setActive("active");
-            }else{
-                nhanVien.setActive("not active");
-            }
+            nhanVien.setActive(active);
+            nhanVien.setTendangnhap(result1.getString("tendangnhap"));
 
             ls.add(nhanVien);
         }

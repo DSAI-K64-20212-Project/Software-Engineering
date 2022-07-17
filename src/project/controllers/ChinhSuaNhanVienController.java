@@ -51,6 +51,12 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     @FXML
     private VBox vboxLeft;
 
+    private NhanSuController nhanSuController;
+
+    public void setNhanSuController(NhanSuController nhanSuController) {
+        this.nhanSuController = nhanSuController;
+    }
+
     @FXML
     private Button playButton;
 
@@ -132,7 +138,7 @@ public class ChinhSuaNhanVienController implements AdminInterface {
     private String oldUsername;
     static String anh;
 
-    public void open() throws IOException, SQLException, ClassNotFoundException {
+    public void open() throws SQLException, ClassNotFoundException {
         oldUsername = username.getText();
         String command2 = String.format("SELECT * FROM nhanvien WHERE tendangnhap = '%s'", oldUsername);
         ResultSet result2 = DBUtil.dbExecuteQuery(command2);
@@ -178,16 +184,14 @@ public class ChinhSuaNhanVienController implements AdminInterface {
         } else {
             cl = "Chieu";
         }
-        String command2 = String.format("UPDATE nhanvien SET tendangnhap = '%s',tennhanvien = '%s', sdt = '%s', matkhau = '%s', chucvu = '%s', calam = '%s', anhdaidien = '%s' WHERE tendangnhap = '%s'", username.getText(),hoVaTen.getText(),soDienThoai.getText(),matKhau.getText(),cv,cl,anh,username.getText());
+        String command2 = String.format("UPDATE nhanvien SET tendangnhap = '%s',tennhanvien = '%s', sdt = '%s', " +
+                "matkhau = '%s', chucvu = '%s', calam = '%s', anhdaidien = '%s' WHERE tendangnhap = '%s'",
+                username.getText(),hoVaTen.getText(),soDienThoai.getText(),matKhau.getText(),cv,cl,anh, oldUsername);
         DBUtil.dbExecuteUpdate(command2);
 
         JOptionPane.showMessageDialog(null, "Nhân viên đã được chỉnh sửa thành công", "Notification", 1);
         backBtn.fire();
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/project/screen/NhanSu.fxml"));
-        AnchorPane box = fxmlLoader.load();
-        NhanSuController nhanSuController = fxmlLoader.getController();
         nhanSuController.initialize();
     }
 
