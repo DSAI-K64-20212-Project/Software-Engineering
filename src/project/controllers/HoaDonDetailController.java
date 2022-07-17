@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableStringValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,6 +44,18 @@ public class HoaDonDetailController {
     private HoaDonController hoaDonController;
     private String mahoadon;
 
+    private long mins, secs;
+    private void change(Label text) {
+        secs++;
+        if(secs == 60) {
+            mins++;
+            secs = 0;
+        }
+        text.setText(String.format("Thời gian chờ: %02d:%02d", mins, secs));
+//        text.setText((((mins/10) == 0) ? "0" : "") + mins + ":"
+//                + (((secs/10) == 0) ? "0" : "") + secs);
+    }
+
     public void setData(HoaDon hoaDon) throws Exception {
         this.mahoadon = hoaDon.getMahoadon();
         Invoice invoice = new Invoice(hoaDon.getMahoadon());
@@ -52,17 +65,19 @@ public class HoaDonDetailController {
         tenKhachLabel.setText("Khách hàng: " + hoaDon.getTenkhach());
         soOrderLabel.setText("Số order: " + hoaDon.getSoorder());
 
+        Instant start = Instant.now();
         LocalDateTime end = hoaDon.getDate().toLocalDateTime();
-        System.out.println("Time taken: "+ timeElapsed.toMillis() +" milliseconds");
-
-        Timeline timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1000),
-                new KeyValue(new SimpleIntegerProperty(0), 1000)));
-        ObservableStringValue formattedTime = Bindings.createStringBinding(() -> {
-            Instant start = Instant.now();
-            Duration timeElapsed = Duration.between(start, Instant.from(end));
-            return String.format("%02d:%02d", timeElapsed.toMinutes(), timeElapsed.toSecondsPart()), ;
-                });
-        timeStampLabel.setText();
+        Duration timeElapsed = Duration.between(end.atZone(ZoneId.of("Asia/Ho_Chi_Minh")).toInstant(), start);
+        mins = timeElapsed.toMinutes();
+        secs = timeElapsed.toSecondsPart();
+        timeStampLabel.setText(String.format(String.format("Thời gian chờ: %02d:%02d", timeElapsed.toMinutes(),
+                timeElapsed.toSecondsPart())));
+//        System.out.println("Time taken: "+ timeElapsed.toMillis() +" milliseconds");
+        Timeline timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1),
+                event -> change(timeStampLabel)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setAutoReverse(false);
+        timeline.play();
     }
 
     public void setHoaDonController(HoaDonController hoaDonController) {

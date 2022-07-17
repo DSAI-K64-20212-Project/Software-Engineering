@@ -206,8 +206,8 @@ public class DatDoUongController {
         if (monitor.getCashier() != null){
             Cashier user = monitor.getCashier();
             String message = user.confirm_new_invoice(user.getUsername(), hoadon);
-            JOptionPane.showMessageDialog(null, message);
-            if (Objects.equals(message, "Success!, Order number" + hoadon.soorder)){
+            JOptionPane.showMessageDialog(null, message + ", Order number: " + hoadon.soorder);
+            if (Objects.equals(message, "Success!")){
                 hoadon = new Invoice();
                 new_instance();
             }
