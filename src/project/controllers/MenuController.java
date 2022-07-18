@@ -3,34 +3,15 @@ package project.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import project.UI.DoUong;
-import project.UI.NhanVien;
 import project.UI.Topping;
 import project.base.DBUtil;
-import javafx.scene.paint.Color;
-
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -112,7 +93,7 @@ public class MenuController {
             DoUong doUong = new DoUong();
             doUong.setId(idDoUong);
             doUong.setThongTinDoUong(tenDoUong);
-            doUong.setAnhDoUong("/project/resources/image/TraSua/" +anh);
+            doUong.setAnhDoUong(anh);
             doUong.setThongTinDoUong(tenDoUong);
             doUong.setOnMenu(Boolean.parseBoolean(onMenuStr));
 

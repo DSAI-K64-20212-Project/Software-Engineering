@@ -16,7 +16,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.base.user.Admin;
 import project.base.user.Bartender;
-import project.base.user.User;
 
 import javax.swing.*;
 import java.io.File;

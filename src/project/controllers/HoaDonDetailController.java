@@ -1,12 +1,8 @@
 package project.controllers;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableStringValue;
-import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,13 +12,11 @@ import project.UI.InvoiceView;
 import project.base.DBUtil;
 import project.base.order.Invoice;
 
-import javafx.event.ActionEvent;
-
-import javax.print.attribute.standard.JobMessageFromOperator;
 import javax.swing.*;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.*;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class HoaDonDetailController {
 

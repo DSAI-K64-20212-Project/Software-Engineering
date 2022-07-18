@@ -2,8 +2,6 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -20,6 +18,7 @@ import project.UI.DoUong;
 import project.base.DBUtil;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 public class DoUongController {
@@ -68,11 +67,13 @@ public class DoUongController {
     public void setData(DoUong doUong){
         anhDoUong.setStroke(Color.SEAGREEN);
         Image im;
-        try {
-            im = new Image(doUong.getAnhDoUong());
-        } catch (Exception e){
-            im = new Image("/project/resources/image/icons/default-image.jpg");
+        InputStream imagestream = getClass().getResourceAsStream(String.format("../resources/image" +
+                        "/TraSua/%s",
+                doUong.getAnhDoUong()));
+        if (imagestream == null){
+            imagestream = getClass().getResourceAsStream("../resources/image/icons/default-image.jpg");
         }
+        im = new Image(imagestream, 100, 100, false, false);
         anhDoUong.setFill(new ImagePattern(im));
         anhDoUong.setEffect(new DropShadow(+25d,0d,+2d,Color.DARKSEAGREEN));
 

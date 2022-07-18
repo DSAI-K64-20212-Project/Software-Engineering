@@ -2,20 +2,19 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -39,36 +38,6 @@ public class ChinhSuaDoUongController {
 
     @FXML
     private TextField giaTopping;
-
-    @FXML
-    private RadioButton nguyenLieu;
-
-    @FXML
-    private RadioButton nguyenLieu1;
-
-    @FXML
-    private RadioButton nguyenLieu2;
-
-    @FXML
-    private AnchorPane mainAddDrTp;
-
-    @FXML
-    private RadioButton nguyenLieu3;
-
-    @FXML
-    private RadioButton nguyenLieu4;
-
-    @FXML
-    private RadioButton nguyenLieu5;
-
-    @FXML
-    private RadioButton nguyenLieu6;
-
-    @FXML
-    private RadioButton radioButtonSize2;
-
-    @FXML
-    private ToggleGroup loai;
 
     @FXML
     private Circle anhDoUongTopping;

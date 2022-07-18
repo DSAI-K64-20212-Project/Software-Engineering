@@ -2,7 +2,6 @@ package project.base;
 
 import javafx.application.Platform;
 import javafx.concurrent.ScheduledService;
-import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import project.controllers.DatDoUongController;
 import project.controllers.DoanhThuController;
@@ -12,8 +11,6 @@ import project.controllers.MenuController;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DBListener extends ScheduledService {
     private Connection conn;

@@ -2,21 +2,19 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -25,8 +23,11 @@ import project.base.functional.BartenderInterface;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -72,6 +73,7 @@ public class ThemDoUongToppingController implements BartenderInterface {
     public Button imageBtn;
 
     static String anh = "null";
+    static File anhPath;
 
     @FXML
     private HBox hBoxNguyenLieu;
@@ -114,7 +116,8 @@ public class ThemDoUongToppingController implements BartenderInterface {
     }
 
     @FXML
-    void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void apDungBtn(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
+        Files.copy(anhPath.toPath(), Path.of(new File("./src/project/resources/image/TraSua/" + anh).getCanonicalPath()));
         ArrayList<String> ar = new ArrayList<String>();
         for (Node n: hBoxNguyenLieu.getChildren()){
             RadioButton radioBtn = (RadioButton) n;
@@ -130,9 +133,10 @@ public class ThemDoUongToppingController implements BartenderInterface {
 
         RadioButton loaiB = (RadioButton) loai.getSelectedToggle();
         if (loaiB.getText().equals("Đồ uống")) {
-            add_drink("Tam", ten.getText(), "add.png", new HashMap<>() {{put('M',Integer.parseInt(giaSizeM.getText()));put('L',Integer.parseInt(giaSizeL.getText()));}}, nl);
+            add_drink("Tam", ten.getText(), anh,
+                    new HashMap<>() {{put('M',Integer.parseInt(giaSizeM.getText()));put('L',Integer.parseInt(giaSizeL.getText()));}}, nl);
         }  else {
-            add_topping("Tam", ten.getText(), "add.png", Integer.parseInt(giaTopping.getText()), nl);
+            add_topping("Tam", ten.getText(), anh, Integer.parseInt(giaTopping.getText()), nl);
         }
 
         JOptionPane.showMessageDialog(null, "Đồ uống/topping đã được thêm thành công", "Notification", 1);
@@ -153,7 +157,6 @@ public class ThemDoUongToppingController implements BartenderInterface {
 
     @FXML
     void uploadImageBtn(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../screen/ChinhSuaNhanVien.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         final FileChooser fileChooser = new FileChooser();
@@ -168,9 +171,11 @@ public class ThemDoUongToppingController implements BartenderInterface {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
         File file = fileChooser.showOpenDialog(stage);
+        InputStream imagestream = new FileInputStream(file.getAbsolutePath());
+        anhPath = file;
 
         // Set image sau khi upload ảnh
-        Image img = new Image(String.valueOf(file).substring(String.valueOf(file).indexOf("project")-1));
+        Image img = new Image(imagestream, 200, 200, false, false);
         ImageView view = new ImageView(img);
         view.setFitHeight(200);
         view.setFitWidth(200);
@@ -180,6 +185,11 @@ public class ThemDoUongToppingController implements BartenderInterface {
 
         System.out.println(imageBtn.getText());
 
+    }
+
+    public static void main(String[] args) throws IOException {
+//        Path b = new Path.of("./src/project/resources/image/TraSua/");
+//        System.out.println(b.getCanonicalPath());
     }
 }
 

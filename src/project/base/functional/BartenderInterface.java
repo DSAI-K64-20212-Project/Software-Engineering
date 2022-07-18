@@ -2,7 +2,6 @@ package project.base.functional;
 
 import project.base.DBUtil;
 
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;

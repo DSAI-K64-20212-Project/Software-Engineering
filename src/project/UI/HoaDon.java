@@ -1,8 +1,5 @@
 package project.UI;
 
-import javafx.scene.control.Label;
-
-import java.sql.Time;
 import java.sql.Timestamp;
 
 public class HoaDon {

@@ -17,7 +17,6 @@ import project.base.DBUtil;
 import project.base.order.Invoice;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class DoanhThuController {
     @FXML

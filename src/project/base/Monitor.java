@@ -5,6 +5,7 @@ import project.base.user.Bartender;
 import project.base.user.Cashier;
 import project.base.user.User;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Monitor {
@@ -61,8 +62,7 @@ public class Monitor {
         return null;
     }
 
-    public static void main(String[] args) {
-        System.out.println("this is \"Hung\"");
+    public static void main(String[] args) throws IOException {
 
     }
 

@@ -3,7 +3,6 @@ package project.base.user;
 import project.base.functional.BartenderInterface;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 
 public class Bartender extends User implements BartenderInterface {
     public Bartender(String username) {
